@@ -3,30 +3,27 @@ using UnityEngine;
 public class C_Spinner : MonoBehaviour
 {
     #region ATTRIBUTES
-    // Eje de rotaciÃ³n
-    // Vector3 rotationAxis = new Vector3(0, 0, 0); // Forma 1
-    [SerializeField] Vector3 rotationAxis = Vector3.up;
-    // Vector3 anotherRotationAxis = Vector3.forward; // Forma 2
 
-    // Velocidad de rotaciÃ³n
+    // Eje de rotación
+    [SerializeField]
+    Vector3 rotationAxis = Vector3.up;
 
-    [SerializeField] // Permite editar desde Unity
-    [Range(-180, 180)] // 
+    // Velocidad de rotación
+    [SerializeField]
+    [Range(-180, 180)]
     float rotationSpeed = 45;
+
     #endregion
 
-
-
     #region METHODS
-    // Rotar en el eje indicado aplicando la velocidad seleccionada
-    private void Update()
+
+    // Rotar en el eje indicado, aplicando la velocidad seleccionada
+    void Update()
     {
-        // Acceder al transform del objeto asociado al script
+        // Acceder al transform del objeto asociado a este script
+        // Modificar la rotación de ese transform usando las variables
         transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
-        // Modificar la rotaciÃ³n de el transform usando las variables
     }
 
     #endregion
-
-
 }

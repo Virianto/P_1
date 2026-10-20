@@ -2,12 +2,23 @@ using UnityEngine;
 
 public class C_Translator : MonoBehaviour
 {
-    [SerializeField] Vector3 movement = Vector3.forward;
-    [SerializeField] float speed = 5f;
+    #region ATTRIBUTES
 
-    private void Update()
-    {
+    [SerializeField]
+    Vector3 movementAxis = Vector3.up;
 
-        transform.Translate(movement * speed * Time.deltaTime);
+    [SerializeField]
+    [Range(-10, 10)]
+    float movementSpeed = 5;
+
+    #endregion
+
+    #region METHODS
+
+    void Update()
+    {        
+        transform.Translate(movementAxis * movementSpeed * Time.deltaTime);
     }
+
+    #endregion
 }
