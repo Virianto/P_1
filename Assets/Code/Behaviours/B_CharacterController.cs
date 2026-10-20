@@ -51,8 +51,6 @@ public class B_CharacterController : MonoBehaviour
             transform.Rotate(Vector3.right, -mouseY, Space.Self);
         }
 
-        
-
         if (Input.GetKey(KeyCode.Q))
         {
             movingRotation = -1;
