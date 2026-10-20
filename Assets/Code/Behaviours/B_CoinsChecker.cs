@@ -19,11 +19,11 @@ public class B_CoinsChecker : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //// Me guardo referencia al player
+        // Me guardo referencia al player
         //B_CharacterController player = other.GetComponent<B_CharacterController>();
         
         //// CASO 1: Compruebo AMARILLAS
-        //if (player.totalYellowCoinsCollected >= targetYellowCoins)
+        //if (player.totalCoinsCollected >= targetYellowCoins)
         //{
         //    Debug.Log("El jugador tiene la cantidad esperada de monedas AMARILLAS");
         //    // Lanzar partículas si es el caso

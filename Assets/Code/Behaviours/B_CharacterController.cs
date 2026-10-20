@@ -1,9 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class B_CharacterController : MonoBehaviour
-{
-    // Leer input del teclado y transimitirlo en forma de movimiento al gameObject asociado
+{        
+    // Detectar cuándo he tocado una trampa y restar X a la vida
 
     #region ATTRIBUTES
 
@@ -20,7 +19,7 @@ public class B_CharacterController : MonoBehaviour
     Vector2 movingDirection;
     float movingRotation;
 
-    public int totalCoinsCollected = 0;
+    public int totalCoinsCollected = 0;    
 
     #endregion
 
@@ -66,15 +65,16 @@ public class B_CharacterController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // Detectar cuándo he tocado una moneda y sumar 1 al contador
         B_Coin coinDetected = other.GetComponent<B_Coin>();
 
+        // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
-            //sumar 1 al contador
+            // Sumar 1 al contador
             totalCoinsCollected += 1;
         }
     }
-
 
     #endregion
 }
