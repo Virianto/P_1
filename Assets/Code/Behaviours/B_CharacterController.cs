@@ -76,15 +76,15 @@ public class B_CharacterController : MonoBehaviour
         transform.Rotate(finalRotation);
     }
 
-    //----------------------------------------------------------------------------
+    ////----------------------------------------------------------------------------
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (coinDetected != null)
-        {
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (coinDetected != null)
+    //    {
 
-        }
-    }
+    //    }
+    //}
         
     #endregion
 }
