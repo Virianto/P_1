@@ -75,6 +75,16 @@ public class B_CharacterController : MonoBehaviour
         // Roto el gameObject utilizando el float temporal antes de que muera
         transform.Rotate(finalRotation);
     }
+
+    //----------------------------------------------------------------------------
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (coinDetected != null)
+        {
+
+        }
+    }
         
     #endregion
 }
