@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class UI_GameOverCanvas : MonoBehaviour
@@ -7,6 +8,8 @@ public class UI_GameOverCanvas : MonoBehaviour
     #region ATTRIBUTES
 
     public M_GameManager gameManager;
+
+    [SerializeField] TMP_Text coinsCounterText;
 
     [SerializeField]
     Button replayGameButton;
@@ -17,7 +20,14 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     void Awake()
     {
-        replayGameButton.onClick.AddListener(ResetGame);
+        coinsCounterText.text = "00";
+
+        // replayGameButton.onClick.AddListener(ResetGame);
+    }
+
+    public void UpdateCounter(int coinsCollected)
+    {
+        coinsCounterText.text = coinsCollected.ToString();
     }
 
     public void ResetGame()

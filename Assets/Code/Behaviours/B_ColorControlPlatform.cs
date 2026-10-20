@@ -54,30 +54,30 @@ public class B_ColorControlPlatform : MonoBehaviour
         if (platformColor == PlatformColor.YellowPlatform)
         {
             // Modifica el permiso del jugador
-            player.canCollectYellowCoins = true;
+            // player.canCollectYellowCoins = true;
 
-            player.canCollectBlueCoins = false;
-            player.canCollectGreenCoins = false;
+            // player.canCollectBlueCoins = false;
+            // player.canCollectGreenCoins = false;
         }
 
         // CASO 2: Cambios para AZUL
         if (platformColor == PlatformColor.BluePlatform)
         {
             // Modifica el permiso del jugador
-            player.canCollectBlueCoins = true;
+            // player.canCollectBlueCoins = true;
 
-            player.canCollectYellowCoins = false;
-            player.canCollectGreenCoins = false;
+            // player.canCollectYellowCoins = false;
+            // player.canCollectGreenCoins = false;
         }
 
         // CASO 3: Cambios para VERDE
         if (platformColor == PlatformColor.GreenPlatform)
         {
             // Modifica el permiso del jugador
-            player.canCollectGreenCoins = true;
+            // player.canCollectGreenCoins = true;
 
-            player.canCollectBlueCoins = false;
-            player.canCollectYellowCoins = false;
+            // player.canCollectBlueCoins = false;
+            // player.canCollectYellowCoins = false;
         }
 
         player.GetComponentInChildren<Renderer>().material = gameObject.GetComponent<Renderer>().material;

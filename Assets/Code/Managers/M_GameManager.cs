@@ -8,15 +8,19 @@ public class M_GameManager : MonoBehaviour
 
     public B_FinalGoal goal;
 
-    public UI_GameOverCanvas gameOverCanvas;
+    public UI_GameOverCanvas gameplayCanvas;
 
     #endregion
 
     #region METHODS
 
+    public void NewCoinCollected()
+    {
+        gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
+    }
     public void FinishGame()
     {        
-        gameOverCanvas.gameObject.SetActive(true);
+        gameplayCanvas.gameObject.SetActive(true);
     }
 
     #endregion

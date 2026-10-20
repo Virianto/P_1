@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class B_CharacterController : MonoBehaviour
 {
-    // Leer input del teclado y transimitirlo en forma de movimiento al gameObject asociado
+    // Detectar cuándo he tocado una trampa y restar X a la vida
 
     #region ATTRIBUTES
 
@@ -15,34 +15,21 @@ public class B_CharacterController : MonoBehaviour
     [SerializeField]
     [Range(15, 90)]
     float rotationSpeed = 30;
-       
+
     Vector2 movingDirection;
     float movingRotation;
 
-    public int totalYellowCoinsCollected = 0;
-    public int totalBlueCoinsCollected = 0;
-    public int totalGreenCoinsCollected = 0;
-
-    public bool canCollectYellowCoins = false;
-    public bool canCollectBlueCoins = false;
-    public bool canCollectGreenCoins = false;
+    public int totalCoinsCollected = 0;
 
     #endregion
 
     #region METHODS
 
-    // Este método se lanza cuando hago click sobre el Collider del objeto ligado al script
-    void OnMouseDown()
-    {
-        Debug.Log("Me has dado en la nuca");
-        GetComponent<C_Spinner>().enabled = !GetComponent<C_Spinner>().enabled;
-    }
-
     void Update()
     {
         // Me creo un Vector2 nuevo y lo inicializo a 0 (por si el jugador no pulsa nada)
         movingDirection = Vector2.zero; // (0, 0)
-        float movingRotation = 0;  
+        float movingRotation = 0;
 
         // Relleno el Vector2 con información recibida del teclado para cada eje
         movingDirection.x = Input.GetAxisRaw("Horizontal");
@@ -75,6 +62,21 @@ public class B_CharacterController : MonoBehaviour
         // Roto el gameObject utilizando el float temporal antes de que muera
         transform.Rotate(finalRotation);
     }
-        
+
+    void OnTriggerEnter(Collider other)
+    {
+        // Detectar cuándo he tocado una moneda y sumar 1 al contador
+        B_Coin coinDetected = other.GetComponent<B_Coin>();
+
+        // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
+        if (coinDetected != null)
+        {
+            // Sumar 1 al contador
+            totalCoinsCollected += 1;
+
+            gameManager.NewCoinCollected();
+        }
+    }
+
     #endregion
 }
