@@ -44,9 +44,7 @@ public class B_FinalGoal : MonoBehaviour
     void ShowLevelCompletionMessage()
     {
         // Creo un registro temporal de todas las monedas que ha recogido el jugador
-        int totalCoinsCollected = player.totalYellowCoinsCollected + 
-                                  player.totalBlueCoinsCollected + 
-                                  player.totalGreenCoinsCollected;
+        int totalCoinsCollected = player.totalCoinsCollected;
 
         // Si tiene todas las monedas, le felicito
         

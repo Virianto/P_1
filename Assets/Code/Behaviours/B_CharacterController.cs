@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class B_CharacterController : MonoBehaviour
 {
-    // Leer input del teclado y transimitirlo en forma de movimiento al gameObject asociado
+    
+    //Detectar cuándo he tocado una trampa y restar X a la vida
 
     #region ATTRIBUTES
 
@@ -19,23 +20,27 @@ public class B_CharacterController : MonoBehaviour
     Vector2 movingDirection;
     float movingRotation;
 
-    public int totalYellowCoinsCollected = 0;
-    public int totalBlueCoinsCollected = 0;
-    public int totalGreenCoinsCollected = 0;
-
-    public bool canCollectYellowCoins = false;
-    public bool canCollectBlueCoins = false;
-    public bool canCollectGreenCoins = false;
+    public int totalCoinsCollected = 0;
 
     #endregion
 
     #region METHODS
 
-    // Este método se lanza cuando hago click sobre el Collider del objeto ligado al script
-    void OnMouseDown()
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Me has dado en la nuca");
-        GetComponent<C_Spinner>().enabled = !GetComponent<C_Spinner>().enabled;
+        //Detectar cuándo he tocado una moneda y sumar 1 al contador
+        B_Coin coinDetected = other.GetComponent<B_Coin>();
+
+        //Si la variable que me acabo de crear tiene algo de información denro...
+        if (coinDetected != null)
+        {
+            //Sumar 1 al contador
+            totalCoinsCollected += 1;
+
+            //Comunicar al manager que ha habido cambios y deben mostrarse en la UI
+            gameManager.NewCoinCollected();
+        }
+
     }
 
     void Update()
