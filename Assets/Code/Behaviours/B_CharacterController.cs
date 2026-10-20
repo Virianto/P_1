@@ -9,7 +9,7 @@ public class B_CharacterController : MonoBehaviour
     public M_GameManager gameManager;
 
     [SerializeField]
-    [Range(0, 10)]
+    [Range(0, 50)]
     float playerSpeed = 1;
 
     [SerializeField]
@@ -19,13 +19,7 @@ public class B_CharacterController : MonoBehaviour
     Vector2 movingDirection;
     float movingRotation;
 
-    public int totalYellowCoinsCollected = 0;
-    public int totalBlueCoinsCollected = 0;
-    public int totalGreenCoinsCollected = 0;
-
-    public bool canCollectYellowCoins = false;
-    public bool canCollectBlueCoins = false;
-    public bool canCollectGreenCoins = false;
+    public int totalCoinsCollected = 0;
 
     #endregion
 
@@ -75,6 +69,18 @@ public class B_CharacterController : MonoBehaviour
         // Roto el gameObject utilizando el float temporal antes de que muera
         transform.Rotate(finalRotation);
     }
-        
+
+    private void OnTriggerEnter(Collider other)
+    {
+        B_Coin coinDetected = other.GetComponent<B_Coin>();
+
+        if (coinDetected != null)
+        {
+
+            totalCoinsCollected++;
+
+        }
+    }
+
     #endregion
 }

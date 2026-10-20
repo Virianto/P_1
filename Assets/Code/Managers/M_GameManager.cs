@@ -6,13 +6,18 @@ public class M_GameManager : MonoBehaviour
 
     public B_CharacterController player;
 
-    public B_FinalGoal goal;
+    //public B_FinalGoal goal;
 
     public UI_GameOverCanvas gameOverCanvas;
 
     #endregion
 
     #region METHODS
+
+    public void NewCoinsCollected()
+    {
+        //gameOverCanvas.UpdateCounter
+    }
 
     public void FinishGame()
     {        
