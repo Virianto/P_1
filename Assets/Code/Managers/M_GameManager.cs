@@ -8,7 +8,7 @@ public class M_GameManager : MonoBehaviour
 
     public B_FinalGoal goal;
 
-    public UI_GameOverCanvas gameOverCanvas;
+    public UI_GameOverCanvas gamePlayCanvas;
 
     #endregion
 
@@ -16,7 +16,7 @@ public class M_GameManager : MonoBehaviour
 
     public void FinishGame()
     {        
-        gameOverCanvas.gameObject.SetActive(true);
+        gamePlayCanvas.gameObject.SetActive(true);
     }
 
     #endregion
