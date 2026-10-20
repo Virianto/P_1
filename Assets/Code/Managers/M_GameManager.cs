@@ -1,19 +1,23 @@
 using UnityEngine;
 
 public class M_GameManager : MonoBehaviour
-{
+{    
+    #region ATTRIBUTES
 
-    public BasicPlayer player;
+    public B_CharacterController player;
+
+    public B_FinalGoal goal;
+
     public UI_GameOverCanvas gameOverCanvas;
-    public B_CakeEnd end;
 
-    public void finishGame()
-    {
+    #endregion
+
+    #region METHODS
+
+    public void FinishGame()
+    {        
         gameOverCanvas.gameObject.SetActive(true);
-        player.enabled = false;
-
     }
 
-
-
+    #endregion
 }

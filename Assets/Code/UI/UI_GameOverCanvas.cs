@@ -1,24 +1,31 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class UI_GameOverCanvas : MonoBehaviour
 {
+    #region ATTRIBUTES
+
     public M_GameManager gameManager;
 
+    [SerializeField]
+    Button replayGameButton;
 
-    [SerializeField] Button TryAgainButton;
+    #endregion
 
+    #region METHODS
 
     void Awake()
     {
-        TryAgainButton.onClick.AddListener(ResetGame);
+        replayGameButton.onClick.AddListener(ResetGame);
     }
 
     public void ResetGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
+    // Método público para actualizar su mensaje de fin de juego
+
+    #endregion
 }
