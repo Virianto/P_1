@@ -4,6 +4,9 @@ public class B_CharacterController : MonoBehaviour
 {
     // Leer input del teclado y transimitirlo en forma de movimiento al gameObject asociado
 
+    // Detectar cuándo he tocado una moneda y sumar 1 al contador
+    // Detectar cuándo he tocado una trampa y 
+
     #region ATTRIBUTES
 
     public M_GameManager gameManager;
@@ -19,13 +22,14 @@ public class B_CharacterController : MonoBehaviour
     Vector2 movingDirection;
     float movingRotation;
 
-    public int totalYellowCoinsCollected = 0;
+    /*public int totalYellowCoinsCollected = 0;
     public int totalBlueCoinsCollected = 0;
-    public int totalGreenCoinsCollected = 0;
+    public int totalGreenCoinsCollected = 0;*/
+    public int totalCoinsCollected = 0;
 
-    public bool canCollectYellowCoins = false;
+    /*public bool canCollectYellowCoins = false;
     public bool canCollectBlueCoins = false;
-    public bool canCollectGreenCoins = false;
+    public bool canCollectGreenCoins = false;*/
 
     #endregion
 
@@ -75,6 +79,25 @@ public class B_CharacterController : MonoBehaviour
         // Roto el gameObject utilizando el float temporal antes de que muera
         transform.Rotate(finalRotation);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        // Detectar cuando he tocado una moneda y sumar 1 al contador
+        B_Coin coinDetected = other.GetComponent<B_Coin>();
+
+        // Si la varibale que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO
+        if (coinDetected != null)
+        {
+            // Sumar 1 al contador
+            totalCoinsCollected += 1;
+
+            // ComUnicar al manager que ha habido cambios y deben mostrarse en la UI
+            gameManager.NewCoinCollected();
+
+        }
         
+    }
+
     #endregion
 }

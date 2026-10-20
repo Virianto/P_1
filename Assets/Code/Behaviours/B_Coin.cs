@@ -1,24 +1,40 @@
 using UnityEngine;
 
 // Un enumerado puede vivir fuera de cualquier clase de mi código
-public enum CoinType
+/*public enum CoinType
 {
     Yellow,
     Blue,
     Green
-}
+}*/
 
 public class B_Coin : MonoBehaviour
+
 {
     #region ATTRIBUTES
 
-    public CoinType coinType;
+    // Detectar la colisión con el jugador (SOLAMENTE EL JUGADOR)
+
+    [SerializeField]
+    AudioSource coinAudioSource;
+
+    [SerializeField]
+    ParticleSystem coinParticles;
+
+    //public CoinType coinType;
 
     #endregion
 
     #region METHODS
 
     void OnTriggerEnter(Collider other)
+    {
+        // Va a reproducir un sonido de recolección
+        // Va a emitir unas partículas
+        //
+    }
+
+    /*void OnTriggerEnter(Collider other)
     {
         B_CharacterController player = other.GetComponent<B_CharacterController>();
 
@@ -45,7 +61,7 @@ public class B_Coin : MonoBehaviour
             Debug.Log("Moneda VERDE recogida");
             player.totalGreenCoinsCollected += 1;
         }
-    }
+    }*/
 
     #endregion
 }

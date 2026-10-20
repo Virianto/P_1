@@ -50,7 +50,7 @@ public class B_ColorControlPlatform : MonoBehaviour
 
     void ChangePlayerColor()
     {
-        // CASO 1: Cambios para AMARILLO
+        /* CASO 1: Cambios para AMARILLO
         if (platformColor == PlatformColor.YellowPlatform)
         {
             // Modifica el permiso del jugador
@@ -78,9 +78,9 @@ public class B_ColorControlPlatform : MonoBehaviour
 
             player.canCollectBlueCoins = false;
             player.canCollectYellowCoins = false;
-        }
+        }*/
 
-        player.GetComponentInChildren<Renderer>().material = gameObject.GetComponent<Renderer>().material;
+        //player.GetComponentInChildren<Renderer>().material = gameObject.GetComponent<Renderer>().material;
     }
 
     #endregion
