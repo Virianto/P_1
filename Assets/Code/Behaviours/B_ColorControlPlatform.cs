@@ -23,7 +23,7 @@ public class B_ColorControlPlatform : MonoBehaviour
     #endregion
 
     #region METHODS
-        
+
     void OnTriggerEnter(Collider other)
     {
         playerCanChangeColor = true;
@@ -39,7 +39,7 @@ public class B_ColorControlPlatform : MonoBehaviour
             if (playerCanChangeColor)
             {
                 ChangePlayerColor();
-            }            
+            }
         }
     }
 
@@ -53,31 +53,31 @@ public class B_ColorControlPlatform : MonoBehaviour
         // CASO 1: Cambios para AMARILLO
         if (platformColor == PlatformColor.YellowPlatform)
         {
-            // Modifica el permiso del jugador
-            player.canCollectYellowCoins = true;
+            //// Modifica el permiso del jugador
+            //player.canCollectYellowCoins = true;
 
-            player.canCollectBlueCoins = false;
-            player.canCollectGreenCoins = false;
+            //player.canCollectBlueCoins = false;
+            //player.canCollectGreenCoins = false;
         }
 
         // CASO 2: Cambios para AZUL
         if (platformColor == PlatformColor.BluePlatform)
         {
-            // Modifica el permiso del jugador
-            player.canCollectBlueCoins = true;
+            //// Modifica el permiso del jugador
+            //player.canCollectBlueCoins = true;
 
-            player.canCollectYellowCoins = false;
-            player.canCollectGreenCoins = false;
+            //player.canCollectYellowCoins = false;
+            //player.canCollectGreenCoins = false;
         }
 
         // CASO 3: Cambios para VERDE
         if (platformColor == PlatformColor.GreenPlatform)
         {
-            // Modifica el permiso del jugador
-            player.canCollectGreenCoins = true;
+            //// Modifica el permiso del jugador
+            //player.canCollectGreenCoins = true;
 
-            player.canCollectBlueCoins = false;
-            player.canCollectYellowCoins = false;
+            //player.canCollectBlueCoins = false;
+            //player.canCollectYellowCoins = false;
         }
 
         player.GetComponentInChildren<Renderer>().material = gameObject.GetComponent<Renderer>().material;
