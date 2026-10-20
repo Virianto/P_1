@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class B_CharacterController2 : MonoBehaviour
 {
+    // Detectar cu�ndo he tocado una trampa y restar X a la vida
 
     #region ATTRIBUTES
 
@@ -24,26 +25,25 @@ public class B_CharacterController2 : MonoBehaviour
 
     #region METHODS
 
-
     void Update()
     {
         // Me creo un Vector2 nuevo y lo inicializo a 0 (por si el jugador no pulsa nada)
         movingDirection = Vector2.zero; // (0, 0)
         float movingRotation = 0;
 
-        // Relleno el Vector2 con información recibida del teclado para cada eje
+        // Relleno el Vector2 con informaci�n recibida del teclado para cada eje
         movingDirection.x = Input.GetAxisRaw("Horizontal");
         movingDirection.y = Input.GetAxisRaw("Vertical");
 
-        // Compruebo si, en este frame, el jugador está pulsando esa tecla
+        // Compruebo si, en este frame, el jugador est� pulsando esa tecla
         if (Input.GetKey(KeyCode.Q))
         {
-            // ¿Qué hago si la comprobación de este if me devuelve un "true"?
+            // �Qu� hago si la comprobaci�n de este if me devuelve un "true"?
             movingRotation = -1;
         }
         if (Input.GetKey(KeyCode.E))
         {
-            // ¿Qué hago si la comprobación de este if me devuelve un "true"?
+            // �Qu� hago si la comprobaci�n de este if me devuelve un "true"?
             movingRotation = 1;
         }
 
@@ -63,16 +63,19 @@ public class B_CharacterController2 : MonoBehaviour
         transform.Rotate(finalRotation);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        // Detectar cu�ndo he tocado una moneda y sumar 1 al contador
         B_Coin2 coinDetected = other.GetComponent<B_Coin2>();
 
-        //Si coinDetected tiene algo de info dentro
+        // SI la variable que me acabo de crear TIENE ALGO DE INFORMACI�N DENTRO...
         if (coinDetected != null)
         {
-            //sumar 1 al contador
+            // Sumar 1 al contador
             totalCoinsCollected += 1;
         }
+
+        gameManager.NewCoinCollector();
     }
 
     #endregion
