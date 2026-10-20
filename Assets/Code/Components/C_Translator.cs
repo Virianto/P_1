@@ -6,6 +6,7 @@ public class C_Translator : MonoBehaviour
 
     [SerializeField]
     Vector3 movementAxis = Vector3.up;
+    Vector3 otro = Vector3.down;
 
     [SerializeField]
     [Range(-10, 10)]
@@ -18,6 +19,10 @@ public class C_Translator : MonoBehaviour
     void Update()
     {        
         transform.Translate(movementAxis * movementSpeed * Time.deltaTime);
+        if (movementAxis !=null)
+        {
+            transform.Translate(-movementAxis * movementSpeed * Time.deltaTime);
+        }
     }
 
     #endregion
