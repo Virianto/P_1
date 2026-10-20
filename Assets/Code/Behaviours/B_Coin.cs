@@ -17,6 +17,7 @@ public class B_Coin : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Va a reproducir un sonido de recolección
+        coinAudiosource.PlayOneShot(coinAudiosource.clip);
         // Va a emitir unas partículas de despedida
         // Va a desaparecer
     }
