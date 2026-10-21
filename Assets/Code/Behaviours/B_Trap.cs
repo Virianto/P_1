@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class B_Trap : MonoBehaviour
 {
@@ -17,7 +16,6 @@ public class B_Trap : MonoBehaviour
     float trapFrequencyDamage = 1;
 
     bool playerIsInsideArea = false;
-    [SerializeField]  Slider life;
 
     #endregion
 
@@ -41,19 +39,15 @@ public class B_Trap : MonoBehaviour
     // Declarar un método con gestión de tiempo para dañar al jugador
     IEnumerator HurtPlayer(B_CharacterController player)
     {
-        player.TakeDamage(trapDamage);
         // Dañar al jugador
-        Debug.LogFormat("Se llama {0}", player.name);
+        player.TakeDamage(trapDamage);
 
         yield return new WaitForSeconds(trapFrequencyDamage);
-
-        Debug.LogFormat("Sigo sabiendo su nombre: {0}", player.name);
+        
         // Comprobar si el jugador sigue estando dentro
-
-        // Volver a llamar a esta subrutina
-
         if (playerIsInsideArea)
         {
+            // Volver a llamar a esta subrutina
             StartCoroutine(HurtPlayer(player));
         }
     }
