@@ -1,37 +1,56 @@
+using System.Collections;
 using UnityEngine;
 
 public class B_Trap : MonoBehaviour
 {
-
     #region ATTRIBUTES
-    //DaÃ±o que hace esta trampa
+
+    // Daño que hace esta trampa
     [SerializeField]
     [Range(0, 10)]
     int trapDamage = 1;
-    //Frecuencia conqe hace daÃ±o esta trampa
+
+    // Frecuencia con que hace daño esta trampa
     [SerializeField]
     [Range(0.5f, 3)]
     float trapFrequencyDamage = 1;
+
     bool playerIsInsideArea = false;
 
     #endregion
 
     #region METHODS
-    private void OnTriggerEnter(Collider other)
+
+    void OnTriggerEnter(Collider other)
     {
-        //detectar cuando ha entrado el jugador en su area de efecto 
+        // Detectar cuándo ha entrado el jugador en su área de efecto
         playerIsInsideArea = true;
-        Debug.Log("jugador entro");
+
+        // Invocar una subrutina facilitando en parámetros el componente del player
+        StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        //detectar cuando ha salido el jugador de su area de efecto 
+        // Detectar cuándo ha salido el jugador de su área de efecto
         playerIsInsideArea = false;
-        Debug.Log("jugador salio");
     }
 
-    //declarar u nmetodo      
+    // Declarar un método con gestión de tiempo para dañar al jugador
+    IEnumerator HurtPlayer(B_CharacterController player)
+    {
+        // Dañar al jugador
+        Debug.LogFormat("Se llama {0}", player.name);
+
+        yield return new WaitForSeconds(trapFrequencyDamage);
+
+        Debug.LogFormat("Sigo sabiendo su nombre: {0}", player.name);
+        // Comprobar si el jugador sigue estando dentro
+
+        // Volver a llamar a esta subrutina
+    }
+    
+
 
     #endregion
 }
