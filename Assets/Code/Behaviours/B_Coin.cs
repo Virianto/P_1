@@ -14,10 +14,7 @@ public class B_Coin : MonoBehaviour
 
     #region METHODS
 
-    void Awake()
-    {
-        coinAudioSource = GetComponent<AudioSource>();
-    }
+   
 
     void OnTriggerEnter(Collider other)
     {
@@ -27,7 +24,7 @@ public class B_Coin : MonoBehaviour
         if (other.GetComponent<B_CharacterController>())
         {
             coinParticles.Emit(250);
-            //coinAudioSource.PlayOneShot(coinAudioSource.clip);
+            coinAudioSource.PlayOneShot(coinAudioSource.clip);
             gameObject.SetActive(false);
 
         }
