@@ -25,6 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _DETAIL_SCALED
   - _EMISSION
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -48,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9ac9f4dedcd1174408a3456ad3cfa31b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailMask:
@@ -107,7 +108,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DetailAlbedoMapScale: 1
+    - _DetailAlbedoMapScale: 1.3
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
@@ -130,9 +131,9 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.49803922, b: 0, a: 1}
-    - _Color: {r: 1, g: 0.49803922, b: 0, a: 1}
-    - _EmissionColor: {r: 0.7490195, g: 0.08235294, b: 0, a: 1}
+    - _BaseColor: {r: 0.9, g: 0.37411767, b: 0, a: 1}
+    - _Color: {r: 0.9, g: 0.37411767, b: 0, a: 1}
+    - _EmissionColor: {r: 2.7999997, g: 0.32251307, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
