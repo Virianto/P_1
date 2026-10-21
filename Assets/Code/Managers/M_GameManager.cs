@@ -33,10 +33,15 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
     }
 
-    public void EnableTrapButton()
+    public void EnableTrapButton(GameObject trapObject)
     {
         // Indicar al canvas que debe activar el botón para poder interactuar
-        gameplayCanvas.EnableControlButton();
+        gameplayCanvas.EnableControlButton(trapObject);
+    }
+
+    public void DisableTrapButton() 
+    {
+        gameplayCanvas.DisableControlButton();
     }
 
     public void DesableTrapButton()

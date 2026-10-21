@@ -18,8 +18,6 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField]
     Button trapControlButton;
 
-
-
     #endregion
 
     #region METHODS
@@ -42,18 +40,19 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton(/*GameObject trapObject*/)
+    public void EnableControlButton(GameObject trapObject)
     {
         // Cojo el botón de referencia y lo hago interactivo
         trapControlButton.interactable = true;
+
+        // Vincular el OnClick del botón con el objeto de la trampa
+        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
     }
 
-    public void DesableControlButton()
+    public void DisableControlButton()
     {
-        // Cojo el botón de referencia y lo hago interactivo
         trapControlButton.interactable = false;
     }
-
 
     public void ResetGame()
     {
