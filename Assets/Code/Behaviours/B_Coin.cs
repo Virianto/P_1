@@ -10,6 +10,7 @@ public class B_Coin : MonoBehaviour
     [SerializeField]
     ParticleSystem coinParticles;
 
+    [SerializeField] GameObject coinBody;
     #endregion
 
     #region METHODS
@@ -18,8 +19,17 @@ public class B_Coin : MonoBehaviour
     {
         // Va a reproducir un sonido de recolección
         coinAudiosource.PlayOneShot(coinAudiosource.clip);
+
         // Va a emitir unas partículas de despedida
-        // Va a desaparecer
+        coinParticles.Emit(50);
+
+        // Desactivar el sphereCollider
+        GetComponent<Collider>().enabled = false;
+
+        // Desactivar el renderer
+        coinBody.SetActive (false);
+
+
     }
     #endregion
 }

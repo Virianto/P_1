@@ -66,7 +66,7 @@ public class B_CharacterController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Detectar cuándo he tocado una moneda y sumar 1 al contador
-        B_Coin coinDetected = other.GetComponent<B_Coin>();
+        B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
 
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
