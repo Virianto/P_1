@@ -22,6 +22,8 @@ public class B_CharacterController : MonoBehaviour
     float movingRotation;
 
     public int totalCoinsCollected = 0;
+    public int lifePointsLeft = 20;
+
 
     public int totalYellowCoinsCollected = 0;
     public int totalBlueCoinsCollected = 0;
@@ -75,7 +77,7 @@ public class B_CharacterController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Detectar cuándo he tocado una moneda y sumar 1 al contador
-        B_Coin2 coinDetected = other.GetComponent<B_Coin2>();
+        B_Coin2 coinDetected = other.GetComponentInParent<B_Coin2>();
 
         if (coinDetected != null)
         {
@@ -84,6 +86,22 @@ public class B_CharacterController : MonoBehaviour
 
             gameManager.NewCoinCollected();
         }
+
+        B_Heart heartDetected = other.GetComponent<B_Heart>();
+
+        if (heartDetected != null)
+            lifePointsLeft += 5;
+
+            gameManager.NewLifeCollected();
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        // Modificar la cantidad de vida del jugador
+        lifePointsLeft -= damageAmount;
+
+        // Informar del cambio al game Manager
+        gameManager.PlayerReceiveDamage();
     }
     #endregion
 }

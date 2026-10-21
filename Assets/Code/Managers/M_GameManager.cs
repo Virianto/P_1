@@ -20,6 +20,28 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
     }
 
+    public void PlayerReceiveDamage()
+    {
+        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
+
+    public void NewLifeCollected()
+    {
+        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
+
+    public void EnableTrapButton(GameObject trapObject)
+    {
+        // Indicar al canvas q debe activar el botón para poder interactuar
+        gameplayCanvas.EnableControlButton(trapObject);
+    }
+
+    public void DisableTrapButton()
+    {
+        // Indicar al canvas q debe activar el botón para poder interactuar
+        gameplayCanvas.DisableControlButton();
+    }
+
     public void FinishGame()
     {        
         gameplayCanvas.gameObject.SetActive(true);
