@@ -4,7 +4,7 @@ public class B_Vida : MonoBehaviour
 {
     #region ATTRIBUTES
 
-
+    public int healAmount = 5;
 
     [SerializeField]
     AudioSource vidaAudiosource;
