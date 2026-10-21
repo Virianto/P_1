@@ -6180,6 +6180,7 @@ MonoBehaviour:
   playerSpeed: 10
   rotationSpeed: 60
   totalCoinsCollected: 0
+  lifePointsLeft: 20
 --- !u!54 &434805317
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11369,9 +11370,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MaxValue: 20
+  m_WholeNumbers: 1
+  m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16796,6 +16797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_GameOverCanvas
   gameManager: {fileID: 1948004409}
   coinsCounterText: {fileID: 602462470}
+  playerLifeSlider: {fileID: 534841712}
   replayGameButton: {fileID: 0}
 --- !u!1 &808211016
 GameObject:

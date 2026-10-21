@@ -40,14 +40,16 @@ public class B_Trap : MonoBehaviour
     IEnumerator HurtPlayer(B_CharacterController player)
     {
         // Dañar al jugador
-        Debug.LogFormat("Se llama {0}", player.name);
+        player.TakeDamage(trapDamage);
 
         yield return new WaitForSeconds(trapFrequencyDamage);
-
-        Debug.LogFormat("Sigo sabiendo su nombre: {0}", player.name);
+        
         // Comprobar si el jugador sigue estando dentro
-
-        // Volver a llamar a esta subrutina
+        if (playerIsInsideArea)
+        {
+            // Volver a llamar a esta subrutina
+            StartCoroutine(HurtPlayer(player));
+        }
     }
     
 
