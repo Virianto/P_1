@@ -94,7 +94,6 @@ public class B_CharacterController : MonoBehaviour
                 gameManager.NewCoinsCollected();
 
                 }
-            
         }
     }
 

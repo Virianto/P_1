@@ -29,5 +29,15 @@ public class M_GameManager : MonoBehaviour
         gameOverCanvas.gameObject.SetActive(true);
     }
 
+    public void EnableTrapButton()
+    {
+        gameOverCanvas.EnableControlButton();
+    }
+
+    public void DisableTrapButton()
+    {
+        gameOverCanvas.DisableControlButton();
+    }
+
     #endregion
 }

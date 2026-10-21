@@ -14,7 +14,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     TMP_Text coinsCounterText;
 
     [SerializeField]
-    Button replayGameButton;
+    Button trapControlButton;
 
     [SerializeField]
     Slider playerLifeSlider;
@@ -47,7 +47,15 @@ public class UI_GameOverCanvas : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    // Método público para actualizar su mensaje de fin de juego
+    public void EnableControlButton()
+    {
+        trapControlButton.interactable = true;
+    }
+
+    public void DisableControlButton()
+    {
+        trapControlButton.interactable = false;
+    }
 
     #endregion
 }
