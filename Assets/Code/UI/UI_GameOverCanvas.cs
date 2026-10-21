@@ -46,6 +46,11 @@ public class UI_GameOverCanvas : MonoBehaviour
         trapControlButton.interactable = true;
     }
 
+    public void DisableControlButton()
+    {
+        trapControlButton.interactable = false;
+    }
+
     public void ResetGame()
     {
         SceneManager.LoadScene(0);
