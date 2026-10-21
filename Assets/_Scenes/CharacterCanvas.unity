@@ -26757,6 +26757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B_Trap
   trapDamage: 1
   trapFrequencyDamage: 1
+  poisonAudioSource: {fileID: 1722853127}
 --- !u!1 &821775246
 GameObject:
   m_ObjectHideFlags: 0
@@ -47692,7 +47693,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -8197029811297291791, guid: 0e67541a748f62046bdad405aa0e1fb4, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3f7667662e7eeaf47918d240602a5033, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

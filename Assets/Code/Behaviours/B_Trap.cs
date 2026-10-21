@@ -17,6 +17,9 @@ public class B_Trap : MonoBehaviour
     
     bool playerIsInsideArea = false;
 
+    [SerializeField]
+    AudioSource poisonAudioSource;
+
     #endregion
 
     #region METHODS
@@ -43,6 +46,7 @@ public class B_Trap : MonoBehaviour
     {
         //Dañar al jugador
         player.TakeDamage(trapDamage);
+        poisonAudioSource.PlayOneShot(poisonAudioSource.clip);
 
 
         yield return new WaitForSeconds(trapFrequencyDamage);
