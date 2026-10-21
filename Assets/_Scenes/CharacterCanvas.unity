@@ -16502,7 +16502,7 @@ GameObject:
   - component: {fileID: 541482629}
   - component: {fileID: 541482628}
   m_Layer: 0
-  m_Name: DeactivatePlatform_0
+  m_Name: ControlPlatform_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16538,7 +16538,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -21800,8 +21800,9 @@ GameObject:
   - component: {fileID: 689690783}
   - component: {fileID: 689690782}
   - component: {fileID: 689690781}
+  - component: {fileID: 689690784}
   m_Layer: 0
-  m_Name: DeactivatePlatform_2
+  m_Name: ControlPlatform_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21837,7 +21838,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -21900,6 +21901,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689690779}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &689690784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689690779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65150286caa64da45ab86a8ed1825188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
+  gameManager: {fileID: 2072531139}
+  trapGameObject: {fileID: 821538391}
 --- !u!1 &727892360
 GameObject:
   m_ObjectHideFlags: 0
@@ -41782,7 +41797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_GameOverCanvas
   gameManager: {fileID: 2072531139}
-  replayGameButton: {fileID: 1272670614}
+  trapControlButton: {fileID: 1272670614}
   coinsCounterText: {fileID: 1346977585}
   playerLifeSlider: {fileID: 563273750}
 --- !u!1 &961351355
@@ -52041,7 +52056,7 @@ GameObject:
   - component: {fileID: 1272670615}
   - component: {fileID: 1272670614}
   m_Layer: 5
-  m_Name: Button
+  m_Name: TrapControlButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52087,11 +52102,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.2503754, g: 0.9528302, b: 0.12135102, a: 0.49803922}
-    m_HighlightedColor: {r: 0.2509804, g: 0.95294124, b: 0.121568635, a: 1}
-    m_PressedColor: {r: 0.1514608, g: 0.5754717, b: 0.07329121, a: 1}
-    m_SelectedColor: {r: 0.2509804, g: 0.95294124, b: 0.121568635, a: 1}
-    m_DisabledColor: {r: 0.15294118, g: 0.5764706, b: 0.07450981, a: 0.5019608}
+    m_NormalColor: {r: 0.9529412, g: 0.83618695, b: 0.12156861, a: 0.49803922}
+    m_HighlightedColor: {r: 0.95294124, g: 0.8352942, b: 0.121568635, a: 1}
+    m_PressedColor: {r: 0.019607844, g: 0.015686275, b: 0.003921569, a: 0.5019608}
+    m_SelectedColor: {r: 0.95294124, g: 0.8352942, b: 0.121568635, a: 1}
+    m_DisabledColor: {r: 0.01886791, g: 0.01651278, b: 0.002224989, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -52105,7 +52120,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1272670615}
   m_OnClick:
     m_PersistentCalls:
@@ -53622,7 +53637,7 @@ GameObject:
   - component: {fileID: 1767217882}
   - component: {fileID: 1767217881}
   m_Layer: 0
-  m_Name: DeactivatePlatform_1
+  m_Name: ControlPlatform_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53658,7 +53673,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -68588,7 +68603,7 @@ Transform:
   m_GameObject: {fileID: 1907434061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.73, y: 1, z: -9.4}
+  m_LocalPosition: {x: -12.49, y: 1, z: -9.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
