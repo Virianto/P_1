@@ -21,7 +21,7 @@ public class B_CharacterController : MonoBehaviour
 
     public int totalCoinsCollected = 0;
     public int lifePointsLeft = 20;
-
+    public int totalCorazonsCollected = 0;
     #endregion
 
     #region METHODS
@@ -69,6 +69,8 @@ public class B_CharacterController : MonoBehaviour
         // Detectar cuándo he tocado una moneda y sumar 1 al contador
         B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
 
+        B_Corazon corazonLifeDetected = other.GetComponentInParent<B_Corazon>();
+
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
@@ -78,6 +80,15 @@ public class B_CharacterController : MonoBehaviour
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();
         }
+        if (corazonLifeDetected != null)
+        {
+            // Sumar 1 al contador
+            totalCorazonsCollected += 1;
+
+            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
+            gameManager.NewCorazonCollected();
+        }
+
     }
 
     public void TakeDamage(int damageAmount)

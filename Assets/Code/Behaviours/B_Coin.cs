@@ -11,7 +11,7 @@ public class B_Coin : MonoBehaviour
     ParticleSystem coinParticles;
 
     [SerializeField]
-    GameObjetc coinBody;
+    GameObject coinBody;
 
     #endregion
 
@@ -19,16 +19,17 @@ public class B_Coin : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
-        // Va a reproducir un sonido de recolección
+        // Reproducir sonido de recolección
         coinAudiosource.PlayOneShot(coinAudiosource.clip);
         // Va a emitir unas partículas de despedida
         coinParticles.Emit(50);
-        // Va a desaparecer
+        // Desactivar el sphereCollider para prevenir más recogidas de la misma moneda
         GetComponent<Collider>().enabled = false;
-        //desactivar el render 
-        GetComponentInChildren<Crendered>
+        // Desactivar el hijo para que el jugador deje de ver la moneda
+        coinBody.SetActive(false);
+
 
     }
+
     #endregion
 }

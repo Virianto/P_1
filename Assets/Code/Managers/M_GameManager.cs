@@ -15,11 +15,15 @@ public class M_GameManager : MonoBehaviour
     #region METHODS
 
     public void NewCoinCollected()
+   
     {
         // Decirle al canvas que modifique su texto de contador facilitándole el valor desde player
         gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
     }
+    public void NewCorazonCollected()
+    {
 
+    }
     public void PlayerReceivedDamage()
     {
         // Informar al canvas de que debe actualizar su Slider
