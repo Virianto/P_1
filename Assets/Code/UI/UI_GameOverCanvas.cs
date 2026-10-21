@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class UI_GameOverCanvas : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     [SerializeField]
     Button replayGameButton;
+
+    [SerializeField]
+    Slider playerLifeSlider;
 
     #endregion
 
@@ -31,6 +35,11 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         // Convierto el número en una cadena [1 -> "1"] y lo muestro en el texto de la UI
         coinsCounterText.text = coinsCollected.ToString();
+    }
+
+    public void UpdateLifeSlider(int playerLifePointsLeft)
+    {
+        playerLifeSlider.value = playerLifePointsLeft;
     }
 
     public void ResetGame()

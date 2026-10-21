@@ -19,6 +19,11 @@ public class M_GameManager : MonoBehaviour
         gameOverCanvas.UpdateCounter(player.totalCoinsCollected);
     }
 
+    public void PlayerUpdateLive()
+    {
+        gameOverCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
+
     public void FinishGame()
     {        
         gameOverCanvas.gameObject.SetActive(true);

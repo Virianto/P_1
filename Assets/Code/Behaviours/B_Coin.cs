@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class B_Coin : MonoBehaviour
@@ -10,13 +11,22 @@ public class B_Coin : MonoBehaviour
     [SerializeField]
     ParticleSystem coinParticles;
 
+    [SerializeField]
+    GameObject coinBody;
+
     #endregion
 
     #region METHODS
 
     private void OnTriggerEnter(Collider other)
     {
-        gameObject.SetActive(false);
+        coinAudiosource.PlayOneShot(coinAudiosource.clip);
+
+        coinParticles.Emit(50);
+
+        GetComponent<Collider>().enabled = false;
+
+        coinBody.SetActive(false);
     }
 
     #endregion

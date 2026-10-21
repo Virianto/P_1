@@ -21,16 +21,18 @@ public class B_CharacterController : MonoBehaviour
 
     public int totalCoinsCollected = 0;
 
+    public int lifePointsLeft = 20;
+
     #endregion
 
     #region METHODS
 
     // Este método se lanza cuando hago click sobre el Collider del objeto ligado al script
-    void OnMouseDown()
-    {
-        Debug.Log("Me has dado en la nuca");
-        GetComponent<C_Spinner>().enabled = !GetComponent<C_Spinner>().enabled;
-    }
+    //void OnMouseDown()
+    //{
+    //    Debug.Log("Me has dado en la nuca");
+    //    GetComponent<C_Spinner>().enabled = !GetComponent<C_Spinner>().enabled;
+    //}
 
     void Update()
     {
@@ -72,7 +74,7 @@ public class B_CharacterController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        B_Coin coinDetected = other.GetComponent<B_Coin>();
+        B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
 
         if (coinDetected != null)
         {
@@ -81,6 +83,13 @@ public class B_CharacterController : MonoBehaviour
             Debug.Log("Monedas obtenidas: " + totalCoinsCollected);
             gameManager.NewCoinsCollected();
         }
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        lifePointsLeft -= damageAmount;
+        gameManager.PlayerUpdateLive();
+        Debug.Log(lifePointsLeft);
     }
 
     #endregion
