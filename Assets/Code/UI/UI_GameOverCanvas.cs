@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UI_GameOverCanvas : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     [SerializeField]
     Button replayGameButton;
+    [Serializable]
+
 
     #endregion
 
@@ -18,11 +21,18 @@ public class UI_GameOverCanvas : MonoBehaviour
     void Awake()
     {
         replayGameButton.onClick.AddListener(ResetGame);
+        coinsCounterText.text = "00";
+    }
+    public void UpdateCounter(int CoinsCollected)
+        coinsCounterText.Text = coinsCollected.ToString
+    {
+        
     }
 
     public void ResetGame()
     {
         SceneManager.LoadScene(0);
+
     }
 
     // Método público para actualizar su mensaje de fin de juego

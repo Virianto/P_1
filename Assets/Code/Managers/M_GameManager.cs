@@ -17,6 +17,11 @@ public class M_GameManager : MonoBehaviour
     public void FinishGame()
     {        
         gameOverCanvas.gameObject.SetActive(true);
+
+    }
+    public void NewCoinColledted()
+    {
+
     }
 
     #endregion

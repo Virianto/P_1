@@ -23,21 +23,21 @@ public class B_CoinsChecker : MonoBehaviour
         B_CharacterController player = other.GetComponent<B_CharacterController>();
         
         // CASO 1: Compruebo AMARILLAS
-        if (player.totalYellowCoinsCollected >= targetYellowCoins)
+       // if (player.totalYellowCoinsCollected >= targetYellowCoins)
         {
             Debug.Log("El jugador tiene la cantidad esperada de monedas AMARILLAS");
             // Lanzar partículas si es el caso
         }
 
         // CASO 2: Compruebo AZULES
-        if (player.totalBlueCoinsCollected >= targetBlueCoins)
+       // if (player.totalBlueCoinsCollected >= targetBlueCoins)
         {
             Debug.Log("El jugador tiene la cantidad esperada de monedas AZULES");
             // Lanzar partículas si es el caso
         }
 
         // CASO 3: Compruebo VERDES
-        if (player.totalGreenCoinsCollected >= targetGreenCoins)
+       // if (player.totalGreenCoinsCollected >= targetGreenCoins)
         {
             Debug.Log("El jugador tiene la cantidad esperada de monedas VERDES");
             // Lanzar partículas si es el caso
