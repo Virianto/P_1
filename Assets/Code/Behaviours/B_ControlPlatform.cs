@@ -20,12 +20,15 @@ public class B_ControlPlatform : MonoBehaviour
 
     #region METHODS
 
+    // Detectar cuando ha entrado el jugador
     void OnTriggerEnter(Collider other)
     {
-        gameManager.EnableTrapButton();
-        // Detectar cuando ha entrado el jugador
+
         // Habilitar el botón para desactivar trampa
-        // Vincular la trampa que controla esta plataforma con el OnClick del botón   
+        // Vincular la trampa que controla esta plataforma con el OnClick del botón
+        gameManager.EnableTrapButton(trapGameObject);
+        
+   
     }
 
 

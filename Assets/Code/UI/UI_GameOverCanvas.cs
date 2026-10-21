@@ -45,13 +45,23 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     }
 
-    public void EnableControlButton()
+    public void EnableControlButton(GameObject trapObject)
     {
 
         // Cojo el botón de referencia y lo hago interactivo
         trapControlButton.interactable = true;
 
+        // Vincular el OnClick del botón cno el objeto de la trampa
+        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
+
+
+
     }
+
+    /*void DisableTrap(GameObject trapObject)
+    {
+
+    }*/
 
     public void DisableControlButton()
     {
