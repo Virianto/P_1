@@ -78,6 +78,25 @@ public class B_CharacterController : MonoBehaviour
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();
         }
+
+        B_BigCoin BIGcoinDetected = other.GetComponentInParent<B_BigCoin>();
+
+        // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
+        if (BIGcoinDetected != null)
+        {
+            // Sumar 1 al contador
+            totalCoinsCollected += 5;
+
+            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
+            gameManager.NewCoinCollected();
+        }
+
+        B_LifeContainer lifeContainer = other.GetComponentInParent<B_LifeContainer>();
+
+        if (lifeContainer != null)
+        {
+            AddLife(1);
+        }
     }
 
     public void TakeDamage(int damageAmount)
@@ -87,6 +106,14 @@ public class B_CharacterController : MonoBehaviour
 
         // Informar del cambio al game Manager
         gameManager.PlayerReceivedDamage();
+    }
+    public void AddLife(int lifeAmount)
+    {
+        // Modificar la cantidad de vida del jugador
+        lifePointsLeft += lifeAmount;
+
+        // Informar del cambio al game Manager
+        gameManager.PlayerReceivedLife();
     }
 
     #endregion

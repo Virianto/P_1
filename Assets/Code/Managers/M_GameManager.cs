@@ -10,6 +10,7 @@ public class M_GameManager : MonoBehaviour
 
     public UI_GameOverCanvas gameplayCanvas;
 
+
     #endregion
 
     #region METHODS
@@ -24,6 +25,16 @@ public class M_GameManager : MonoBehaviour
     {
         // Informar al canvas de que debe actualizar su Slider
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
+    public void PlayerReceivedLife()
+    {
+        // Informar al canvas de que debe actualizar su Slider
+        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
+
+    public void EnableTrapButton()
+    {
+        gameplayCanvas.EnableCoolButton();
     }
 
     public void FinishGame()
