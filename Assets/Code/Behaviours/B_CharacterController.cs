@@ -75,13 +75,26 @@ public class B_CharacterController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
+        B_Coin tagCoin = other.GetComponent<B_Coin>();
 
         if (coinDetected != null)
         {
+            
+            if (tagCoin.tag == "Coin")
+            {
 
-            totalCoinsCollected +=1;
-            Debug.Log("Monedas obtenidas: " + totalCoinsCollected);
-            gameManager.NewCoinsCollected();
+                totalCoinsCollected += 1;
+                Debug.Log("Monedas obtenidas: " + totalCoinsCollected);
+                gameManager.NewCoinsCollected();
+            }
+            if (tagCoin.tag == "SuperCoin")
+            {
+                totalCoinsCollected += 5;
+                Debug.Log("Monedas obtenidas: " + totalCoinsCollected);
+                gameManager.NewCoinsCollected();
+
+                }
+            
         }
     }
 

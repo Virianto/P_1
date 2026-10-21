@@ -20,14 +20,22 @@ public class B_Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        coinAudiosource.PlayOneShot(coinAudiosource.clip);
-
-        coinParticles.Emit(50);
-
-        GetComponent<Collider>().enabled = false;
-
-        coinBody.SetActive(false);
+        if (tag == "Coin")
+        {
+            coinAudiosource.PlayOneShot(coinAudiosource.clip);
+            coinParticles.Emit(50);
+            GetComponent<Collider>().enabled = false;
+            coinBody.SetActive(false);
+            Debug.Log("soy una moneda normal");
+        }
+        if (tag == "SuperCoin")
+        {
+            coinAudiosource.PlayOneShot(coinAudiosource.clip);
+            coinParticles.Emit(500);
+            GetComponent<Collider>().enabled = false;
+            coinBody.SetActive(false);
+            Debug.Log("soy una super moneda");
+        }
     }
-
     #endregion
 }
