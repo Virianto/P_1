@@ -1,8 +1,9 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class B_CharacterController : MonoBehaviour
 {
-    // Leer input del teclado y transimitirlo en forma de movimiento al gameObject asociado
+    
 
     #region ATTRIBUTES
 
@@ -19,24 +20,12 @@ public class B_CharacterController : MonoBehaviour
     Vector2 movingDirection;
     float movingRotation;
 
-    public int totalYellowCoinsCollected = 0;
-    public int totalBlueCoinsCollected = 0;
-    public int totalGreenCoinsCollected = 0;
+    public int totalCoinsCollected = 0;
 
-    public bool canCollectYellowCoins = false;
-    public bool canCollectBlueCoins = false;
-    public bool canCollectGreenCoins = false;
 
     #endregion
 
     #region METHODS
-
-    // Este método se lanza cuando hago click sobre el Collider del objeto ligado al script
-    void OnMouseDown()
-    {
-        Debug.Log("Me has dado en la nuca");
-        GetComponent<C_Spinner>().enabled = !GetComponent<C_Spinner>().enabled;
-    }
 
     void Update()
     {
@@ -57,7 +46,7 @@ public class B_CharacterController : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             // ¿Qué hago si la comprobación de este if me devuelve un "true"?
-            movingRotation = 1;
+            //movingRotation = 1;
         }
 
         // Me declaro un nuevo Vector3 (temporal) y, de entrada, le meto datos del Vector2
@@ -74,7 +63,29 @@ public class B_CharacterController : MonoBehaviour
 
         // Roto el gameObject utilizando el float temporal antes de que muera
         transform.Rotate(finalRotation);
-    }
+
+      
+    }  
+    
+    void OnTriggerEnter(Collider other)
+        {
+    /* detectar cuando he tocado una moneda y sumar 1 al contador
+     * detectar cuando he tocado una trampa y restar hp
+     */
+
+        B_Coin coinDetected = other.GetComponent<B_Coin>();
+
+        //si la variable que me acabo de crear tiene algo de info dentro le sumo 1 al contador
+
+        if (coinDetected != null)
+        {
+            //sumar 1 al contador
+            totalCoinsCollected += 1;
+
+            //comunicar al manager que ha habido cambios y dben mostrarse en la UI
+            gameManager.NewCoinCollected();
+        }
+        }
         
     #endregion
 }

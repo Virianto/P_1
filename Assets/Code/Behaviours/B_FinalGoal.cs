@@ -44,22 +44,22 @@ public class B_FinalGoal : MonoBehaviour
     void ShowLevelCompletionMessage()
     {
         // Creo un registro temporal de todas las monedas que ha recogido el jugador
-        int totalCoinsCollected = player.totalYellowCoinsCollected + 
-                                  player.totalBlueCoinsCollected + 
-                                  player.totalGreenCoinsCollected;
+        //int totalCoinsCollected = player.totalYellowCoinsCollected + 
+                                  //player.totalBlueCoinsCollected + 
+                                  //player.totalGreenCoinsCollected;
 
         // Si tiene todas las monedas, le felicito
         
-        if (totalCoinsCollected >= 6) 
-        {
-            // Este bloque solamente se ejecuta si el IF sale TRUE
-            Debug.Log("¡¡ FELICIDADES CRACK !!");
-        }
-        else
-        {
-            // Este bloque solamente se ejecuta si el IF sale FALSE
-            Debug.Log("Todavía te faltan monedas");
-        }
+        //if (totalCoinsCollected >= 6) 
+        //{
+        //    // Este bloque solamente se ejecuta si el IF sale TRUE
+        //    Debug.Log("¡¡ FELICIDADES CRACK !!");
+        //}
+        //else
+        //{
+        //    // Este bloque solamente se ejecuta si el IF sale FALSE
+        //    Debug.Log("Todavía te faltan monedas");
+        //}
 
     }
 

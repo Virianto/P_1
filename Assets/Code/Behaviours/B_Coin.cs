@@ -12,6 +12,24 @@ public class B_Coin : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    /* detectar la colision con player
+     * reproducir sonido de recolleccion
+     * emitir particulas de despedida
+     * desaparecer
+     * */
+
+    [SerializeField]
+    AudioSource coinAudioSource;
+
+    [SerializeField]
+    ParticleSystem coinParticleSystem;
+
+    [SerializeField]
+
+
+
+    // cuantas monedas ha recogido mi player
+
     public CoinType coinType;
 
     #endregion
@@ -22,29 +40,13 @@ public class B_Coin : MonoBehaviour
     {
         B_CharacterController player = other.GetComponent<B_CharacterController>();
 
-        // CASO 1: MONEDAS AMARILLAS
-        if (player.canCollectYellowCoins && (coinType == CoinType.Yellow))
-        {
-            Debug.Log("Moneda AMARILLA recogida");
-            player.totalYellowCoinsCollected += 1;
+        coinAudioSource.PlayOneShot(coinAudioSource.clip); //emite el sonido al ser to
 
-            // Lanzar un sonido de recolección
-            // Desactivar la moneda 
-        }
+        coinParticleSystem.Emit(50); //emite particulas al ser tocado
 
-        // CASO 2: MONEDAS AZULES
-        if(player.canCollectBlueCoins && (coinType == CoinType.Blue))
-        {
-            Debug.Log("Moneda AZUL recogida");
-            player.totalBlueCoinsCollected += 1;            
-        }
+        //GetComponent<Collider>().enabled = false;
 
-        // CASO 3: MONEDAS VERDES
-        if (player.canCollectGreenCoins && (coinType == CoinType.Green))
-        {
-            Debug.Log("Moneda VERDE recogida");
-            player.totalGreenCoinsCollected += 1;
-        }
+        //coinBody.SetActive(false); //desactivo el collider de la coin para que no la recoja mas veces
     }
 
     #endregion
