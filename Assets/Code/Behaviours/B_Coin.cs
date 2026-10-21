@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Un enumerado puede vivir fuera de cualquier clase de mi código
@@ -21,6 +22,9 @@ public class B_Coin : MonoBehaviour
     [SerializeField]
     ParticleSystem coinParticles;
 
+    [SerializeField]
+    GameObject coinBody;
+
     //public CoinType coinType;
 
     #endregion
@@ -30,8 +34,18 @@ public class B_Coin : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Va a reproducir un sonido de recolección
+        coinAudioSource.PlayOneShot(coinAudioSource.clip);
+
         // Va a emitir unas partículas
-        //
+        coinParticles.Emit(50);
+
+        // Desactivar sphere collider para prevenir más recogidas de la misma moneda
+        GetComponent<Collider>().enabled = false;
+
+        // Desactivar el renderer del hijo para que el jugador deje de ver la moneda
+        // GetComponentInChildren<Renderer>().enabled = false;
+        coinBody.SetActive(false);
+
     }
 
     /*void OnTriggerEnter(Collider other)

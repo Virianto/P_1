@@ -20,6 +20,13 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
     }
 
+    public void PlayerRecievedDamage()
+    {
+        // Informar al canvas que debe actualziar su Slider
+        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
+
+
     public void FinishGame()
     {        
         gameplayCanvas.gameObject.SetActive(true);

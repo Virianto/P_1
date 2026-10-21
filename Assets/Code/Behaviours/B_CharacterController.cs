@@ -31,6 +31,8 @@ public class B_CharacterController : MonoBehaviour
     public bool canCollectBlueCoins = false;
     public bool canCollectGreenCoins = false;*/
 
+    public int lifePointsLeft = 20;
+
     #endregion
 
     #region METHODS
@@ -84,7 +86,7 @@ public class B_CharacterController : MonoBehaviour
     {
 
         // Detectar cuando he tocado una moneda y sumar 1 al contador
-        B_Coin coinDetected = other.GetComponent<B_Coin>();
+        B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
 
         // Si la varibale que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO
         if (coinDetected != null)
@@ -98,6 +100,23 @@ public class B_CharacterController : MonoBehaviour
         }
         
     }
+
+    public void TakeDamage(int damageAmount)
+    {
+        Debug.LogFormat("Tengo {0} vida ahora", lifePointsLeft);
+
+
+        // Modificar la cantidad de vida del jugador
+        lifePointsLeft -= damageAmount;
+
+
+        Debug.LogFormat("Tras recibir daño me queda {0} de vida ", lifePointsLeft);
+
+        // Informar del cambio al gameManager
+        gameManager.PlayerRecievedDamage();
+
+    }
+
 
     #endregion
 }

@@ -15,7 +15,8 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField]
     Button replayGameButton;
 
-
+    [SerializeField]
+    Slider playerLifeSlider;
 
     #endregion
 
@@ -34,6 +35,13 @@ public class UI_GameOverCanvas : MonoBehaviour
         // Convierte el núnmreo en una cadena [1 -> "1"] 
         coinsCounterText.text += coinsCollected.ToString();
 
+
+    }
+
+    public void UpdateLifeSlider(int playerLifePointsLeft)
+    {
+        // Actualiza el valor del slider para que coincida con los puntos de vida del jugador
+        playerLifeSlider.value = playerLifePointsLeft;
 
     }
 
