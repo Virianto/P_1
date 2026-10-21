@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class B_CharacterController : MonoBehaviour
-{
+{        
     // Detectar cuándo he tocado una trampa y restar X a la vida
 
     #region ATTRIBUTES
@@ -15,11 +15,11 @@ public class B_CharacterController : MonoBehaviour
     [SerializeField]
     [Range(15, 90)]
     float rotationSpeed = 30;
-
+       
     Vector2 movingDirection;
     float movingRotation;
 
-    public int totalCoinsCollected = 0;
+    public int totalCoinsCollected = 0;    
 
     #endregion
 
@@ -29,7 +29,7 @@ public class B_CharacterController : MonoBehaviour
     {
         // Me creo un Vector2 nuevo y lo inicializo a 0 (por si el jugador no pulsa nada)
         movingDirection = Vector2.zero; // (0, 0)
-        float movingRotation = 0;
+        float movingRotation = 0;  
 
         // Relleno el Vector2 con información recibida del teclado para cada eje
         movingDirection.x = Input.GetAxisRaw("Horizontal");
@@ -74,6 +74,7 @@ public class B_CharacterController : MonoBehaviour
             // Sumar 1 al contador
             totalCoinsCollected += 1;
 
+            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();
         }
     }
