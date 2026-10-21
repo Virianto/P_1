@@ -31,6 +31,7 @@ public class B_CharacterController : MonoBehaviour
     {
         //Detectar cuándo he tocado una moneda y sumar 1 al contador
         B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
+        B_SuperCoin superCoinDetected = other.GetComponentInParent<B_SuperCoin>();
 
         //Si la variable que me acabo de crear tiene algo de información denro...
         if (coinDetected != null)
@@ -48,7 +49,11 @@ public class B_CharacterController : MonoBehaviour
          lifePointsLeft += 3;
             gameManager.PlayerGainsLife();
         }
-
+        if (superCoinDetected != null) 
+        {
+            totalCoinsCollected += 5;
+            gameManager.NewCoinCollected();
+        }
 
     }
 
