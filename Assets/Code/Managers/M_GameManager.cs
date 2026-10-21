@@ -29,9 +29,9 @@ public class M_GameManager : MonoBehaviour
         gameOverCanvas.gameObject.SetActive(true);
     }
 
-    public void EnableTrapButton()
+    public void EnableTrapButton(GameObject trapObject)
     {
-        gameOverCanvas.EnableControlButton();
+        gameOverCanvas.EnableControlButton(trapObject);
     }
 
     public void DisableTrapButton()

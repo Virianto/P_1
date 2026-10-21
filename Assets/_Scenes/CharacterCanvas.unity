@@ -495,6 +495,8 @@ GameObject:
   - component: {fileID: 35132098}
   - component: {fileID: 35132097}
   - component: {fileID: 35132096}
+  - component: {fileID: 35132101}
+  - component: {fileID: 35132100}
   m_Layer: 0
   m_Name: Desactivador_2
   m_TagString: Untagged
@@ -596,6 +598,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &35132100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35132095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370d5ed9f1883ee489e33efd40090e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
+  gameManager: {fileID: 84425791}
+  trapGameObject: {fileID: 374251745}
+--- !u!65 &35132101
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35132095}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 23.017305, z: 10}
+  m_Center: {x: 0, y: 11.570865, z: 0}
 --- !u!1 &61841673
 GameObject:
   m_ObjectHideFlags: 0
@@ -26610,7 +26647,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.8627452, g: 0.07843138, b: 0.2352941, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -26624,7 +26661,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 857733103}
   m_OnClick:
     m_PersistentCalls:
@@ -42091,7 +42128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_GameOverCanvas
   gameManager: {fileID: 84425791}
   coinsCounterText: {fileID: 1866282196}
-  replayGameButton: {fileID: 857733102}
+  trapControlButton: {fileID: 857733102}
   playerLifeSlider: {fileID: 1054230203}
 --- !u!1 &1441732734
 GameObject:
@@ -42210,7 +42247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_GameOverCanvas
   gameManager: {fileID: 0}
   coinsCounterText: {fileID: 0}
-  replayGameButton: {fileID: 0}
+  trapControlButton: {fileID: 0}
   playerLifeSlider: {fileID: 0}
 --- !u!1 &1480671102
 GameObject:

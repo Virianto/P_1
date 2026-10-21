@@ -13,7 +13,7 @@ public class B_ControlPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.EnableTrapButton();
+        gameManager.EnableTrapButton(trapGameObject);
     }
 
     private void OnTriggerExit(Collider other)

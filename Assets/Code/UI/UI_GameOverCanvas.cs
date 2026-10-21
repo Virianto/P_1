@@ -47,15 +47,18 @@ public class UI_GameOverCanvas : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void EnableControlButton()
+    public void EnableControlButton(GameObject trapObject)
     {
         trapControlButton.interactable = true;
+        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
     }
 
     public void DisableControlButton()
     {
         trapControlButton.interactable = false;
     }
+
+    
 
     #endregion
 }
