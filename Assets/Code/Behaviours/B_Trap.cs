@@ -18,7 +18,10 @@ public class B_Trap : MonoBehaviour
     bool playerIsInsideArea = false;
 
     [SerializeField]
-    AudioSource poisonAudioSource;
+    AudioSource trapAudioSource;
+
+    [SerializeField]
+    ParticleSystem trapPatricles;
 
     #endregion
 
@@ -46,7 +49,8 @@ public class B_Trap : MonoBehaviour
     {
         //Dañar al jugador
         player.TakeDamage(trapDamage);
-        poisonAudioSource.PlayOneShot(poisonAudioSource.clip);
+        trapAudioSource.PlayOneShot(trapAudioSource.clip);
+        trapPatricles.Emit(50);
 
 
         yield return new WaitForSeconds(trapFrequencyDamage);
