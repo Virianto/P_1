@@ -21,6 +21,9 @@ public class B_CharacterController2 : MonoBehaviour
 
     public int totalCoinsCollected = 0;
 
+    public int lifePointsLeft = 20;
+    B_Coin2 coinDetected;
+
     #endregion
 
     #region METHODS
@@ -66,16 +69,41 @@ public class B_CharacterController2 : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Detectar cu�ndo he tocado una moneda y sumar 1 al contador
-        B_Coin2 coinDetected = other.GetComponent<B_Coin2>();
+        coinDetected = other.GetComponentInParent<B_Coin2>();
 
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACI�N DENTRO...
-        if (coinDetected != null)
+        if (coinDetected != null && coinDetected.myCoinType==B_Coin2.CoinType.Normal)
         {
             // Sumar 1 al contador
             totalCoinsCollected += 1;
+        } 
+        if (coinDetected != null && coinDetected.myCoinType == B_Coin2.CoinType.Mega)
+        {
+            // Sumar 5 al contador
+            totalCoinsCollected += 5;
         }
 
+        Debug.Log("monedas: " + totalCoinsCollected);
         gameManager.NewCoinCollector();
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        //modificar vida jugador
+        lifePointsLeft -= damageAmount;
+
+        //informar al gameManager
+        gameManager.PlayerReceiveDamage();
+    }
+
+    public void RestoreLife(int restoredLife)
+    {
+        lifePointsLeft += restoredLife;
+        if(lifePointsLeft >= 20)
+        {
+            lifePointsLeft = 20;
+        }
+        gameManager.PlayerReceiveDamage();
     }
 
     #endregion

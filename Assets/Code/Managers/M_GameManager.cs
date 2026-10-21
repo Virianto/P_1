@@ -18,6 +18,11 @@ public class M_GameManager : MonoBehaviour
         //decirle al canvas que modifique su texto de contador
         gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
     }
+    public void PlayerReceiveDamage()
+    {
+        //informar al canvas de que debe actualizar su slider
+        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
     public void FinishGame()
     {        
         gameplayCanvas.gameObject.SetActive(true);

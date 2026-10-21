@@ -11,8 +11,30 @@ public class B_Coin2 : MonoBehaviour
     [SerializeField] AudioSource coinAudioSource;
 
     [SerializeField] ParticleSystem coinParticles;
+    [SerializeField] GameObject coinBody;
+    public enum CoinType
+    {
+        Normal,
+        Mega
+    }
+    public CoinType myCoinType;
     #endregion
 
-    #region METHODS
+    #region METHOD
+
+    void OnTriggerEnter(Collider other)
+    {
+        coinAudioSource.PlayOneShot(coinAudioSource.clip);
+
+        coinParticles.Emit(50);
+
+        //desactivar el collider
+        GetComponent<Collider>().enabled = false;
+
+        //desactivar el renderer del hijo para que el jugador deje de ver la moneda
+        GetComponentInChildren<Renderer>().enabled = false;
+        coinBody.SetActive(false);
+        //gameObject.SetActive(false);
+    }
     #endregion
 }
