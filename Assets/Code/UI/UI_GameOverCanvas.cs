@@ -16,7 +16,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     Slider playerLifeSlider;
 
     [SerializeField]
-    Button replayGameButton;
+    Button trapControlButton;
 
     #endregion
 
@@ -26,8 +26,6 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         // Inicializar el texto que se muestra por pantalla cada vez que inicio el nivel
         coinsCounterText.text = "00";
-
-        //replayGameButton.onClick.AddListener(ResetGame);
     }
 
     public void UpdateCounter(int coinsCollected)
@@ -40,6 +38,12 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         // Actualizo el valor del slider para que coincida con los puntos de vida del jugador
         playerLifeSlider.value = playerLifePointsLeft;
+    }
+
+    public void EnableControlButton()
+    {
+        // Cojo el botón de referencia y lo hago interactivo
+        trapControlButton.interactable = true;
     }
 
     public void ResetGame()
