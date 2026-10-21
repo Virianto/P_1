@@ -14,6 +14,9 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     [SerializeField]
     TMP_Text coinsCounterText;
+
+    [SerializeField]
+    Slider playerLifeSlider;
     #endregion
 
     #region METHODS
@@ -31,6 +34,11 @@ public class UI_GameOverCanvas : MonoBehaviour
         coinsCounterText.text = coinsCollected.ToString();
     }
 
+
+    public void UpdateLifeSlider(int playerLifePointsLeft)
+    {
+        playerLifeSlider.value = playerLifePointsLeft;
+    }
     public void ResetGame()
     {
         SceneManager.LoadScene(0);

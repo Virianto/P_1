@@ -21,6 +21,7 @@ public class B_CharacterController : MonoBehaviour
     float movingRotation;
 
     public int totalCoinsCollected = 0;
+    public int lifePointsLeft = 20;
 
     #endregion
 
@@ -41,6 +42,18 @@ public class B_CharacterController : MonoBehaviour
             gameManager.NewCoinCollected();
         }
 
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        
+        
+        //Modificar la cantidad de vida al jugador
+        lifePointsLeft -= damageAmount;
+
+        //Informar del cambio al game Manager
+
+        gameManager.PlayerReceivedDamage();
     }
 
     void Update()

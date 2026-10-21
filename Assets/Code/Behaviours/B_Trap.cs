@@ -42,11 +42,18 @@ public class B_Trap : MonoBehaviour
     IEnumerator HurtPlayer(B_CharacterController player)
     {
         //Dañar al jugador
-        Debug.LogFormat("Se llama {0}", player.name);
+        player.TakeDamage(trapDamage);
+
+
         yield return new WaitForSeconds(trapFrequencyDamage);
-        Debug.LogFormat("Su nombre sigue siendo {0}", player.name);
 
         //Comprobar si el jugador sigue estando dentro
+        if (playerIsInsideArea) 
+        {
+            StartCoroutine(HurtPlayer(player));
+        }
+
+        
 
         //Volver a llma esta subtrama
     }
