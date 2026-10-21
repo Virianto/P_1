@@ -22,7 +22,7 @@ public class B_ControlPlatform : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        
+        gameManager.DisableTrapButton();
         // Deshabilito el botón
         // Desvincular la trampa que controla esta plataforma con el OnClick del botón
     }
