@@ -40,10 +40,13 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton()
+    public void EnableControlButton(GameObject trapObject)
     {
         // Cojo el botón de referencia y lo hago interactivo
         trapControlButton.interactable = true;
+
+        // Vincular el OnClick del botón con el objeto de la trampa
+        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
     }
 
     public void DisableControlButton()
