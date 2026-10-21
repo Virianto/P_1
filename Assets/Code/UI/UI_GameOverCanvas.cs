@@ -13,7 +13,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     TMP_Text coinsCounterText;
 
     [SerializeField]
-    Button replayGameButton;
+    Button trapControlButton;
 
     [SerializeField]
     Slider playerLifeSlider;
@@ -42,6 +42,21 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         // Actualiza el valor del slider para que coincida con los puntos de vida del jugador
         playerLifeSlider.value = playerLifePointsLeft;
+
+    }
+
+    public void EnableControlButton()
+    {
+
+        // Cojo el botón de referencia y lo hago interactivo
+        trapControlButton.interactable = true;
+
+    }
+
+    public void DisableControlButton()
+    {
+
+        trapControlButton.interactable = false;
 
     }
 

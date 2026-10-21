@@ -98,7 +98,19 @@ public class B_CharacterController : MonoBehaviour
             gameManager.NewCoinCollected();
 
         }
-        
+        // Detectar cuando he tocado una moneda y sumar 1 al contador
+        B_SuperCoin superCoinDetected = other.GetComponentInParent<B_SuperCoin>();
+
+        // Si la varibale que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO
+        if (superCoinDetected != null)
+        {
+            // Sumar 1 al contador
+            totalCoinsCollected += 5;
+
+            // ComUnicar al manager que ha habido cambios y deben mostrarse en la UI
+            gameManager.NewCoinCollected();
+
+        }
     }
 
     public void TakeDamage(int damageAmount)
@@ -117,6 +129,20 @@ public class B_CharacterController : MonoBehaviour
 
     }
 
+    public void HealPlayer(int healAmount)
+    {
+        Debug.LogFormat("Tengo {0} vida ahora", lifePointsLeft);
+
+
+        // Modificar la cantidad de vida del jugador
+        lifePointsLeft += healAmount;
+
+
+        Debug.LogFormat("Tras recibir cura me queda {0} de vida ", lifePointsLeft);
+
+        // Informar del cambio al gameManager
+        gameManager.PlayerRecievedHeal();
+    }
 
     #endregion
-}
+    }

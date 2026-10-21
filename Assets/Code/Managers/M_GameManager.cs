@@ -24,8 +24,27 @@ public class M_GameManager : MonoBehaviour
     {
         // Informar al canvas que debe actualziar su Slider
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+
+    }
+    public void PlayerRecievedHeal()
+    {
+        // Informar al canvas que debe actualziar su Slider
+        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+
     }
 
+    public void EnableTrapButton()
+    {
+        // Indicr al canvas que debe activar ele botón para poder interactuar
+        gameplayCanvas.EnableControlButton();
+    }
+
+    public void DisableTrapButton()
+    {
+
+        gameplayCanvas.DisableControlButton();
+
+    }
 
     public void FinishGame()
     {        
