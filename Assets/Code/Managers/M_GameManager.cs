@@ -11,6 +11,7 @@ public class M_GameManager : MonoBehaviour
     public UI_GameOverCanvas gameplayCanvas;
 
 
+
     #endregion
 
     #region METHODS
@@ -34,14 +35,16 @@ public class M_GameManager : MonoBehaviour
 
     public void EnableTrapButton()
     {
-        gameplayCanvas.EnableCoolButton();
-    }
-
-    public void EnableTrapButton()
-    {
         // Indicar al canvas que debe activar el botón para poder interactuar
         gameplayCanvas.EnableControlButton();
     }
+
+    public void DesableTrapButton()
+    {
+        // Indicar al canvas que debe activar el botón para poder interactuar
+        gameplayCanvas.DesableControlButton();
+    }
+
 
     public void FinishGame()
     {        

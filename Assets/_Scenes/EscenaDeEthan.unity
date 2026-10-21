@@ -10386,7 +10386,7 @@ MonoBehaviour:
   gameManager: {fileID: 1665456948}
   coinsCounterText: {fileID: 611446947}
   playerLifeSlider: {fileID: 2079988347}
-  controlTrapButton: {fileID: 0}
+  trapControlButton: {fileID: 316239855}
 --- !u!1 &225134376
 GameObject:
   m_ObjectHideFlags: 0
@@ -10576,11 +10576,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 228000423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a273e5823feff94da3998c1f8da1869, type: 3}
+  m_Script: {fileID: 11500000, guid: ce345817bbe5fdc438420c941d12882b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
   gameManager: {fileID: 1665456948}
-  TrapGameObject: {fileID: 1774347771}
+  trapGameObject: {fileID: 260605215}
 --- !u!65 &228000428
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16686,8 +16686,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285977305
-  m_fontColor: {r: 0.8509804, g: 0.8217947, b: 0.46463528, a: 1}
+    rgba: 4279939583
+  m_fontColor: {r: 1, g: 0.69264066, b: 0.10389608, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -63208,7 +63208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.319, b: 0.3435286, a: 0.6}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
