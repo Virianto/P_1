@@ -41,6 +41,14 @@ public class B_CharacterController : MonoBehaviour
             //Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();
         }
+        B_LifeGiver lifeGiverDetected = other.GetComponent<B_LifeGiver>();
+
+        if (lifeGiverDetected != null)
+        {
+         lifePointsLeft += 3;
+            gameManager.PlayerGainsLife();
+        }
+
 
     }
 

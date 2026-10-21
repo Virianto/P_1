@@ -26,6 +26,11 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
     }
 
+
+    public void PlayerGainsLife()
+    {
+        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
     public void FinishGame()
     {        
         gameplayCanvas.gameObject.SetActive(true);

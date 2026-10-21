@@ -37,8 +37,10 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     public void UpdateLifeSlider(int playerLifePointsLeft)
     {
+        //Actualizo el valor del slider para que coincida con los puntos de vida del jugador
         playerLifeSlider.value = playerLifePointsLeft;
     }
+
     public void ResetGame()
     {
         SceneManager.LoadScene(0);
