@@ -15,5 +15,18 @@ public class B_ControlPlatform : MonoBehaviour
     #endregion
 
     #region METHODS
+    void OnTriggerEnter(Collider other)
+    {
+        gameManager.EnableTrapButton(trapGameObject);
+        // Habilitar el botón para desactivar trampa
+        // Vincular la trampa que controla esta plataforma con el OnClick del botón
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        gameManager.DisableTrapButton();
+        // Deshabilito el botón
+        // Desvincular la trampa que controla esta plataforma con el OnClick del botón
+    }
     #endregion
 }
