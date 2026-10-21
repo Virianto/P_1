@@ -15748,6 +15748,7 @@ GameObject:
   - component: {fileID: 564218137}
   - component: {fileID: 564218136}
   - component: {fileID: 564218135}
+  - component: {fileID: 564218138}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -15850,6 +15851,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564218133}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &564218138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564218133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d372308b5e4284db406fb3771b7cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
+  gameManager: {fileID: 1542999517}
+  trapGameObject: {fileID: 0}
 --- !u!1 &567715203
 GameObject:
   m_ObjectHideFlags: 0
@@ -16343,7 +16358,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 691249344}
-  - component: {fileID: 691249345}
   m_Layer: 0
   m_Name: ControlPlatform (2)
   m_TagString: Untagged
@@ -16366,20 +16380,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 648860404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &691249345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691249343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d372308b5e4284db406fb3771b7cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
-  gameManager: {fileID: 1542999517}
-  trapGameObject: {fileID: 564218133}
 --- !u!1 &734812377
 GameObject:
   m_ObjectHideFlags: 0
@@ -21712,7 +21712,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 981688833}
-  - component: {fileID: 981688834}
   m_Layer: 0
   m_Name: ControlPlatform (1)
   m_TagString: Untagged
@@ -21735,20 +21734,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 648860404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &981688834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981688832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d372308b5e4284db406fb3771b7cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
-  gameManager: {fileID: 1542999517}
-  trapGameObject: {fileID: 1148340348}
 --- !u!1 &1058936349
 GameObject:
   m_ObjectHideFlags: 0
@@ -22116,6 +22101,7 @@ GameObject:
   - component: {fileID: 1148340352}
   - component: {fileID: 1148340351}
   - component: {fileID: 1148340350}
+  - component: {fileID: 1148340354}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -22218,6 +22204,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148340348}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1148340354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148340348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d372308b5e4284db406fb3771b7cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
+  gameManager: {fileID: 1542999517}
+  trapGameObject: {fileID: 1172370891}
 --- !u!1 &1158153680
 GameObject:
   m_ObjectHideFlags: 0
@@ -27376,6 +27376,7 @@ GameObject:
   - component: {fileID: 1372892391}
   - component: {fileID: 1372892390}
   - component: {fileID: 1372892389}
+  - component: {fileID: 1372892392}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -27478,6 +27479,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372892387}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1372892392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372892387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d372308b5e4284db406fb3771b7cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
+  gameManager: {fileID: 1542999517}
+  trapGameObject: {fileID: 1408612567}
 --- !u!1 &1408612567
 GameObject:
   m_ObjectHideFlags: 0
@@ -28249,7 +28264,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1996600911}
-  - component: {fileID: 1996600912}
   m_Layer: 0
   m_Name: ControlPlatform
   m_TagString: Untagged
@@ -28272,20 +28286,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 648860404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1996600912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996600910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d372308b5e4284db406fb3771b7cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
-  gameManager: {fileID: 1542999517}
-  trapGameObject: {fileID: 1372892387}
 --- !u!1 &2001283871
 GameObject:
   m_ObjectHideFlags: 0
