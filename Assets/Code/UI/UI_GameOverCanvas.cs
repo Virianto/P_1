@@ -16,7 +16,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     Slider playerLifeSlider;
 
     [SerializeField]
-    Button controlTrapButton;
+    Button trapControlButton;
 
     #endregion
 
@@ -39,10 +39,13 @@ public class UI_GameOverCanvas : MonoBehaviour
         // Actualizo el valor del slider para que coincida con los puntos de vida del jugador
         playerLifeSlider.value = playerLifePointsLeft;
     }
-    public void EnableCoolButton()
+
+    public void EnableControlButton()
     {
-        controlTrapButton.interactable = true;
+        // Cojo el botón de referencia y lo hago interactivo
+        trapControlButton.interactable = true;
     }
+
     public void ResetGame()
     {
         SceneManager.LoadScene(0);

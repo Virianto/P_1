@@ -37,6 +37,12 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.EnableCoolButton();
     }
 
+    public void EnableTrapButton()
+    {
+        // Indicar al canvas que debe activar el botón para poder interactuar
+        gameplayCanvas.EnableControlButton();
+    }
+
     public void FinishGame()
     {        
         gameplayCanvas.gameObject.SetActive(true);
