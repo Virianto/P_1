@@ -5979,6 +5979,7 @@ GameObject:
   - component: {fileID: 260605218}
   - component: {fileID: 260605217}
   - component: {fileID: 260605216}
+  - component: {fileID: 260605220}
   m_Layer: 0
   m_Name: Trap 2
   m_TagString: Untagged
@@ -6001,7 +6002,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6080,6 +6081,21 @@ Transform:
   - {fileID: 145636871}
   m_Father: {fileID: 1030804472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &260605220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260605215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91289f5a0e0157e4fbee7461b44a5209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_Trap
+  trapDamage: 1
+  trapFrequencyDamage: 1
+  life: {fileID: 2079988347}
 --- !u!1 &270576035
 GameObject:
   m_ObjectHideFlags: 0
@@ -11490,6 +11506,7 @@ MonoBehaviour:
   playerSpeed: 10
   rotationSpeed: 90
   totalCoinsCollected: 0
+  lifePointsLeft: 0
 --- !u!54 &471549102
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -53064,7 +53081,7 @@ GameObject:
   - component: {fileID: 1521487717}
   - component: {fileID: 1521487716}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CoinIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58630,6 +58647,7 @@ GameObject:
   - component: {fileID: 1774347774}
   - component: {fileID: 1774347773}
   - component: {fileID: 1774347772}
+  - component: {fileID: 1774347776}
   m_Layer: 0
   m_Name: Trap 1
   m_TagString: Untagged
@@ -58652,7 +58670,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -58731,6 +58749,21 @@ Transform:
   - {fileID: 1251007706}
   m_Father: {fileID: 1030804472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1774347776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774347771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91289f5a0e0157e4fbee7461b44a5209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_Trap
+  trapDamage: 1
+  trapFrequencyDamage: 1
+  life: {fileID: 0}
 --- !u!1 &1775759511
 GameObject:
   m_ObjectHideFlags: 0
@@ -58778,6 +58811,7 @@ GameObject:
   - component: {fileID: 1817643908}
   - component: {fileID: 1817643907}
   - component: {fileID: 1817643906}
+  - component: {fileID: 1817643910}
   m_Layer: 0
   m_Name: Trap 3
   m_TagString: Untagged
@@ -58800,7 +58834,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -58879,6 +58913,21 @@ Transform:
   - {fileID: 669977117}
   m_Father: {fileID: 1030804472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1817643910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817643905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91289f5a0e0157e4fbee7461b44a5209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_Trap
+  trapDamage: 1
+  trapFrequencyDamage: 1
+  life: {fileID: 0}
 --- !u!1 &1858733668
 GameObject:
   m_ObjectHideFlags: 0
@@ -64551,7 +64600,7 @@ GameObject:
   - component: {fileID: 2079988346}
   - component: {fileID: 2079988347}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: LifeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

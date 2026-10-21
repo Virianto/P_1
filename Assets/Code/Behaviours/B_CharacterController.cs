@@ -19,7 +19,8 @@ public class B_CharacterController : MonoBehaviour
     Vector2 movingDirection;
     float movingRotation;
 
-    public int totalCoinsCollected = 0;    
+    public int totalCoinsCollected = 0;
+    [SerializeField] int lifePointsLeft;
 
     #endregion
 
@@ -77,6 +78,11 @@ public class B_CharacterController : MonoBehaviour
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();
         }
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        lifePointsLeft -= damageAmount;
     }
 
     #endregion
