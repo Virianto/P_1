@@ -16,7 +16,7 @@ public class M_GameManager : MonoBehaviour
 
     public void NewCoinsCollected()
     {
-        //gameOverCanvas.UpdateCounter
+        gameOverCanvas.UpdateCounter(player.totalCoinsCollected);
     }
 
     public void FinishGame()

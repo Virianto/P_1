@@ -77,8 +77,9 @@ public class B_CharacterController : MonoBehaviour
         if (coinDetected != null)
         {
 
-            totalCoinsCollected++;
-
+            totalCoinsCollected +=1;
+            Debug.Log("Monedas obtenidas: " + totalCoinsCollected);
+            gameManager.NewCoinsCollected();
         }
     }
 

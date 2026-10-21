@@ -1,7 +1,7 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class UI_GameOverCanvas : MonoBehaviour
 {
@@ -12,8 +12,8 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField]
     TMP_Text coinsCounterText;
 
-    //[SerializeField]
-    //Button replayGameButton;
+    [SerializeField]
+    Button replayGameButton;
 
     #endregion
 
@@ -21,6 +21,7 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     void Awake()
     {
+        // Inicializar el texto que se muestra por pantalla cada vez que inicio el nivel
         coinsCounterText.text = "00";
 
         //replayGameButton.onClick.AddListener(ResetGame);
@@ -28,6 +29,7 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     public void UpdateCounter(int coinsCollected)
     {
+        // Convierto el número en una cadena [1 -> "1"] y lo muestro en el texto de la UI
         coinsCounterText.text = coinsCollected.ToString();
     }
 
