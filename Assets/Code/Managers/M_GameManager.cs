@@ -10,6 +10,7 @@ public class M_GameManager : MonoBehaviour
 
     public UI_GameOverCanvas gameplayCanvas;
 
+
     #endregion
 
     #region METHODS
@@ -20,9 +21,25 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
     }
 
+    public void PlayerReceivedDamage()
+    {
+        // Informar al canvas de que debe actualizar su Slider
+        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
+
     public void FinishGame()
     {        
         gameplayCanvas.gameObject.SetActive(true);
+    }
+
+    public void EnableTrapButton(GameObject trapObject)
+    {
+        gameplayCanvas.EnableControlButton(trapObject);
+    }
+
+    public void DisableTrapButton()
+    {
+        gameplayCanvas.DisableControlButton();
     }
 
     #endregion

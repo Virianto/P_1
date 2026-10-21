@@ -12,8 +12,10 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField]
     TMP_Text coinsCounterText;
 
+    [SerializeField] Slider playerLifeSlider;
+
     [SerializeField]
-    Button replayGameButton;
+    Button trapControlButton;
 
     #endregion
 
@@ -24,13 +26,36 @@ public class UI_GameOverCanvas : MonoBehaviour
         // Inicializar el texto que se muestra por pantalla cada vez que inicio el nivel
         coinsCounterText.text = "00";
 
-        //replayGameButton.onClick.AddListener(ResetGame);
     }
 
     public void UpdateCounter(int coinsCollected)
     {
         // Convierto el número en una cadena [1 -> "1"] y lo muestro en el texto de la UI
         coinsCounterText.text = coinsCollected.ToString();
+    }
+
+    public void UpdateLifeSlider(int playerLifePointsLeft)
+    {
+        // Actualizo el valor del slider para que coincida con la vida del jugador
+        playerLifeSlider.value = playerLifePointsLeft;
+    }
+
+    public void EnableControlButton(GameObject trapObject)
+    {
+        // Hacemos el botón interactivo
+        trapControlButton.interactable = true;
+        // Vinculamos el OnClick del botón con el objeto de la trampa
+        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
+    }
+
+    void DisableTrap (GameObject trapObject)
+    {
+
+    }
+
+    public void DisableControlButton()
+    {
+        trapControlButton.interactable = false;
     }
 
     public void ResetGame()

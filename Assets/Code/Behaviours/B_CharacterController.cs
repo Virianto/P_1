@@ -19,7 +19,9 @@ public class B_CharacterController : MonoBehaviour
     Vector2 movingDirection;
     float movingRotation;
 
-    public int totalCoinsCollected = 0;    
+    public int totalCoinsCollected = 0;
+    public int lifePointsLeft = 20;
+    
 
     #endregion
 
@@ -77,6 +79,38 @@ public class B_CharacterController : MonoBehaviour
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();
         }
+
+        B_Heart heartDetected = other.GetComponent<B_Heart>();
+
+        if (heartDetected != null)
+        {
+            // Sumar 1 al contador
+            lifePointsLeft += 5;
+
+            gameManager.PlayerReceivedDamage();
+            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
+            // gameManager.NewCoinCollected();
+        }
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        // Modificar la cantidad de vida del jugador
+        lifePointsLeft -= damageAmount;
+
+
+        // Informar del cambio al gameManager
+        gameManager.PlayerReceivedDamage();
+    }
+
+    public void TakeLife(int damageAmount)
+    {
+        // Modificar la cantidad de vida del jugador
+        lifePointsLeft += damageAmount;
+
+
+        // Informar del cambio al gameManager
+        gameManager.PlayerReceivedDamage();
     }
 
     #endregion
