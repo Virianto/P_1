@@ -79,6 +79,7 @@ public class B_CharacterController : MonoBehaviour
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();
         }
+
         B_SuperCoin supercoinDetected = other.GetComponentInParent<B_SuperCoin>();
 
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...

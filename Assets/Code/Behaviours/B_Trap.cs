@@ -18,6 +18,7 @@ public class B_Trap : MonoBehaviour
   
 
     bool playerIsInsideArea = false;
+    public AudioSource damageAudioSource;
 
     #endregion
 
@@ -27,6 +28,7 @@ public class B_Trap : MonoBehaviour
     {
         // Detectar cuándo ha entrado el jugador en su área de efecto
         playerIsInsideArea = true;
+
 
         // Invocar una subrutina facilitando en parámetros el componente del player
         StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
@@ -43,6 +45,7 @@ public class B_Trap : MonoBehaviour
     {
         // Dañar al jugador
         player.TakeDamage(trapDamage);
+        damageAudioSource.Play();
 
         yield return new WaitForSeconds(trapFrequencyDamage);
 
