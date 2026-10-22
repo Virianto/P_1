@@ -22,7 +22,9 @@ public class B_CharacterController : MonoBehaviour
     float movingRotation;
 
     public int totalCoinsCollected = 0;
+    [Range (0,20)]
     public int lifePointsLeft = 20;
+
 
 
     public int totalYellowCoinsCollected = 0;
@@ -109,7 +111,10 @@ public class B_CharacterController : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         // Modificar la cantidad de vida del jugador
-        lifePointsLeft -= damageAmount;
+        //lifePointsLeft -= damageAmount;
+        //Mathf.Clamp(lifePointsLeft, 0, 20);
+
+        lifePointsLeft = Mathf.Clamp(lifePointsLeft -= damageAmount, 0, 20); // En una sola linea
 
         // Informar del cambio al game Manager
         gameManager.PlayerReceiveDamage();
