@@ -24,7 +24,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     void Awake()
     {
         //Inicializar el texto que se muestra por pantalla cada vez que inicio el nivel
-        coinsCounterText.text = "00";
+        coinsCounterText.text = "00/29";
     }
 
     public void UpdateCounter(int coinsCollected)
