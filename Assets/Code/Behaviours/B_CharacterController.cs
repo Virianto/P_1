@@ -67,6 +67,7 @@ public class B_CharacterController : MonoBehaviour
         
         //Modificar la cantidad de vida al jugador
         lifePointsLeft -= damageAmount;
+        Mathf.Clamp(lifePointsLeft, 0, 20);
 
         //Informar del cambio al game Manager
 
