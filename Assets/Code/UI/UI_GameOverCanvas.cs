@@ -51,7 +51,7 @@ public class UI_GameOverCanvas : MonoBehaviour
         // Cojo el botón de referencia y lo hago interactivo
         trapControlButton.interactable = true;
 
-        // Vincular el OnClick del botón cno el objeto de la trampa
+        // Vincular el OnClick del botón con el objeto de la trampa
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
 
 
@@ -73,6 +73,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     public void ResetGame()
     {
         SceneManager.LoadScene(0);
+        
     }
 
     // Método público para actualizar su mensaje de fin de juego

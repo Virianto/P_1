@@ -41879,7 +41879,7 @@ Transform:
   m_GameObject: {fileID: 816485486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 1, z: -12.75}
+  m_LocalPosition: {x: 7, y: 1, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42446,7 +42446,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.79322517, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.52359486, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -47173,7 +47173,8 @@ Transform:
   m_LocalPosition: {x: 3, y: 1.25, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1977006036}
   m_Father: {fileID: 1037176815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037176814
@@ -47207,7 +47208,6 @@ Transform:
   m_Children:
   - {fileID: 1472960600}
   - {fileID: 1005946367}
-  - {fileID: 1977006036}
   - {fileID: 748016538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -69091,7 +69091,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62bb77592d2e078468a1702e4392d85e, type: 2}
+  - {fileID: 2100000, guid: 8b428bb7f35f748448f27af932966692, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -69498,11 +69498,11 @@ Transform:
   m_GameObject: {fileID: 1977006035}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 1.25, z: 7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1037176815}
+  m_Father: {fileID: 1005946367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1977006037
 ParticleSystemRenderer:
@@ -79724,7 +79724,7 @@ Transform:
   m_GameObject: {fileID: 2138260778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -12.5}
   m_LocalScale: {x: 3, y: 0.2, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []

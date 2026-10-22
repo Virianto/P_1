@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class M_GameManager : MonoBehaviour
 {    
@@ -25,6 +26,11 @@ public class M_GameManager : MonoBehaviour
         // Informar al canvas que debe actualziar su Slider
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
 
+        if (player.lifePointsLeft <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
+
     }
     public void PlayerRecievedHeal()
     {
@@ -35,7 +41,7 @@ public class M_GameManager : MonoBehaviour
 
     public void EnableTrapButton(GameObject trapObject)
     {
-        // Indicr al canvas que debe activar ele botón para poder interactuar
+        // Indicr al canvas que debe activar el botón para poder interactuar
         gameplayCanvas.EnableControlButton(trapObject);
     }
 
@@ -46,10 +52,26 @@ public class M_GameManager : MonoBehaviour
 
     }
 
+    /*public void GameOver()
+    {
+        if ()
+        {
+            SceneManager.LoadScene(0);
+        }
+    }*/
+
     public void FinishGame()
-    {        
-        gameplayCanvas.gameObject.SetActive(true);
-    }
+
+    {
+
+
+
+    }  
+       
+
+
+        //gameplayCanvas.gameObject.SetActive(true);
+    
 
     #endregion
 }

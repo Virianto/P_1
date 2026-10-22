@@ -14,7 +14,7 @@ public class B_Trap : MonoBehaviour
     // Frecuencia con que hace daño esta trampa
     [SerializeField]
     [Range(0.5f, 3)]
-    float trapFrequencyDamage = 1;
+    float trapFrequencyDamage = 5;
 
     bool playerIsInsideArea = false;
 
