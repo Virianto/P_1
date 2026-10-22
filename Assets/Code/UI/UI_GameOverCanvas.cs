@@ -33,7 +33,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     public void UpdateCounter(int coinsCollected)
     {
         // Convierte el núnmreo en una cadena [1 -> "1"] 
-        coinsCounterText.text += coinsCollected.ToString();
+        coinsCounterText.text = coinsCollected.ToString();
 
 
     }

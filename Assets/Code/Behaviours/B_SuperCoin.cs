@@ -34,8 +34,8 @@ public class B_SuperCoin : MonoBehaviour
         GetComponent<Collider>().enabled = false;
 
         // Desactivar el renderer del hijo para que el jugador deje de ver la moneda
-        // GetComponentInChildren<Renderer>().enabled = false;
-        superCoinBody.SetActive(false);
+         GetComponentInChildren<Renderer>(superCoinBody).enabled = false;
+        //superCoinBody.SetActive(false);
 
     }
 
