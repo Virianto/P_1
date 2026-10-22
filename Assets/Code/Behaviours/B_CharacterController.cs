@@ -27,6 +27,8 @@ public class B_CharacterController : MonoBehaviour
     public bool canCollectBlueCoins = false;
     public bool canCollectGreenCoins = false;
 
+    public int lifePointsLeft = 20;
+
     #endregion
 
     #region METHODS
@@ -77,6 +79,18 @@ public class B_CharacterController : MonoBehaviour
     }
 
     ////----------------------------------------------------------------------------
+
+    public void TakeDamage(int damage)
+    {
+        if (lifePointsLeft > 0)
+        {
+            lifePointsLeft -= damage;
+            Mathf.Clamp(lifePointsLeft, 0, 20); //Para que no nos sume más del valor max de vida
+                                                //ni quite menos del min
+            //lifePointsLeft = Mathf.Clamp(lifePointsLeft - damage, 0, 20); //otra forma. Limita valores variable
+            gameManager.PlayerIULife();
+        }
+    }
 
     //private void OnTriggerEnter(Collider other)
     //{
