@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class M_GameManager : MonoBehaviour
 {    
@@ -24,6 +26,10 @@ public class M_GameManager : MonoBehaviour
     {
         // Informar al canvas de que debe actualizar su Slider
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+        if (player.lifePointsLeft <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void EnableTrapButton(GameObject trapObject)

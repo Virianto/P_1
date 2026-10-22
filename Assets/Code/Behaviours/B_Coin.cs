@@ -5,6 +5,9 @@ public class B_Coin : MonoBehaviour
     #region ATTRIBUTES
 
     [SerializeField]
+    public int coinValue =1;
+
+    [SerializeField]
     AudioSource coinAudiosource;
 
     [SerializeField]
