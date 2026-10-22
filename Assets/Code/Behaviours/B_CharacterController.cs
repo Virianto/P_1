@@ -104,8 +104,10 @@ public class B_CharacterController : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        // Modificar la cantidad de vida del jugador
-        lifePointsLeft -= damageAmount;
+        // Modificar la cantidad de vida del jugador        
+        // Con esto limito los posibles valores de "lifePointsLeft" entre 0 y 20 siempre
+        lifePointsLeft = Mathf.Clamp((lifePointsLeft - damageAmount), 0, 20);
+
 
         // Informar del cambio al game Manager
         gameManager.PlayerReceivedDamage();
