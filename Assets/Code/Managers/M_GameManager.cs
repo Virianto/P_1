@@ -44,12 +44,6 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.DisableControlButton();
     }
 
-    public void DesableTrapButton()
-    {
-        // Indicar al canvas que debe activar el botón para poder interactuar
-        gameplayCanvas.DesableControlButton();
-    }
-
 
     public void FinishGame()
     {        
