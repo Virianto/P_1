@@ -17,6 +17,8 @@ public class B_Trap : MonoBehaviour
 
     bool playerIsInsideArea = false;
 
+    
+
     #endregion
 
     #region METHODS

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class M_GameManager : MonoBehaviour
 {    
@@ -10,9 +11,13 @@ public class M_GameManager : MonoBehaviour
 
     public UI_GameOverCanvas gameplayCanvas;
 
+
+
     #endregion
 
     #region METHODS
+
+  
 
     public void NewCoinCollected()
     {
@@ -24,6 +29,11 @@ public class M_GameManager : MonoBehaviour
     {
         // Informar al canvas de que debe actualizar su Slider
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+
+        if (player.lifePointsLeft <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void EnableTrapButton(GameObject trapObject)
@@ -42,5 +52,6 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.gameObject.SetActive(true);
     }
 
+   
     #endregion
 }

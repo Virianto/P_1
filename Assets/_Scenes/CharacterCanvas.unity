@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
   gameManager: {fileID: 1948004409}
-  trapGameObject: {fileID: 1114281302}
+  trapGameObject: {fileID: 1362378323}
 --- !u!1 &95531694
 GameObject:
   m_ObjectHideFlags: 0
@@ -5164,6 +5164,8 @@ MonoBehaviour:
   coinAudiosource: {fileID: 1491610253}
   coinParticles: {fileID: 1812106241}
   coinBody: {fileID: 1849461010}
+  superCoin: 0
+  coinRenderer: {fileID: 1849461013}
 --- !u!4 &105221574
 Transform:
   m_ObjectHideFlags: 0
@@ -6058,6 +6060,7 @@ GameObject:
   - component: {fileID: 395022058}
   - component: {fileID: 395022057}
   - component: {fileID: 395022056}
+  - component: {fileID: 395022060}
   m_Layer: 0
   m_Name: ControlPlatform_1
   m_TagString: Untagged
@@ -6158,6 +6161,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 18077949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &395022060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395022055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce345817bbe5fdc438420c941d12882b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
+  gameManager: {fileID: 1948004409}
+  trapGameObject: {fileID: 1114281302}
 --- !u!1 &434805315
 GameObject:
   m_ObjectHideFlags: 0
@@ -16693,6 +16710,8 @@ MonoBehaviour:
   coinAudiosource: {fileID: 1772824674}
   coinParticles: {fileID: 1077370816}
   coinBody: {fileID: 389608007}
+  superCoin: 0
+  coinRenderer: {fileID: 389608009}
 --- !u!1 &806835889
 GameObject:
   m_ObjectHideFlags: 0
@@ -17231,6 +17250,8 @@ MonoBehaviour:
   coinAudiosource: {fileID: 1737835478}
   coinParticles: {fileID: 1549296819}
   coinBody: {fileID: 1821657769}
+  superCoin: 0
+  coinRenderer: {fileID: 1821657771}
 --- !u!1 &1041741864
 GameObject:
   m_ObjectHideFlags: 0
@@ -27099,8 +27120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91289f5a0e0157e4fbee7461b44a5209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_Trap
-  trapDamage: 1
-  trapFrequencyDamage: 2
+  trapDamage: 9
+  trapFrequencyDamage: 2.84
 --- !u!1 &1145414387
 GameObject:
   m_ObjectHideFlags: 0
@@ -31952,7 +31973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1177009045
 Transform:
   m_ObjectHideFlags: 0
@@ -32131,6 +32152,8 @@ MonoBehaviour:
   coinAudiosource: {fileID: 904487506}
   coinParticles: {fileID: 95531697}
   coinBody: {fileID: 2139209812}
+  superCoin: 0
+  coinRenderer: {fileID: 2139209814}
 --- !u!1 &1254833863
 GameObject:
   m_ObjectHideFlags: 0
@@ -32218,6 +32241,8 @@ MonoBehaviour:
   coinAudiosource: {fileID: 1083352666}
   coinParticles: {fileID: 1041741867}
   coinBody: {fileID: 909858947}
+  superCoin: 1
+  coinRenderer: {fileID: 909858949}
 --- !u!1 &1273085669
 GameObject:
   m_ObjectHideFlags: 0
@@ -32305,6 +32330,8 @@ MonoBehaviour:
   coinAudiosource: {fileID: 656523923}
   coinParticles: {fileID: 1785178093}
   coinBody: {fileID: 1963274270}
+  superCoin: 0
+  coinRenderer: {fileID: 1963274272}
 --- !u!1 &1281140731
 GameObject:
   m_ObjectHideFlags: 0
@@ -32390,7 +32417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1362378324
 Transform:
   m_ObjectHideFlags: 0
@@ -32454,6 +32481,7 @@ GameObject:
   - component: {fileID: 1390179651}
   - component: {fileID: 1390179650}
   - component: {fileID: 1390179649}
+  - component: {fileID: 1390179653}
   m_Layer: 0
   m_Name: ControlPlatform_2
   m_TagString: Untagged
@@ -32554,6 +32582,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 18077949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1390179653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390179648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce345817bbe5fdc438420c941d12882b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
+  gameManager: {fileID: 1948004409}
+  trapGameObject: {fileID: 1177009044}
 --- !u!1 &1405285445
 GameObject:
   m_ObjectHideFlags: 0

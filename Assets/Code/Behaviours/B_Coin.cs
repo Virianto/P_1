@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class B_Coin : MonoBehaviour
@@ -12,13 +13,32 @@ public class B_Coin : MonoBehaviour
 
     [SerializeField]
     GameObject coinBody;
+
     
+    public bool superCoin = false;
+
+    [SerializeField]
+    Renderer coinRenderer;
+
     #endregion
 
     #region METHODS
 
+    private void Start()
+    {
+        if (superCoin == true)
+        {
+            coinRenderer.material.color = Color.red;
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
+
+        if (superCoin == true)
+        {
+            coinParticles.Emit(1000);
+        }
         // Reproducir sonido de recolección
         coinAudiosource.PlayOneShot(coinAudiosource.clip);
         // Va a emitir unas partículas de despedida
@@ -27,6 +47,8 @@ public class B_Coin : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         // Desactivar el hijo para que el jugador deje de ver la moneda
         coinBody.SetActive(false);
+
+        
     }
 
     #endregion

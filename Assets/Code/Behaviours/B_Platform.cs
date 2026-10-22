@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class B_Platform : MonoBehaviour
@@ -11,6 +12,8 @@ public class B_Platform : MonoBehaviour
     [SerializeField]
     Material newSphereMaterial;
 
+    
+
     #endregion
 
     #region METHODS
@@ -19,6 +22,8 @@ public class B_Platform : MonoBehaviour
     {
         // Recojo referencia al objeto y me la guardo de forma persistente
         myLastCollisionObject = col.gameObject;
+
+       
     }
 
     void OnCollisionExit(Collision col)
@@ -27,6 +32,8 @@ public class B_Platform : MonoBehaviour
         // y le voy a modificar el material usando otra variable global
         myLastCollisionObject.GetComponent<MeshRenderer>().material = newSphereMaterial;
     }
+
+
 
     #endregion
 }
