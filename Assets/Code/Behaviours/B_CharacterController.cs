@@ -9,8 +9,8 @@ public class B_CharacterController : MonoBehaviour
     public M_GameManager gameManager;
 
     [SerializeField]
-    [Range(0, 10)]
-    float playerSpeed = 1;
+    [Range(0, 100)]
+    float playerSpeed = 30;
 
     [SerializeField]
     [Range(15, 90)]
@@ -73,7 +73,7 @@ public class B_CharacterController : MonoBehaviour
         if (coinDetected != null)
         {
             // Sumar 1 al contador
-            totalCoinsCollected += 1;
+            totalCoinsCollected += coinDetected.coinValue;
 
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();

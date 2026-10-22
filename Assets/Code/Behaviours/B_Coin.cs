@@ -8,6 +8,9 @@ public class B_Coin : MonoBehaviour
     AudioSource coinAudiosource;
 
     [SerializeField]
+     public int coinValue = 1;
+
+    [SerializeField]
     ParticleSystem coinParticles;
 
     [SerializeField]

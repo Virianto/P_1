@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class M_GameManager : MonoBehaviour
 {    
     #region ATTRIBUTES
@@ -18,12 +19,17 @@ public class M_GameManager : MonoBehaviour
     {
         // Decirle al canvas que modifique su texto de contador facilitándole el valor desde player
         gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
+
     }
 
     public void PlayerReceivedDamage()
     {
         // Informar al canvas de que debe actualizar su Slider
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+        if (player.lifePointsLeft <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void EnableTrapButton(GameObject trapObject)
