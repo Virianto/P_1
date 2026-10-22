@@ -94,15 +94,20 @@ public class B_CharacterController2 : MonoBehaviour
 
         //informar al gameManager
         gameManager.PlayerReceiveDamage();
+
+        if (lifePointsLeft == 0)
+        {
+            gameManager.FinishGame();
+        }
     }
 
     public void RestoreLife(int restoredLife)
     {
-        lifePointsLeft += restoredLife;
+        
         if(lifePointsLeft >= 20)
         {
             lifePointsLeft = 20;
-        }
+        } 
         gameManager.PlayerReceiveDamage();
     }
 

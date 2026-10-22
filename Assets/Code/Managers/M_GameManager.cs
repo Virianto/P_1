@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class M_GameManager : MonoBehaviour
 {    
@@ -38,8 +39,9 @@ public class M_GameManager : MonoBehaviour
         Debug.Log("EnableTrapButton");
     }
     public void FinishGame()
-    {        
-        gameplayCanvas.gameObject.SetActive(true);
+    {
+        //gameplayCanvas.gameObject.SetActive(true);
+        SceneManager.LoadScene("CharacterCanvas");
     }
 
     #endregion

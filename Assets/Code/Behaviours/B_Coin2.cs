@@ -26,7 +26,15 @@ public class B_Coin2 : MonoBehaviour
     {
         coinAudioSource.PlayOneShot(coinAudioSource.clip);
 
-        coinParticles.Emit(50);
+        if (myCoinType == CoinType.Normal)
+        {
+            coinParticles.Emit(50);
+            Debug.Log("es normal");
+        } else if (myCoinType == CoinType.Mega)
+        {
+            coinParticles.Emit(100);
+            Debug.Log("es mega");
+        }
 
         //desactivar el collider
         GetComponent<Collider>().enabled = false;

@@ -9,7 +9,12 @@ public class B_LifeRestorer : MonoBehaviour
     #region METHODS
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<B_CharacterController2>().RestoreLife(lifeToRestore);
+        B_CharacterController2 player = other.GetComponent<B_CharacterController2>();
+        if (player.lifePointsLeft != 20)
+        {
+            player.RestoreLife(lifeToRestore);
+        }
+        
         gameObject.SetActive(false);
     }
 
