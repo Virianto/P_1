@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class B_FinalGoal : MonoBehaviour
 {
@@ -25,15 +26,15 @@ public class B_FinalGoal : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(finishGameKey))
-        //{
-        //    if (playerCanFinishGame) 
-        //    {
-        //        // Comunicar al manager que se quiere finalizar
-        //        gameManager.FinishGame();
-        //        //ShowLevelCompletionMessage();
-        //    }
-        //}                        
+        if (Input.GetKeyDown(finishGameKey))
+        {
+            if (player.totalCoinsCollected >= 29)
+            {
+                // Comunicar al manager que se quiere finalizar
+                SceneManager.LoadScene(0);
+                //ShowLevelCompletionMessage();
+            }
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -41,25 +42,25 @@ public class B_FinalGoal : MonoBehaviour
         playerCanFinishGame = false;
     }
 
-    void ShowLevelCompletionMessage()
-    {
-        // Creo un registro temporal de todas las monedas que ha recogido el jugador
-        int totalCoinsCollected = player.totalCoinsCollected;
+    //void ShowLevelCompletionMessage()
+    //{
+    //    // Creo un registro temporal de todas las monedas que ha recogido el jugador
+    //    int totalCoinsCollected = player.totalCoinsCollected;
 
-        // Si tiene todas las monedas, le felicito
+    //    // Si tiene todas las monedas, le felicito
         
-        if (totalCoinsCollected >= 6) 
-        {
-            // Este bloque solamente se ejecuta si el IF sale TRUE
-            Debug.Log("¡¡ FELICIDADES CRACK !!");
-        }
-        else
-        {
-            // Este bloque solamente se ejecuta si el IF sale FALSE
-            Debug.Log("Todavía te faltan monedas");
-        }
+    //    if (totalCoinsCollected >= 29) 
+    //    {
+    //        // Este bloque solamente se ejecuta si el IF sale TRUE
+    //        Debug.Log("¡¡ FELICIDADES CRACK !!");
+    //        SceneManager.LoadScene(0);
+    //    }
+    //    else
+    //    {
+    //        // Este bloque solamente se ejecuta si el IF sale FALSE
+    //        Debug.Log("Todavía te faltan monedas");
+    //    }
 
     }
 
     #endregion
-}
