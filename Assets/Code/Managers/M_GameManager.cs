@@ -25,6 +25,10 @@ public class M_GameManager : MonoBehaviour
     {
         // Informar al canvas de que debe actualizar su Slider
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+        if (player.lifePointsLeft <= 0)
+        {
+            gameplayCanvas.ResetGame();
+        }
     }
 
     public void FinishGame()
@@ -40,6 +44,11 @@ public class M_GameManager : MonoBehaviour
     public void DisableTrapButton()
     {
         gameplayCanvas.DisableControlButton();
+    }
+
+    public void ReloadGame()
+    {
+        
     }
 
     #endregion
