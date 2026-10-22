@@ -51,6 +51,7 @@ public class B_CharacterController : MonoBehaviour
         if (lifeGiverDetected != null)
         {
          lifePointsLeft += 3;
+            Mathf.Clamp(lifePointsLeft, 0, 20);
             gameManager.PlayerGainsLife();
         }
         if (superCoinDetected != null) 
