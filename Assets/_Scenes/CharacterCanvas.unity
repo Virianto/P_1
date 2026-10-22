@@ -11684,14 +11684,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510515604}
   serializedVersion: 8
-  lengthInSec: 1.5
+  lengthInSec: 2.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -11759,7 +11759,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -11812,7 +11812,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -16501,8 +16501,9 @@ GameObject:
   - component: {fileID: 541482630}
   - component: {fileID: 541482629}
   - component: {fileID: 541482628}
+  - component: {fileID: 541482631}
   m_Layer: 0
-  m_Name: ControlPlatform_2
+  m_Name: ControlPlatform_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16601,6 +16602,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541482626}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &541482631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541482626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65150286caa64da45ab86a8ed1825188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
+  gameManager: {fileID: 2072531139}
+  trapGameObject: {fileID: 1550007314}
 --- !u!1 &543214543
 GameObject:
   m_ObjectHideFlags: 0
@@ -53636,8 +53651,9 @@ GameObject:
   - component: {fileID: 1767217883}
   - component: {fileID: 1767217882}
   - component: {fileID: 1767217881}
+  - component: {fileID: 1767217884}
   m_Layer: 0
-  m_Name: ControlPlatform_1
+  m_Name: ControlPlatform_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53736,6 +53752,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767217879}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1767217884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767217879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65150286caa64da45ab86a8ed1825188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
+  gameManager: {fileID: 2072531139}
+  trapGameObject: {fileID: 1087838531}
 --- !u!1 &1842165627
 GameObject:
   m_ObjectHideFlags: 0
@@ -68603,7 +68633,7 @@ Transform:
   m_GameObject: {fileID: 1907434061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.49, y: 1, z: -9.17}
+  m_LocalPosition: {x: 13.02, y: 1, z: -9.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

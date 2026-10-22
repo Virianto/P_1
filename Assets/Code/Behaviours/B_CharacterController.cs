@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class B_CharacterController : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class B_CharacterController : MonoBehaviour
 
     public int totalCoinsCollected = 0;
     public int lifePointsLeft = 20;
+    
+
+
 
     #endregion
 
@@ -105,6 +109,11 @@ public class B_CharacterController : MonoBehaviour
 
         // Roto el gameObject utilizando el float temporal antes de que muera
         transform.Rotate(finalRotation);
+
+        if (lifePointsLeft == 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
         
     #endregion

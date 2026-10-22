@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class M_GameManager : MonoBehaviour
 {    
@@ -41,10 +42,11 @@ public class M_GameManager : MonoBehaviour
     {
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
     }
-    public void FinishGame()
-    {        
-        gameplayCanvas.gameObject.SetActive(true);
-    }
+    //public void FinishGame()
+    //{        
+      
+        
+    //}
 
     #endregion
 }

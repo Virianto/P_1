@@ -25,15 +25,15 @@ public class B_FinalGoal : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(finishGameKey))
-        {
-            if (playerCanFinishGame) 
-            {
-                // Comunicar al manager que se quiere finalizar
-                gameManager.FinishGame();
-                //ShowLevelCompletionMessage();
-            }
-        }                        
+        //if (Input.GetKeyDown(finishGameKey))
+        //{
+        //    if (playerCanFinishGame) 
+        //    {
+        //        // Comunicar al manager que se quiere finalizar
+        //        gameManager.FinishGame();
+        //        //ShowLevelCompletionMessage();
+        //    }
+        //}                        
     }
 
     void OnTriggerExit(Collider other)
