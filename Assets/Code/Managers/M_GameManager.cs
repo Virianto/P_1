@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class M_GameManager : MonoBehaviour
 {    
@@ -23,6 +24,11 @@ public class M_GameManager : MonoBehaviour
     public void PlayerReceiveDamage()
     {
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+        
+        if (player.lifePointsLeft <= 0)
+        {
+            gameplayCanvas.ResetGame();
+        }
     }
 
     public void NewLifeCollected()

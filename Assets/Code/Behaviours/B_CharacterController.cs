@@ -87,6 +87,17 @@ public class B_CharacterController : MonoBehaviour
             gameManager.NewCoinCollected();
         }
 
+        // Detectar cuándo he tocado una supermoneda y sumar 1 al contador
+        B_SuperCoin supercoinDetected = other.GetComponentInParent<B_SuperCoin>();
+
+        if (supercoinDetected != null)
+        {
+            // Sumar 1 al contador
+            totalCoinsCollected += 10;
+
+            gameManager.NewCoinCollected();
+        }
+
         B_Heart heartDetected = other.GetComponent<B_Heart>();
 
         if (heartDetected != null)
