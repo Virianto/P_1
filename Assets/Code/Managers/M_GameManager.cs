@@ -20,9 +20,11 @@ public class M_GameManager : MonoBehaviour
         // Decirle al canvas que modifique su texto de contador facilitándole el valor desde player
         gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
     }
+    public void NewSuperCoinCollected()
+    { }
     public void NewCorazonCollected()
     {
-
+        gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
     }
     public void PlayerReceivedDamage()
     {

@@ -22,6 +22,7 @@ public class B_CharacterController : MonoBehaviour
     public int totalCoinsCollected = 0;
     public int lifePointsLeft = 20;
     public int totalCorazonsCollected = 0;
+    public int totalSuperCoinsCollected = 0;
     #endregion
 
     #region METHODS
@@ -71,6 +72,8 @@ public class B_CharacterController : MonoBehaviour
 
         B_Corazon corazonLifeDetected = other.GetComponentInParent<B_Corazon>();
 
+        Supermoneda SuperMonedaDetected = other.GetComponentInParent<Supermoneda>();
+
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
@@ -87,6 +90,14 @@ public class B_CharacterController : MonoBehaviour
 
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCorazonCollected();
+        }
+        if (SuperMonedaDetected != null)
+        {
+            // Sumar 1 al contador
+            totalSuperCoinsCollected += 1;
+
+            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
+            gameManager.NewSuperCoinCollected();
         }
 
     }
