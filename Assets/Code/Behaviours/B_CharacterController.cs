@@ -111,5 +111,12 @@ public class B_CharacterController : MonoBehaviour
         Debug.Log(lifePointsLeft);
     }
 
+    public void EarnMoney(int moneyAmount)
+    {
+        // Modifico la cantidad de monedas respetando los límites marcados
+        totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
+        gameManager.NewCoinsCollected();
+    }
+
     #endregion
 }
