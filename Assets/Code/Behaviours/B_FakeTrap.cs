@@ -17,26 +17,30 @@ public class B_FakeTrap : MonoBehaviour
 
     bool playerIsInsideArea = false;
 
+    ParticleSystem particle;
+
     #endregion
 
     #region METHODS
 
     void OnTriggerEnter(Collider other)
     {
-        // Detectar cuándo ha entrado el jugador en su área de efecto
         playerIsInsideArea = true;
 
         StartCoroutine(StealCoinsToPlayer(other.GetComponent<B_CharacterController>()));
+
+        if (playerIsInsideArea == true)
+        {
+            particle.Play();
+        }
     }
     IEnumerator StealCoinsToPlayer(B_CharacterController player)
     {
-        // Le pongo un '-' delante a la variable porque el método suma únicamente
+        
         player.EarnMoney(+coinsLost);
 
-        // Esperamos la frecuencia indicada en la variable
         yield return new WaitForSeconds(trapFrequency);
 
-        // Comprobamos si sigue dentro para seguir robando
         if (playerIsInsideArea)
         {
             StartCoroutine(StealCoinsToPlayer(player));
@@ -46,6 +50,10 @@ public class B_FakeTrap : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         playerIsInsideArea = false;
+        if (playerIsInsideArea == false)
+        {
+            particle.Stop();
+        }
     }
 
     #endregion

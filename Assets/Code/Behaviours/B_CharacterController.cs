@@ -78,7 +78,6 @@ public class B_CharacterController : MonoBehaviour
         }
 
     }
-
     private void OnTriggerEnter(Collider other)
     {
         B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
@@ -89,7 +88,6 @@ public class B_CharacterController : MonoBehaviour
             
             if (tagCoin.tag == "Coin")
             {
-
                 totalCoinsCollected += 1;
                 Debug.Log("Monedas obtenidas: " + totalCoinsCollected);
                 gameManager.NewCoinsCollected();
@@ -113,7 +111,6 @@ public class B_CharacterController : MonoBehaviour
 
     public void EarnMoney(int moneyAmount)
     {
-        // Modifico la cantidad de monedas respetando los límites marcados
         totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
         gameManager.NewCoinsCollected();
     }

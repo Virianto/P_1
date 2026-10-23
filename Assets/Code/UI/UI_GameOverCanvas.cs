@@ -10,6 +10,8 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     public M_GameManager gameManager;
 
+    B_FakeTrap trapTag;
+
     [SerializeField]
     TMP_Text coinsCounterText;
 
@@ -62,7 +64,17 @@ public class UI_GameOverCanvas : MonoBehaviour
     public void EnableControlButton(GameObject trapObject)
     {
         trapControlButton.interactable = true;
-        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
+
+        if (trapTag.tag == "Trap")
+        {
+            trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
+        }
+        if (trapTag.tag == "TrapCoin")
+        {
+            trapControlButton.onClick.AddListener(() => { trapObject.SetActive(true); });
+            
+
+        }
     }
 
     public void DisableControlButton()
