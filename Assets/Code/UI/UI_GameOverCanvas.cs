@@ -68,6 +68,7 @@ public class UI_GameOverCanvas : MonoBehaviour
         gamePlayTime += Time.deltaTime;  
 
         Chronotext.text = gamePlayTime.ToString();
+        Chronotext.text = TimeFormatter.FormatTime(gamePlayTime);
     }
 
     // Método público para actualizar su mensaje de fin de juego
