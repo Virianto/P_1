@@ -83,19 +83,19 @@ public class B_CharacterController : MonoBehaviour
 
         if (coinDetected != null)
         {
+            EarnMoney(1);
             // Sumar 1 al contador
-            totalCoinsCollected += 1;
+            //totalCoinsCollected += 1;
 
-            gameManager.NewCoinCollected();
+            //gameManager.NewCoinCollected();
         }
 
-        // Detectar cuándo he tocado una supermoneda y sumar 1 al contador
+        // Detectar cuándo he tocado una supermoneda y sumar 10 al contador
         B_SuperCoin supercoinDetected = other.GetComponentInParent<B_SuperCoin>();
 
         if (supercoinDetected != null)
         {
-            // Sumar 1 al contador
-            totalCoinsCollected += 10;
+            EarnMoney(10);
 
             gameManager.NewCoinCollected();
         }
@@ -118,6 +118,14 @@ public class B_CharacterController : MonoBehaviour
 
         // Informar del cambio al game Manager
         gameManager.PlayerReceiveDamage();
+    }
+
+    public void EarnMoney(int moneyAmount)
+    {
+        //Cambiar cuanto dinero tengo y comunicárselo al manager
+        //totalCoinsCollected += moneyAmount;
+        totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
+        gameManager.NewCoinCollected();
     }
     #endregion
 }

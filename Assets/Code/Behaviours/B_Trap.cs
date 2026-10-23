@@ -27,7 +27,6 @@ public class B_Trap : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         playerIsInsideArea = true;
-        Debug.Log("El jugador ha entrado");
 
         // Invocar una subrutina facilitando por parámetros el componente del player
         StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
@@ -54,7 +53,6 @@ public class B_Trap : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         playerIsInsideArea = false;
-        Debug.Log("El jugador ha salido");
     }
 
 

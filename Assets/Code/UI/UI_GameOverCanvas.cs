@@ -18,6 +18,11 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField]
     Slider playerLifeSlider;
 
+    [SerializeField]
+    TMP_Text chronoText;
+
+    float gamePlayTiime = 0;
+
     #endregion
 
     #region METHODS
@@ -27,6 +32,15 @@ public class UI_GameOverCanvas : MonoBehaviour
         // replayGameButton.onClick.AddListener(ResetGame);
 
         coinsConterText.text = "00";
+        chronoText.text = "00:00:00";
+    }
+
+    public void Update()
+    {
+        // En cada frame le sumo a mi crono el tiempo transurrido desde el último frame
+        gamePlayTiime += Time.deltaTime;
+
+        chronoText.text = gamePlayTiime.ToString();
     }
 
     public void UpdateCounter(int coinsCollected)
