@@ -23,14 +23,20 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
     }
 
-    public void EnableTrapButton(GameObject trapObject)
+    public void EnableTrapButton(GameObject controlPlatform, GameObject trapObject)
     {
-        //Indicar al Canvas que active el bot�n
-        gameplayCanvas.EnableControlButton(trapObject);
+        //Indicar al Canvas que active el botón
+        gameplayCanvas.EnableControlButton(controlPlatform, trapObject);
     }
 
     public void DisableTrapButton()
     {
         gameplayCanvas.DisableControlButton();
+    }
+
+    public void NewCoinCollected()
+    {
+        // Decirle al canvas que modifique su texto de contador facilitándole el valor desde player
+        gameplayCanvas.UpdateCounter(player.totalYellowCoinsCollected);
     }
 }

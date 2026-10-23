@@ -105,6 +105,13 @@ public class B_CharacterController : MonoBehaviour
         gameManager.PlayerIULife();
     }
 
+    public void EarnMoney(int moneyAmount)
+    {
+        //totalYellowCoinsCollected += moneyAmount;
+        totalYellowCoinsCollected = Mathf.Clamp(totalYellowCoinsCollected + moneyAmount, 0, 100);
+        gameManager.NewCoinCollected();
+    }
+
 
     //private void OnTriggerEnter(Collider other)
     //{
