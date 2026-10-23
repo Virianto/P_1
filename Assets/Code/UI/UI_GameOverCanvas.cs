@@ -11,6 +11,8 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     [SerializeField]
     Button trapControlButton;
+    [SerializeField]
+    Button coinTrapControlButton;
 
     [SerializeField]
     TMP_Text coinsCounterText;
@@ -57,12 +59,25 @@ public class UI_GameOverCanvas : MonoBehaviour
         trapControlButton.interactable = true;
 
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false);});
+      
     }
   
 
     public void DisableControlButton()
     {
         trapControlButton.interactable = false;
+    }
+
+    public void EnableCoinTrapButton(GameObject trapObject)
+    {
+      
+        coinTrapControlButton.interactable = true;
+        coinTrapControlButton.onClick.AddListener(() => {trapObject.SetActive(true);});
+    }
+
+    public void DisableCoinTrapButton()
+    {
+        coinTrapControlButton.interactable = false;
     }
 
     public void ResetGame()

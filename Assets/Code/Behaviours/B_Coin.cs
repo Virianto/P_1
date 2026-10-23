@@ -13,13 +13,6 @@ public class B_Coin : MonoBehaviour
     [SerializeField]
     GameObject coinBody;
 
-    public enum CoinType
-    {
-        Normal,
-        Super
-    }
- 
-
     #endregion
 
     #region METHODS
@@ -38,11 +31,6 @@ public class B_Coin : MonoBehaviour
 
         //Desactivar el render del hijo
         coinBody.SetActive(false);
-        
-        
-   
-   
-        
     }
    
     #endregion

@@ -33,10 +33,21 @@ public class M_GameManager : MonoBehaviour
         //Indicar al canvas que debe activar el botón para poder interactuar
         gameplayCanvas.EnableControlButton(controlPlatform, trapObject);
     }
-
+    public void EnableCoinTrapButton(GameObject coinControlPlatform, GameObject trapObject)
+    {
+        gameplayCanvas.EnableCoinTrapButton(trapObject);
+    }
+    public void DisableCoinTrapButton()
+    {
+        gameplayCanvas.DisableCoinTrapButton();
+    }
     public void DisableTrapButton()
     {
         gameplayCanvas.DisableControlButton();
+    }
+    public void EnableCoinTrap(GameObject coinControlPlatform)
+    {
+        gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
     }
     public void PlayerGainsLife()
     {
