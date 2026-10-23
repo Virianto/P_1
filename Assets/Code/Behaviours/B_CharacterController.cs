@@ -72,11 +72,7 @@ public class B_CharacterController : MonoBehaviour
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
-            // Sumar 1 al contador
-            totalCoinsCollected += 1;
-
-            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
-            gameManager.NewCoinCollected();
+            EarnMoney(1);
         }
 
         B_BigCoin BIGcoinDetected = other.GetComponentInParent<B_BigCoin>();
@@ -99,10 +95,19 @@ public class B_CharacterController : MonoBehaviour
         }
     }
 
+    public void EarnMoney(int moneyAmount)
+    {
+        // Modifico la cantidad de monedas respetando los límites marcados
+        totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
+        gameManager.NewCoinCollected();
+    }
+
     public void TakeDamage(int damageAmount)
     {
-        // Modificar la cantidad de vida del jugador
-        lifePointsLeft -= damageAmount;
+        // Modificar la cantidad de vida del jugador        
+        // Con esto limito los posibles valores de "lifePointsLeft" entre 0 y 20 siempre
+        lifePointsLeft = Mathf.Clamp((lifePointsLeft - damageAmount), 0, 20);
+
 
         // Informar del cambio al game Manager
         gameManager.PlayerReceivedDamage();
