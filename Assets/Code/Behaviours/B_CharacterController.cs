@@ -91,11 +91,12 @@ public class B_CharacterController : MonoBehaviour
         // Si la varibale que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO
         if (coinDetected != null)
         {
-            // Sumar 1 al contador
+            /*// Sumar 1 al contador
             totalCoinsCollected += 1;
 
             // ComUnicar al manager que ha habido cambios y deben mostrarse en la UI
-            gameManager.NewCoinCollected();
+            gameManager.NewCoinCollected();*/
+            EarnMoney(1);
 
         }
         // Detectar cuando he tocado una moneda y sumar 1 al contador
@@ -104,13 +105,23 @@ public class B_CharacterController : MonoBehaviour
         // Si la varibale que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO
         if (superCoinDetected != null)
         {
-            // Sumar 1 al contador
+            /*// Sumar 1 al contador
             totalCoinsCollected += 5;
 
             // ComUnicar al manager que ha habido cambios y deben mostrarse en la UI
-            gameManager.NewCoinCollected();
+            gameManager.NewCoinCollected();*/
+            EarnMoney(5);
 
         }
+    }
+
+    public void EarnMoney(int moneyAmount)
+    {
+
+        // totalCoinsCollected += moneyAmount;
+        totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
+        gameManager.NewCoinCollected();
+
     }
 
     public void TakeDamage(int damageAmount)

@@ -9,12 +9,12 @@ public class B_Trap : MonoBehaviour
     // Daño que hace esta trampa
     [SerializeField]
     [Range(0, 10)]
-    int trapDamage = 1;
+    int trapDamage = 5;
 
     // Frecuencia con que hace daño esta trampa
     [SerializeField]
     [Range(0.5f, 3)]
-    float trapFrequencyDamage = 5;
+    float trapFrequencyDamage = 2;
 
     bool playerIsInsideArea = false;
 

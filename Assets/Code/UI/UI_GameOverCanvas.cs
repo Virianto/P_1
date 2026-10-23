@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
+using System.ComponentModel;
 
 public class UI_GameOverCanvas : MonoBehaviour
 {
@@ -18,6 +20,11 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField]
     Slider playerLifeSlider;
 
+    [SerializeField]
+    TMP_Text chronoText;
+
+    float gameplayTime = 0;
+
     #endregion
 
     #region METHODS
@@ -26,13 +33,24 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         // Inicializar el texto que se muestra por pantalla cada vez que inicio el nivel
         coinsCounterText.text = "00";
-
+        chronoText.text = "00:00:00";
         //replayGameButton.onClick.AddListener(ResetGame);
     }
 
+
+    void Update()
+    {
+        // En cada freame le sumo a mi crono el tiempo transcurrido el último frame
+        gameplayTime += Time.deltaTime;
+
+        chronoText.text = gameplayTime.ToString();
+
+    }
+
+
     public void UpdateCounter(int coinsCollected)
     {
-        // Convierte el núnmreo en una cadena [1 -> "1"] 
+        // Convierte el núnmero en una cadena [1 -> "1"] 
         coinsCounterText.text = coinsCollected.ToString();
 
 
