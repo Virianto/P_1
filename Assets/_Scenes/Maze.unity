@@ -31860,6 +31860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
   gameManager: {fileID: 884325387}
   trapGameObject: {fileID: 201910105}
+  controlPlataform: {fileID: 441184356}
 --- !u!65 &441184358
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37930,6 +37931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
   gameManager: {fileID: 884325387}
   trapGameObject: {fileID: 718697786}
+  controlPlataform: {fileID: 556023354}
 --- !u!65 &556023356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59585,10 +59587,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0.6096456, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.3843137, g: 0.5869453, b: 0.8980392, a: 1}
-    m_PressedColor: {r: 0, g: 0.3721838, b: 0.74509805, a: 1}
-    m_SelectedColor: {r: 0, g: 0.60784316, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -70862,7 +70864,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1342234502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.15, y: 0}
   m_AnchorMax: {x: 0.8, y: 0.4}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -70921,7 +70923,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -76964,6 +76966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
   gameManager: {fileID: 884325387}
   trapGameObject: {fileID: 108826851}
+  controlPlataform: {fileID: 1061102375}
 --- !u!65 &1061102377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -82256,7 +82259,7 @@ Transform:
   m_GameObject: {fileID: 1114447815}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.0000002533197, z: -0, w: -1}
-  m_LocalPosition: {x: 23.97, y: 7.94, z: -28.5}
+  m_LocalPosition: {x: 23.97, y: 6.42, z: -31.76}
   m_LocalScale: {x: 1, y: 0.90778, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -88443,6 +88446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
   gameManager: {fileID: 884325387}
   trapGameObject: {fileID: 1377485836}
+  controlPlataform: {fileID: 1302005261}
 --- !u!65 &1302005263
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -89215,6 +89219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
   gameManager: {fileID: 884325387}
   trapGameObject: {fileID: 1573883574}
+  controlPlataform: {fileID: 1370679076}
 --- !u!65 &1370679078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123459,6 +123464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B_ControlPlatform
   gameManager: {fileID: 884325387}
   trapGameObject: {fileID: 775802972}
+  controlPlataform: {fileID: 2017491772}
 --- !u!65 &2017491774
 BoxCollider:
   m_ObjectHideFlags: 0
