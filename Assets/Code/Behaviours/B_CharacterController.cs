@@ -92,6 +92,20 @@ public class B_CharacterController : MonoBehaviour
         }
     }
 
+    public void HealLife(int healAmount)
+    {
+        Debug.Log($"Tengo {lifePointsLeft} de vida ahora");
+
+        //Modificar la cantidad de vida del jugador
+        lifePointsLeft += healAmount;
+
+        Debug.Log($"Tras curarme tengo {lifePointsLeft} de vida ahora");
+
+        //Informar del cambio al game Manager
+        gameManager.PlayerIULife();
+    }
+
+
     //private void OnTriggerEnter(Collider other)
     //{
     //    if (coinDetected != null)
@@ -99,6 +113,6 @@ public class B_CharacterController : MonoBehaviour
 
     //    }
     //}
-        
+
     #endregion
 }
