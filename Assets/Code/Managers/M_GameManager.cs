@@ -39,10 +39,10 @@ public class M_GameManager : MonoBehaviour
 
     }
 
-    public void EnableTrapButton(GameObject trapObject)
+    public void EnableTrapButton(GameObject controlPlatform, GameObject trapObject)
     {
         // Indicr al canvas que debe activar el botón para poder interactuar
-        gameplayCanvas.EnableControlButton(trapObject);
+        gameplayCanvas.EnableControlButton(controlPlatform, trapObject);
     }
 
     public void DisableTrapButton()

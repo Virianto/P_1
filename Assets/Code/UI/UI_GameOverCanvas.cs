@@ -23,6 +23,8 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField]
     TMP_Text chronoText;
 
+
+
     float gameplayTime = 0;
 
     #endregion
@@ -42,8 +44,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         // En cada freame le sumo a mi crono el tiempo transcurrido el último frame
         gameplayTime += Time.deltaTime;
-
-        chronoText.text = gameplayTime.ToString();
+        chronoText.text = TimeFormatter.FormatTime(gameplayTime);
 
     }
 
@@ -63,14 +64,41 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     }
 
-    public void EnableControlButton(GameObject trapObject)
+    public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
     {
+
+        // Recibir información de la plataforma
+
+
+        // Colorear el botón en consonancia
+        trapControlButton.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
 
         // Cojo el botón de referencia y lo hago interactivo
         trapControlButton.interactable = true;
 
         // Vincular el OnClick del botón con el objeto de la trampa
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
+
+
+
+
+    }
+
+    public void EnableGiveMoney(GameObject controlPlatform, GameObject moneyRain)
+    {
+
+        // Recibir información de la plataforma
+
+
+        // Colorear el botón en consonancia
+        trapControlButton.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
+
+        // Cojo el botón de referencia y lo hago interactivo
+        trapControlButton.interactable = true;
+
+        // Vincular el OnClick del botón con el objeto de la trampa
+        trapControlButton.onClick.AddListener(() => { moneyRain.SetActive(true); });
+
 
 
 
