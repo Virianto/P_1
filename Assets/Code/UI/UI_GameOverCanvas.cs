@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.InputSystem.Controls;
 
 public class UI_GameOverCanvas : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     [SerializeField]
     Button trapControlButton;
-    [SerializeField]
-    TMP_Text coinsCounterText;
+    [SerializeField] TMP_Text coinsCounterText;
     [SerializeField] Slider playerLifeSlider;
+    [SerializeField] TMP_Text chronoText;
+    float gameplayTime = 0;
 
     #endregion
 
@@ -22,6 +24,13 @@ public class UI_GameOverCanvas : MonoBehaviour
     void Awake()
     {
         coinsCounterText.text = "0";
+        chronoText.text = "00:00:00";
+    }
+    void Update()
+    {
+        //en cada frame le sumo el tiempo transcurrido desde el frame anterior
+        gameplayTime += Time.deltaTime;
+        chronoText.text = TimeFormatter.FormatTime(gameplayTime);
     }
 
     public void UpdateCounter(int coinsCollector)

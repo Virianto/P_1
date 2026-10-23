@@ -75,12 +75,12 @@ public class B_CharacterController2 : MonoBehaviour
         if (coinDetected != null && coinDetected.myCoinType==B_Coin2.CoinType.Normal)
         {
             // Sumar 1 al contador
-            totalCoinsCollected += 1;
+            EarnMoney(1);
         } 
         if (coinDetected != null && coinDetected.myCoinType == B_Coin2.CoinType.Mega)
         {
             // Sumar 5 al contador
-            totalCoinsCollected += 5;
+            EarnMoney(5);
         }
 
         Debug.Log("monedas: " + totalCoinsCollected);
@@ -111,6 +111,13 @@ public class B_CharacterController2 : MonoBehaviour
             lifePointsLeft = 20;
         } 
         gameManager.PlayerReceiveDamage();
+    }
+
+    public void EarnMoney(int moneyAmount)
+    {
+        //totalCoinsCollected += moneyAmount;
+        totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100); //se modifica la cantidad de monedas respetando los limites marcados. 
+        gameManager.NewCoinCollector();
     }
 
     #endregion
