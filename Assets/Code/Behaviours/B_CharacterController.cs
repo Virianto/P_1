@@ -72,13 +72,15 @@ public class B_CharacterController : MonoBehaviour
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
-
-            // Sumar x al contador
-            totalCoinsCollected += coinDetected.coinValue;
-
-            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
-            gameManager.NewCoinCollected();
+            EarnMoney(1);
         }
+    }
+
+    public void EarnMoney(int moneyAmount)
+    {
+        // Modifico la cantidad de monedas respetando los límites marcados
+        totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
+        gameManager.NewCoinCollected();
     }
 
     public void TakeDamage(int damageAmount)
