@@ -83,7 +83,7 @@ public class B_CharacterController2 : MonoBehaviour
             EarnMoney(5);
         }
 
-        Debug.Log("monedas: " + totalCoinsCollected);
+        //Debug.Log("monedas: " + totalCoinsCollected);
         gameManager.NewCoinCollector();
     }
 

@@ -47,7 +47,7 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
     {
-        controlPlatform.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
+        //controlPlatform.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
         //cojo el boton de referencia y lo hago interactivo
         trapControlButton.interactable = true;
         Debug.Log("enableControlButton");
