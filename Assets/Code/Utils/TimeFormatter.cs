@@ -5,6 +5,6 @@
         byte mins = (byte)(time / 60);
         byte secs = (byte)(time % 60);
         byte decimals = (byte)((time * 100) % 100);
-        return string.Format("{0:0}:{1:00}:{2:00}", mins, secs, decimals);       
+        return string.Format("{0:00}:{1:00}:{2:00}", mins, secs, decimals);       
     }
 }

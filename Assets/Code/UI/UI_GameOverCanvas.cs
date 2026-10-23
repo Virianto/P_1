@@ -70,7 +70,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         //En cada frame le sumo a mi crono l tiempo transcurrido el último frame
         gameplayTime += Time.deltaTime;
-        chronoText.text = gameplayTime.ToString();
+        chronoText.text = TimeFormatter.FormatTime(gameplayTime);
 
     }
 
