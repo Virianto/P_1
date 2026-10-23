@@ -18,7 +18,7 @@ public class B_ControlPlatform : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Habilitar el botón para desactivar trampa
-        gameManager.EnableTrapButton(trapGameObject);
+        gameManager.EnableTrapButton(gameObject, trapGameObject);
         //Vincular la trampa que controla esta platafrma con el OnClick del botón  
         
     }

@@ -47,8 +47,12 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton(GameObject trapObject)
+    public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
     {
+        
+        //Colorear el botón en consonancia
+        trapControlButton.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
+        
         //Cojo el botón de referencia y lo hago interacctivo
         trapControlButton.interactable = true;
 

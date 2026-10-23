@@ -13,9 +13,9 @@ public class B_Portal : MonoBehaviour
     [SerializeField]
     ParticleSystem waterfall_PS;
 
-    [SerializeField]
-    [Range(0, 10)]
-    int waterfallPressure = 1;
+    //[SerializeField]
+    //[Range(0, 10)]
+    //int waterfallPressure = 1;
 
     [SerializeField]
     Color waterfallColor = Color.aquamarine;
@@ -26,11 +26,11 @@ public class B_Portal : MonoBehaviour
 
     // Detectar que algo ha activado mi collider y reaccionar
 
-    void Update()
-    {
-        waterfall_PS.startColor = waterfallColor;
-        waterfall_PS.Emit(waterfallPressure); 
-    }
+    //void Update()
+    //{
+    //    waterfall_PS.startColor = waterfallColor;
+    //    waterfall_PS.Emit(waterfallPressure); 
+    //}
 
     void OnTriggerEnter(Collider other)
     {
