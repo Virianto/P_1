@@ -4,8 +4,7 @@ using UnityEngine;
 public enum CoinType
 {
     Yellow,
-    Blue,
-    Green
+    Pink,
 }
 
 public class B_Coin : MonoBehaviour
@@ -25,7 +24,7 @@ public class B_Coin : MonoBehaviour
     ParticleSystem coinParticleSystem;
 
     [SerializeField]
-
+    GameObject coinBody;
 
 
     // cuantas monedas ha recogido mi player
@@ -44,9 +43,11 @@ public class B_Coin : MonoBehaviour
 
         coinParticleSystem.Emit(50); //emite particulas al ser tocado
 
-        //GetComponent<Collider>().enabled = false;
+        GetComponent<Collider>().enabled = false;
 
-        //coinBody.SetActive(false); //desactivo el collider de la coin para que no la recoja mas veces
+        coinBody.SetActive(false); //desactivo el collider de la coin para que no la recoja mas veces
+
+      
     }
 
     #endregion

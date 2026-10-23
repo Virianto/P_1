@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class B_CharacterController : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class B_CharacterController : MonoBehaviour
     float movingRotation;
 
     public int totalCoinsCollected = 0;
+
+    public int lifePointsLeft = 20;
 
 
     #endregion
@@ -46,7 +49,7 @@ public class B_CharacterController : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             // ¿Qué hago si la comprobación de este if me devuelve un "true"?
-            //movingRotation = 1;
+            movingRotation = 1;
         }
 
         // Me declaro un nuevo Vector3 (temporal) y, de entrada, le meto datos del Vector2
@@ -64,6 +67,10 @@ public class B_CharacterController : MonoBehaviour
         // Roto el gameObject utilizando el float temporal antes de que muera
         transform.Rotate(finalRotation);
 
+        if(lifePointsLeft == 0)
+        {
+            SceneManager.LoadScene(0);
+        }
       
     }  
     
@@ -74,6 +81,8 @@ public class B_CharacterController : MonoBehaviour
      */
 
         B_Coin coinDetected = other.GetComponent<B_Coin>();
+        B_Healer healerDetected = other.GetComponent<B_Healer>();
+        B_SuperCoin superCoinDetected = other.GetComponent<B_SuperCoin>();
 
         //si la variable que me acabo de crear tiene algo de info dentro le sumo 1 al contador
 
@@ -85,7 +94,39 @@ public class B_CharacterController : MonoBehaviour
             //comunicar al manager que ha habido cambios y dben mostrarse en la UI
             gameManager.NewCoinCollected();
         }
+
+        if (superCoinDetected != null)
+        {
+            
+            totalCoinsCollected += 5;
+
+            gameManager.NewCoinCollected();
         }
+
+
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        //modificar vida del player
+        //informar del cambio a gameManager
+
+        lifePointsLeft -= damageAmount;
+        gameManager.PlayerReceivedDamage();
+    }
+
+    public void EarnMoney(int moneyAmount)
+    {
+        totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
+        gameManager.NewCoinCollected();
+    }
+
+    public void HealAmount(int healAmount)
+    {
+        lifePointsLeft += healAmount;
+        gameManager.PlayerHealed();
+
+    }
         
     #endregion
 }

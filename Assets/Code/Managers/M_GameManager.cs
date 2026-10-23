@@ -10,6 +10,7 @@ public class M_GameManager : MonoBehaviour
 
     public UI_GameOverCanvas gameOverCanvas;
 
+
     #endregion
 
     #region METHODS
@@ -17,7 +18,27 @@ public class M_GameManager : MonoBehaviour
     public void NewCoinCollected()
     {
         //decirle al canvas que modifique su texto de contador facilitandole el valor desde player
-        //gameplayCanvas.UpdateCounter(player.totalCoinsCollected);
+        gameOverCanvas.UpdateCounter(player.totalCoinsCollected);
+    }
+
+    public void PlayerReceivedDamage() //informar al canvas
+    {
+        gameOverCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
+
+    public void PlayerHealed() //informar al canvas
+    {
+        gameOverCanvas.UpdateLifeSlider(player.lifePointsLeft);
+    }
+
+    public void EnableTrapButton(GameObject trapObject)
+    {
+        gameOverCanvas.EnableControlButton(trapObject);
+    }
+
+    public void DisableTrapButton()
+    {
+        gameOverCanvas.DisableControlButton();
     }
 
     public void FinishGame()
