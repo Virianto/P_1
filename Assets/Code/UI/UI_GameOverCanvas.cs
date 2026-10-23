@@ -13,11 +13,14 @@ public class UI_GameOverCanvas : MonoBehaviour
     TMP_Text coinsCounterText;
 
     [SerializeField]
+    TMP_Text Chronotext;
+    [SerializeField]
     Slider playerLifeSlider;
 
     [SerializeField]
     Button trapControlButton;
 
+    float gamePlayTime = 0;
     #endregion
 
     #region METHODS
@@ -26,6 +29,8 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         // Inicializar el texto que se muestra por pantalla cada vez que inicio el nivel
         coinsCounterText.text = "00";
+        Chronotext.text = "00:00:00";
+
     }
 
     public void UpdateCounter(int coinsCollected)
@@ -57,6 +62,12 @@ public class UI_GameOverCanvas : MonoBehaviour
     public void ResetGame()
     {
         SceneManager.LoadScene(0);
+    }
+    void Update()
+    {
+        gamePlayTime += Time.deltaTime;  
+
+        Chronotext.text = gamePlayTime.ToString();
     }
 
     // Método público para actualizar su mensaje de fin de juego
