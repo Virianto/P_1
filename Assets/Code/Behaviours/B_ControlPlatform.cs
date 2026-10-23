@@ -17,7 +17,7 @@ public class B_ControllPatform : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.EnableTrapButton(trapGameObject);
+        gameManager.EnableTrapButton(gameObject, trapGameObject);
     }
 
     private void OnTriggerExit(Collider other)

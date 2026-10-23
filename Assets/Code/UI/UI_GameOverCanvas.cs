@@ -12,7 +12,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField] Slider playerLifeSlider;
     [SerializeField] TMP_Text chronoText;
     [SerializeField] Button trapControlButton;
-    float gamePlayTime = 0;
+    float gamePlayTime = 300;
 
     #endregion
 
@@ -32,8 +32,8 @@ public class UI_GameOverCanvas : MonoBehaviour
     private void Update()
     {
         // Cada frame le sumo a mi crono el tiempo transcurrido
-        gamePlayTime += Time.deltaTime;
-        chronoText.text = gamePlayTime.ToString();
+        gamePlayTime -= Time.deltaTime;
+        chronoText.text = TimeFormatter.FormatTime(gamePlayTime);
     }
 
     public void UpdateCounter(int coinsCollected)
@@ -48,10 +48,14 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton(GameObject trapObject)
+    public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
     {
+        // Recibir información de la plataforma y colorear el botón del mismo color que ella
+        trapControlButton.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
+
         // Hacemos el botón interactivo
         trapControlButton.interactable = true;
+
         // Vinculamos el OnClick del botón con el objeto de la trampa
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
     }
