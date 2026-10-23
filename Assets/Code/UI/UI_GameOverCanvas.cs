@@ -15,6 +15,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField] TMP_Text coinsCounterText;
     [SerializeField] Slider playerLifeSlider;
     [SerializeField] TMP_Text chronoText;
+
     float gameplayTime = 0;
 
     #endregion
@@ -44,8 +45,9 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton(GameObject trapObject)
+    public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
     {
+        controlPlatform.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
         //cojo el boton de referencia y lo hago interactivo
         trapControlButton.interactable = true;
         Debug.Log("enableControlButton");
