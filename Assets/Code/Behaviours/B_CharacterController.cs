@@ -73,11 +73,8 @@ public class B_CharacterController : MonoBehaviour
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
-            // Sumar 1 al contador
-            totalCoinsCollected += 1;
-
-            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
-            gameManager.NewCoinCollected();
+            // Moneda normal
+            EarnMoney(1);
         }
 
         B_SuperCoin supercoinDetected = other.GetComponentInParent<B_SuperCoin>();
@@ -85,11 +82,9 @@ public class B_CharacterController : MonoBehaviour
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (supercoinDetected != null)
         {
-            // Sumar 1 al contador
-            totalCoinsCollected += 10;
 
-            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
-            gameManager.NewCoinCollected();
+            // Supermoneda
+            EarnMoney(10);
         }
 
         B_Heart heartDetected = other.GetComponent<B_Heart>();
@@ -105,11 +100,17 @@ public class B_CharacterController : MonoBehaviour
         }
     }
 
+    public void EarnMoney(int moneyAmount)
+    {
+        
+        totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
+        gameManager.NewCoinCollected();
+    }
+
     public void TakeDamage(int damageAmount)
     {
         // Modificar la cantidad de vida del jugador
-        lifePointsLeft -= damageAmount;
-        Mathf.Clamp(lifePointsLeft, 0, 20);
+        lifePointsLeft = Mathf.Clamp(lifePointsLeft - damageAmount, 0, 20);
 
 
         // Informar del cambio al gameManager

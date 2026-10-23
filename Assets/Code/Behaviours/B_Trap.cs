@@ -15,8 +15,6 @@ public class B_Trap : MonoBehaviour
     [Range(0.5f, 3)]
     float trapFrequencyDamage = 1;
 
-  
-
     bool playerIsInsideArea = false;
     public AudioSource damageAudioSource;
 

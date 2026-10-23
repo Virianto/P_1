@@ -1,0 +1,57 @@
+using System.Collections;
+using UnityEngine;
+
+public class B_MoneyTrap : MonoBehaviour
+{
+    #region ATTRIBUTES
+
+    // Monedas que quita esta trampa
+    [SerializeField]
+    [Range(1, 3)]
+    int coinsLost = 1;
+
+    // Frecuencia con que quita monedas esta trampa
+    [SerializeField]
+    [Range(0.5f, 3)]
+    float trapFrequency = 1;
+
+    bool playerIsInsideArea = false;
+
+
+    #endregion
+
+
+
+
+
+
+    #region METHODS
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Detectar cuándo ha entrado el jugador en su área de efecto
+        playerIsInsideArea = true;
+
+        StartCoroutine(StealCoinsToPlayer(other.GetComponent<B_CharacterController>()));
+    }
+
+    IEnumerator StealCoinsToPlayer(B_CharacterController player)
+    {
+        // Restamos monedas
+        player.EarnMoney(-coinsLost);
+
+        // Esperamos la frecuencia inficada en la variable
+        yield return new WaitForSeconds(trapFrequency);
+
+        // Comprobamos si el player sigue dentro del área
+        StartCoroutine(StealCoinsToPlayer(player));
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Detectar cuándo ha salido el jugador de su área de efecto
+        playerIsInsideArea = false;
+    }
+
+    #endregion
+}

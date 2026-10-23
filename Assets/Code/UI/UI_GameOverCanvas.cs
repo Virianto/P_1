@@ -8,16 +8,16 @@ public class UI_GameOverCanvas : MonoBehaviour
     #region ATTRIBUTES
 
     public M_GameManager gameManager;
-
-    [SerializeField]
-    TMP_Text coinsCounterText;
-
+    [SerializeField] TMP_Text coinsCounterText;
     [SerializeField] Slider playerLifeSlider;
-
-    [SerializeField]
-    Button trapControlButton;
+    [SerializeField] TMP_Text chronoText;
+    [SerializeField] Button trapControlButton;
+    float gamePlayTime = 0;
 
     #endregion
+
+
+
 
     #region METHODS
 
@@ -26,6 +26,14 @@ public class UI_GameOverCanvas : MonoBehaviour
         // Inicializar el texto que se muestra por pantalla cada vez que inicio el nivel
         coinsCounterText.text = "00";
 
+        chronoText.text = "00:00:00";
+    }
+
+    private void Update()
+    {
+        // Cada frame le sumo a mi crono el tiempo transcurrido
+        gamePlayTime += Time.deltaTime;
+        chronoText.text = gamePlayTime.ToString();
     }
 
     public void UpdateCounter(int coinsCollected)
@@ -48,10 +56,6 @@ public class UI_GameOverCanvas : MonoBehaviour
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
     }
 
-    void DisableTrap (GameObject trapObject)
-    {
-
-    }
 
     public void DisableControlButton()
     {
