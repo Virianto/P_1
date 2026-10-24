@@ -41,7 +41,8 @@ public class B_MagicPlatform : MonoBehaviour
     {
         // Restamos monedas
         player.EarnMoney(coinsGain);
-        
+        rainCoins.Play();
+        rainLight.GetComponent<Light>().intensity = 10;
 
         // Esperamos la frecuencia inficada en la variable
         yield return new WaitForSeconds(trapFrequency);
@@ -51,8 +52,6 @@ public class B_MagicPlatform : MonoBehaviour
         {
             StartCoroutine(StealCoinsToPlayer(player));
 
-            rainCoins.Play();
-            rainLight.GetComponent<Light>().intensity = 10;
         }
     }
 
@@ -62,6 +61,7 @@ public class B_MagicPlatform : MonoBehaviour
         playerIsInsideArea = false;
 
         rainCoins.Stop();
+        rainLight.GetComponent<Light>().intensity = 0;
     }
 
     #endregion

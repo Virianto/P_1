@@ -44,7 +44,10 @@ public class B_MoneyTrap : MonoBehaviour
         yield return new WaitForSeconds(trapFrequency);
 
         // Comprobamos si el player sigue dentro del área
-        StartCoroutine(StealCoinsToPlayer(player));
+        if (playerIsInsideArea)
+        {
+            StartCoroutine(StealCoinsToPlayer(player));
+        }
     }
 
     private void OnTriggerExit(Collider other)
