@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class B_PCharacter : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class B_PCharacter : MonoBehaviour
     [Range(15, 90)]
     float rotationSpeed = 60;
 
+   
     Vector2 movingDirection;
     float movingRotation;
 
@@ -23,6 +25,8 @@ public class B_PCharacter : MonoBehaviour
     public UI_PGameplayCanvas timeSpent;
 
     
+
+
     #endregion
 
 
@@ -99,7 +103,9 @@ public class B_PCharacter : MonoBehaviour
 
         if (totalCoinsCollected >= 20) 
         {
-            playerSpeed = 5;        
+            playerSpeed = 5;
+            
+            GetBigger();
         }
 
         if (totalCoinsCollected >= 40)
@@ -110,6 +116,8 @@ public class B_PCharacter : MonoBehaviour
         if (totalCoinsCollected >= 60)
         {
             playerSpeed = 3.5f;
+            GetEvenBigger();
+            
         }
 
         if (totalCoinsCollected >= 80)
@@ -129,6 +137,17 @@ public class B_PCharacter : MonoBehaviour
             SceneManager.LoadScene(3);
         }
         
+    }
+    void GetBigger()
+    {
+            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            //transform.position = new Vector3 (0f, 1.5f, 0f);
+       
+    }
+    void GetEvenBigger()
+    {
+        transform.localScale = new Vector3(2f, 2f, 2f);
+        //transform.position = new Vector3 (0f, 2f, 0f);
     }
 
 
