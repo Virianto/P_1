@@ -35,7 +35,7 @@ public class UI_PGameplayCanvas : MonoBehaviour
 
     public void GainTime()
     {
-        gameplayTime += 5f;
+        gameplayTime += 1f;
     }
 
     void Update()

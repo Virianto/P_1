@@ -45,6 +45,10 @@ public class B_PCharacter : MonoBehaviour
         {
             EarnMoney(5);
             EarnTime();
+            EarnTime();
+            EarnTime();
+            EarnTime();
+            EarnTime();
         }
 
         if (minusCoinDetected != null)
@@ -105,24 +109,26 @@ public class B_PCharacter : MonoBehaviour
 
         if (totalCoinsCollected >= 60)
         {
-            playerSpeed = 3;
+            playerSpeed = 3.5f;
         }
 
         if (totalCoinsCollected >= 80)
         {
-            playerSpeed = 2;
+            playerSpeed = 3;
         }
 
         if (totalCoinsCollected == 100)
         {
             SceneManager.LoadScene(2);
         }
-        /*timeSpent.gameplayTime ==0
-        if (totalCoinsCollected < 100)
+
+        //Si se acaba el tiempo y no tienes 100 monedas, se acaba el juego y sale la pantalla de game over
+       
+        if (totalCoinsCollected < 100 && timeSpent.gameplayTime <= 0f)
         {
             SceneManager.LoadScene(3);
         }
-        */
+        
     }
 
 
