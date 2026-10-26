@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class M_PlayerInput : MonoBehaviour
@@ -5,6 +6,10 @@ public class M_PlayerInput : MonoBehaviour
     #region ATTRIBUTES
     Vector3 destinationPoint = Vector3.zero;
     [SerializeField] GameObject destination_PS;
+    /// <summary>
+    /// Lista de todos los agentes que tengo en escena
+    /// </summary>
+    [SerializeField] List<B_Agent> agentList;
     #endregion
 
     #region METHODS
@@ -38,7 +43,14 @@ public class M_PlayerInput : MonoBehaviour
         {
             //guarda el punto donde ha detectado ese toque
             destinationPoint = hit.point;
+            //reubico el sistema de particulas
             destination_PS.transform.position = destinationPoint;
+
+            //asignar el detino a TODOS los agentes que tengo en mi lista
+            for (int i=0; i < agentList.Count; i++) //A+=2
+            {
+                agentList[i].SetNewAgentDestination(destinationPoint);
+            }
         }
 
     }
