@@ -1,17 +1,19 @@
 using UnityEngine;
-
 using System.Collections.Generic;
+
+
 public class M_PlayerInput : MonoBehaviour
 {
     #region ATTRIBUTES
 
     [SerializeField]
     GameObject destination_PS;
+
     /// <summary>
-    /// lista de todos los agentes que tengo en mi escena
+    /// Lista de todos los agentes que tengo en mi escena
     /// </summary>
-    [SerializeField]
-    List<B_Agent> agentList = new();
+    [SerializeField]    
+    List<B_Agent> agentsList = new();
 
     Vector3 destinationPoint = Vector3.zero;
 
@@ -21,8 +23,8 @@ public class M_PlayerInput : MonoBehaviour
 
     void Update()
     {
-        // Detectar que el jugador ha hecho click izquierdo en el ratón
-        if (Input.GetMouseButtonDown(0))
+        // Detectar que el jugador ha hecho click izquierdo puntual en el ratón
+        if (Input.GetMouseButtonDown(0))        
         {
             SetDestinationFromMouse();            
         }
@@ -42,11 +44,13 @@ public class M_PlayerInput : MonoBehaviour
             // Me guardo el punto donde ha detectado ese toque
             destinationPoint = hit.point;
 
+            // Reubico el sistema de partículas para VER dónde hice click
             destination_PS.transform.position = destinationPoint;
 
-       for (int a=0;a<agentList.Count;++a)
+            // Asignar el destino a TODOS los agentes que tengo en mi lista
+            for (int a = 0; a < agentsList.Count; ++a)
             {
-                agentList[a].SetNewAgentDestination(destinationPoint);
+                agentsList[a].SetNewAgentDestination(destinationPoint);
             }
         }
     }
