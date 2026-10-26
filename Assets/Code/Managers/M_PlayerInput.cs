@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 
 public class M_PlayerInput : MonoBehaviour
 {
@@ -6,6 +8,12 @@ public class M_PlayerInput : MonoBehaviour
 
     [SerializeField]
     GameObject destination_PS;
+
+    /// <summary>
+    /// Lista de todos los agentes que tengo en mi escena
+    /// </summary>
+    [SerializeField]    
+    List<B_Agent> agentsList = new();
 
     Vector3 destinationPoint = Vector3.zero;
 
@@ -38,6 +46,12 @@ public class M_PlayerInput : MonoBehaviour
 
             // Reubico el sistema de partículas para VER dónde hice click
             destination_PS.transform.position = destinationPoint;
+
+            // Asignar el destino a TODOS los agentes que tengo en mi lista
+            for (int a = 0; a < agentsList.Count; ++a)
+            {
+                agentsList[a].SetNewAgentDestination(destinationPoint);
+            }
         }
     }
 
