@@ -28,6 +28,7 @@ public class B_Trap : MonoBehaviour
 
         // Invocar una subrutina facilitando en parámetros el componente del player
         StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        
     }
 
     void OnTriggerExit(Collider other)
@@ -35,7 +36,7 @@ public class B_Trap : MonoBehaviour
         // Detectar cuándo ha salido el jugador de su área de efecto
         playerIsInsideArea = false;
     }
-
+    
     // Declarar un método con gestión de tiempo para dañar al jugador
     IEnumerator HurtPlayer(B_CharacterController player)
     {
