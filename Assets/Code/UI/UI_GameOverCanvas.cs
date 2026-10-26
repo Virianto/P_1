@@ -72,8 +72,6 @@ public class UI_GameOverCanvas : MonoBehaviour
         if (trapTag.tag == "TrapCoin")
         {
             trapControlButton.onClick.AddListener(() => { trapObject.SetActive(true); });
-            
-
         }
     }
 
@@ -81,8 +79,6 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         trapControlButton.interactable = false;
     }
-
-    
 
     #endregion
 }
