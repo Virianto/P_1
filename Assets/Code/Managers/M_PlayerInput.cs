@@ -3,35 +3,43 @@ using UnityEngine;
 public class M_PlayerInput : MonoBehaviour
 {
     #region ATTRIBUTES
-    Vector3 destinationPoint = Vector3.zero;
 
     [SerializeField]
     GameObject destination_PS;
+
+    Vector3 destinationPoint = Vector3.zero;
+
     #endregion
 
-
     #region METHODS
+
     void Update()
     {
-        if (input.GetMouseButtonDown(0))
+        // Detectar que el jugador ha hecho click izquierdo en el ratón
+        if (Input.GetMouseButtonDown(0))
         {
-            SetDestinationFromMouse();
-
-
-
-
+            SetDestinationFromMouse();            
         }
     }
+
     void SetDestinationFromMouse()
     {
-        RaycastHt hit;
-        Ray ray = Camera.main.ScreenpointToRay(M_PlayerInput.mousePosition);
+        // Me creo una variable temporal para almacenar información del toque
+        RaycastHit hit;
+
+        // Va a proyectar ese click en la escena 3D de Unity
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        // Si ha tocado algún plano de escena...
         if(Physics.Raycast(ray, out hit))
         {
+            // Me guardo el punto donde ha detectado ese toque
             destinationPoint = hit.point;
-            destination_PS.transform.position = desinatinPoint;
-        }
 
+            // Reubico el sistema de partículas para VER dónde hice click
+            destination_PS.transform.position = destinationPoint;
+        }
     }
+
     #endregion
 }
