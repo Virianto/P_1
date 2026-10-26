@@ -10,14 +10,18 @@ public class M_PlayerInput : MonoBehaviour
     #region METHODS
     private void Update()
     {
-        // Jugador ha hecho click izquierdo en el raton
-        if (Input.GetMouseButtonDown(0))
+        // Jugador ha hecho click izquierdo puntual en el raton
+        //if (Input.GetMouseButtonDown(0)) //-> una pulsación completa
+        //{
+        //    SetDestinationFromMouse();
+        //    //proyecta ese click en la escena 3D de unity
+
+        //    //si ha tocado algún plano del suelo, me va a indicar en q punto
+
+        //}
+        if (Input.GetMouseButton(0)) //-> para una pulsación continua
         {
             SetDestinationFromMouse();
-            //proyecta ese click en la escena 3D de unity
-
-            //si ha tocado algún plano del suelo, me va a indicar en q punto
-
         }
     }
 
