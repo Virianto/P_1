@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class B_Vida : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int maxHealth = 100;
+    public int currentHealth = 50;
 
-    // Update is called once per frame
-    void Update()
+    public void Heal(int amount)
     {
-        
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        Debug.Log("Vida: " + currentHealth);
     }
 }
+

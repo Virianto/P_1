@@ -56,7 +56,7 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     public void ResetGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     // Método público para actualizar su mensaje de fin de juego
