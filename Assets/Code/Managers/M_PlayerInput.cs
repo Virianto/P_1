@@ -15,8 +15,8 @@ public class M_PlayerInput : MonoBehaviour
 
     void Update()
     {
-        // Detectar que el jugador ha hecho click izquierdo en el ratón
-        if (Input.GetMouseButtonDown(0))
+        // Detectar que el jugador ha hecho click izquierdo puntual en el ratón
+        if (Input.GetMouseButtonDown(0))        
         {
             SetDestinationFromMouse();            
         }
