@@ -24,6 +24,9 @@ public class B_PCharacter : MonoBehaviour
 
     public UI_PGameplayCanvas timeSpent;
 
+    bool isItBig =false;
+    bool isItBigger =false;
+
     
 
 
@@ -104,8 +107,10 @@ public class B_PCharacter : MonoBehaviour
         if (totalCoinsCollected >= 20) 
         {
             playerSpeed = 5;
-            
-            GetBigger();
+            if (isItBig == false)
+            {
+                GetBigger();
+            }
         }
 
         if (totalCoinsCollected >= 40)
@@ -116,7 +121,11 @@ public class B_PCharacter : MonoBehaviour
         if (totalCoinsCollected >= 60)
         {
             playerSpeed = 3.5f;
-            GetEvenBigger();
+            if(isItBigger == false)
+            {
+                GetEvenBigger();
+            }
+            
             
         }
 
@@ -141,13 +150,15 @@ public class B_PCharacter : MonoBehaviour
     void GetBigger()
     {
             transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            //transform.position = new Vector3 (0f, 1.5f, 0f);
+            transform.position += new Vector3 (0f, 0.5f, 0f);
+            isItBig = true;
        
     }
     void GetEvenBigger()
     {
         transform.localScale = new Vector3(2f, 2f, 2f);
-        //transform.position = new Vector3 (0f, 2f, 0f);
+        transform.position += new Vector3 (0f, 0.5f, 0f);
+        isItBigger = true;
     }
 
 
