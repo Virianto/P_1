@@ -16,8 +16,11 @@ public class M_PlayerInput : MonoBehaviour
     #region METHODS
 
     void Update()
-    {   //Va a detectar que el jugador ha hecho click izquierdo en el ratón
-        if (Input.GetMouseButtonDown(0))
+    {   //Va a detectar que el jugador ha hecho click izquierdo puntual en el ratón
+        //if (Input.GetMouseButtonDown(0))
+
+        //Detectar en cada FRAME si el botón izquierdo está pulsado
+        if(Input.GetMouseButton(0))
         {
             
             SetDestinationFromMouse();
@@ -39,6 +42,7 @@ public class M_PlayerInput : MonoBehaviour
             destinationPoint = hit.point;
             //Reubico el sistema de partículas para VER dónde hice click
             destination_PS.transform.position = destinationPoint;
+            destination_PS.GetComponent<ParticleSystem>().Play();
         }
     }
     #endregion
