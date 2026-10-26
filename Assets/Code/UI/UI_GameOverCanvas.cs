@@ -13,10 +13,15 @@ public class UI_GameOverCanvas : MonoBehaviour
     TMP_Text coinsCounterText;
 
     [SerializeField]
+    TMP_Text chronoText;
+
+    [SerializeField]
     Slider playerLifeSlider;
 
     [SerializeField]
     Button trapControlButton;
+
+    float gameplayTime = 0;
 
     #endregion
 
@@ -26,12 +31,20 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         // Inicializar el texto que se muestra por pantalla cada vez que inicio el nivel
         coinsCounterText.text = "00";
+        chronoText.text = "00:00:00";
+    }
+
+    void Update()
+    {
+        // En cada frame le sumo a mi crono el tiempo transcurrido el último frame
+        gameplayTime += Time.deltaTime;
+        chronoText.text = TimeFormatter.FormatTime(gameplayTime);
     }
 
     public void UpdateCounter(int coinsCollected)
-    {
+    {        
         // Convierto el número en una cadena [1 -> "1"] y lo muestro en el texto de la UI
-        coinsCounterText.text = coinsCollected.ToString();
+        coinsCounterText.text = coinsCollected.ToString();        
     }
 
     public void UpdateLifeSlider(int playerLifePointsLeft)
@@ -40,8 +53,12 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton(GameObject trapObject)
+    public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
     {
+        // Colorear el botón en consonancia
+        trapControlButton.GetComponent<Image>().color 
+            = controlPlatform.GetComponent<Renderer>().material.color;
+
         // Cojo el botón de referencia y lo hago interactivo
         trapControlButton.interactable = true;
 
