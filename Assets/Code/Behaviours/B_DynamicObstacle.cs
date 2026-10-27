@@ -10,7 +10,7 @@ public class B_DynamicObstacle : MonoBehaviour
 
     [Tooltip("Distancia mínima para cambiar al siguiente punto de ruta")]
     [SerializeField]
-    [Range(0.1f, 1.5f)]
+    [Range(0.1f, 2)]
     float switchDistance = 0.5f;
 
     [SerializeField]
@@ -22,28 +22,41 @@ public class B_DynamicObstacle : MonoBehaviour
 
     Transform currentDestinyPoint;
 
+    int currentDestinyIndex = 0;
+
     #endregion
 
     #region METHODS
 
+    void Awake()
+    {
+        currentDestinyPoint = routePointsList[currentDestinyIndex];
+    }
+
     void Update()
     {
-        currentDestinyPoint = routePointsList[0];
-        Vector3 middlePoint = Vector3.Lerp
-            (transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
-        transform.position = middlePoint;
+        // Necesito saber si estoy lo bastante cerca o no de mi punto de destino
+        float currentDistance = Vector3.Distance
+            (transform.position, currentDestinyPoint.position);
+
         if(currentDistance <= switchDistance)
-        {
+        {            
+            // * Cambiar el valor del índice
+            
             currentDestinyIndex = (currentDestinyIndex + 1) % routePointsList.Count;
+            // Primer caso: 0 = (0 + 1) % 2 -> 1 / 2 me da de resto 1
+            // Segundo caso: 1 = (1 + 1) % 2 -> 2 / 2 me da de resto 0
+
+            // * Asignar de nuevo el destino usando el nuevo índice
             currentDestinyPoint = routePointsList[currentDestinyIndex];
         }
         else
         {
-            Vector3middlePoint = Vector3.Lerp
-                (transformn.position, currenDestinyPoint)
-        }
+            Vector3 middlePoint = Vector3.Lerp
+            (transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
 
-
+            transform.position = middlePoint;
+        }               
     }
 
     #endregion
