@@ -32,7 +32,16 @@ public class B_DynamicObstacle : MonoBehaviour
         Vector3 middlePoint = Vector3.Lerp
             (transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
         transform.position = middlePoint;
-
+        if(currentDistance <= switchDistance)
+        {
+            currentDestinyIndex = (currentDestinyIndex + 1) % routePointsList.Count;
+            currentDestinyPoint = routePointsList[currentDestinyIndex];
+        }
+        else
+        {
+            Vector3middlePoint = Vector3.Lerp
+                (transformn.position, currenDestinyPoint)
+        }
 
 
     }
