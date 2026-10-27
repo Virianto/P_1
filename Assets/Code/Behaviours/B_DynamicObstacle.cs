@@ -22,18 +22,33 @@ public class B_DynamicObstacle : MonoBehaviour
     List<Transform> routePointsList = new();
 
     Transform currentDestinyPoint;
+    int currentDestinyIndex =0;
 
     #endregion
 
 
     #region METHODS
 
+
+    private void Awake()
+    {
+        currentDestinyPoint = routePointsList[currentDestinyIndex];
+    }
     void Update()
     {
-        //Desplazar de forma sauvizada el objeto hacia el primer punto de la lista
-        //* Punto actual de destino
-        //* Velocidad a la que me aproximo a ese destino
-        //* 
+        float currentDistance = Vector3.Distance(transform.position,currentDestinyPoint.position);
+
+        if (currentDistance <= switchDistance)
+        {
+            currentDestinyIndex = (currentDestinyIndex + 1) % routePointsList.Count;
+            currentDestinyPoint = routePointsList[currentDestinyIndex];
+        }
+        else
+        {
+            Vector3 middlePoint = Vector3.Lerp(transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
+
+            transform.position = middlePoint;
+        }
     }
 
 
