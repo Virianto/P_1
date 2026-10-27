@@ -7,7 +7,7 @@ using UnityEngine;
 public class B_Dynamic : MonoBehaviour
 {
         #region ATTRIBUTES
-    
+   
     #endregion
 
     #region METHODS
