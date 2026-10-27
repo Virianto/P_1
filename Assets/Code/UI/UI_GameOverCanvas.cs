@@ -23,6 +23,9 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     float gamePlayTime = 0; // Cuenta en segundos
 
+    [SerializeField]
+    GameObject dynamicObstacle;
+
     #endregion
 
     #region METHODS
@@ -55,18 +58,21 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton(GameObject controlPlataform, GameObject trapObject) // Recibir info de la plataforma de control
+    public void EnableControlButton(GameObject controlPlataform, GameObject trapObject, GameObject dynamicObstacle) // Recibir info de la plataforma de control
     {
         // Colorear el botón en consonancia con el color/material de la plataforma
         trapControlButton.GetComponent<Image>().color = controlPlataform.GetComponent<Renderer>().material.color;
-
 
         // Cojo el botón de referencia y lo hago interactivo
         trapControlButton.interactable = true;
 
         // Vincular el OnClick del botón con el objeto de la trampa
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); }); ; //FUNCIÓN ANÓNIMA
+
+        // Vincular el hacer click en el botón con el objeto dinámico q hemos añadido
+        trapControlButton.onClick.AddListener(() => { dynamicObstacle.SetActive(true); }); ;
     }
+
 
     public void DisableControlButton()
     {
