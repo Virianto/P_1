@@ -4,8 +4,6 @@ using UnityEngine.AI;
 public class B_Agent : MonoBehaviour
 {
     NavMeshAgent myAgent;
-
-
     private void Awake()
     {
         myAgent = GetComponent<NavMeshAgent>();
