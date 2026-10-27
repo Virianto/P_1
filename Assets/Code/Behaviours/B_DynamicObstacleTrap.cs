@@ -8,7 +8,7 @@ public class B_DynamicObstacleTrap : MonoBehaviour
 
     #region ATTRIBUTES
 
-    bool playerIsInsideArea = false;
+    bool playerIsInsideArea =false;
 
     #endregion
 

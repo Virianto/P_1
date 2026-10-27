@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 /// <summary>
-/// Aquí va el enunciado del propósito 
+/// Agentes que van a la posición del player 
 /// </summary>
 public class B_AngeyAgent : MonoBehaviour
 {
@@ -10,8 +10,8 @@ public class B_AngeyAgent : MonoBehaviour
     #region ATTRIBUTES
 
     NavMeshAgent myAgent;
+    
 
-    B_CharacterController player;
 
     #endregion
 
@@ -20,12 +20,13 @@ public class B_AngeyAgent : MonoBehaviour
     private void Awake()
     {
         myAgent = GetComponent<NavMeshAgent>();
+    
     }
 
-    private void Update()
+
+    public void MoveToPlayerDestination(Vector3 newDestination)
     {
-        
+        myAgent.SetDestination(newDestination);
     }
-
     #endregion
 }

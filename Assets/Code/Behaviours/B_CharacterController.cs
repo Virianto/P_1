@@ -23,6 +23,8 @@ public class B_CharacterController : MonoBehaviour
 
     public int totalCoinsCollected = 0;
     public int lifePointsLeft = 20;
+
+
     
 
 

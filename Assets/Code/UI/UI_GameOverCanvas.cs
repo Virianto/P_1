@@ -69,14 +69,15 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         trapControlButton.interactable = false;
     }
-    public void EnableObstacleControlButton(GameObject trapObject)
+    public void EnableObstacleControlButton(GameObject obstaclePlatform, GameObject trapObject)
     {
+        obstacleTrapControlButton.GetComponent<Image>().color = obstaclePlatform.GetComponent<Renderer>().material.color;
         obstacleTrapControlButton.interactable = true;
-        coinTrapControlButton.onClick.AddListener(() => { trapObject.SetActive(true); });
+        obstacleTrapControlButton.onClick.AddListener(() => { trapObject.SetActive(true); });
     }
-    public void EnableCoinTrapButton(GameObject trapObject)
+    public void EnableCoinTrapButton(GameObject coinPlatform, GameObject trapObject)
     {
-      
+        coinTrapControlButton.GetComponent<Image>().color = coinPlatform.GetComponent<Renderer>().material.color;
         coinTrapControlButton.interactable = true;
         coinTrapControlButton.onClick.AddListener(() => {trapObject.SetActive(true);});
     }
