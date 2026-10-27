@@ -14,6 +14,8 @@ public class B_Coin : MonoBehaviour
     ParticleSystem coinParticles;
 
     [SerializeField]
+
+   
     GameObject coinBody;
     
     #endregion
@@ -30,6 +32,7 @@ public class B_Coin : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         // Desactivar el hijo para que el jugador deje de ver la moneda
         coinBody.SetActive(false);
+        
     }
 
     #endregion
