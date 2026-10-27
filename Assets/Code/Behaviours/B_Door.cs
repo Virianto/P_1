@@ -48,8 +48,7 @@ public class B_Door : MonoBehaviour
 
         Vector3 destinyeEulerAngles = new Vector3(0, newYvalue, 0);
 
-        transform.rotation.;
-
+        
 
     }
 
