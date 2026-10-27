@@ -14,7 +14,7 @@ public class B_Dynamic : MonoBehaviour
     float switchDistance = 0.5f;
 
     [SerializeField]
-    [Range(1, 10)]
+    [Range(0.1f, 10)]
     float speed = 2;
 
     [SerializeField]
