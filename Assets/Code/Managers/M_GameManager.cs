@@ -34,6 +34,17 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.DisableControlButton();
     }
 
+    //public void EnableDynamicTrapButton(GameObject controlPlatform, GameObject trapObject)
+    //{
+    //    //Indicar al Canvas que active el botón
+    //    gameplayCanvas.EnableControlButton(controlPlatform, dynamicObstacle);
+    //}
+
+    //public void DisableDynamicTrapButton()
+    //{
+    //    gameplayCanvas.DisableControlButton();
+    //}
+
     public void NewCoinCollected()
     {
         // Decirle al canvas que modifique su texto de contador facilitándole el valor desde player

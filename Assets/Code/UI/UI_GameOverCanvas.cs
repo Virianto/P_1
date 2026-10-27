@@ -84,20 +84,18 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
     {
+        //Activamos dependiendo de la trampa/obstaculo
+        bool isActTrap = controlPlatform.name.Contains("Act");
+        bool isObstacle = controlPlatform.name.Contains("Obs");
+
         //Recibir infomación de la platform y colorear el botón
         trapControlButton.GetComponent<Image>().color = controlPlatform.GetComponentInChildren<Renderer>().material.color;
-
 
         //Cojo el botón de referencia y lo hago interactivo
         trapControlButton.interactable = true;
 
         //Vincular OnClick del botón con el objeto de la trampa
-        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(controlPlatform.name.Contains("Act")); });
-    }
-
-    void DisableTrap(GameObject trapObject)
-    {
-        trapControlButton.interactable = false;
+        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(isActTrap || isObstacle); });
     }
 
     public void DisableControlButton()
