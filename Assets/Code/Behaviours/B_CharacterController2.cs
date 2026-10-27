@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class B_CharacterController2 : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class B_CharacterController2 : MonoBehaviour
 
     public int lifePointsLeft = 20;
     B_Coin2 coinDetected;
+
+    [SerializeField] List<B_Agent> agentList;
 
     #endregion
 
@@ -54,6 +57,13 @@ public class B_CharacterController2 : MonoBehaviour
         Vector3 finalMovement = new Vector3(movingDirection.x, 0, movingDirection.y);
         finalMovement *= Time.deltaTime;
         finalMovement *= playerSpeed;
+
+        //Le paso la localización al NPC
+        if(movingDirection.x != 0 || movingDirection.y != 0)
+        {
+            SetDestination(transform.position + finalMovement);
+        }
+
 
         // Muevo el gameObject utilizando el nuevo Vector3 antes de que se muera
         transform.Translate(finalMovement);
@@ -120,5 +130,15 @@ public class B_CharacterController2 : MonoBehaviour
         gameManager.NewCoinCollector();
     }
 
+    public void SetDestination(Vector3 newDestination)
+    {
+        //asignar el detino a TODOS los agentes que tengo en mi lista
+      
+    for (int i = 0; i < agentList.Count; i++) //A+=2
+    {
+        agentList[i].SetNewAgentDestination(newDestination);
+    }
+         
+    }
     #endregion
 }
