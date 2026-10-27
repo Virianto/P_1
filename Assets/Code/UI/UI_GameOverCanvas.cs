@@ -10,7 +10,7 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     public M_GameManager gameManager;
 
-    B_FakeTrap trapTag;
+    B_ControlPlatform trapTag;
 
     [SerializeField]
     TMP_Text coinsCounterText;
@@ -65,12 +65,13 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         trapControlButton.interactable = true;
 
-        if (trapTag.tag == "Trap")
+        if (trapObject.tag == "Trap")
         {
             trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
         }
-        if (trapTag.tag == "TrapCoin")
+        if (trapObject.tag == "TrapActivator")
         {
+            Debug.Log("Activo la trampa movil");
             trapControlButton.onClick.AddListener(() => { trapObject.SetActive(true); });
         }
     }
