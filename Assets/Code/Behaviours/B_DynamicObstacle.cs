@@ -28,9 +28,13 @@ public class B_DynamicObstacle : MonoBehaviour
 
     void Update()
     {
-        // Desplazar de forma suavizada el objeto hacia el primer punto de la lista
-        // * Punto actual de destino
-        // * Velocidad a la que me aproximo a ese destino
+        currentDestinyPoint = routePointsList[0];
+        Vector3 middlePoint = Vector3.Lerp
+            (transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
+        transform.position = middlePoint;
+
+
+
     }
 
     #endregion
