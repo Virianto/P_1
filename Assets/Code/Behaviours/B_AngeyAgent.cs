@@ -10,6 +10,8 @@ public class B_AngeyAgent : MonoBehaviour
     #region ATTRIBUTES
 
     NavMeshAgent myAgent;
+
+    B_CharacterController player;
     
 
 
@@ -27,6 +29,12 @@ public class B_AngeyAgent : MonoBehaviour
     public void MoveToPlayerDestination(Vector3 newDestination)
     {
         myAgent.SetDestination(newDestination);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        player.lifePointsLeft =-1;
+        player.totalCoinsCollected = -1;
     }
     #endregion
 }
