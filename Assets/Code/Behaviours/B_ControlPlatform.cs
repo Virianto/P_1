@@ -17,15 +17,18 @@ public class B_ControlPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (trapObj is not null)
-        gameManager.EnableTrapButton(gameObject, trapObj);
+        if (trapObj3 is not null) {
+			gameManager.EnableTrapButton(gameObject, trapObj);
+            gameManager.EnableTrapButton(gameObject, trapObj2);
+			gameManager.EnableTrapButton(gameObject, trapObj3);
+		}
         else if (trapObj2 is not null) {
             gameManager.EnableTrapButton(gameObject, trapObj);
             gameManager.EnableTrapButton(gameObject, trapObj2);
         } else {
             gameManager.EnableTrapButton(gameObject, trapObj);
-            gameManager.EnableTrapButton(gameObject, trapObj2);
-            gameManager.EnableTrapButton(gameObject, trapObj3);
+            //gameManager.EnableTrapButton(gameObject, trapObj2);
+            //gameManager.EnableTrapButton(gameObject, trapObj3);
         }
     }
 
