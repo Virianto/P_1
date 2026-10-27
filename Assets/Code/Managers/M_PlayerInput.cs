@@ -15,6 +15,7 @@ public class M_PlayerInput : MonoBehaviour
     [SerializeField]    
     List<B_Agent> agentsList = new();
 
+
     Vector3 destinationPoint = Vector3.zero;
 
     #endregion
