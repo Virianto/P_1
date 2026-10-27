@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// El obstáculo va a tener dos puntos de referencia en escena y se va a mover entre ellos de forma cíclica
+/// Un obstáculo que va a tener dos puntos de referencia en escena y se va a mover entre ellos de forma cíclica
 /// </summary>
 public class B_DynamicObstacle : MonoBehaviour
 {
@@ -11,10 +11,9 @@ public class B_DynamicObstacle : MonoBehaviour
     [Tooltip("Distancia mínima para cambiar al siguiente punto de ruta")]
 
     [SerializeField]
-    [Range(0.1f, 2.5f)] float switchDistance = 0.5f;
+    [Range(0, 2.5f)] float switchDistance = 1;
 
-    [SerializeField]
-    [Range(1, 10)] float speed = 2;
+    [Range(0, 10)] public float speed = 0;
 
     [SerializeField]
     List<Transform> routePointsList = new();
@@ -22,7 +21,7 @@ public class B_DynamicObstacle : MonoBehaviour
     Transform currentDestinyPoint;
 
     int currentDestinyIndex = 0;
-
+   
     #endregion
 
 

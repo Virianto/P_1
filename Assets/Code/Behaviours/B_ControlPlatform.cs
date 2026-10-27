@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class B_ControllPatform : MonoBehaviour
+public class B_ControlPlatform : MonoBehaviour
 {
     #region ATTRIBUTES
     // Referencia a mi gestor de juego
@@ -12,8 +12,8 @@ public class B_ControllPatform : MonoBehaviour
 
 
 
-    #region METHODS
 
+    #region METHODS
     
     private void OnTriggerEnter(Collider other)
     {
@@ -24,7 +24,6 @@ public class B_ControllPatform : MonoBehaviour
     {
         gameManager.DisableTrapButton();
     }
-
 
     #endregion
 }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UI_GameOverCanvas : MonoBehaviour
 {
+
     #region ATTRIBUTES
 
     public M_GameManager gameManager;
@@ -13,7 +14,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField] TMP_Text chronoText;
     [SerializeField] Button trapControlButton;
     [SerializeField] Button dynamicControlButton;
-    float gamePlayTime = 300;
+    float gamePlayTime = 600;
 
     #endregion
 
@@ -49,7 +50,7 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
+    public void EnableControlButton(GameObject controlPlatform, GameObject trapGameObject)
     {
         // Recibir información de la plataforma y colorear el botón del mismo color que ella
         trapControlButton.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
@@ -58,26 +59,25 @@ public class UI_GameOverCanvas : MonoBehaviour
         trapControlButton.interactable = true;
 
         // Vinculamos el OnClick del botón con el objeto de la trampa
-        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
+        trapControlButton.onClick.AddListener(() => { trapGameObject.SetActive(false); });
     }
-
 
     public void DisableControlButton()
     {
         trapControlButton.interactable = false;
     }
-    public void EnableDynamicControlButton(GameObject controlPlatform, GameObject trapObject)
+
+    public void EnableDynamicControlButton(GameObject activateDoor, GameObject doorGameObject)
     {
         // Recibir información de la plataforma y colorear el botón del mismo color que ella
-        dynamicControlButton.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
+        dynamicControlButton.GetComponent<Image>().color = activateDoor.GetComponent<Renderer>().material.color;
 
         // Hacemos el botón interactivo
         dynamicControlButton.interactable = true;
 
-        // Vinculamos el OnClick del botón con el objeto de la trampa
-        dynamicControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
+        // Vinculamos el OnClick del botón con el objeto de la puerta
+        dynamicControlButton.onClick.AddListener(() => { doorGameObject.GetComponent<B_DynamicObstacle>().speed = 1; });
     }
-
 
     public void DisableDynamicControlButton()
     {
@@ -88,8 +88,6 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-
-    // Método público para actualizar su mensaje de fin de juego
 
     #endregion
 }

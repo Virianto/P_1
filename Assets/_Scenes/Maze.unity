@@ -21061,7 +21061,7 @@ GameObject:
   - component: {fileID: 99819443}
   - component: {fileID: 99819442}
   m_Layer: 5
-  m_Name: DynamicObstacleControlButton
+  m_Name: DynamicControlButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21499,6 +21499,55 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &119043903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 119043904}
+  - component: {fileID: 119043905}
+  m_Layer: 0
+  m_Name: PlayerInputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &119043904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119043903}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 976091904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &119043905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119043903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4a3b11dc764cc4c862300d3104d605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M_PlayerInput
+  destination_PS: {fileID: 1969242240}
+  agentList:
+  - {fileID: 1301988208}
+  - {fileID: 427357136}
+  - {fileID: 1964176798}
 --- !u!1 &121847783
 GameObject:
   m_ObjectHideFlags: 0
@@ -22660,7 +22709,7 @@ GameObject:
   - component: {fileID: 162730732}
   - component: {fileID: 162730731}
   m_Layer: 0
-  m_Name: ActivateObstacle
+  m_Name: ActivateDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22679,7 +22728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_ActivateObstacle
   gameManager: {fileID: 1691120650}
-  trapGameObject: {fileID: 1676705140}
+  doorGameObject: {fileID: 1610473523}
 --- !u!65 &162730732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22695,12 +22744,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 6.9733152, z: 1}
+  m_Center: {x: 0, y: 2.986658, z: 0}
 --- !u!23 &162730733
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22767,7 +22816,7 @@ Transform:
   m_GameObject: {fileID: 162730730}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.81, y: 0, z: -24.3}
+  m_LocalPosition: {x: 28.89, y: 0, z: -25.38}
   m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51140,7 +51189,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.99999994
-  m_BaseOffset: 5
+  m_BaseOffset: 6.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!135 &427357138
@@ -51230,7 +51279,7 @@ Transform:
   m_GameObject: {fileID: 427357135}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.86, y: 1.65, z: -1.51}
+  m_LocalPosition: {x: 27.86, y: 2, z: -1.51}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -116653,6 +116702,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1691120649}
+  - {fileID: 119043904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &978383126
@@ -116667,7 +116717,7 @@ GameObject:
   - component: {fileID: 978383129}
   - component: {fileID: 978383128}
   m_Layer: 5
-  m_Name: DisableTrap
+  m_Name: ActivateDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116712,7 +116762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Activate Obstacle
+  m_text: Activate door
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -124357,8 +124407,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1098072093}
   - component: {fileID: 1098072092}
-  - component: {fileID: 1098072091}
   - component: {fileID: 1098072094}
+  - component: {fileID: 1098072091}
   m_Layer: 0
   m_Name: Trap6Black
   m_TagString: Untagged
@@ -163667,6 +163717,7 @@ GameObject:
   - component: {fileID: 1610473527}
   - component: {fileID: 1610473526}
   - component: {fileID: 1610473525}
+  - component: {fileID: 1610473529}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -163701,8 +163752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadcb7b36af4ceb4bbd031c5cc2e0b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_DynamicObstacle
-  switchDistance: 0.5
-  speed: 1
+  switchDistance: 0.1
+  speed: 0
   routePointsList:
   - {fileID: 1143602164}
   - {fileID: 1381931296}
@@ -163752,7 +163803,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: e95dfd4b6be5926439096ec0f7599b8f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -163784,6 +163835,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610473523}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1610473529
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610473523}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1615544909
 GameObject:
   m_ObjectHideFlags: 0
@@ -174843,7 +174910,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1691120649}
   - component: {fileID: 1691120650}
-  - component: {fileID: 1691120651}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -174881,23 +174947,6 @@ MonoBehaviour:
   player: {fileID: 166954662}
   goal: {fileID: 0}
   gameplayCanvas: {fileID: 1045764849}
---- !u!114 &1691120651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691120648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac4a3b11dc764cc4c862300d3104d605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::M_PlayerInput
-  destination_PS: {fileID: 1969242240}
-  agentList:
-  - {fileID: 1301988208}
-  - {fileID: 427357136}
-  - {fileID: 1964176798}
 --- !u!1 &1691593790
 GameObject:
   m_ObjectHideFlags: 0
@@ -231672,9 +231721,9 @@ SceneRoots:
   - {fileID: 1110769273}
   - {fileID: 1492299434}
   - {fileID: 555638614}
-  - {fileID: 1964176803}
   - {fileID: 1301988213}
   - {fileID: 427357141}
+  - {fileID: 1964176803}
   - {fileID: 1969242243}
   - {fileID: 1676705141}
   - {fileID: 1143602164}

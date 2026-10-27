@@ -20,6 +20,10 @@ public class B_Trap : MonoBehaviour
 
     #endregion
 
+
+
+
+
     #region METHODS
 
     void OnTriggerEnter(Collider other)
@@ -54,10 +58,7 @@ public class B_Trap : MonoBehaviour
             StartCoroutine(HurtPlayer(player));
         }
 
-
     }
-    
-
 
     #endregion
 }

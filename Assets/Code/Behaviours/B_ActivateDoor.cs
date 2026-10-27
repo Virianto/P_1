@@ -2,15 +2,15 @@ using UnityEngine;
 
 
 /// <summary>
-/// Aquí va el enunciado del propósito de esta clase
+/// Una plataforma que activa un botón del Canvas para que, al pulsarlo, la puerta se active
 /// </summary>
-public class B_ActivateObstacle : MonoBehaviour
+public class B_ActivateDoor : MonoBehaviour
 {
     #region ATTRIBUTES
 
     // Referencia a mi gestor de juego
     public M_GameManager gameManager;
-    public GameObject trapGameObject;
+    public GameObject doorGameObject;
 
     #endregion
 
@@ -21,12 +21,12 @@ public class B_ActivateObstacle : MonoBehaviour
     #region METHODS
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.EnableTrapButton(gameObject, trapGameObject);
+        gameManager.EnableDynamicDoorButton(gameObject, doorGameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        gameManager.DisableTrapButton();
+        gameManager.DisableDynamicDoorButton();
     }
 
     #endregion

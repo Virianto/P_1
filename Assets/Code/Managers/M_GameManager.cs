@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class M_GameManager : MonoBehaviour
 {    
+
     #region ATTRIBUTES
 
     public B_CharacterController player;
@@ -10,8 +11,11 @@ public class M_GameManager : MonoBehaviour
 
     public UI_GameOverCanvas gameplayCanvas;
 
-
     #endregion
+
+
+
+
 
     #region METHODS
 
@@ -46,9 +50,14 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.DisableControlButton();
     }
 
-    public void ReloadGame()
+    public void EnableDynamicDoorButton(GameObject activateDoor, GameObject doorGameObject)
     {
-        
+        gameplayCanvas.EnableDynamicControlButton(activateDoor, doorGameObject);
+    }
+
+    public void DisableDynamicDoorButton()
+    {
+        gameplayCanvas.DisableDynamicControlButton();
     }
 
     #endregion
