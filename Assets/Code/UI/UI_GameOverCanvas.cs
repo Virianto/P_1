@@ -12,6 +12,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField] Slider playerLifeSlider;
     [SerializeField] TMP_Text chronoText;
     [SerializeField] Button trapControlButton;
+    [SerializeField] Button dynamicControlButton;
     float gamePlayTime = 300;
 
     #endregion
@@ -64,6 +65,23 @@ public class UI_GameOverCanvas : MonoBehaviour
     public void DisableControlButton()
     {
         trapControlButton.interactable = false;
+    }
+    public void EnableDynamicControlButton(GameObject controlPlatform, GameObject trapObject)
+    {
+        // Recibir información de la plataforma y colorear el botón del mismo color que ella
+        dynamicControlButton.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
+
+        // Hacemos el botón interactivo
+        dynamicControlButton.interactable = true;
+
+        // Vinculamos el OnClick del botón con el objeto de la trampa
+        dynamicControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
+    }
+
+
+    public void DisableDynamicControlButton()
+    {
+        dynamicControlButton.interactable = false;
     }
 
     public void ResetGame()
