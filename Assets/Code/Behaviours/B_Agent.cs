@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +9,6 @@ public class B_Agent : MonoBehaviour
     // Va a moverse hasta ese punto por el camino más óptimo q encuentre
     #region ATTRIBUTES
     NavMeshAgent myAgent;
-
 
     #endregion
 
@@ -23,7 +24,5 @@ public class B_Agent : MonoBehaviour
         // Cambiar el destino de mi agente
         myAgent.SetDestination(NewDestination);
     }
-
-
     #endregion
 }
