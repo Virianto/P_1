@@ -59,6 +59,7 @@ public class B_CharacterController : MonoBehaviour
 
         // Me declaro un nuevo Vector3 (temporal) y, de entrada, le meto datos del Vector2
         Vector3 finalMovement = new Vector3(movingDirection.x, 0, movingDirection.y);
+        
         finalMovement *= Time.deltaTime;
         finalMovement *= playerSpeed;
 

@@ -64,14 +64,13 @@ public class UI_GameOverCanvas : MonoBehaviour
     public void EnableControlButton(GameObject trapObject)
     {
         trapControlButton.interactable = true;
-
         if (trapObject.tag == "Trap")
         {
             trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
         }
-        if (trapObject.tag == "TrapActivator")
+        
+        else if (trapObject.tag == "TrapActivator")
         {
-            Debug.Log("Activo la trampa movil");
             trapControlButton.onClick.AddListener(() => { trapObject.SetActive(true); });
         }
     }
