@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class B_CharacterController : MonoBehaviour
 {        
-    // Detectar cuándo he tocado una trampa y restar X a la vida
 
     #region ATTRIBUTES
 
@@ -21,7 +20,9 @@ public class B_CharacterController : MonoBehaviour
 
     public int totalCoinsCollected = 0;
     public int lifePointsLeft = 20;
-    
+
+    public AudioSource damageAudioSource;
+    public AudioSource lostCoinAudioSource;
 
     #endregion
 
@@ -70,7 +71,7 @@ public class B_CharacterController : MonoBehaviour
         // Detectar cuándo he tocado una moneda y sumar 1 al contador
         B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
 
-        // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
+        // Si la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
             // Moneda normal
@@ -79,7 +80,7 @@ public class B_CharacterController : MonoBehaviour
 
         B_SuperCoin supercoinDetected = other.GetComponentInParent<B_SuperCoin>();
 
-        // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
+        // Si la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (supercoinDetected != null)
         {
             // Supermoneda
@@ -90,12 +91,11 @@ public class B_CharacterController : MonoBehaviour
 
         if (heartDetected != null)
         {
-            // Sumar 1 al contador
+            // Sumar 5 al contador de vida
             lifePointsLeft += 5;
 
-            gameManager.PlayerReceivedDamage();
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
-            // gameManager.NewCoinCollected();
+            gameManager.PlayerReceivedDamage();
         }
 
         B_ChaserLifeAgent chaserLifeAgentDetected = other.GetComponent<B_ChaserLifeAgent>();
@@ -104,6 +104,16 @@ public class B_CharacterController : MonoBehaviour
         {
             lifePointsLeft -= 1;
             gameManager.PlayerReceivedDamage();
+            damageAudioSource.Play();
+        }
+
+        B_PatrolAgent patrolAgentDetected = other.GetComponent<B_PatrolAgent>();
+
+        if (patrolAgentDetected != null)
+        {
+            lifePointsLeft -= 5;
+            gameManager.PlayerReceivedDamage();
+            damageAudioSource.Play();
         }
 
         B_ChaserCoinsAgent chaserCoinsAgentDetected = other.GetComponent<B_ChaserCoinsAgent>();
@@ -111,6 +121,7 @@ public class B_CharacterController : MonoBehaviour
         if (chaserCoinsAgentDetected != null)
         {
             EarnMoney(-1);
+            lostCoinAudioSource.Play();
         }
 
     }

@@ -10,7 +10,6 @@ public class B_ChaserLifeAgent : MonoBehaviour
     #region ATTRIBUTES
 
     NavMeshAgent myAgent;
-    bool playerIsInsideArea = false;
 
     #endregion
 
@@ -29,19 +28,6 @@ public class B_ChaserLifeAgent : MonoBehaviour
     {
         // Cambiar el destino del Agente
         myAgent.SetDestination(newDestination);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        // Detectar cuándo ha entrado el jugador en su área de efecto
-        playerIsInsideArea = true;
-
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        // Detectar cuándo ha salido el jugador de su área de efecto
-        playerIsInsideArea = false;
     }
 
     #endregion

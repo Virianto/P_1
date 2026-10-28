@@ -97,7 +97,6 @@ public class M_PlayerInput : MonoBehaviour
             exitAgentList[a].SetNewAgentDestination(destinationPoint);
         }
 
-        
     }
 
     #endregion
