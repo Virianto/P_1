@@ -17,19 +17,25 @@ public class B_ControlPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (trapObj3 is not null) {
-			gameManager.EnableTrapButton(gameObject, trapObj);
-            gameManager.EnableTrapButton(gameObject, trapObj2);
-			gameManager.EnableTrapButton(gameObject, trapObj3);
-		}
-        else if (trapObj2 is not null) {
+        if (trapObj != null)
             gameManager.EnableTrapButton(gameObject, trapObj);
+        if (trapObj2 != null)
             gameManager.EnableTrapButton(gameObject, trapObj2);
-        } else {
-            gameManager.EnableTrapButton(gameObject, trapObj);
-            //gameManager.EnableTrapButton(gameObject, trapObj2);
-            //gameManager.EnableTrapButton(gameObject, trapObj3);
-        }
+        if (trapObj3 != null)
+            gameManager.EnableTrapButton(gameObject, trapObj3);
+        //if (trapObj3 != null) {
+        //	gameManager.EnableTrapButton(gameObject, trapObj);
+        //          gameManager.EnableTrapButton(gameObject, trapObj2);
+        //	gameManager.EnableTrapButton(gameObject, trapObj3);
+        //}
+        //      else if (trapObj2 != null) {
+        //          gameManager.EnableTrapButton(gameObject, trapObj);
+        //          gameManager.EnableTrapButton(gameObject, trapObj2);
+        //      } else {
+        //          gameManager.EnableTrapButton(gameObject, trapObj);
+        //          //gameManager.EnableTrapButton(gameObject, trapObj2);
+        //          //gameManager.EnableTrapButton(gameObject, trapObj3);
+        //      }
     }
 
     private void OnTriggerExit(Collider other)
