@@ -41966,7 +41966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Consigue \nlas 29 monedas \ny escapa del laberinto"
+  m_text: "\xA1Intenta escapar \ndel laberinto \nantes que \nEL TOPO!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eba083de702f83e45974949c52714f1f, type: 2}
   m_sharedMaterial: {fileID: -4976034649369994381, guid: eba083de702f83e45974949c52714f1f, type: 2}
@@ -127746,7 +127746,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -127839,6 +127839,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acffa01747a94ef448b16a5b16da3206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_AngeyAgent
+  player: {fileID: 1830190379}
+  isItHumanoid: 1
+  isItBird: 0
 --- !u!1 &1180986651
 GameObject:
   m_ObjectHideFlags: 0
@@ -179898,6 +179901,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acffa01747a94ef448b16a5b16da3206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_AngeyAgent
+  player: {fileID: 1830190379}
+  isItHumanoid: 0
+  isItBird: 0
 --- !u!54 &1609499929
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -182492,7 +182498,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 1, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -213599,7 +213605,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 8.33
+  m_BaseOffset: 6.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!135 &2060916935
@@ -213617,11 +213623,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2060916936
 MeshRenderer:
@@ -213688,14 +213694,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060916932}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 25.95, y: 2.5, z: 3.4}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -22, y: 2, z: -28}
+  m_LocalScale: {x: 0.30000007, y: 0.3, z: 0.30000007}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1653252676}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &2060916939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213708,6 +213714,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acffa01747a94ef448b16a5b16da3206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_AngeyAgent
+  player: {fileID: 1830190379}
+  isItHumanoid: 0
+  isItBird: 1
 --- !u!1 &2080146482
 GameObject:
   m_ObjectHideFlags: 0

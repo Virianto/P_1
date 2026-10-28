@@ -11,7 +11,10 @@ public class B_AngeyAgent : MonoBehaviour
 
     NavMeshAgent myAgent;
 
-    B_CharacterController player;
+    public B_CharacterController player;
+
+    public bool isItHumanoid = false;
+    public bool isItBird = false;
 
    
     
@@ -33,10 +36,24 @@ public class B_AngeyAgent : MonoBehaviour
         myAgent.SetDestination(newDestination);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        player.lifePointsLeft =-1;
-        player.totalCoinsCollected = -1;
+        player = other.GetComponent<B_CharacterController>();
+        if (isItBird == true)
+        {
+            player.TakeDamage(1);
+        }
+        if (isItHumanoid == true) 
+        {
+            if (player.totalCoinsCollected > 0)
+            {
+                player.EarnMoney(-1);
+            }
+            
+        }
+        
+
+        
     }
 
     public void MoveToFinishLine(Vector3 newFinishLine)

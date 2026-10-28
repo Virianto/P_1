@@ -29,7 +29,7 @@ public class B_FinalGoal : MonoBehaviour
 
     void Update()
     {
-        if (playerCanFinishGame == true || agentCanFinishGame == true || player.lifePointsLeft == 0)
+        if (playerCanFinishGame == true || agentCanFinishGame == true || player.lifePointsLeft <= 0)
         {
            
                 // Comunicar al manager que se quiere finalizar
