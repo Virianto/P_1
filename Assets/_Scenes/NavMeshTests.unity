@@ -531,7 +531,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8560,8 +8560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_Door
   doorSwitchKey: 116
-  doorAngle: 90
-  angularSpeed: 30
+  doorAngle: -90
+  angularSpeed: 5
 --- !u!1 &1733556350
 GameObject:
   m_ObjectHideFlags: 0

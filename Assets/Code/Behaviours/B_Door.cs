@@ -12,8 +12,8 @@ public class B_Door : MonoBehaviour
     KeyCode doorSwitchKey = KeyCode.T;
 
     [SerializeField]
-    [Range(-180, 180)]
-    float doorAngle = 90;
+    [Range(0, 359)]
+    float doorAngle = 270;
 
     [SerializeField]
     [Range(0, 60)]
@@ -53,7 +53,7 @@ public class B_Door : MonoBehaviour
         }
         else
         {
-            destinyAngle = 90;
+            destinyAngle = doorAngle;
         }
     }
 
