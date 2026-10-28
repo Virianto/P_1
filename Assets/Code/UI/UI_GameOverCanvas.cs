@@ -7,7 +7,7 @@ public class UI_GameOverCanvas : MonoBehaviour
 {
 
     #region ATTRIBUTES
-
+   
     public M_GameManager gameManager;
     [SerializeField] TMP_Text coinsCounterText;
     [SerializeField] Slider playerLifeSlider;

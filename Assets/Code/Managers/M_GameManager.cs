@@ -7,7 +7,7 @@ public class M_GameManager : MonoBehaviour
 
     public B_CharacterController player;
 
-    public B_FinalGoal goal;
+    public B_ExitSpace exit;
 
     public UI_GameOverCanvas gameplayCanvas;
 

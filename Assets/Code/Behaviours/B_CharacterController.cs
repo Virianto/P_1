@@ -82,7 +82,6 @@ public class B_CharacterController : MonoBehaviour
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (supercoinDetected != null)
         {
-
             // Supermoneda
             EarnMoney(10);
         }
@@ -98,11 +97,26 @@ public class B_CharacterController : MonoBehaviour
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             // gameManager.NewCoinCollected();
         }
+
+        B_ChaserLifeAgent chaserLifeAgentDetected = other.GetComponent<B_ChaserLifeAgent>();
+
+        if (chaserLifeAgentDetected != null)
+        {
+            lifePointsLeft -= 1;
+            gameManager.PlayerReceivedDamage();
+        }
+
+        B_ChaserCoinsAgent chaserCoinsAgentDetected = other.GetComponent<B_ChaserCoinsAgent>();
+
+        if (chaserCoinsAgentDetected != null)
+        {
+            EarnMoney(-1);
+        }
+
     }
 
     public void EarnMoney(int moneyAmount)
-    {
-        
+    { 
         totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
         gameManager.NewCoinCollected();
     }
@@ -111,7 +125,6 @@ public class B_CharacterController : MonoBehaviour
     {
         // Modificar la cantidad de vida del jugador
         lifePointsLeft = Mathf.Clamp(lifePointsLeft - damageAmount, 0, 20);
-
 
         // Informar del cambio al gameManager
         gameManager.PlayerReceivedDamage();
@@ -122,7 +135,6 @@ public class B_CharacterController : MonoBehaviour
         // Modificar la cantidad de vida del jugador
         lifePointsLeft += damageAmount;
         Mathf.Clamp(lifePointsLeft, 0, 20);
-
 
         // Informar del cambio al gameManager
         gameManager.PlayerReceivedDamage();

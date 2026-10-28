@@ -19,6 +19,7 @@ public class B_ActivateDoor : MonoBehaviour
 
 
     #region METHODS
+
     private void OnTriggerEnter(Collider other)
     {
         gameManager.EnableDynamicDoorButton(gameObject, doorGameObject);
