@@ -23,6 +23,6 @@ public class B_Agent : MonoBehaviour
     {
         myAgent.SetDestination(newDestination);
     }
-
+    
     #endregion
 }
