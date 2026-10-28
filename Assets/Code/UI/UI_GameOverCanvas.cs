@@ -12,11 +12,11 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField]
     Button replayGameButton;
 
-    [SerializeField]
-    Slider IULifeSlider;
+    //[SerializeField]
+    //Slider IULifeSlider;
 
-    [SerializeField]
-    Button trapControlButton;
+    //[SerializeField]
+    //Button trapControlButton;
 
     [SerializeField]
     TMP_Text chronoText;
@@ -56,51 +56,18 @@ public class UI_GameOverCanvas : MonoBehaviour
         coinsCounterText.text = coinsCollected.ToString();
     }
 
-    private void Update()
-    {
-        //En cada frame le sumo a mi crono el tiempo transcurrido el último frame
-        gameplayTime += Time.deltaTime;
-
-        //chronoText.text = gameplayTime.ToString();
-        chronoText.text = TimeFormatter.FormatTime(gameplayTime);
-    }
-
-    public void UpdateLifeSlider(int playerLifePointsLeft)
-    {
-        //Actualizo el valor del slider para que coincida con los puntos de vida del jugador
-        IULifeSlider.value = playerLifePointsLeft;
-    }
-
-    //public void UpdateCounter(int playerLifePointsLeft)
+    //private void Update()
     //{
-    //    //Actualizo el valor del slider para que coincida con los puntos de vida del jugador
-    //    IUCoinsCounter.value = playerLifePointsLeft;
+    //    //En cada frame le sumo a mi crono el tiempo transcurrido el último frame
+    //    gameplayTime += Time.deltaTime;
+
+    //    //chronoText.text = gameplayTime.ToString();
+    //    chronoText.text = TimeFormatter.FormatTime(gameplayTime);
     //}
 
     public void ResetGame()
     {
         SceneManager.LoadScene(0);
-    }
-
-    public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
-    {
-        //Activamos dependiendo de la trampa/obstaculo
-        bool isActTrap = controlPlatform.name.Contains("Act");
-        bool isObstacle = controlPlatform.name.Contains("Obs");
-
-        //Recibir infomación de la platform y colorear el botón
-        trapControlButton.GetComponent<Image>().color = controlPlatform.GetComponentInChildren<Renderer>().material.color;
-
-        //Cojo el botón de referencia y lo hago interactivo
-        trapControlButton.interactable = true;
-
-        //Vincular OnClick del botón con el objeto de la trampa
-        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(isActTrap || isObstacle); });
-    }
-
-    public void DisableControlButton()
-    {
-        trapControlButton.interactable = false;
     }
 
     #endregion

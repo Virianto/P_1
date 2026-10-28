@@ -37,7 +37,7 @@ public class B_CharacterController : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("Me has dado en la nuca");
-        GetComponent<C_Spinner>().enabled = !GetComponent<C_Spinner>().enabled;
+        //GetComponent<C_Spinner>().enabled = !GetComponent<C_Spinner>().enabled;
     }
 
     void Update()

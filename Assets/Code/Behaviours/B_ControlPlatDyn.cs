@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Control de plataformas para activar obstaculos dinamicos
+/// </summary>
 public class B_ControlPlatformDyn : MonoBehaviour
 {
     //Referencia persistente a mi gestor de escena/juego
@@ -17,16 +20,12 @@ public class B_ControlPlatformDyn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (trapObj is not null)
-        gameManager.EnableTrapButton(gameObject, trapObj);
-        else if (trapObj2 is not null) {
+        if (trapObj != null)
             gameManager.EnableTrapButton(gameObject, trapObj);
+        if (trapObj2 != null)
             gameManager.EnableTrapButton(gameObject, trapObj2);
-        } else {
-            gameManager.EnableTrapButton(gameObject, trapObj);
-            gameManager.EnableTrapButton(gameObject, trapObj2);
+        if (trapObj3 != null)
             gameManager.EnableTrapButton(gameObject, trapObj3);
-        }
     }
 
     private void OnTriggerExit(Collider other)

@@ -36,7 +36,7 @@ public class B_Money_Trap : MonoBehaviour
         else
             player.EarnMoney(coinsLost);
 
-        //Esperamos la frecuancia indicada en la variable
+        //Esperamos la frecuencia indicada en la variable
         yield return new WaitForSeconds(trapFrequencySteal);
 
         //Comprobamos si sigue dentro para seguir robando

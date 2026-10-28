@@ -7,8 +7,8 @@ public class M_GameManager : MonoBehaviour
     //Referencia a la UI de escena
 
     public B_CharacterController player;
-    public UI_GameOverCanvas gameOverCanvas;
-    public UI_GameOverCanvas gameplayCanvas;
+    public UI_GameOverCanvas2 gameOverCanvas;
+    public UI_GameHudCanvas gameplayCanvas;
     //public B_Meta meta;
 
     public void FinishGame()

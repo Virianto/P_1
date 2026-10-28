@@ -20,7 +20,7 @@ public class UI_StartGameCanvas : MonoBehaviour
 
     public void LaunchGame()
     {        
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }    
 
     #endregion

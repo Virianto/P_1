@@ -50,7 +50,7 @@ public class M_PlayerInput : MonoBehaviour
             //Asignar el destino a TODOS los agentes que tengo en mi lista
             for (int i = 0; i < agentsList.Count; i++) 
             {
-                agentsList[i].SetNewAgentDestination(destinationPoint);
+                agentsList[i].SetNewDestinationByPlayer(destinationPoint);
                 Debug.Log(agentsList[i].name);
             }
         }
