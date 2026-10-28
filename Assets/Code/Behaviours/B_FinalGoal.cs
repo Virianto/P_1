@@ -6,13 +6,16 @@ public class B_FinalGoal : MonoBehaviour
     #region ATTRIBUTES
 
     public M_GameManager gameManager;
+    public M_AgentsInput agentsManager;
 
-    [SerializeField]
-    KeyCode finishGameKey = KeyCode.F;
+    //[SerializeField]
+    //KeyCode finishGameKey = KeyCode.F;
 
-    B_CharacterController player;
+    public B_CharacterController player;
+    public B_AngeyAgent agent;
 
     bool playerCanFinishGame = false;
+    public bool agentCanFinishGame = false;
 
     #endregion
 
@@ -21,26 +24,25 @@ public class B_FinalGoal : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         playerCanFinishGame = true;
-        player = other.GetComponent<B_CharacterController>();
+        agentCanFinishGame = true;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(finishGameKey))
+        if (playerCanFinishGame == true || agentCanFinishGame == true || player.lifePointsLeft == 0)
         {
-            if (player.totalCoinsCollected >= 29)
-            {
+           
                 // Comunicar al manager que se quiere finalizar
                 SceneManager.LoadScene(0);
                 //ShowLevelCompletionMessage();
-            }
+       
         }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        playerCanFinishGame = false;
-    }
+    //void OnTriggerExit(Collider other)
+    //{
+    //    playerCanFinishGame = false;
+    //}
 
     //void ShowLevelCompletionMessage()
     //{

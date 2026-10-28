@@ -8,12 +8,21 @@ using UnityEngine;
 public class M_AgentsInput : MonoBehaviour
 {
     #region ATTRIBUTRES
+
+    [SerializeField]
+    B_CharacterController player;
     [SerializeField]
     List<B_AngeyAgent> angeyAgentsList = new();
+    [SerializeField]
+    List<B_AngeyAgent> runningAgentsList = new();
+    
+    
+    [SerializeField]
+    GameObject finishLine;
 
-    B_CharacterController player;
 
     Vector3 targetPoint = Vector3.zero;
+    
 
     #endregion
 
@@ -22,6 +31,8 @@ public class M_AgentsInput : MonoBehaviour
     void Update()
     {
             MoveAgentToPlayer();
+        Vector3 newFinishLine = finishLine.transform.position;
+        MoveAgentToFinishLine(newFinishLine);
     }
 
     void MoveAgentToPlayer()
@@ -30,6 +41,14 @@ public class M_AgentsInput : MonoBehaviour
         {
             targetPoint = player.transform.position;
             angeyAgentsList[a].MoveToPlayerDestination(targetPoint);
+        }
+    }
+
+    void MoveAgentToFinishLine(Vector3 newFinishLine)
+    {
+        for(int a = 0;a < runningAgentsList.Count; ++a)
+        {
+            runningAgentsList[a].MoveToFinishLine(newFinishLine);
         }
     }
     #endregion

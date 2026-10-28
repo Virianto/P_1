@@ -23,6 +23,9 @@ public class B_Trap : MonoBehaviour
     [SerializeField]
     ParticleSystem trapPatricles;
 
+    [SerializeField]
+    Collider playerCollider;
+
     #endregion
 
     #region METHODS
@@ -33,7 +36,11 @@ public class B_Trap : MonoBehaviour
         playerIsInsideArea = true;
         
         //Invocar una subrutina facilitando en parámetros el componente del player
-        StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        if (playerCollider == other)
+        {
+            StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        }
+        
     }
     //Va a dañar al jugador mientras esté dentro
 
