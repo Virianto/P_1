@@ -20,7 +20,7 @@ public class B_CharacterController : MonoBehaviour
     float movingRotation;
 
     public int totalCoinsCollected = 0;
-    public int lifePointsLeft = 20;
+    public int lifePointsLeft = 3;
 
     #endregion
 
