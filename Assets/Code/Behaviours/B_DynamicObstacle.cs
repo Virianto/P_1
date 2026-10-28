@@ -59,5 +59,15 @@ public class B_DynamicObstacle : MonoBehaviour
         }               
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Han chocado");
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Han atravesado");
+    }
+
     #endregion
 }

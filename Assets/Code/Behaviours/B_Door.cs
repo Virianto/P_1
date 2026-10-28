@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -13,14 +12,17 @@ public class B_Door : MonoBehaviour
     KeyCode doorSwitchKey = KeyCode.T;
 
     [SerializeField]
-    [Range(0, 180)]
+    [Range(-180, 180)]
     float doorAngle = 90;
 
     [SerializeField]
-    [Range(15, 90)]
-    float angularSpeed = 30;
+    [Range(0, 60)]
+    float angularSpeed = 15;
+
+    Vector3 destinyEulerAngles;
 
     float destinyAngle = 0;
+    float newYvalue = 0;
 
     bool isOpen = false;
 
@@ -33,15 +35,11 @@ public class B_Door : MonoBehaviour
         if (Input.GetKeyDown(doorSwitchKey))
         {
             SwitchDoorState();
-            Debug.Log("Se ha detectado la tecla y destinyAngle vale: " + destinyAngle);
         }
 
-        float newYvalue = Mathf.Lerp
-            (transform.rotation.eulerAngles.y, destinyAngle, Time.deltaTime * angularSpeed);
-
-        Vector3 destinyEulerAngles = new Vector3(0, 90, 0);
-
-        transform.rotation.SetFromToRotation(transform.rotation.eulerAngles, destinyEulerAngles);
+        newYvalue = Mathf.Lerp(transform.rotation.eulerAngles.y, destinyAngle, Time.deltaTime * angularSpeed);
+        destinyEulerAngles = new Vector3(0, newYvalue, 0);
+        transform.rotation = Quaternion.Euler(destinyEulerAngles);    
     }
 
     void SwitchDoorState()
@@ -51,11 +49,11 @@ public class B_Door : MonoBehaviour
 
         if (!isOpen)
         {
-            destinyAngle = doorAngle;
+            destinyAngle = 0;
         }
         else
         {
-            destinyAngle = 0;
+            destinyAngle = 90;
         }
     }
 
