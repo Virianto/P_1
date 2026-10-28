@@ -89,7 +89,12 @@ public class B_CharacterController : MonoBehaviour
                                                 //ni quite menos del min
             //lifePointsLeft = Mathf.Clamp(lifePointsLeft - damage, 0, 20); //otra forma. Limita valores variable
             gameManager.PlayerIULife();
-        }
+
+            if (lifePointsLeft == 0)
+                gameManager.gameOverCanvas.gameObject.SetActive(true);
+        } 
+        //else
+        //    gameManager.gameOverCanvas.gameObject.SetActive(true);
     }
 
     public void HealLife(int healAmount)
