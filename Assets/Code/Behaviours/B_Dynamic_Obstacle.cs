@@ -23,6 +23,8 @@ public class B_Dynamic_Obstacle : MonoBehaviour
 
     int currentDestinyIndex = 0;
 
+    public bool shouldMove = false;
+
     #endregion
 
 
@@ -34,22 +36,25 @@ public class B_Dynamic_Obstacle : MonoBehaviour
     }
     void Update()
     {
-        // Necesito sabe si estoy lo bastante cerca o no de mi destino
-        float currentDistance = Vector3.Distance(transform.position, currentDestinyPoint.position);
-
-        if (currentDistance <= switchDistance) // Si ya estoy cerca
+        if (shouldMove)
         {
-            // Cambio de destino
-            currentDestinyIndex = (currentDestinyIndex + 1) % routePointsList.Count;
-            currentDestinyPoint = routePointsList[currentDestinyIndex];
+            // Necesito sabe si estoy lo bastante cerca o no de mi destino
+            float currentDistance = Vector3.Distance(transform.position, currentDestinyPoint.position);
 
+            if (currentDistance <= switchDistance) // Si ya estoy cerca
+            {
+                // Cambio de destino
+                currentDestinyIndex = (currentDestinyIndex + 1) % routePointsList.Count;
+                currentDestinyPoint = routePointsList[currentDestinyIndex];
+
+            }
+            else // Si estoy lejos
+            {
+                // Me sigo acercando
+                Vector3 middlePoint = Vector3.Lerp(transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
+                transform.position = middlePoint;
+            }
         }
-        else // Si estoy lejos
-        {
-            // Me sigo acercando
-            Vector3 middlePoint = Vector3.Lerp(transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
-            transform.position = middlePoint;
-        }        
     }
 
     #endregion

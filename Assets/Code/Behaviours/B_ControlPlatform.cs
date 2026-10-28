@@ -8,8 +8,6 @@ public class B_ControlPlatform : MonoBehaviour
 
     public GameObject trapGameObject;
 
-    public GameObject dynamicObstacle;
-
     #endregion
 
 
@@ -21,7 +19,7 @@ public class B_ControlPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.EnableTrapButton(gameObject, trapGameObject, dynamicObstacle);
+        gameManager.EnableTrapButton(gameObject, trapGameObject);
     }
 
     // Detectar cuando ha salido el jugador

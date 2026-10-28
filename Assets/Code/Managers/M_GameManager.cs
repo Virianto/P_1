@@ -36,10 +36,15 @@ public class M_GameManager : MonoBehaviour
     {
         gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
     }
-    public void EnableTrapButton(GameObject controlPlataform, GameObject trapObject, GameObject dynamicObstacle)
+    public void EnableTrapButton(GameObject controlPlatform, GameObject trapObject)
     {
         // Indicar al canvas q debe activar el botón para poder interactuar
-        gameplayCanvas.EnableControlButton(controlPlataform, trapObject, dynamicObstacle);
+        gameplayCanvas.EnableControlButton(controlPlatform, trapObject);
+    }
+
+    public void EnableDynamicObstacleButton(GameObject platform, B_Dynamic_Obstacle obstacle)
+    {
+        gameplayCanvas.EnableObstacleControlButton(platform, obstacle);
     }
 
     public void DisableTrapButton()

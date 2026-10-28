@@ -58,7 +58,7 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton(GameObject controlPlataform, GameObject trapObject, GameObject dynamicObstacle) // Recibir info de la plataforma de control
+    public void EnableControlButton(GameObject controlPlataform, GameObject trapObject) // Recibir info de la plataforma de control
     {
         // Colorear el botón en consonancia con el color/material de la plataforma
         trapControlButton.GetComponent<Image>().color = controlPlataform.GetComponent<Renderer>().material.color;
@@ -68,11 +68,19 @@ public class UI_GameOverCanvas : MonoBehaviour
 
         // Vincular el OnClick del botón con el objeto de la trampa
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); }); ; //FUNCIÓN ANÓNIMA
-
-        // Vincular el hacer click en el botón con el objeto dinámico q hemos añadido
-        trapControlButton.onClick.AddListener(() => { dynamicObstacle.SetActive(true); }); ;
     }
 
+    public void EnableObstacleControlButton(GameObject platform, B_Dynamic_Obstacle obstacle)
+    {
+        // Colorear el botón en consonancia con el color/material de la plataforma
+        trapControlButton.GetComponent<Image>().color = platform.GetComponent<Renderer>().material.color;
+
+        // Activar el botón y vincularlo al obstáculo dinámico
+        trapControlButton.interactable = true;
+
+        // Vincular el hacer click en el botón con el objeto dinámico q hemos añadido
+        trapControlButton.onClick.AddListener(() => { obstacle.shouldMove = true; }); ;
+    }
 
     public void DisableControlButton()
     {
