@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class B_FinalGoal : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class B_FinalGoal : MonoBehaviour
 
     bool playerCanFinishGame = false;
 
+
+
     #endregion
 
     #region METHODS
+
+
 
     void OnTriggerEnter(Collider other)
     {

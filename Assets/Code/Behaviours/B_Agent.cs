@@ -12,6 +12,7 @@ public class B_Agent : MonoBehaviour
 
     NavMeshAgent myAgent;
 
+    
 
 
 

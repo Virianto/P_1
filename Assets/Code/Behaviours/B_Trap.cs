@@ -28,7 +28,7 @@ public class B_Trap : MonoBehaviour
     {
         // Detectar cuándo ha entrado el jugador en su área de efecto
         playerIsInsideArea = true;
-        Debug.Log("El jugador ha entrado");
+        //Debug.Log("El jugador ha entrado");
 
         // Invocar una subrutina facilitando en prámetro el componente del palyer
         StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
@@ -42,7 +42,7 @@ public class B_Trap : MonoBehaviour
     {
         // Detectar cuando ha salido el jugador de su área de efecto
         playerIsInsideArea = false;
-        Debug.Log("El jugador ha salido");
+        //Debug.Log("El jugador ha salido");
 
     }
 

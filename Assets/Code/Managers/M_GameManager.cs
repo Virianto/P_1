@@ -7,9 +7,12 @@ public class M_GameManager : MonoBehaviour
 
     public B_CharacterController player;
 
-    public B_FinalGoal goal;
+    //public B_FinalGoal goal;
+    public B_Goal goal;
 
     public UI_GameOverCanvas gameplayCanvas;
+
+    public B_Agents2 npc;
 
     #endregion
 
@@ -61,10 +64,9 @@ public class M_GameManager : MonoBehaviour
     }*/
 
     public void FinishGame()
-
     {
 
-
+        SceneManager.LoadScene(0);
 
     }  
        
