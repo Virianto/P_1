@@ -1,14 +1,18 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Aquí va el enunciado del propósito de esta clase
+/// Uno de mis agentes debe detectar colisión con el jugador y quitarle vida
+/// Uno de mis agentes debe detectar colisión con el jugador y quitarle monedas
+/// Uno de mis agentes debe ir corriendo hacia la línea de meta
 /// </summary>
 public class B_Agents2 : MonoBehaviour
 {
 
     #region ATTRIBUTES
+
 
     NavMeshAgent myAgent;
 
@@ -19,6 +23,15 @@ public class B_Agents2 : MonoBehaviour
     [SerializeField]
     B_CharacterController player;
 
+    public enum AgentType
+    {
+        Humanoid,
+        Brid,
+        Digger
+    }
+
+    [SerializeField]
+    AgentType
     #endregion
 
 
@@ -27,10 +40,16 @@ public class B_Agents2 : MonoBehaviour
     void Awake()
     {
         myAgent = GetComponent<NavMeshAgent>();
-        myAgent.SetDestination(goalPlatform.transform.position);
+        SetNewDestination(goalPlatform.transform.position);
     }
 
+    public void SetNewDestination()
+    {
+        myAgent.SetDestination(goalPlatform.transform.position);
+        
+        if (other.GetComponent<B_CharacterController)
 
+    }
 
     #endregion
 }

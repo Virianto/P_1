@@ -22,6 +22,8 @@ public class B_DynamicObstacle : MonoBehaviour
     [SerializeField]
     List<Transform> routePointsList = new();
 
+    public bool shouldMove = false;
+
     Transform currentDestinyPoint;
 
     int currentDestinyIndex = 0;
@@ -38,33 +40,40 @@ public class B_DynamicObstacle : MonoBehaviour
     }
     void Update()
     {
-        // Necesito saber si estoy lo bastante cerca o no de mi punto de destino
-        float currentDistance = Vector3.Distance(transform.position, currentDestinyPoint.position);
-        // Si ya estoy cerca
-        if(currentDistance <= switchDistance)
+
+        if (shouldMove)
         {
-            // Cambio de punto de destino
-            // * Cambiar el valor del índice
 
-            currentDestinyIndex = (currentDestinyIndex + 1) % routePointsList.Count;
+            // Necesito saber si estoy lo bastante cerca o no de mi punto de destino
+            float currentDistance = Vector3.Distance(transform.position, currentDestinyPoint.position);
+            // Si ya estoy cerca
 
-            // Primer caso: 0 = (0 + 1) % 2 -> 1 / 2 me da de resto 1
-            // Segundo caso: 1 = (1 + 1) % 2 -> 2 / 2 me da de resto 0
+            if(currentDistance <= switchDistance)
+            {
+                // Cambio de punto de destino
+                // * Cambiar el valor del índice
 
-            // * Asignar de nuevo el destino usando el nuevo índice
-            currentDestinyPoint = routePointsList[currentDestinyIndex];
+                currentDestinyIndex = (currentDestinyIndex + 1) % routePointsList.Count;
+
+                // Primer caso: 0 = (0 + 1) % 2 -> 1 / 2 me da de resto 1
+                // Segundo caso: 1 = (1 + 1) % 2 -> 2 / 2 me da de resto 0
+
+                // * Asignar de nuevo el destino usando el nuevo índice
+                currentDestinyPoint = routePointsList[currentDestinyIndex];
+            }
+            else
+            {
+                // Si estoy lejos
+                // Me sigo acercando
+                // Desplazar de forma suavizada el objeto hacia el primer punto de la lista
+                Vector3 middlePoint = Vector3.Lerp(transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
+
+                transform.position = middlePoint;
+
+            }
+
         }
-        else
-        {
-            // Si estoy lejos
-            // Me sigo acercando
-            // Desplazar de forma suavizada el objeto hacia el primer punto de la lista
-
-            Vector3 middlePoint = Vector3.Lerp(transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
-
-            transform.position = middlePoint;
-
-        }
+        
 
 
 

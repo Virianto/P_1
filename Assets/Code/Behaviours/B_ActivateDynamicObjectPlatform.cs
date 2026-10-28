@@ -1,7 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// Aquí va el enunciado del propósito de esta clase
+/// Va a tener una referencia a un obstáculo y se va a encargar de detectar cuándo ha entrado el jugador en su área de efecto.
+/// Porque cuando el jugador entre, se activará un botón del canvas para activar el obstaculo.
 /// </summary>
 public class B_ActivateDynamicObjectPlatform : MonoBehaviour
 {
@@ -11,8 +12,7 @@ public class B_ActivateDynamicObjectPlatform : MonoBehaviour
     // Referencia persistente a mi gestor de escerna/juego
     public M_GameManager gameManager;
 
-    public GameObject trapGameObject;
-
+    public B_DynamicObstacle dynamicObstacle;
 
     #endregion
 
@@ -24,9 +24,16 @@ public class B_ActivateDynamicObjectPlatform : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        // Habilitar el botón para desactivar trampa
-        // Vincular la trampa que controla esta plataforma con el OnClick del botón
-        gameManager.EnableTrapButton(gameObject, trapGameObject);
+        // Intento guardar una referencia al jugador
+        B_CharacterController player = other.GetComponent<B_CharacterController>();
+
+        if(player != null)
+        {
+
+            gameManager.EnableDynamicObstacleButton(gameObject, dynamicObstacle);
+            // Permito que el jugador active el obstáculo
+
+        }
 
 
     }

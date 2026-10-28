@@ -79,9 +79,16 @@ public class UI_GameOverCanvas : MonoBehaviour
         // Vincular el OnClick del botón con el objeto de la trampa
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
 
+    }
 
+    public void EnableObstacleControlButton(GameObject platform, B_DynamicObstacle dynamicObstacle)
+    {
 
+        // Activar el botón y vincularlo al obstáculo dinámico
+        trapControlButton.interactable = true;
 
+        // Vincular el botón a una variable que active mi obstáculo
+        trapControlButton.onClick.AddListener();
     }
 
     public void EnableGiveMoney(GameObject controlPlatform, GameObject moneyRain)
