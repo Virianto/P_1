@@ -14,7 +14,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField] TMP_Text chronoText;
     [SerializeField] Button trapControlButton;
     [SerializeField] Button dynamicControlButton;
-    float gamePlayTime = 600;
+    float gamePlayTime = 0;
 
     #endregion
 
@@ -34,7 +34,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     private void Update()
     {
         // Cada frame le sumo a mi crono el tiempo transcurrido
-        gamePlayTime -= Time.deltaTime;
+        gamePlayTime += Time.deltaTime;
         chronoText.text = TimeFormatter.FormatTime(gamePlayTime);
     }
 
