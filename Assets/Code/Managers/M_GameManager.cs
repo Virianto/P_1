@@ -39,6 +39,11 @@ public class M_GameManager : MonoBehaviour
         gameplayCanvas.EnableControlButton(controlPlatform, trapObject);
     }
 
+    public void EnableDynamicObstacleButton(GameObject ctrlPlatform, B_DynamicObstacle dynamicObstacle)
+    {
+        gameplayCanvas.EnableObstacleControlButton(ctrlPlatform, dynamicObstacle);
+    }
+
     public void DisableTrapButton() 
     {
         gameplayCanvas.DisableControlButton();
