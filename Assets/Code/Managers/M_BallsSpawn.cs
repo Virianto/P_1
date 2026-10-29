@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// Esta clase se ocupa de generar esferas en escena siguiendo algunas condiciones
@@ -33,6 +34,8 @@ public class M_BallsSpawn : MonoBehaviour
     [SerializeField]
     Transform spawnOrigin;
 
+    List<GameObject> allInstantiatedBallsList = new();
+
     #endregion
 
     #region METHODS
@@ -44,6 +47,19 @@ public class M_BallsSpawn : MonoBehaviour
         {            
             GeneratePrefabAtRandomOrigin();
         }
+
+        // Aplicar cambios a todas las esferas que he generado hasta ahora (recorrer lista)
+        for (int a = 0; a < allInstantiatedBallsList.Count; ++a) 
+        {
+            ApplyModificationsToBall(allInstantiatedBallsList[a]);
+        }
+    }
+
+    void ApplyModificationsToBall(GameObject currentBall)
+    {
+        currentBall.GetComponent<Renderer>().material.color = Random.ColorHSV();
+        currentBall.name = "Bola " + Random.value.ToString();
+        currentBall.GetComponent<Rigidbody>().AddExplosionForce(600, Vector3.zero, 150);
     }
 
     /// <summary>
@@ -56,6 +72,9 @@ public class M_BallsSpawn : MonoBehaviour
         GameObject newBall = Instantiate(ballPrefab);
                 
         newBall.transform.position = newRandomPosition;
+
+        // Añadir esta esfera a la lista de objetos generados
+        allInstantiatedBallsList.Add(newBall);
     }
 
     void GeneratePrefabAtCustomOrigin()
@@ -65,6 +84,9 @@ public class M_BallsSpawn : MonoBehaviour
 
         // Ubicar la esfera en la posición de mi transform de referencia
         newBall.transform.position = spawnOrigin.position;
+
+        // Añadir esta esfera a la lista de objetos generados
+        allInstantiatedBallsList.Add(newBall);
     }
 
     #endregion
