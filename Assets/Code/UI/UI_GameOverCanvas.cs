@@ -66,6 +66,15 @@ public class UI_GameOverCanvas : MonoBehaviour
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
     }
 
+    public void EnableObstacleControlButton(GameObject platform, B_DynamicObstacle obstacle)
+    {
+        // Activar el botón
+        trapControlButton.interactable = true;
+
+        // Vincular el botón a una variable que active mi obstáculo
+        trapControlButton.onClick.AddListener(() => { obstacle.shouldMove = true; });
+    }
+
     public void DisableControlButton()
     {
         trapControlButton.interactable = false;
