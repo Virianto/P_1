@@ -49,7 +49,7 @@ public class M_BallsSpawn : MonoBehaviour
     [SerializeField]
     List<Transform> allSequencePointsList = new();
 
-    List<GameObject> allInstantiatedBallsList = new();
+    List<C_BouncingBall> allInstantiatedBallsList = new();
 
     int currentSequenceIndex = 0;
 
@@ -68,7 +68,7 @@ public class M_BallsSpawn : MonoBehaviour
         // Aplicar cambios a todas las esferas que he generado hasta ahora (recorrer lista)
         for (int a = 0; a < allInstantiatedBallsList.Count; ++a) 
         {
-            ApplyModificationsToBall(allInstantiatedBallsList[a]);
+            //ApplyModificationsToBall(allInstantiatedBallsList[a]);
         }
     }
 
@@ -100,41 +100,30 @@ public class M_BallsSpawn : MonoBehaviour
 
     void GeneratePrefabSequentially()
     {
-        // Generar una instancia nueva del prefab
-        GameObject newBall = Instantiate(ballPrefab);
-
-        // Ubicar la instancia en el origen que le corresponda de la secuencia
-        newBall.transform.position = allSequencePointsList[currentSequenceIndex].position;
-
-        // Actualizar el índice de la secuencia para la siguiente vez (asegurando ciclo)
-        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
+        GameObject newBall = GenerateNewPrefab
+            (allSequencePointsList[currentSequenceIndex].position);
+      
+        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;                
     }
-
-    /// <summary>
-    /// Crea una posición aleatoria, instancia una esfera y le asigna la posición
-    /// </summary>
     void GeneratePrefabAtRandomOrigin()
-    {
+    {        
         Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
-             
-        GameObject newBall = Instantiate(ballPrefab);
-                
-        newBall.transform.position = newRandomPosition;
-
-        // Añadir esta esfera a la lista de objetos generados
-        allInstantiatedBallsList.Add(newBall);
+        GameObject newBall = GenerateNewPrefab(newRandomPosition);      
     }
-
     void GeneratePrefabAtCustomOrigin()
     {
-        // Generar una instancia del prefab
+        GameObject newBall = GenerateNewPrefab(spawnOrigin.position);            
+    }
+
+    GameObject GenerateNewPrefab(Vector3 newPosition)
+    {
         GameObject newBall = Instantiate(ballPrefab);
 
-        // Ubicar la esfera en la posición de mi transform de referencia
-        newBall.transform.position = spawnOrigin.position;
+        allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
 
-        // Añadir esta esfera a la lista de objetos generados
-        allInstantiatedBallsList.Add(newBall);
+        newBall.GetComponent<C_BouncingBall>().InitializeBall(this, newPosition);
+
+        return newBall;
     }
 
     #endregion
