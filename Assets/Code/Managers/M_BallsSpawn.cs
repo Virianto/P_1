@@ -50,7 +50,9 @@ public class M_BallsSpawn : MonoBehaviour
 
 
     }
-
+    /// <summary>
+    /// Crea una posición aleatoria, instancia una esfera y le asigna la posición
+    /// </summary>
     void GeneratePrefabAtRandomOrigin()
     {
         //Generar una nueva posición aleatoria usando las variables de rango
@@ -63,7 +65,9 @@ public class M_BallsSpawn : MonoBehaviour
         newBall.transform.position = newRandomPosition;
     }
 
-
+    /// <summary>
+    /// Crea una instancia de esfera y le asigna la posición elegida dentro de la escena
+    /// </summary>
     void GeneratePrefabAtCustomOrigin()
     {
         //Generar una instancia del prefab
