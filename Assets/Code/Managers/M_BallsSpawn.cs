@@ -6,6 +6,7 @@ using System.Collections.Generic;
 /// * Ubicar la esfera en una posición concreta (facilitada desde el editor)
 /// * Introducir aleatoriedad en posición de origen y en cantidad de esferas
 /// * Añadir físicas en el momento de generar cada esfera
+/// * Condicionar la generación a input o a parámetros específicos
 /// * Gestionar el ciclo de vida de las esferas generadas
 /// </summary>
 public class M_BallsSpawn : MonoBehaviour
@@ -27,6 +28,21 @@ public class M_BallsSpawn : MonoBehaviour
     [Range(1, 25)]
     float horizontalZRange = 2;
 
+    [Space(10)]
+
+    [SerializeField]
+    KeyCode spawnAtOriginKey = KeyCode.G;
+
+    [SerializeField]
+    KeyCode spawnRandomKey = KeyCode.H;
+
+    [SerializeField]
+    KeyCode spawnSequenceKey = KeyCode.J;
+
+
+
+
+
     [Header("REFERENCIAS EXTERNAS")]
 
     [SerializeField]
@@ -35,7 +51,12 @@ public class M_BallsSpawn : MonoBehaviour
     [SerializeField]
     Transform spawnOrigin;
 
+    [SerializeField]
+    List<Transform> allSequencePointsList = new();
+
     List<GameObject> allInstantiatedBallsList = new();
+
+    int currentSequenceIndex = 0;
 
     #endregion
 
@@ -48,7 +69,7 @@ public class M_BallsSpawn : MonoBehaviour
        //Generar una esfera nueva el número de veces que me indica el contador
        for(int i = 0; i < totalSpheresToCreate; ++i)
         {
-            GeneratePrefabAtRandomOrigin();
+            //GeneratePrefabAtRandomOrigin();
         }
 
        //Aplicar cambios a todas las esferas que he generado hasta ahora
@@ -59,6 +80,47 @@ public class M_BallsSpawn : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        //Detectar una tecla para generar una esfera en el spawn origin
+        if (Input.GetKeyDown(spawnAtOriginKey))
+        {
+            GeneratePrefabAtCustomOrigin();
+        }
+
+        //Detectar una tecla diferente para generar una oleada de esferas aleatorias
+        if (Input.GetKeyDown(spawnRandomKey)) 
+        {
+            GeneratePrefabAtRandomOrigin();
+        }
+
+
+        //Detectar otra tecla para generar esferas de forma secuencial
+        if (Input.GetKeyDown(spawnSequenceKey)) 
+        {
+            GeneratePrefabSequentially();
+        }
+    }
+
+
+    /// <summary>
+    /// Genera una instancia de manera secuencial entre varias posiciones ya predefinidas
+    /// </summary>
+    void GeneratePrefabSequentially()
+    {
+        //Generar una instancia del prefab
+        GameObject newBall = Instantiate(ballPrefab);
+
+        //Ubicar la instancia en el origen que le corresponda de la secuencia
+        newBall.transform.position = allSequencePointsList[currentSequenceIndex].position;
+
+        //Actualizar el índice de la secuencia para la siguiente vez (asegurando ciclo)
+        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
+    }
+    /// <summary>
+    /// Aplicamos cambios en los parámetros y las físicas de las esferas
+    /// </summary>
+    /// <param name="currentBall"></param>
     void ApplyModificationsToBall(GameObject currentBall)
     {
         currentBall.GetComponent<Renderer>().material.color = Random.ColorHSV();
