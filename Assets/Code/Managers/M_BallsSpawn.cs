@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 /// <summary>
@@ -32,6 +33,8 @@ public class M_BallsSpawn : MonoBehaviour
 
     [SerializeField]
     Transform spawnOrigin;
+    
+    List<GameObject> allInstantiatedBallList = new();
 
     #endregion
 
