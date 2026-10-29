@@ -77,14 +77,14 @@ public class M_BallsSpawn : MonoBehaviour
         Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
              
         GameObject newBall = Instantiate(ballPrefab);
-                
+
         newBall.transform.position = newRandomPosition;
 
         // Añadir esta esfera a la lista de objetos generados
         allInstantiatedBallsList.Add(newBall);
     }
-
-    void GeneratePrefabAtCustomOrigin()
+ 
+    void Generateprefabatcustomorigin()
     {
         // Generar una instancia del prefab
         GameObject newBall = Instantiate(ballPrefab);
@@ -99,7 +99,7 @@ public class M_BallsSpawn : MonoBehaviour
     {
         if (Input.GetKeyDown(spawnCustomKey))
         {
-            GeneratePrefabAtCustomOrigin();
+            Generateprefabatcustomorigin();
         }
         if (Input.GetKeyDown(spawnRandomKey))
         {
