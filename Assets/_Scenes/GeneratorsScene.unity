@@ -2134,6 +2134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1793708831}
+  - component: {fileID: 1793708832}
   m_Layer: 0
   m_Name: BallsSpawnManager
   m_TagString: Untagged
@@ -2156,6 +2157,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 507564974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1793708832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793708830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9706176c645f44895c32fdb66f8f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M_BallsSpawn
+  ballPrefab: {fileID: 8368195348033891415, guid: b18c6c007e61d8945ad7a239f7769446, type: 3}
+  spawnOrigin: {fileID: 2054227720}
 --- !u!1 &1797133919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,6 +2283,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797133919}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2054227719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2054227720}
+  m_Layer: 0
+  m_Name: SpawnOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2054227720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054227719}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8, y: 5, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2055491749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2535,3 +2581,4 @@ SceneRoots:
   - {fileID: 203844589}
   - {fileID: 479697654}
   - {fileID: 507564974}
+  - {fileID: 2054227720}

@@ -14,11 +14,21 @@ public class M_BallsSpawn : MonoBehaviour
     [SerializeField]
     GameObject ballPrefab;
 
+    [SerializeField]
+    Transform spawnOrigin;
+
     #endregion
 
     #region METHODS
+    
+    void Start()
+    {
+        // Generar una instancia del prefab
+        GameObject newBall = Instantiate(ballPrefab);
 
-
+        // Ubicar la esfera en la posición de mi transform de referencia
+        newBall.transform.position = spawnOrigin.position;
+    }
 
     #endregion
 }
