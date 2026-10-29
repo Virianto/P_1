@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -38,6 +37,11 @@ public class M_BallsSpawn : MonoBehaviour
     List<GameObject> allInstantiatedBallList = new();
 
     List<GameObject> allInstantiatedBallsList = new();
+
+    [SerializeField] KeyCode spawnRandomKey = KeyCode.None;
+    [SerializeField] KeyCode spawnCustomKey = KeyCode.None;
+    [SerializeField] KeyCode spawnSequeanceKey = KeyCode.None;
+    
 
     #endregion
 
@@ -91,6 +95,20 @@ public class M_BallsSpawn : MonoBehaviour
         // Añadir esta esfera a la lista de objetos generados
         allInstantiatedBallsList.Add(newBall);
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(spawnCustomKey))
+        {
+            GeneratePrefabAtCustomOrigin();
+        }
+        if (Input.GetKeyDown(spawnRandomKey))
+        {
+            GeneratePrefabAtRandomOrigin();
+        }
+        if (Input.GetKeyDown(spawnSequeanceKey))
+        {
 
+        }
+    }
     #endregion
 }
