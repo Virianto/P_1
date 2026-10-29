@@ -7,8 +7,11 @@ using UnityEngine;
 /// </summary>
 public class C_BouncingBall : MonoBehaviour
 {
-   
+
     #region ATTRIBUTES
+
+    M_BallsSpawn myManager;
+
 
 
 
@@ -18,6 +21,16 @@ public class C_BouncingBall : MonoBehaviour
     #region METHODS
 
 
+    /// <summary>
+    /// Aplica modificaciones y guarda referencias
+    /// </summary>
+    /// <param name="manager">Referencia al manager que creó esta instancia</param>
+    /// <param name="newPosition">Nueva posición en la que ubicar el objeto</param>
+    public void InitializeBall(M_BallsSpawn manager, Vector3 newPosition)
+    {
+        myManager = manager;
+        transform.position = newPosition;
+    }
 
     #endregion
 }
