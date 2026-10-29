@@ -44,5 +44,12 @@ public class M_GameManager : MonoBehaviour
         SceneManager.LoadScene("CharacterCanvas");
     }
 
+    public void EnableTrapDoor(GameObject controlPlatform, B_TrapDoor trapDoorObject)
+    {
+        // Indicar al canvas que debe activar el botón para poder interactuar
+        gameplayCanvas.EnableTrapDoor(controlPlatform, trapDoorObject);
+        Debug.Log("EnableTrapDoor in GameManager");
+    }
+
     #endregion
 }

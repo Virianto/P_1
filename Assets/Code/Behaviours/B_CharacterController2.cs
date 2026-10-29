@@ -55,15 +55,16 @@ public class B_CharacterController2 : MonoBehaviour
 
         // Me declaro un nuevo Vector3 (temporal) y, de entrada, le meto datos del Vector2
         Vector3 finalMovement = new Vector3(movingDirection.x, 0, movingDirection.y);
+        
+        //añado deltaTime y la velocidad para el jugador.
         finalMovement *= Time.deltaTime;
         finalMovement *= playerSpeed;
 
         //Le paso la localización al NPC
-        if(movingDirection.x != 0 || movingDirection.y != 0)
+        if (movingDirection.x != 0 || movingDirection.y != 0)
         {
             SetDestination(transform.position + finalMovement);
         }
-
 
         // Muevo el gameObject utilizando el nuevo Vector3 antes de que se muera
         transform.Translate(finalMovement);

@@ -45,6 +45,17 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
+    public void EnableTrapDoor(GameObject controlPlatform, B_TrapDoor trapDoorObject)
+    {
+        trapControlButton.interactable = true;
+        Debug.Log("EnableTrapDoor Canvas");
+
+        trapControlButton.onClick.AddListener(() => { trapDoorObject.isUp = !trapDoorObject.isUp; trapDoorObject.MoveTrapDoor(); });
+        
+
+
+    }
+
     public void EnableControlButton(GameObject controlPlatform, GameObject trapObject)
     {
         //controlPlatform.GetComponent<Image>().color = controlPlatform.GetComponent<Renderer>().material.color;
@@ -62,7 +73,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     {
         //cojo el boton de referencia y lo hago interactivo
         trapControlButton.interactable = false;
-        Debug.Log("enableControlButton");
+        //Debug.Log("enableControlButton");
     }
 
     public void ResetGame()

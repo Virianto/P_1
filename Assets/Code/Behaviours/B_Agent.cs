@@ -5,6 +5,7 @@ public class B_Agent : MonoBehaviour
 {
     #region ATTRIBUTES
     NavMeshAgent myAgent;
+    [SerializeField][Range(-10, 10)] float agentSpeed;
     #endregion
 
     #region METHODS
@@ -17,6 +18,8 @@ public class B_Agent : MonoBehaviour
 
     public void SetNewAgentDestination(Vector3 newDestination)
     {
+        //newDestination *= Time.deltaTime;
+        newDestination *= agentSpeed;
         //cambiar destino agente
         myAgent.SetDestination(newDestination);
     }

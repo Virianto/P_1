@@ -20,14 +20,14 @@ public class B_Trap : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         playerIsInsideArea = true;
-        Debug.Log("El jugador ha entrado");
+        //Debug.Log("El jugador ha entrado");
         StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController2>()));
     }
 
     void OnTriggerExit(Collider other)
     {
         playerIsInsideArea = false;
-        Debug.Log("El jugador ha salido");
+        //Debug.Log("El jugador ha salido");
     }
 
     IEnumerator HurtPlayer(B_CharacterController2 player) //sustituye a la palabra void -> se ejecuta de inmediato al invocar la subrutina
