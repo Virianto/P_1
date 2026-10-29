@@ -54,8 +54,9 @@ public class M_GameManager : MonoBehaviour
     }
 
     public void FinishGame()
-    {        
-        gameplayCanvas.gameObject.SetActive(true);
+    {
+        //gameplayCanvas.gameObject.SetActive(true);
+        gameplayCanvas.ResetGame();
     }
 
     #endregion

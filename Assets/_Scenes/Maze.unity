@@ -70865,7 +70865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_GameManager
   player: {fileID: 1114447817}
-  goal: {fileID: 0}
+  goal: {fileID: 1510378154}
   gameplayCanvas: {fileID: 1457295930}
 --- !u!4 &884325388
 Transform:
@@ -102225,7 +102225,7 @@ GameObject:
   - component: {fileID: 1510378155}
   - component: {fileID: 1510378154}
   m_Layer: 0
-  m_Name: Cube (8)
+  m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145792,6 +145792,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1510378150}
   - {fileID: 74470988}
   - {fileID: 1370685985}
   - {fileID: 1200503978}
@@ -145827,7 +145828,6 @@ Transform:
   - {fileID: 1254361690}
   - {fileID: 1816964343}
   - {fileID: 908547422}
-  - {fileID: 1510378150}
   - {fileID: 1044581812}
   - {fileID: 2021938866}
   - {fileID: 1279525170}

@@ -17,7 +17,7 @@ public class B_AgentRival : MonoBehaviour
     [Tooltip("Velocidad a la que se mueve")]
     [SerializeField]
     [Range(1, 20)]
-    float speed = 2;
+    float speed = 5;
 
     [Tooltip("Distancia a la que se da la vuelta")]
     [SerializeField]

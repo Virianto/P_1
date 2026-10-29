@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Aqui va el enunciado del proposito de esta clase
@@ -15,6 +16,7 @@ public class B_Goal : MonoBehaviour
     #region METHODS
     private void OnTriggerEnter(Collider other)
     {
+        SceneManager.LoadScene(0);
     }
 
 
