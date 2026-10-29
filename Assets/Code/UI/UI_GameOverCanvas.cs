@@ -88,7 +88,7 @@ public class UI_GameOverCanvas : MonoBehaviour
         trapControlButton.interactable = true;
 
         // Vincular el botón a una variable que active mi obstáculo
-        trapControlButton.onClick.AddListener();
+        //trapControlButton.onClick.AddListener();
     }
 
     public void EnableGiveMoney(GameObject controlPlatform, GameObject moneyRain)

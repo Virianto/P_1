@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -30,14 +30,13 @@ public class B_Agents2 : MonoBehaviour
         Digger
     }
 
-    [SerializeField]
-    AgentType
+    
     #endregion
 
 
     #region METHODS
 
-    void Awake()
+    /*void Awake()
     {
         myAgent = GetComponent<NavMeshAgent>();
         SetNewDestination(goalPlatform.transform.position);
@@ -46,10 +45,14 @@ public class B_Agents2 : MonoBehaviour
     public void SetNewDestination()
     {
         myAgent.SetDestination(goalPlatform.transform.position);
-        
-        if (other.GetComponent<B_CharacterController)
 
-    }
+        if (other.GetComponent<B_CharacterController>())
+        {
+
+
+        }
+            
+    }*/
 
     #endregion
 }
