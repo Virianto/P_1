@@ -14,20 +14,41 @@ public class M_BallsSpawn : MonoBehaviour
     [SerializeField]
     GameObject ballPrefab;
 
-    [SerializeField]
-    Transform spawnOrigin;
+    Vector3 spawnOrigin = new Vector3(10,4,1);
+
+    [SerializeField] [Range(1, 20)] int totalSpheresToCreate = 1;
+    [SerializeField][Range(1, 15)] float horizontalXRange = 2;
+    [SerializeField][Range(1, 15)] float horizontalZRange = 2;
 
     #endregion
 
     #region METHODS
-    
+
     void Start()
+    {
+        for (int i = 0; i < totalSpheresToCreate; ++i)
+        {
+            GeneratePrefabAtCustomOrigin();
+        }
+
+    }
+    void GeneratePrefabAtRandomOrigin()
+    {
+        Vector3 newRandomPosition = new Vector3
+            (
+            Random.Range(-horizontalXRange,horizontalXRange),5,
+            Random.Range(-horizontalZRange,horizontalZRange)
+            );
+        GameObject newBall = Instantiate(ballPrefab);
+        newBall.transform.position = newRandomPosition;
+    }
+    void GeneratePrefabAtCustomOrigin()
     {
         // Generar una instancia del prefab
         GameObject newBall = Instantiate(ballPrefab);
 
         // Ubicar la esfera en la posición de mi transform de referencia
-        newBall.transform.position = spawnOrigin.position;
+        newBall.transform.position = spawnOrigin;
     }
 
     #endregion
