@@ -5,7 +5,8 @@ using System.Collections.Generic;
 /// Esta clase se ocupa de generar esferas en escena siguiendo algunas condiciones
 ///     X Ubicar la esfera en una posición concreta (facilitada desde el Editor)
 ///     X Introducir aleatoriedad en posición de origen y en cantidad de esferas
-///     * Añadir físicas en el momento de generar cada esfera
+///     X Añadir físicas en el momento de generar cada esfera
+///     X Condicionar la generación a input o a parámetros específicos
 ///     * Gestionar el ciclo de vida de las esferas generadas
 /// </summary>
 public class M_BallsSpawn : MonoBehaviour
@@ -26,6 +27,17 @@ public class M_BallsSpawn : MonoBehaviour
     [Range(1, 15)]
     float horizontalZRange = 2;
 
+    [Space(10)]
+
+    [SerializeField]
+    KeyCode spawnAtOriginKey = KeyCode.G;
+
+    [SerializeField]
+    KeyCode spawnRandomKey = KeyCode.H;
+
+    [SerializeField]
+    KeyCode spawnSequenceKey = KeyCode.J;
+
     [Header("REFERENCIAS EXTERNAS")]
 
     [SerializeField]
@@ -34,7 +46,12 @@ public class M_BallsSpawn : MonoBehaviour
     [SerializeField]
     Transform spawnOrigin;
 
+    [SerializeField]
+    List<Transform> allSequencePointsList = new();
+
     List<GameObject> allInstantiatedBallsList = new();
+
+    int currentSequenceIndex = 0;
 
     #endregion
 
@@ -45,7 +62,7 @@ public class M_BallsSpawn : MonoBehaviour
         // Generar una esfera nueva el número de veces que me indica el contador
         for (int i = 0; i < totalSpheresToCreate; ++i)
         {            
-            GeneratePrefabAtRandomOrigin();
+            //GeneratePrefabAtRandomOrigin();
         }
 
         // Aplicar cambios a todas las esferas que he generado hasta ahora (recorrer lista)
@@ -55,11 +72,42 @@ public class M_BallsSpawn : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        // Detectar una tecla para generar una esfera en el spawnOrigin
+        if (Input.GetKeyDown(spawnAtOriginKey))
+        {
+            GeneratePrefabAtCustomOrigin();
+        }
+        // Detectar una tecla DIFERENTE para generar una oleada de esferas aleatorias
+        if (Input.GetKeyDown(spawnRandomKey)) 
+        {
+            GeneratePrefabAtRandomOrigin();
+        }
+        // Detecta OTRA tecla para generar esferas de forma cíclica/secuencial
+        if (Input.GetKeyDown(spawnSequenceKey))
+        {
+            GeneratePrefabSequentially();
+        }
+    }
+
     void ApplyModificationsToBall(GameObject currentBall)
     {
         currentBall.GetComponent<Renderer>().material.color = Random.ColorHSV();
         currentBall.name = "Bola " + Random.value.ToString();
         currentBall.GetComponent<Rigidbody>().AddExplosionForce(600, Vector3.zero, 150);
+    }
+
+    void GeneratePrefabSequentially()
+    {
+        // Generar una instancia nueva del prefab
+        GameObject newBall = Instantiate(ballPrefab);
+
+        // Ubicar la instancia en el origen que le corresponda de la secuencia
+        newBall.transform.position = allSequencePointsList[currentSequenceIndex].position;
+
+        // Actualizar el índice de la secuencia para la siguiente vez (asegurando ciclo)
+        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
     }
 
     /// <summary>
