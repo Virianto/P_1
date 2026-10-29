@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,7 +20,7 @@ public class M_BallsSpawner : MonoBehaviour
 
     [SerializeField]
     [Range(1, 300)]
-    int totalApheresToCreate = 1;
+    int totalSpheresToCreate = 1;
 
     // Añadir una variable que me permita definir un rango horizontal (x)
     [SerializeField]
@@ -40,6 +41,8 @@ public class M_BallsSpawner : MonoBehaviour
     [SerializeField]
     Transform spawnOrigin;
 
+    List<GameObject> allInstantiatedBallsList = new();
+
     #endregion
 
 
@@ -50,11 +53,29 @@ public class M_BallsSpawner : MonoBehaviour
     void Start()
     {
         // Generar una esfera nueva el número de veces que me indica el contador
-        for(int i = 0; i < totalApheresToCreate; ++i)
+        for(int i = 0; i < totalSpheresToCreate; ++i)
         {
             GeneratePrefabAtRandomOrigin();
         }
 
+        // Aplicar cambios a todas las esferas que he generado hasta ahroa 
+        for(int a = 0; a < allInstantiatedBallsList.Count; ++a)
+        {
+
+            ApplyModificationsToBall(allInstantiatedBallsList[a]);
+
+        }
+
+
+
+    }
+
+    void ApplyModificationsToBall(GameObject currentBall)
+    {
+
+        currentBall.GetComponent<Renderer>().material.color = Random.ColorHSV();
+        currentBall.name = "Bola" + Random.value.ToString();
+        currentBall.GetComponent<Rigidbody>().AddExplosionForce(300, Vector3.zero, 150);
     }
 
     /// <summary>
@@ -76,6 +97,8 @@ public class M_BallsSpawner : MonoBehaviour
         // Ubicar el prefab en la posición aleatoria
         newBall.transform.position = newRandomPosition;
 
+        // Añadir esta esfera a la lista de objetos generados
+        allInstantiatedBallsList.Add(newBall);
     }
 
     void GeneratePrefabAtCustomOrigin()
@@ -91,6 +114,8 @@ public class M_BallsSpawner : MonoBehaviour
         // Ubicar esfera en la posición de mi transform de referencia
         newBall.transform.position = spawnOrigin.position;
 
+        // Añadir esta esfera a la lista de objetos generados
+        allInstantiatedBallsList.Add(newBall);
 
     }
 
