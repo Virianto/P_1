@@ -12,12 +12,17 @@ public class B_BigCoin : MonoBehaviour
 
     [SerializeField]
     GameObject coinBody;
-    
+    public bool isCoincollected;
+
     #endregion
 
     #region METHODS
 
     void OnTriggerEnter(Collider other)
+    {
+        BigCoinCollected();
+    }
+    void BigCoinCollected()
     {
         // Reproducir sonido de recolección
         coinAudiosource.PlayOneShot(coinAudiosource.clip);
@@ -27,6 +32,8 @@ public class B_BigCoin : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         // Desactivar el hijo para que el jugador deje de ver la moneda
         coinBody.SetActive(false);
+        isCoincollected = true;
+
     }
 
     #endregion

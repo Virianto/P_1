@@ -12,13 +12,20 @@ public class B_Coin : MonoBehaviour
 
     [SerializeField]
     GameObject coinBody;
-    
+    public bool isCoincollected;
+
+    [SerializeField] M_EthanCoinManager coinManager;
+
     #endregion
 
     #region METHODS
-
     void OnTriggerEnter(Collider other)
     {
+        SmallCoinCollected();
+    }
+    public void SmallCoinCollected()
+    {
+        
         // Reproducir sonido de recolección
         coinAudiosource.PlayOneShot(coinAudiosource.clip);
         // Va a emitir unas partículas de despedida
@@ -27,7 +34,14 @@ public class B_Coin : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         // Desactivar el hijo para que el jugador deje de ver la moneda
         coinBody.SetActive(false);
-    }
+        isCoincollected = true;
+        if (isCoincollected)
+        {
+            
 
+            coinManager.destroySmallCoin(this);
+        }
+        
+    }
     #endregion
 }
