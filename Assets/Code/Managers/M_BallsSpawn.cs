@@ -57,73 +57,37 @@ public class M_BallsSpawn : MonoBehaviour
 
     #region METHODS
     
-    void Start()
-    {
-        // Generar una esfera nueva el número de veces que me indica el contador
-        for (int i = 0; i < totalSpheresToCreate; ++i)
-        {            
-            //GeneratePrefabAtRandomOrigin();
-        }
-
-        // Aplicar cambios a todas las esferas que he generado hasta ahora (recorrer lista)
-        for (int a = 0; a < allInstantiatedBallsList.Count; ++a) 
-        {
-            //ApplyModificationsToBall(allInstantiatedBallsList[a]);
-        }
-    }
-
     void Update()
     {
         // Detectar una tecla para generar una esfera en el spawnOrigin
         if (Input.GetKeyDown(spawnAtOriginKey))
         {
-            GeneratePrefabAtCustomOrigin();
+            GenerateNewPrefab(spawnOrigin.position);
         }
         // Detectar una tecla DIFERENTE para generar una oleada de esferas aleatorias
         if (Input.GetKeyDown(spawnRandomKey)) 
         {
-            GeneratePrefabAtRandomOrigin();
+            Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
+            GenerateNewPrefab(newRandomPosition);
         }
         // Detecta OTRA tecla para generar esferas de forma cíclica/secuencial
         if (Input.GetKeyDown(spawnSequenceKey))
         {
-            GeneratePrefabSequentially();
+            GenerateNewPrefab(allSequencePointsList[currentSequenceIndex].position);
+            currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
         }
     }
 
-    void ApplyModificationsToBall(GameObject currentBall)
+    /// <summary>
+    /// Crea una esfera nueva, la registra en la lista y la inicializa
+    /// </summary>
+    /// <param name="newPosition">Ubicación de origen para la nueva esfera</param>
+    void GenerateNewPrefab(Vector3 newPosition)
     {
-        currentBall.GetComponent<Renderer>().material.color = Random.ColorHSV();
-        currentBall.name = "Bola " + Random.value.ToString();
-        currentBall.GetComponent<Rigidbody>().AddExplosionForce(600, Vector3.zero, 150);
-    }
+        C_BouncingBall newBall = Instantiate(ballPrefab).GetComponent<C_BouncingBall>();
 
-    void GeneratePrefabSequentially()
-    {
-        GameObject newBall = GenerateNewPrefab
-            (allSequencePointsList[currentSequenceIndex].position);
-      
-        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;                
-    }
-    void GeneratePrefabAtRandomOrigin()
-    {        
-        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
-        GameObject newBall = GenerateNewPrefab(newRandomPosition);      
-    }
-    void GeneratePrefabAtCustomOrigin()
-    {
-        GameObject newBall = GenerateNewPrefab(spawnOrigin.position);            
-    }
-
-    GameObject GenerateNewPrefab(Vector3 newPosition)
-    {
-        GameObject newBall = Instantiate(ballPrefab);
-
-        allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
-
-        newBall.GetComponent<C_BouncingBall>().InitializeBall(this, newPosition);
-
-        return newBall;
+        allInstantiatedBallsList.Add(newBall);
+        newBall.InitializeBall(this, newPosition);
     }
 
     #endregion
