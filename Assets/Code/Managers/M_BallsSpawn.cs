@@ -7,7 +7,7 @@ using System.Collections.Generic;
 ///     X Introducir aleatoriedad en posición de origen y en cantidad de esferas
 ///     X Añadir físicas en el momento de generar cada esfera
 ///     X Condicionar la generación a input o a parámetros específicos
-///     * Gestionar el ciclo de vida de las esferas generadas
+///     X Gestionar el ciclo de vida de las esferas generadas
 /// </summary>
 public class M_BallsSpawn : MonoBehaviour
 {
@@ -87,7 +87,20 @@ public class M_BallsSpawn : MonoBehaviour
         C_BouncingBall newBall = Instantiate(ballPrefab).GetComponent<C_BouncingBall>();
 
         allInstantiatedBallsList.Add(newBall);
-        newBall.InitializeBall(this, newPosition);
+        newBall.InitializeBall(this, newPosition, Random.value * 5);
+    }
+
+    /// <summary>
+    /// Ejecuta las funciones necesarias para "finiquitar" una bola
+    /// </summary>
+    /// <param name="ball">Bola que ha solicitado su fin</param>
+    public void FinishBallLifeCycle(C_BouncingBall ball)
+    {
+        // Elimino la bola de mi lista
+        allInstantiatedBallsList.Remove(ball);
+
+        // Destruyo el objeto
+        Destroy(ball.gameObject);
     }
 
     #endregion
