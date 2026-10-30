@@ -65,7 +65,6 @@ public class M_BallsSpawn : MonoBehaviour
 
     #region METHODS
 
-    // Generar una esfera en una posición concreta
     private void Start()
     {
         // Generar una instancia (copia) del prefab
@@ -84,18 +83,18 @@ public class M_BallsSpawn : MonoBehaviour
         // newBall.transform.position = spawnOrigin.position;
 
         // Generar una esfera nueva el número de veces que me indica el contador
-        for (int i = 0; i < totalSpheresToCreate; ++i)
-        {
+        // for (int i = 0; i < totalSpheresToCreate; ++i)
+        // {
             // GeneratePrefabAtRandomOrigin();
 
             // GeneratePrefabAtCustomOrigin();
-        }
+        // }
 
         // Aplicar cambios a todas las esferas que se han generado hasta ahora
-        for (int a = 0; a < allInstantiatedBallsList.Count; ++a)
-        {
+        // for (int a = 0; a < allInstantiatedBallsList.Count; ++a)
+        // {
             // ApplyModificationsToBall(allInstantiatedBallsList[a]);
-        }
+        // }
     }
 
     private void Update()
@@ -103,43 +102,46 @@ public class M_BallsSpawn : MonoBehaviour
         // Detectar una tecla para generar una esfera en el spawnOrigin
         if (Input.GetKeyDown(spawnAtOriginKey))
         {
-            GeneratePrefabAtCustomOrigin();
+            GenerateNewPrefab(spawnOrigin.position);
+            
         }
         // Detectar una tecla diferente para generar una oleada de esferas aleatorias
         if (Input.GetKeyDown(spawnRandomKey))
         {
-            GeneratePrefabAtRandomOrigin();
+            Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
+            GenerateNewPrefab(newRandomPosition);
         }
         // Detectar otra tecla diferente para generar esferas de forma secuencial
         if (Input.GetKeyDown(spawnSequenceKey))
         {
-            GeneratePrefabSequentially();
+            GenerateNewPrefab(allSequencePointsList[currentSequenceIndex].position);
+            currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
         }
     }
 
     void ApplyModificationsToBall(GameObject currentBall)
     {
         // Modificar el color aleatoriamente
-        currentBall.GetComponent<Renderer>().material.color = Random.ColorHSV();
+        // currentBall.GetComponent<Renderer>().material.color = Random.ColorHSV();
 
         // Modificar el nombre aleatoriamente
-        currentBall.name = "Bola " + Random.value.ToString();
+        // currentBall.name = "Bola " + Random.value.ToString();
 
         // Modificar la fuerza del movimiento inicial
-        currentBall.GetComponent<Rigidbody>().AddExplosionForce(300, Vector3.zero, 150);
+        // currentBall.GetComponent<Rigidbody>().AddExplosionForce(300, Vector3.zero, 150);
     }
 
     void GeneratePrefabSequentially()
     {
         // Generar una instancia nueva del prefab
         // GameObject newBall = Instantiate(ballPrefab);
-        GameObject newBall = GenerateNewPrefab(allSequencePointsList[currentSequenceIndex].position);
+        // GenerateNewPrefab(allSequencePointsList[currentSequenceIndex].position);
 
         // Ubicarla instancia en el origen que le corresponda de la secuencia
         // newBall.transform.position = allSequencePointsList[currentSequenceIndex].position;
 
         // Actualizar el índice de la secuencia para la vez siguiente
-        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
+        // currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
 
         // Añadir la esfera a la lista de objetos generados
         // allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
@@ -151,11 +153,11 @@ public class M_BallsSpawn : MonoBehaviour
     void GeneratePrefabAtRandomOrigin()
     {
         // Generar una posición aleatoria
-        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
+        // Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
 
         // Generar una instancia del prefab
         // GameObject newBall = Instantiate(ballPrefab);
-        GameObject newBall = GenerateNewPrefab(newRandomPosition);
+        // GenerateNewPrefab(newRandomPosition);
 
         // Ubicar el prefab en una posición aleatoria
         // newBall.transform.position = newRandomPosition;
@@ -171,7 +173,7 @@ public class M_BallsSpawn : MonoBehaviour
     {
         // Generar una instancia (copia) del prefab
         // GameObject newBall = Instantiate(ballPrefab);
-        GameObject newBall = GenerateNewPrefab(spawnOrigin.position);
+        // GenerateNewPrefab(spawnOrigin.position);
 
         // Ubicar una esfera en una posición concreta
         // newBall.transform.position = spawnOrigin.position;
@@ -180,17 +182,31 @@ public class M_BallsSpawn : MonoBehaviour
         // allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
     }
 
-    GameObject GenerateNewPrefab(Vector3 newPosition)
+    /// <summary>
+    /// Crea una esfera nueva, la registra en la lista y la inicializa
+    /// </summary>
+    /// <param name="newPosition"> Ubicación de origen para la nueva esfera </param>
+    void GenerateNewPrefab(Vector3 newPosition)
     {
         // Generar una instancia del prefab
-        GameObject newBall = Instantiate(ballPrefab);
+        C_BouncingBall newBall = Instantiate(ballPrefab).GetComponent<C_BouncingBall>();
 
         // Añadir la esfera a la lista de objetos generados
-        allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
+        allInstantiatedBallsList.Add(newBall);
+        newBall.InitializeBall(this, newPosition, Random.value * 5);
+    }
 
-        newBall.GetComponent<C_BouncingBall>().InitializeBall(this, newPosition);
+    /// <summary>
+    /// Ejecuta las funciones necesarias para "finiquitar" una bola
+    /// </summary>
+    /// <param name="ball"> Bola que ha solicitado su fin </param>
+    public void FinishBallLifeCycle(C_BouncingBall ball)
+    {
+        // Eliminamos la bola de la lista
+        allInstantiatedBallsList.Remove(ball);
 
-        return newBall;
+        // Destruimos el objeto
+        Destroy(ball.gameObject);
     }
 
     #endregion
