@@ -56,7 +56,7 @@ public class M_BallsSpawn : MonoBehaviour
     #endregion
 
     #region METHODS
-
+    
     void Update()
     {
         // Detectar una tecla para generar una esfera en el spawnOrigin
@@ -74,17 +74,19 @@ public class M_BallsSpawn : MonoBehaviour
         if (Input.GetKeyDown(spawnSequenceKey))
         {
             GenerateNewPrefab(allSequencePointsList[currentSequenceIndex].position);
-
             currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
         }
     }
-    
+
+    /// <summary>
+    /// Crea una esfera nueva, la registra en la lista y la inicializa
+    /// </summary>
+    /// <param name="newPosition">Ubicación de origen para la nueva esfera</param>
     void GenerateNewPrefab(Vector3 newPosition)
     {
         C_BouncingBall newBall = Instantiate(ballPrefab).GetComponent<C_BouncingBall>();
 
         allInstantiatedBallsList.Add(newBall);
-
         newBall.InitializeBall(this, newPosition);
     }
 
