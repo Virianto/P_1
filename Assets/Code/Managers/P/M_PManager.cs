@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class M_PManager : MonoBehaviour
 {
     #region ATTRIBUTES
-    public B_PCharacter player;
+    public B_CoinCharacter player;
     public UI_PGameplayCanvas gameplayCanvas;
 
     #endregion
