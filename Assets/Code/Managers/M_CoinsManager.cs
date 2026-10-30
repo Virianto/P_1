@@ -24,16 +24,20 @@ public class M_CoinsManager : MonoBehaviour
     [SerializeField]
     GameObject superCoinPrefab;
 
+    [SerializeField]
+    GameObject bombPrefab;
+
     List<C_SpawnCoin> allInstantiatedCoinsList = new();
 
     List<C_SpawnSuperCoin> allInstantiatedSuperCoinsList = new();
 
+    List<C_Bomb> allInstantiatedBombsList = new();
+
     [SerializeField]
     KeyCode spawnRandomKey = KeyCode.G;
 
-    [SerializeField]
-    [Range(1, 10)]
-    float creationFrequency = 5;
+    public float minCreationFrequency = 5;
+    public float maxCreationFrequency = 15;
 
     #endregion
 
@@ -43,14 +47,20 @@ public class M_CoinsManager : MonoBehaviour
 
     #region METHODS
 
+    /// <summary>
+    /// Comenzar la corutina al empezar el juego
+    /// </summary>
     private void Start()
     {
         StartCoroutine(CreateSuperCoin());
+        StartCoroutine(CreateBomb());
     }
 
+    /// <summary>
+    /// Detectar una tecla para generar una moneda en una posición aleatoria
+    /// </summary>
     private void Update()
     {
-        // Detectar una tecla para generar una moneda en una posición aleatoria
         if (Input.GetKeyDown(spawnRandomKey))
         {
             Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
@@ -73,9 +83,9 @@ public class M_CoinsManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Crea una moneda nueva, la registra en la lista y la inicializa
+    /// Crea una supermoneda nueva, la registra en la lista y la inicializa
     /// </summary>
-    /// <param name="newPosition"> Ubicación de origen para la nueva moneda </param>
+    /// <param name="newPosition"> Ubicación de origen para la nueva supermoneda </param>
     void GenerateNewSuperPrefab(Vector3 newPosition)
     {
         // Generar una instancia del prefab
@@ -84,6 +94,44 @@ public class M_CoinsManager : MonoBehaviour
         // Añadir la esfera a la lista de objetos generados
         allInstantiatedSuperCoinsList.Add(newSuperCoin);
         newSuperCoin.InitializeSuperCoin(this, newPosition);
+    }
+
+    /// <summary>
+    /// Generar supermonedas de manera continuada en el tiempo
+    /// </summary>
+    IEnumerator CreateSuperCoin()
+    {
+        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
+        GenerateNewSuperPrefab(newRandomPosition);
+
+        yield return new WaitForSeconds(Random.Range(minCreationFrequency, maxCreationFrequency));
+        StartCoroutine(CreateSuperCoin());
+    }
+
+    /// <summary>
+    /// Crea una bomba nueva, la registra en la lista y la inicializa
+    /// </summary>
+    /// <param name="newPosition"> Ubicación de origen para la nueva bomba </param>
+    void GenerateNewBomb(Vector3 newPosition)
+    {
+        // Generar una instancia del prefab
+        C_Bomb newBomb = Instantiate(bombPrefab).GetComponent<C_Bomb>();
+
+        // Añadir la esfera a la lista de objetos generados
+        allInstantiatedBombsList.Add(newBomb);
+        newBomb.InitializeBomb(this, newPosition);
+    }
+
+    /// <summary>
+    /// Generar bombas de manera continuada en el tiempo
+    /// </summary>
+    IEnumerator CreateBomb()
+    {
+        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
+        GenerateNewBomb(newRandomPosition);
+
+        yield return new WaitForSeconds(Random.Range(minCreationFrequency, maxCreationFrequency));
+        StartCoroutine(CreateBomb());
     }
 
     /// <summary>
@@ -102,7 +150,7 @@ public class M_CoinsManager : MonoBehaviour
     /// <summary>
     /// Ejecuta las funciones necesarias para "finiquitar" una supermoneda
     /// </summary>
-    /// <param name="supercoin"> supermoneda que ha solicitado su fin </param>
+    /// <param name="supercoin"> Supermoneda que ha solicitado su fin </param>
     public void FinishSuperCoinLifeCycle(C_SpawnSuperCoin supercoin)
     {
         // Eliminamos la moneda de la lista
@@ -112,13 +160,17 @@ public class M_CoinsManager : MonoBehaviour
         Destroy(supercoin.gameObject);
     }
 
-    IEnumerator CreateSuperCoin()
+    /// <summary>
+    /// Ejecuta las funciones necesarias para "finiquitar" una bomba
+    /// </summary>
+    /// <param name="supercoin"> Bomba que ha solicitado su fin </param>
+    public void FinishBombLifeCycle(C_Bomb bomb)
     {
-        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1.5f, Random.Range(-horizontalZRange, horizontalZRange));
-        GenerateNewSuperPrefab(newRandomPosition);
+        // Eliminamos la moneda de la lista
+        allInstantiatedBombsList.Remove(bomb);
 
-        yield return new WaitForSeconds(creationFrequency);
-        StartCoroutine(CreateSuperCoin());
+        // Destruimos el objeto
+        Destroy(bomb.gameObject);
     }
 
     #endregion

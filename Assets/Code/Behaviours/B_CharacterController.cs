@@ -98,6 +98,17 @@ public class B_CharacterController : MonoBehaviour
             gameManager.PlayerReceivedDamage();
         }
 
+        C_Bomb bombDetected = other.GetComponent<C_Bomb>();
+
+        if (bombDetected != null)
+        {
+            // Restar 5 al contador de vida
+            lifePointsLeft -= 5;
+
+            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
+            gameManager.PlayerReceivedDamage();
+        }
+
         B_ChaserLifeAgent chaserLifeAgentDetected = other.GetComponent<B_ChaserLifeAgent>();
 
         if (chaserLifeAgentDetected != null)

@@ -11,8 +11,8 @@ public class C_SpawnSuperCoin : MonoBehaviour
 
     M_CoinsManager MyManager;
 
-    [Range(5, 10)]
-    public float lifeTime = 7.5f;
+    public float minLifeTime = 5;
+    public float maxLifeTime = 15;
 
     #endregion
 
@@ -31,15 +31,18 @@ public class C_SpawnSuperCoin : MonoBehaviour
     {
         MyManager = manager;
         transform.position = newPosition;
-
+        
         StartCoroutine(FinishSuperCoinLifeCycle());
     }
 
+    /// <summary>
+    /// Gestionar el ciclo de vida de las supermonedas
+    /// </summary>
     IEnumerator FinishSuperCoinLifeCycle()
     {
         // Si escribimos código aquí SÍ es relevante el orden en InitializeBall (donde hemos metido la corutina)
 
-        yield return new WaitForSeconds(lifeTime);
+        yield return new WaitForSeconds(Random.Range(minLifeTime, maxLifeTime));
 
         // Si escribimos código aquí NO es relevante el orden en InitializeBall (donde hemos metido la corutina)
 
