@@ -21,7 +21,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     [SerializeField]
     Button trapControlButton;
 
-    float gameplayTime = 300;
+    float gameplayTime = 0;
 
     #endregion
 
@@ -37,7 +37,7 @@ public class UI_GameOverCanvas : MonoBehaviour
     void Update()
     {
         // En cada frame le sumo a mi crono el tiempo transcurrido el último frame
-        gameplayTime -= Time.deltaTime;
+        gameplayTime += Time.deltaTime;
         chronoText.text = TimeFormatter.FormatTime(gameplayTime);
     }
 

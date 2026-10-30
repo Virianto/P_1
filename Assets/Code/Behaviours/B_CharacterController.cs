@@ -85,7 +85,7 @@ public class B_CharacterController : MonoBehaviour
             totalCorazonsCollected += 1;
 
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
-            gameManager.NewCorazonCollected();
+          //  gameManager.NewCorazonCollected();
         }
         if (SuperMonedaDetected != null)
         {
@@ -93,7 +93,7 @@ public class B_CharacterController : MonoBehaviour
             totalSuperCoinsCollected += 1;
 
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
-            gameManager.NewSuperCoinCollected();
+           // gameManager.NewSuperCoinCollected();
         }
 
     }
