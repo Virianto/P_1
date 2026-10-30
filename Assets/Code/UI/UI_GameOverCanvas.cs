@@ -38,7 +38,7 @@ public class UI_GameOverCanvas : MonoBehaviour
         //en cada frame le sumo al cron oel tiempo transcurrido 
         gameplayTime += Time.deltaTime; 
 
-        cronoText.text = gameplayTime.ToString();
+        cronoText.text = TimeFormatter.FormatTime(gameplayTime);
     }
 
     public void UpdateCounter(int coinsCollected)
@@ -53,11 +53,22 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
-    public void EnableControlButton(GameObject trapObject)
+    public void EnableControlButton(GameObject controlPlatfrom, GameObject trapObject)
     {
+        trapControlButton.GetComponent<Image>().color = controlPlatfrom.GetComponent<Renderer>().material.color;
+
         trapControlButton.interactable = true;
 
         trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false);  });
+
+        trapControlButton.onClick.AddListener(() => { trapObject.SetActive(false); });
+
+        //recibir informacion de la plataforma y colorear el button en consonancia
+    }
+
+    public void EnableDynamicTrapButton(GameObject controlPlatform, GameObject B_DynamicObstacle)//obstacle
+    {
+        trapControlButton.interactable = true;
     }
     public void DisableControlButton()
     {

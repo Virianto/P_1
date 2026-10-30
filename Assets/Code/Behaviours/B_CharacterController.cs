@@ -83,6 +83,7 @@ public class B_CharacterController : MonoBehaviour
         B_Coin coinDetected = other.GetComponent<B_Coin>();
         B_Healer healerDetected = other.GetComponent<B_Healer>();
         B_SuperCoin superCoinDetected = other.GetComponent<B_SuperCoin>();
+        B_MoneyTrap rainDetected = other.GetComponent<B_MoneyTrap>();
 
         //si la variable que me acabo de crear tiene algo de info dentro le sumo 1 al contador
 
@@ -103,6 +104,14 @@ public class B_CharacterController : MonoBehaviour
             gameManager.NewCoinCollected();
         }
 
+        if (rainDetected != null)
+        {
+
+            totalCoinsCollected += 10;
+
+            gameManager.NewCoinCollected();
+        }
+
 
     }
 
@@ -113,6 +122,11 @@ public class B_CharacterController : MonoBehaviour
 
         lifePointsLeft -= damageAmount;
         gameManager.PlayerReceivedDamage();
+    }
+
+    public void TakeMoney(int moneyAmount)
+    {
+        gameManager.MoneyOnPlayer();
     }
 
     public void EarnMoney(int moneyAmount)

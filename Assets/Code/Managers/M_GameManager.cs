@@ -6,7 +6,7 @@ public class M_GameManager : MonoBehaviour
 
     public B_CharacterController player;
 
-    public B_FinalGoal goal;
+    public B_gameover goal;
 
     public UI_GameOverCanvas gameOverCanvas;
 
@@ -26,14 +26,24 @@ public class M_GameManager : MonoBehaviour
         gameOverCanvas.UpdateLifeSlider(player.lifePointsLeft);
     }
 
+    public void MoneyOnPlayer()
+    {
+        gameOverCanvas.UpdateCounter(player.totalCoinsCollected);
+    }
+
     public void PlayerHealed() //informar al canvas
     {
         gameOverCanvas.UpdateLifeSlider(player.lifePointsLeft);
     }
 
-    public void EnableTrapButton(GameObject trapObject)
+    public void EnableTrapButton(GameObject controlPlatform, GameObject trapObject)
     {
-        gameOverCanvas.EnableControlButton(trapObject);
+        gameOverCanvas.EnableControlButton(controlPlatform, trapObject);
+    }
+
+    public void EnableDynamicTrapButton(GameObject controlPlatform, GameObject B_DynamicObstacle)
+    {
+        //gameOverCanvas.EnableObstacleControlButton(ctrlPlatform, dynamicObstacle);
     }
 
     public void DisableTrapButton()

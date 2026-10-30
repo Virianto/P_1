@@ -33,7 +33,7 @@ public class B_CoinTrapDelete : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         playerIsInsideArea = true;
-        gameManager.EnableTrapButton(trapGameObject);
+        gameManager.EnableTrapButton(gameObject, trapGameObject);
         trapButton.onClick.AddListener(DeleteTrap);
     }
 
