@@ -389,11 +389,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_CoinManager
   normalCoinPrefab: {fileID: 1343549258}
+  normalCoinsToSpawn: 5
   superCoinPrefab: {fileID: 759847627}
+  superCoinsToSpawn: 5
   axisX: 5
   axisZ: 5
-  normalCoinsToSpawn: 5
-  superCoinsToSpawn: 5
 --- !u!4 &257204564
 Transform:
   m_ObjectHideFlags: 0
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 759847631}
   - component: {fileID: 759847630}
   - component: {fileID: 759847629}
-  - component: {fileID: 759847628}
+  - component: {fileID: 759847633}
   m_Layer: 0
   m_Name: SuperCoin
   m_TagString: Untagged
@@ -429,24 +429,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &759847628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 759847627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4fda73596352524ba9e1c33557dc5b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::M_CoinManager
-  normalCoinPrefab: {fileID: 0}
-  superCoinPrefab: {fileID: 0}
-  axisX: 0
-  axisZ: 2
-  normalCoinsToSpawn: 0
-  superCoinsToSpawn: 0
 --- !u!136 &759847629
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -542,6 +524,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &759847633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759847627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d008ae7b36b314895f96ba21e79041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_Coin2
+  coinBody: {fileID: 759847627}
+  myCoinType: 1
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,6 +687,7 @@ GameObject:
   - component: {fileID: 1343549261}
   - component: {fileID: 1343549260}
   - component: {fileID: 1343549259}
+  - component: {fileID: 1343549263}
   m_Layer: 0
   m_Name: NormalCoin
   m_TagString: Untagged
@@ -793,6 +790,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1343549263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343549258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d008ae7b36b314895f96ba21e79041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_Coin2
+  coinBody: {fileID: 1343549258}
+  myCoinType: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
