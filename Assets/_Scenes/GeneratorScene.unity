@@ -1155,11 +1155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f02f85f14ca0e4da8570c790af37eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_BallsSpawn
-  sphereToCreate: 10
   horizontalXRange: 6
   horizontalZRange: 6
   spawnAtOriginKey: 103
-  spawnRandomnKey: 104
+  spawnRandomKey: 104
   spawnSequenceKey: 106
   ballPrefab: {fileID: 981017182344726977, guid: 25455cb9d586ae54aaec1a82bc5a4c6a, type: 3}
   spawnOrigin: {fileID: 803701338}
@@ -1168,27 +1167,6 @@ MonoBehaviour:
   - {fileID: 1765463226}
   - {fileID: 1099210441}
   - {fileID: 268141849}
---- !u!114 &803701340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803701333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24f02f85f14ca0e4da8570c790af37eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::M_BallsSpawn
-  sphereToCreate: 1
-  horizontalXRange: 2
-  horizontalZRange: 2
-  spawnAtOriginKey: 103
-  spawnRandomnKey: 104
-  spawnSequenceKey: 106
-  ballPrefab: {fileID: 0}
-  spawnOrigin: {fileID: 0}
-  allSequencePointsList: []
 --- !u!1 &821312154
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,9 +2649,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 981017182344726977, guid: 25455cb9d586ae54aaec1a82bc5a4c6a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 803701339}
-    - targetCorrespondingSourceObject: {fileID: 981017182344726977, guid: 25455cb9d586ae54aaec1a82bc5a4c6a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 803701340}
   m_SourcePrefab: {fileID: 100100000, guid: 25455cb9d586ae54aaec1a82bc5a4c6a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

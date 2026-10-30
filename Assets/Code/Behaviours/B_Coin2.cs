@@ -8,9 +8,9 @@ public class B_Coin2 : MonoBehaviour
      * Desaparecer
      */
     #region ATTRIBUTES
-    [SerializeField] AudioSource coinAudioSource;
+    //[SerializeField] AudioSource coinAudioSource;
 
-    [SerializeField] ParticleSystem coinParticles;
+    //[SerializeField] ParticleSystem coinParticles;
     [SerializeField] GameObject coinBody;
     public enum CoinType
     {
@@ -24,15 +24,15 @@ public class B_Coin2 : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        coinAudioSource.PlayOneShot(coinAudioSource.clip);
+        //coinAudioSource.PlayOneShot(coinAudioSource.clip);
 
         if (myCoinType == CoinType.Normal)
         {
-            coinParticles.Emit(50);
+            //coinParticles.Emit(50);
             Debug.Log("es normal");
         } else if (myCoinType == CoinType.Mega)
         {
-            coinParticles.Emit(100);
+            //coinParticles.Emit(100);
             Debug.Log("es mega");
         }
 
