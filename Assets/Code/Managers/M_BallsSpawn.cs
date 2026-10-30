@@ -16,9 +16,9 @@ public class M_BallsSpawn : MonoBehaviour
 
     [Header("VALORES EDITABLES")]
 
-    [SerializeField]
-    [Range(1, 300)]
-    int totalSpheresToCreate = 1;
+    //[SerializeField]
+    //[Range(1, 300)]
+    //int totalSpheresToCreate = 1;
 
     [SerializeField]
     [Range(1, 25)]
@@ -102,8 +102,20 @@ public class M_BallsSpawn : MonoBehaviour
         //Añadir esta esfera a la lista de objetos generados
         allInstantiatedBallsList.Add(newBall);
 
-        newBall.InitializeBall(this, newPosition);
+        newBall.InitializeBall(this, newPosition, Random.value * 5);
 
+    }
+    /// <summary>
+    /// Ejecuta las funciones necesarias para acabar con una bola
+    /// </summary>
+    /// <param name="ball">Bola que ha solicitado su fin</param>
+    public void FinishBallLifeCycle(C_BouncingBall ball)
+    {
+        //Elimino la bola de mi lista
+        allInstantiatedBallsList.Remove(ball);
+
+        //Destruyo el objeto
+        Destroy(ball.gameObject);
     }
 
     #endregion
