@@ -7,10 +7,11 @@ using UnityEngine;
 ///  X Introducir aleatoriedad en posición de origen y en cantidad de esferas
 ///  X Añadir físicas en el momento de generar cada esfera
 ///  X Condicionar la generación a input o a parámetros específicos
-///  * Gestionar el ciclo de vida de las esferas generadas
+///  X Gestionar el ciclo de vida de las esferas generadas
 /// </summary>
 public class M_BallsSpawn : MonoBehaviour
 {
+    #region ATTRIBUTES
     [Header("VALORES EDITABLES")]
     [SerializeField]
     [Range(1, 300)]
@@ -38,7 +39,6 @@ public class M_BallsSpawn : MonoBehaviour
     KeyCode spawSequenceKey = KeyCode.J;
 
     [Header ("REFERENCIAS EXTERNAS")]
-    #region ATTRIBUTES
     [SerializeField]
     GameObject ballPrefab;
 

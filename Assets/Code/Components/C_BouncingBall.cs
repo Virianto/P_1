@@ -9,7 +9,7 @@ using System.Collections;
 public class C_BouncingBall : MonoBehaviour
 {
     #region ATTRIBUTES
-    M_BallsSpawn nyManager;
+    M_BallsSpawn myManager;
 
     float lifeTime = 1;
     #endregion
@@ -24,7 +24,7 @@ public class C_BouncingBall : MonoBehaviour
     public void InitializeBall(M_BallsSpawn manager, Vector3 newPosition, float lifeTime)
     {
         // Aplicar modificaciones y guardar referencia que me llegan por parámetros
-        nyManager = manager;
+        myManager = manager;
         transform.position = newPosition;
 
         GetComponent<Renderer>().material.color = Random.ColorHSV();
@@ -46,7 +46,7 @@ public class C_BouncingBall : MonoBehaviour
 
         // Aviso al manager de que ha terminado mi tiempo
         // * Necesitaré un método público en el manager q haga algo
-        nyManager.FinishBallLifeCycle(this);
+        myManager.FinishBallLifeCycle(this);
     }
 
     #endregion

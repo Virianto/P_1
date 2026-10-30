@@ -79,26 +79,40 @@ public class B_CharacterController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Detectar cuándo he tocado una moneda y sumar 1 al contador
-        B_Coin2 coinDetected = other.GetComponentInParent<B_Coin2>();
+        C_Coin3 coinDetected = other.GetComponentInParent<C_Coin3>();
 
         if (coinDetected != null)
         {
-            EarnMoney(1);
-            // Sumar 1 al contador
-            //totalCoinsCollected += 1;
-
-            //gameManager.NewCoinCollected();
+            if (coinDetected.coinType == C_Coin3.CoinType.Coin)
+            {
+                EarnMoney(1);
+            }
+            if (coinDetected.coinType == C_Coin3.CoinType.Supercoin)
+            {
+                EarnMoney(10);
+            }
         }
+
+        //B_Coin2 coinDetected = other.GetComponentInParent<B_Coin2>();
+
+        //if (coinDetected != null)
+        //{
+        //    EarnMoney(1);
+        //    // Sumar 1 al contador
+        //    //totalCoinsCollected += 1;
+
+        //    //gameManager.NewCoinCollected();
+        //}
 
         // Detectar cuándo he tocado una supermoneda y sumar 10 al contador
-        B_SuperCoin supercoinDetected = other.GetComponentInParent<B_SuperCoin>();
+        //B_SuperCoin supercoinDetected = other.GetComponentInParent<B_SuperCoin>();
 
-        if (supercoinDetected != null)
-        {
-            EarnMoney(10);
+        //if (supercoinDetected != null)
+        //{
+        //    EarnMoney(10);
 
-            gameManager.NewCoinCollected();
-        }
+        //    gameManager.NewCoinCollected();
+        //}
 
         B_Heart heartDetected = other.GetComponent<B_Heart>();
 
