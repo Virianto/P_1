@@ -87,8 +87,13 @@ public class M_BallsSpawn : MonoBehaviour
         C_BouncingBall newBall = Instantiate(ballPrefab).GetComponent<C_BouncingBall>();
 
         allInstantiatedBallsList.Add(newBall);
-        newBall.InitializeBall(this, newPosition);
+        newBall.InitializeBall(this, newPosition, Random.value * 5);
     }
 
+    public void FinishBallLifeCycle(C_BouncingBall ball)
+    {
+        allInstantiatedBallsList.Remove(ball);
+        Destroy(ball.gameObject);
+    }
     #endregion
 }
