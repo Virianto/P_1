@@ -8,7 +8,7 @@ using UnityEngine;
 ///     X Introducir aleatoriedad en posicion de origen y en cantidad de esferas
 ///     X añadir fisicas en el momento de generar cada esfera
 ///     X Condicionar la generacion a input o a parametros especificos
-///     * Gestionar el ciclo de vida de las esferas generadas
+///     X Gestionar el ciclo de vida de las esferas generadas
 /// </summary>
 
 public class M_BallsSpawn : MonoBehaviour
@@ -58,71 +58,44 @@ public class M_BallsSpawn : MonoBehaviour
 
     #region METHODS
 
-    //void Start()
-    //{
-    //    // Generar una esfera nueva el número de veces que me indica el contador
-    //    for (int i = 0; i < totalSpheresToCreate; ++i)
-    //    {
-    //        GeneratePrefabAtRandomOrigin();
-    //    }
-
-    //    // Aplicar cambios a todas las esferas que he generado hasta ahora (recorrer lista)
-    //    for (int a = 0; a < allInstantiatedBallsList.Count; ++a)
-    //    {
-    //        ApplyModificationsToBall(allInstantiatedBallsList[a]);
-    //    }
-    //}
-
-    void ApplyModificationsToBall(GameObject currentBall)
-    {
-        currentBall.GetComponent<Renderer>().material.color = Random.ColorHSV();
-        currentBall.name = "Bola " + Random.value.ToString();
-        currentBall.GetComponent<Rigidbody>().AddExplosionForce(600, Vector3.zero, 150);
-    }
-
     /// <summary>
-    /// Crea una posición aleatoria, instancia una esfera y le asigna la posición
+    /// Crea una esfera nueva, la registra en la lista y la inicializa
     /// </summary>
-    void GeneratePrefabAtRandomOrigin()
+    /// <param name="newPosition"></param>
+    void GenerateNewPrefab(Vector3 newPosition)
     {
-        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
-        GameObject newBall = GenerateNewPrefab(newRandomPosition);
-    }
-
-    void GeneratePrefabAtCustomOrigin()
-    {
-        GameObject newBall = GenerateNewPrefab(spawnOrigin.position);
-    }
-    void GeneratePrefabSequentially()
-    {
-        GameObject newBall = GenerateNewPrefab(allSequencePointsList[currentSequenceIndex].position);
-        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
-    }
-
-    GameObject GenerateNewPrefab(Vector3 newPosition)
-    {
-        GameObject newBall = Instantiate(ballPrefab);
-        allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
-        newBall.GetComponent<C_BouncingBall>().InitializeBall(this,newPosition);
-        return newBall;
+        C_BouncingBall newBall = Instantiate(ballPrefab).GetComponent<C_BouncingBall>();
+        allInstantiatedBallsList.Add(newBall);
+        newBall.InitializeBall(this,newPosition, Random.value * 5);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(spawnAtOriginKey))
         {
-            GeneratePrefabAtCustomOrigin();
+            GenerateNewPrefab(spawnOrigin.position);
         }
         if (Input.GetKeyDown(spawnRandomKey))
         {
-            GeneratePrefabAtRandomOrigin();
+            Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
+            GenerateNewPrefab(newRandomPosition);
         }
         if (Input.GetKeyDown(spawnSequenceKey))
         {
-            GeneratePrefabSequentially();
+            GenerateNewPrefab(allSequencePointsList[currentSequenceIndex].position);
+            currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
         }
+    }
+
+    /// <summary>
+    /// Destruir una bola cuando su vida llegue a cero
+    /// </summary>
+    /// <param name="ball"></param>
+    public void FinishBallLifeCycle(C_BouncingBall ball)
+    {
+        allInstantiatedBallsList.Remove(ball);
+        Destroy(ball.gameObject);
     }
 
     #endregion
 }
-
