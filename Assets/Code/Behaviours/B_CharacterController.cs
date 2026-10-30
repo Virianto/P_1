@@ -7,6 +7,7 @@ public class B_CharacterController : MonoBehaviour
     #region ATTRIBUTES
 
     public M_GameManager gameManager;
+    M_GameManager2 gameManager2;
 
     [SerializeField]
     [Range(0, 10)]
@@ -17,7 +18,6 @@ public class B_CharacterController : MonoBehaviour
     float rotationSpeed = 30;
        
     Vector2 movingDirection;
-    float movingRotation;
 
     public int totalYellowCoinsCollected = 0;
     public int totalBlueCoinsCollected = 0;

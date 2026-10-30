@@ -12,7 +12,7 @@ public class B_Coin_V : MonoBehaviour
 {
     #region ATTRIBUTES
 
-    public CoinType coinType;
+    public CoinType_V coinType;
 
     #endregion
 
@@ -23,7 +23,7 @@ public class B_Coin_V : MonoBehaviour
         B_CharacterController player = other.GetComponent<B_CharacterController>();
 
         // CASO 1: MONEDAS AMARILLAS
-        if (player.canCollectYellowCoins && (coinType == CoinType.Yellow))
+        if (player.canCollectYellowCoins && (coinType == CoinType_V.Yellow))
         {
             Debug.Log("Moneda AMARILLA recogida");
             player.totalYellowCoinsCollected += 1;
@@ -33,14 +33,14 @@ public class B_Coin_V : MonoBehaviour
         }
 
         // CASO 2: MONEDAS AZULES
-        if(player.canCollectBlueCoins && (coinType == CoinType.Blue))
+        if(player.canCollectBlueCoins && (coinType == CoinType_V.Blue))
         {
             Debug.Log("Moneda AZUL recogida");
             player.totalBlueCoinsCollected += 1;            
         }
 
         // CASO 3: MONEDAS VERDES
-        if (player.canCollectGreenCoins && (coinType == CoinType.Green))
+        if (player.canCollectGreenCoins && (coinType == CoinType_V.Green))
         {
             Debug.Log("Moneda VERDE recogida");
             player.totalGreenCoinsCollected += 1;
