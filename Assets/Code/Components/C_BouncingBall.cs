@@ -30,6 +30,9 @@ public class C_BouncingBall : MonoBehaviour
     {
         myManager = manager;
         transform.position = newPosition;
+        GetComponent<Renderer>().material.color = Random.ColorHSV();
+        gameObject.name = "Bola " + Random.value.ToString();
+        GetComponent<Rigidbody>().AddExplosionForce(600, Vector3.zero, 250);
     }
 
     #endregion

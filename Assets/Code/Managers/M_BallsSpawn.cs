@@ -63,99 +63,47 @@ public class M_BallsSpawn : MonoBehaviour
 
     #region METHODS
 
-    
-    void Start()
-    {
-       //Generar una esfera nueva el número de veces que me indica el contador
-       for(int i = 0; i < totalSpheresToCreate; ++i)
-        {
-            //GeneratePrefabAtRandomOrigin();
-        }
-
-       //Aplicar cambios a todas las esferas que he generado hasta ahora
-       for(int a = 0; a < allInstantiatedBallsList.Count; ++a)
-        {
-            //ApplyModificationsToBall(allInstantiatedBallsList[a]);
-        }
-
-    }
-
     void Update()
-    {
+    {   
         //Detectar una tecla para generar una esfera en el spawn origin
         if (Input.GetKeyDown(spawnAtOriginKey))
         {
-            GeneratePrefabAtCustomOrigin();
+            GenerateNewPrefab(spawnOrigin.position);
         }
 
         //Detectar una tecla diferente para generar una oleada de esferas aleatorias
         if (Input.GetKeyDown(spawnRandomKey)) 
         {
-            GeneratePrefabAtRandomOrigin();
+            //Generar una nueva posición aleatoria usando las variables de rango
+            Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
+
+            GenerateNewPrefab(newRandomPosition);
         }
 
 
         //Detectar otra tecla para generar esferas de forma secuencial
         if (Input.GetKeyDown(spawnSequenceKey)) 
         {
-            GeneratePrefabSequentially();
+            GenerateNewPrefab(allSequencePointsList[currentSequenceIndex].position);
+
+            //Actualizar el índice de la secuencia para la siguiente vez (asegurando ciclo)
+            currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
         }
     }
-
-
     /// <summary>
-    /// Genera una instancia de manera secuencial entre varias posiciones ya predefinidas
+    /// Crea una esfera nueva, la registra en la lista y la inicializa
     /// </summary>
-    void GeneratePrefabSequentially()
-    {
-        GameObject newBall = GenerateNewPrefab(allSequencePointsList[currentSequenceIndex].position);
-
-        //Actualizar el índice de la secuencia para la siguiente vez (asegurando ciclo)
-        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
-    }
-    /// <summary>
-    /// Aplicamos cambios en los parámetros y las físicas de las esferas
-    /// </summary>
-    /// <param name="currentBall"></param>
-    void ApplyModificationsToBall(GameObject currentBall)
-    {
-        currentBall.GetComponent<Renderer>().material.color = Random.ColorHSV();
-        currentBall.name = "Bola " + Random.value.ToString();
-        currentBall.GetComponent<Rigidbody>().AddExplosionForce(600, Vector3.zero, 250);
-    }
-
-    /// <summary>
-    /// Crea una posición aleatoria, instancia una esfera y le asigna la posición
-    /// </summary>
-    void GeneratePrefabAtRandomOrigin()
-    {
-        //Generar una nueva posición aleatoria usando las variables de rango
-        Vector3 newRandomPosition =  new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
-
-        GameObject newBall = GenerateNewPrefab(newRandomPosition);
-
-    }
-
-    /// <summary>
-    /// Crea una instancia de esfera y le asigna la posición elegida dentro de la escena
-    /// </summary>
-    void GeneratePrefabAtCustomOrigin()
-    {
-        GameObject newBall = GenerateNewPrefab(spawnOrigin.position);
-
-    }
-
-    GameObject GenerateNewPrefab(Vector3 newPosition)
+    /// <param name="newPosition">Ubicación de origen para la nueva esfera</param>
+    void GenerateNewPrefab(Vector3 newPosition)
     {
         //Generar una instancia del prefab
-        GameObject newBall = Instantiate(ballPrefab);
+        C_BouncingBall newBall = Instantiate(ballPrefab).GetComponent<C_BouncingBall>();
 
         //Añadir esta esfera a la lista de objetos generados
-        allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
+        allInstantiatedBallsList.Add(newBall);
 
-        newBall.GetComponent<C_BouncingBall>().InitializeBall(this, newPosition);
+        newBall.InitializeBall(this, newPosition);
 
-        return newBall;
     }
 
     #endregion
