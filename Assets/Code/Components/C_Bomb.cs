@@ -14,6 +14,9 @@ public class C_Bomb : MonoBehaviour
     AudioSource bombAudiosource;
 
     [SerializeField]
+    AudioSource damageAudiosource;
+
+    [SerializeField]
     ParticleSystem bombParticles;
 
     [SerializeField]
@@ -31,7 +34,8 @@ public class C_Bomb : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         bombAudiosource.PlayOneShot(bombAudiosource.clip);
-
+        damageAudiosource.Play();
+        
         bombParticles.Emit(50);
 
         GetComponent<Collider>().enabled = false;

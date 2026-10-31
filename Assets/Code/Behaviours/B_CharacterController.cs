@@ -107,6 +107,8 @@ public class B_CharacterController : MonoBehaviour
 
             // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.PlayerReceivedDamage();
+
+            damageAudioSource.Play();
         }
 
         B_ChaserLifeAgent chaserLifeAgentDetected = other.GetComponent<B_ChaserLifeAgent>();
@@ -130,6 +132,14 @@ public class B_CharacterController : MonoBehaviour
         B_ChaserCoinsAgent chaserCoinsAgentDetected = other.GetComponent<B_ChaserCoinsAgent>();
 
         if (chaserCoinsAgentDetected != null)
+        {
+            EarnMoney(-1);
+            lostCoinAudioSource.Play();
+        }
+
+        C_SpawnEnemy spawnEnemyDetected = other.GetComponent<C_SpawnEnemy>();
+
+        if (spawnEnemyDetected != null)
         {
             EarnMoney(-1);
             lostCoinAudioSource.Play();
