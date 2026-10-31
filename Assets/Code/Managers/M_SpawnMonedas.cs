@@ -31,7 +31,7 @@ public class M_SpawnMonedas : MonoBehaviour
     [Range(1, 15)]
     float horizontalZRange = 2;
 
-    List <C_Monedas> allInstantiatedCoinsLists = new();
+    List<C_Monedas> allInstantiatedCoinsLists = new();
 
     [SerializeField]
     List<Transform> allSpawnsPointsList = new();
@@ -62,24 +62,24 @@ public class M_SpawnMonedas : MonoBehaviour
     {
         while (true)
         {
-            isSuperCoin = Random.Range(0,2);
-            Debug.Log(isSuperCoin);
+            currentSequenceIndex = Random.Range(0, allSpawnsPointsList.Count);
+            Vector3 spawnPosition = allSpawnsPointsList[currentSequenceIndex].position;
+            float radius = 3f;
+            Vector2 randomPosition = Random.insideUnitCircle * radius;
+            Vector3 finalPosition = new Vector3(
+                spawnPosition.x + randomPosition.x,
+                2,
+                spawnPosition.z + randomPosition.y
+            );
+            isSuperCoin = Random.Range(0, 2);
             if (isSuperCoin == 0)
             {
-                currentSequenceIndex = Random.Range(0, allSpawnsPointsList.Count);
-                horizontalXRange = allSpawnsPointsList[currentSequenceIndex].position.x;
-                horizontalZRange = allSpawnsPointsList[currentSequenceIndex].position.z;
-                GenerateNewNormalCoinPrefab(new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange)));
-                Debug.Log("Estoy en el spawnPoint " + currentSequenceIndex + " y soy una moneda normal");
+                GenerateNewNormalCoinPrefab(finalPosition);
                 yield return new WaitForSeconds(5f);
             }
             if (isSuperCoin == 1)
             {
-                currentSequenceIndex = Random.Range(0, allSpawnsPointsList.Count);
-                horizontalXRange = allSpawnsPointsList[currentSequenceIndex].position.x;
-                horizontalZRange = allSpawnsPointsList[currentSequenceIndex].position.z;
-                GenerateNewSuperCoinPrefab(new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 0, Random.Range(-horizontalZRange, horizontalZRange)));
-                Debug.Log("Estoy en el spawnPoint " + currentSequenceIndex + " y soy una super moneda");
+                GenerateNewSuperCoinPrefab(finalPosition);
                 yield return new WaitForSeconds(5f);
             }
         }
@@ -87,11 +87,37 @@ public class M_SpawnMonedas : MonoBehaviour
 
     public void FinishCoinLifeCycle(C_Monedas coin)
     {
-        //GetComponent<C_Monedas>().GetComponentInChildren<ParticleSystem>().Emit(25);
-        allInstantiatedCoinsLists.Remove(coin);
-        Destroy(coin.gameObject);
+
+        ParticleSystem particulas = coin.GetComponentInChildren<ParticleSystem>();
+
+        if (particulas != null)
+        {
+            if (coin.tag == "Coin")
+            {
+                particulas.transform.SetParent(null);
+                particulas.Emit(25);
+                var main = particulas.main;
+                main.stopAction = ParticleSystemStopAction.Destroy;
+                Debug.Log("Has recogido una moneda normal");
+            }
+            else if (coin.tag == "SuperCoin")
+            {
+                particulas.transform.SetParent(null);
+                particulas.Emit(50);
+                var main = particulas.main;
+                main.stopAction = ParticleSystemStopAction.Destroy;
+                Debug.Log("Has recogido una super moneda");
+            }
+
+        }  
     }
 
+    public void FinishCoinLifeCycleTime(C_Monedas coin)
+    {
+        allInstantiatedCoinsLists.Remove(coin);
+        Destroy(coin.gameObject);
+        Debug.Log("nadie me a recogido");
+    }
     #endregion
 }
 

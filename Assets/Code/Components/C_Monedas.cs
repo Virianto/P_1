@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -19,8 +21,8 @@ public class C_Monedas : MonoBehaviour
     {
         myManager = manager;
         transform.position = newPosition;  
-        
         gameObject.name = "Coin " + Random.value.ToString();
+        StartCoroutine(CountingStartLifeCycle());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +30,11 @@ public class C_Monedas : MonoBehaviour
             myManager.FinishCoinLifeCycle(this);
     }
 
-    #endregion
-}
+    IEnumerator CountingStartLifeCycle()
+    {
+        yield return new WaitForSeconds(Random.Range(10,15));
+        myManager.FinishCoinLifeCycleTime(this);
+    }
+        #endregion
+    }
 

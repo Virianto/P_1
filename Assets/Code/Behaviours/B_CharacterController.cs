@@ -28,13 +28,6 @@ public class B_CharacterController : MonoBehaviour
 
     #region METHODS
 
-    // Este método se lanza cuando hago click sobre el Collider del objeto ligado al script
-    //void OnMouseDown()
-    //{
-    //    Debug.Log("Me has dado en la nuca");
-    //    GetComponent<C_Spinner>().enabled = !GetComponent<C_Spinner>().enabled;
-    //}
-
     void Update()
     {
         // Me creo un Vector2 nuevo y lo inicializo a 0 (por si el jugador no pulsa nada)
@@ -81,8 +74,8 @@ public class B_CharacterController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
-        B_Coin tagCoin = other.GetComponent<B_Coin>();
+        C_Monedas coinDetected = other.GetComponentInParent<C_Monedas>();
+        C_Monedas tagCoin = other.GetComponent<C_Monedas>();
 
         if (coinDetected != null)
         {
@@ -102,7 +95,9 @@ public class B_CharacterController : MonoBehaviour
                 }
         }
     }
-
+    /// <summary>
+    /// Este metodo inflige daño al jugador
+    /// </summary>
     public void TakeDamage(int damageAmount)
     {
         lifePointsLeft -= damageAmount;
