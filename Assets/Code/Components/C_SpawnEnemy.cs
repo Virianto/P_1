@@ -8,8 +8,8 @@ public class C_SpawnEnemy : MonoBehaviour
 
     M_EnemiesManager MyManager;
 
-    public float minLifeTime = 5;
-    public float maxLifeTime = 15;
+    public float minLifeTime = 20;
+    public float maxLifeTime = 30;
 
     NavMeshAgent myAgent;
 

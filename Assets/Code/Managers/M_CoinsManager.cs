@@ -4,19 +4,19 @@ using UnityEngine;
 
 
 /// <summary>
-/// Aquí va el enunciado del propósito de esta clase
+/// Generar y gestionar el ciclo de vida de las monedas
 /// </summary>
 public class M_CoinsManager : MonoBehaviour
 {
     #region ATTRIBUTES
 
     [SerializeField]
-    [Range(1, 15)]
-    float horizontalXRange = 7.5f;
+    [Range(1, 30)]
+    float horizontalXRange = 15;
 
     [SerializeField]
-    [Range(1, 15)]
-    float horizontalZRange = 7.5f;
+    [Range(1, 30)]
+    float horizontalZRange = 15;
 
     [SerializeField]
     GameObject coinPrefab;
@@ -36,8 +36,8 @@ public class M_CoinsManager : MonoBehaviour
     [SerializeField]
     KeyCode spawnRandomKey = KeyCode.G;
 
-    public float minCreationFrequency = 5;
-    public float maxCreationFrequency = 15;
+    public float minCreationFrequency = 1;
+    public float maxCreationFrequency = 10;
 
     #endregion
 
@@ -52,6 +52,7 @@ public class M_CoinsManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        StartCoroutine(CreateCoin());
         StartCoroutine(CreateSuperCoin());
         StartCoroutine(CreateBomb());
     }
@@ -59,14 +60,14 @@ public class M_CoinsManager : MonoBehaviour
     /// <summary>
     /// Detectar una tecla para generar una moneda en una posición aleatoria
     /// </summary>
-    private void Update()
-    {
-        if (Input.GetKeyDown(spawnRandomKey))
-        {
-            Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
-            GenerateNewPrefab(newRandomPosition);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(spawnRandomKey))
+    //    {
+    //        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
+    //        GenerateNewPrefab(newRandomPosition);
+    //    }
+    //}
 
     /// <summary>
     /// Crea una moneda nueva, la registra en la lista y la inicializa
@@ -80,6 +81,18 @@ public class M_CoinsManager : MonoBehaviour
         // Añadir la esfera a la lista de objetos generados
         allInstantiatedCoinsList.Add(newCoin);
         newCoin.InitializeCoin(this, newPosition);
+    }
+
+    /// <summary>
+    /// Generar monedas de manera continuada en el tiempo
+    /// </summary>
+    IEnumerator CreateCoin()
+    {
+        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
+        GenerateNewPrefab(newRandomPosition);
+
+        yield return new WaitForSeconds(Random.Range(minCreationFrequency, (maxCreationFrequency - 5)));
+        StartCoroutine(CreateCoin());
     }
 
     /// <summary>
@@ -104,7 +117,7 @@ public class M_CoinsManager : MonoBehaviour
         Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
         GenerateNewSuperPrefab(newRandomPosition);
 
-        yield return new WaitForSeconds(Random.Range(minCreationFrequency, maxCreationFrequency));
+        yield return new WaitForSeconds(Random.Range((minCreationFrequency + 5), maxCreationFrequency));
         StartCoroutine(CreateSuperCoin());
     }
 

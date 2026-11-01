@@ -17,10 +17,10 @@ public class M_EnemiesManager : MonoBehaviour
     [SerializeField]
     GameObject enemyPrefab;
 
-    List<C_SpawnEnemy> allInstantiatedEnemiesList = new();
+    public List<C_SpawnEnemy> allInstantiatedEnemiesList = new();
 
     public float minCreationFrequency = 1;
-    public float maxCreationFrequency = 10;
+    public float maxCreationFrequency = 5;
 
     Vector3 destinationPoint = Vector3.zero;
 
