@@ -32,21 +32,24 @@ public class C_Agent : MonoBehaviour
 
     private void Awake()
     {
-        myAgent = GetComponent<NavMeshAgent>();
+        
     }
 
 
     private void Update()
     {
-        if (totalAgentLifePoints == 0)
+        if (totalAgentLifePoints <= 0)
         {
             agentsManager.KillAgent(this);
         }
     }
-    public void InitializeAgent(M_AgentsManager manager, Vector3 newPosition)
+    public void InitializeAgent(M_AgentsManager manager, Vector3 destinyPos)
     {
-        agentsManager = manager;
-        transform.position = newPosition;
+
+       myAgent = GetComponent<NavMeshAgent>();
+       agentsManager = manager;
+       myAgent.SetDestination(destinyPos); 
+
     }
 
 

@@ -54,6 +54,11 @@ public class M_AgentsManager : MonoBehaviour
     {
         C_Agent agent = GetComponent<C_Agent>();
         MoveAgentToPlayer();
+        if(agent.totalAgentLifePoints <= 0)
+        {
+            KillAgent(agent);
+        }
+        
     }
 
     void GenerateNewHumanoidAgentPrefab(Vector3 newPosition)
