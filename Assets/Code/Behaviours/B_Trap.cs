@@ -4,6 +4,7 @@ using UnityEngine;
 public class B_Trap : MonoBehaviour
 {
     #region ATTRIBUTES
+    B_Agent agent;
 
     [SerializeField]
     [Range(1, 10)]
@@ -20,8 +21,15 @@ public class B_Trap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        playerIsInsideArea = true;
-        StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        if (other.GetComponent<B_CharacterController>() !=null)
+        {
+            playerIsInsideArea = true;
+            StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        }
+        if (other.GetComponent<B_CharacterController>() != null)
+        {
+
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -40,5 +48,9 @@ public class B_Trap : MonoBehaviour
             StartCoroutine(HurtPlayer(player));
         }
     }
+    //IEnumerator HurtAgent(B_CharacterController player)
+    //{
+    //    agent.ModifyAgentLifePoints()
+    //}
     #endregion
 }

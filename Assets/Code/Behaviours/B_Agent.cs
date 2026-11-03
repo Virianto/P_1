@@ -9,11 +9,12 @@ public class B_Agent : MonoBehaviour
     //y va a moverse hacia ese punto por el camino mas optimo que encuentre
 
     #region ATTRIBUTE
-    
 
-    [SerializeField]
-    GameObject player;
+    //[SerializeField]
+    //GameObject player;
     NavMeshAgent myAgent;
+
+    M_SpawnAgentsManagers myManager;
 
     int trapDamage = 1;
 
@@ -27,12 +28,15 @@ public class B_Agent : MonoBehaviour
 
     float trapFrequency = 1;
 
+    int lifeAgents = 20;
+
+    Vector3 playerPosition;
 
     public enum AgentType
     {
         Humanoid,
         Bird,
-        Mole
+        Digger
     }
 
     [SerializeField]
@@ -47,11 +51,27 @@ public class B_Agent : MonoBehaviour
         myAgent = GetComponent<NavMeshAgent>();
     }
 
+    public void InitializeAgent(M_SpawnAgentsManagers manager, Vector3 newPosition, B_CharacterController player)
+    {
+        myManager = manager;
+        transform.position = newPosition;
+        playerPosition = player.transform.position;
+        
+    }
+
     private void Update()
     {
         if (agentType == AgentType.Humanoid || agentType == AgentType.Bird)
         {
-            myAgent.SetDestination(player.transform.position);
+            if (myAgent.isOnNavMesh)
+            {
+                myAgent.SetDestination(playerPosition);
+                Debug.Log("estoy dentro del area");
+            }
+            else
+            {
+                Debug.Log("No estoy dentro del area");
+            }
         }
     }
 
@@ -84,6 +104,8 @@ public class B_Agent : MonoBehaviour
         }
     }
 
+    
+
     IEnumerator HurtPlayer(B_CharacterController player)
     {
         player.TakeDamage(trapDamage);
@@ -109,8 +131,11 @@ public class B_Agent : MonoBehaviour
         }
     }
 
+    public void ModifyAgentLifePoints(int amount)
+    {
+        
+    }
+
 }
-
-
     #endregion
 
