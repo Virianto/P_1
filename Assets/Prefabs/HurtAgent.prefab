@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2014050428229230462}
   - component: {fileID: 4852875487470563313}
   - component: {fileID: 3452544813667838687}
-  - component: {fileID: 2823027496896743611}
+  - component: {fileID: 4898518212705197264}
   m_Layer: 9
   m_Name: HurtAgent
   m_TagString: Enemy
@@ -138,7 +138,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2823027496896743611
+--- !u!114 &4898518212705197264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,6 +147,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2469388399497569463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bf8d14a378fab44869fa0ab95ba33f, type: 3}
+  m_Script: {fileID: 11500000, guid: 93b0a9facd4da9d4b99b5383f5590e08, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::A_Agent
+  m_EditorClassIdentifier: Assembly-CSharp::C_Agent

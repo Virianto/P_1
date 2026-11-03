@@ -29347,12 +29347,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 443929407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d600412bbd2093844af858cdafce6f87, type: 3}
+  m_Script: {fileID: 11500000, guid: 3508e8ea1d6f4c8449df86f2798f7f43, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::A_AgentsManager
+  m_EditorClassIdentifier: Assembly-CSharp::M_Agents
   agentPrefab: {fileID: 2469388399497569463, guid: c7c9d039b06ea6049af929dbb1e73902, type: 3}
-  agentSpawn: {fileID: 2021133506}
+  agentsSpawnPoint: {fileID: 2021133506}
   humanoidAgentsDestination: {fileID: 2008193035}
+  timeBetweenAgents: 1
 --- !u!1 &452641279
 GameObject:
   m_ObjectHideFlags: 0
@@ -68625,7 +68626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &901565406
 Transform:
   m_ObjectHideFlags: 0

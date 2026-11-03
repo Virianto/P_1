@@ -35,7 +35,7 @@ public class B_Trap : MonoBehaviour
         
         // Invocar una subrutina facilitando en parámetros el componente del player
         StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
-        StartCoroutine(HurtAgent(other.GetComponent<NewHurtAgent>()));
+        StartCoroutine(HurtAgent(other.GetComponent<A_Agent>()));
 
     }
 
@@ -61,10 +61,10 @@ public class B_Trap : MonoBehaviour
             StartCoroutine(HurtPlayer(player));
         }
     }
-    IEnumerator HurtAgent(NewHurtAgent Agent)
+    IEnumerator HurtAgent(A_Agent Agent)
     {
         // Dañar al jugador
-        Agent.TakeDamage(trapDamage);
+        Agent.ModifyAgentLifePoints(trapDamage);
 
         yield return new WaitForSeconds(trapFrequencyDamage);
 

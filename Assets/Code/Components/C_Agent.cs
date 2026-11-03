@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,6 +34,11 @@ public class C_Agent : MonoBehaviour
         myManager = manager;
                 
         myNavMeshAgent.SetDestination(destinyPos);
+    }
+
+    internal void InitializeNewAgent(A_AgentsManager a_AgentsManager, Vector3 position1, Vector3 position2)
+    {
+        throw new NotImplementedException();
     }
 
     #endregion
