@@ -1,12 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class M_GameManager : MonoBehaviour
 {    
     #region ATTRIBUTES
 
     public B_CharacterController player;
+    
 
     public B_Goal goal;
 

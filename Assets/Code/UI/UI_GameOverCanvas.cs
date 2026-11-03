@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UI_GameOverCanvas : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     [SerializeField]
     Slider playerLifeSlider;
+
 
     [SerializeField]
     TMP_Text chronoText;
@@ -58,6 +60,7 @@ public class UI_GameOverCanvas : MonoBehaviour
         playerLifeSlider.value = playerLifePointsLeft;
     }
 
+
     public void EnableControlButton(GameObject controlPlataform, GameObject trapObject) // Recibir info de la plataforma de control
     {
         // Colorear el botón en consonancia con el color/material de la plataforma
@@ -91,6 +94,11 @@ public class UI_GameOverCanvas : MonoBehaviour
     public void ResetGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    internal void UpdateLifeRivalSlider(object lifePointsLeft)
+    {
+        throw new NotImplementedException();
     }
 
     // Método público para actualizar su mensaje de fin de juego

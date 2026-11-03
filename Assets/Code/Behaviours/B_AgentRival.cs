@@ -48,6 +48,6 @@ public class B_AgentRival : MonoBehaviour
     {
         myAgent.SetDestination(routePointsList[currentDestiny].position);
     }
- 
+
     #endregion
 }

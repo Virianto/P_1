@@ -22,32 +22,35 @@ public class C_Coin3 : MonoBehaviour
         Coin,
         Supercoin
     }
-    float lifeTime = 20;
+    float lifeTime = 30;
 
     public CoinType coinType;
     #endregion
 
 
     #region METHODS
-    public void InitializeCoin(M_CoinSpawn manager, Vector3 spawnPosition, float lifeTime)
+    public void InitializeCoin(M_CoinSpawn manager, Vector3 spawnPosition/*, float lifeTime*/)
     {
         // Asigna la posición directamente al transform del objeto
         myManager = manager;
         transform.position = spawnPosition;
 
-        this.lifeTime = lifeTime;
+        //this.lifeTime = lifeTime;
         StartCoroutine(FinishLifeCycle());
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Emitir partículas de despedida
-        // coinParticles.Emit(50);
+        if (other.GetComponent<B_CharacterController>() != null)
+        {
+            // Emitir partículas de despedida
+            // coinParticles.Emit(50);
 
-        // Desactivar el spereCollider para prevenir más recogidas de la misma moneda
-        GetComponent<Collider>().enabled = false;
+            // Desactivar el spereCollider para prevenir más recogidas de la misma moneda
+            GetComponent<Collider>().enabled = false;
 
-        coinBody.SetActive(false);
+            coinBody.SetActive(false);
+        }
     }
     IEnumerator FinishLifeCycle()
     {

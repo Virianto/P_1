@@ -35,12 +35,12 @@ public class M_CoinSpawn : MonoBehaviour
     [SerializeField]
     [Range(0, 15)]
     float timeBetweenCoins = 1;
-    [SerializeField]
-    [Range(0, 15)]
-    float coinLifeTime = 10;
-    [SerializeField]
-    [Range(0, 15)]
-    float superCoinLifeTime = 10;
+    //[SerializeField]
+    //[Range(0, 15)]
+    //float coinLifeTime = 10;
+    //[SerializeField]
+    //[Range(0, 15)]
+    //float superCoinLifeTime = 10;
 
     [Header("REFERENCIAS EXTERNAS")]
     [SerializeField]
@@ -92,13 +92,13 @@ public class M_CoinSpawn : MonoBehaviour
     {
         C_Coin3 newCoin = Instantiate(coinPrefab).GetComponent<C_Coin3>();
         allInstantiatedCoinList.Add(newCoin);
-        newCoin.InitializeCoin(this, newPosition, Random.value * 10);
+        newCoin.InitializeCoin(this, newPosition/*, Random.value * 10*/);
     }
     void GenerateNewPrefabSuperCoin(Vector3 newPosition)
     {
         C_Coin3 newCoin = Instantiate(superCoinPrefab).GetComponent<C_Coin3>();
         allInstantiatedCoinList.Add(newCoin);
-        newCoin.InitializeCoin(this, newPosition, Random.value * 10);
+        newCoin.InitializeCoin(this, newPosition/*, Random.value * 10*/);
     }
 
 
