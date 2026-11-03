@@ -18,6 +18,8 @@ public class B_Trap : MonoBehaviour
     bool playerIsInsideArea = false;
     public AudioSource damageAudioSource;
 
+    bool enemyIsInsideArea = false;
+
     #endregion
 
 
@@ -28,18 +30,30 @@ public class B_Trap : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Detectar cuándo ha entrado el jugador en su área de efecto
-        playerIsInsideArea = true;
+        if (other.GetComponent<B_CharacterController>() != null)
+        {
+            // Detectar cuándo ha entrado el jugador en su área de efecto
+            playerIsInsideArea = true;
 
+            // Invocar una subrutina facilitando en parámetros el componente del player
+            StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        }
 
-        // Invocar una subrutina facilitando en parámetros el componente del player
-        StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        if (other.GetComponent<B_CharacterController>() != null)
+        {
+            // Detectar cuándo ha entrado un enemigo en su área de efecto
+            enemyIsInsideArea = true;
+
+            // Invocar una subrutina facilitando en parámetros el componente del player
+            StartCoroutine(HurtEnemy(other.GetComponent<C_SpawnEnemy>()));
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
         // Detectar cuándo ha salido el jugador de su área de efecto
         playerIsInsideArea = false;
+        enemyIsInsideArea = false;
     }
 
     // Declarar un método con gestión de tiempo para dañar al jugador
@@ -56,6 +70,22 @@ public class B_Trap : MonoBehaviour
         {
             // Volver a llamar a esta subrutina
             StartCoroutine(HurtPlayer(player));
+        }
+
+    }
+
+    IEnumerator HurtEnemy(C_SpawnEnemy enemy)
+    {
+        // Dañar al enemigo
+        enemy.TakeDamage(trapDamage);
+
+        yield return new WaitForSeconds(trapFrequencyDamage);
+
+        // Comprobar si el enemigo sigue estando dentro
+        if (enemyIsInsideArea)
+        {
+            // Volver a llamar a esta subrutina
+            StartCoroutine(HurtEnemy(enemy));
         }
 
     }

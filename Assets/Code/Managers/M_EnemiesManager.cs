@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class M_EnemiesManager : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class M_EnemiesManager : MonoBehaviour
 
     public B_CharacterController player;
 
+    Slider enemyLifeSlider;
+
+    [SerializeField]
+    ParticleSystem enemyDead_PS;
+
     #endregion
 
 
@@ -45,7 +51,7 @@ public class M_EnemiesManager : MonoBehaviour
 
         for (int a = 0; a < allInstantiatedEnemiesList.Count; ++a)
         {
-            allInstantiatedEnemiesList[a].SetNewAgentDestination(destinationPoint);
+            allInstantiatedEnemiesList[a].SetNewEnemyDestination(destinationPoint);
         }
     }
 
@@ -77,6 +83,13 @@ public class M_EnemiesManager : MonoBehaviour
     /// <param name="enemy"> Enemigo que ha solicitado su fin </param>
     public void FinishEnemyLifeCycle(C_SpawnEnemy enemy)
     {
+        // Detectar la posición del enemigo
+        Vector3 enemyPosition = enemy.transform.position;
+
+        // Lanzar partículas en dicha posición
+        enemyDead_PS.transform.position = enemyPosition;
+        enemyDead_PS.Emit(30);
+
         // Eliminamos al enemigo de la lista
         allInstantiatedEnemiesList.Remove(enemy);
 
@@ -84,5 +97,6 @@ public class M_EnemiesManager : MonoBehaviour
         Destroy(enemy.gameObject);
     }
 
+   
     #endregion
 }
