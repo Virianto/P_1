@@ -88,20 +88,20 @@ public class B_Agent : MonoBehaviour
         }
     }
 
-    public IEnumerator HurtAgent(B_Agent agent)
-    {
-        //Dañar al agent
-        TakeDamage(agentDamage);
+    //public IEnumerator HurtAgent(B_Agent agent)
+    //{
+    //    //Dañar al agent
+    //    TakeDamage(agentDamage);
 
-        yield return new WaitForSeconds(agentFreqDamage);
+    //    yield return new WaitForSeconds(agentFreqDamage);
 
-        //Comprobar si el agent sigue estando dentro
-        if (playerIsTouched)
-        {
-            //Volver a llamar a esta subrutina
-            StartCoroutine(HurtAgent(agent));
-        }
-    }
+    //    //Comprobar si el agent sigue estando dentro
+    //    if (playerIsTouched)
+    //    {
+    //        //Volver a llamar a esta subrutina
+    //        StartCoroutine(HurtAgent(agent));
+    //    }
+    //}
 
     public void InitializeHuman(M_3GameManager m_3GameManager, Vector3 newRandomPosition)
     {

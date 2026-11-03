@@ -32,10 +32,20 @@ public class B_Trap : MonoBehaviour
     //}
     private void OnTriggerEnter(Collider other)
     {
-        B_Agent agent = other.GetComponent<B_Agent>();
+        if (other.GetComponent<B_CharacterController>() != null)
+        {
+            // Detectar cuándo ha entrado el jugador en su área de efecto
+            playerIsInsideArea = true;
+            Debug.Log("El jugador ha entrado");
 
-        playerIsInsideArea = true;
-        StartCoroutine(agent.HurtAgent(agent));
+            //Invocar una subrutina, facilitando en parámetros el componente del player
+            StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        } 
+        else if (other.GetComponent<B_Agent>() != null)
+        {
+            //StartCoroutine(agent.HurtAgent(agent));
+            StartCoroutine(HurtAgent(other.GetComponent<B_Agent>())); //Victor a creado método en esta clase
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -65,6 +75,21 @@ public class B_Trap : MonoBehaviour
 
         Debug.Log("Ya ha pasado la esperas, hacer otra cosa");
         Debug.Log($"Sigue llamandose {player.name}");
+    }
+
+    public IEnumerator HurtAgent(B_Agent agent)
+    {
+        //Dañar al agent
+        agent.TakeDamage(trapDamage);
+
+        yield return new WaitForSeconds(trapFrequencyDamage);
+
+        ////Comprobar si el agent sigue estando dentro
+        //if (playerIsTouched)
+        //{
+            //Volver a llamar a esta subrutina
+        StartCoroutine(HurtAgent(agent));
+        //}
     }
 
     #endregion

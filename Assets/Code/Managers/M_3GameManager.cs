@@ -52,7 +52,7 @@ public class M_3GameManager : MonoBehaviour
             B_Agent newHuman = Instantiate(humanoidPrefab).GetComponent<B_Agent>();
 
             agentList.Add(newHuman);
-            newHuman.InitializeHuman(this, newRandomPosition);
+            newHuman.InitializeHuman(this, newRandomPosition); //Se puede hacer con transform
 
             newAgent = newHuman;
             //StartCoroutine(newHuman.HurtAgent(newHuman));
