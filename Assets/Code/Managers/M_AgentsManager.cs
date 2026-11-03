@@ -52,17 +52,12 @@ public class M_AgentsManager : MonoBehaviour
 
     private void Update()
     {
-        C_Agent agent = GetComponent<C_Agent>();
         MoveAgentToPlayer();
-        if(agent.totalAgentLifePoints <= 0)
-        {
-            KillAgent(agent);
-        }
-        
     }
 
     void GenerateNewHumanoidAgentPrefab(Vector3 newPosition)
     {
+
         C_Agent newAgent = Instantiate(humanoidAgent).GetComponent<C_Agent>();
         allInstantiatedHumanoidAgents.Add(newAgent);
         newAgent.InitializeAgent(this, newPosition);
@@ -117,8 +112,9 @@ public class M_AgentsManager : MonoBehaviour
         if (agent.isItHumanoid == true)
         {
             allInstantiatedHumanoidAgents.Remove(agent);
-
             Destroy(agent.gameObject);
+            Vector3 newPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
+            GenerateNewHumanoidAgentPrefab(newPosition);
         }
         if (agent.isItBird == true)
         {

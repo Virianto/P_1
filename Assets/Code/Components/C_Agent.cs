@@ -38,17 +38,14 @@ public class C_Agent : MonoBehaviour
 
     private void Update()
     {
-        if (totalAgentLifePoints <= 0)
-        {
-            agentsManager.KillAgent(this);
-        }
+     
     }
-    public void InitializeAgent(M_AgentsManager manager, Vector3 destinyPos)
+    public void InitializeAgent(M_AgentsManager manager, Vector3 newPosition)
     {
 
        myAgent = GetComponent<NavMeshAgent>();
        agentsManager = manager;
-       myAgent.SetDestination(destinyPos); 
+       myAgent.SetDestination(newPosition); 
 
     }
 
@@ -57,30 +54,33 @@ public class C_Agent : MonoBehaviour
     {
         myAgent.SetDestination(newDestination);
     }
-    public void TakeDamage(int damageAmount)
+    public void ModifyAgentLifePoints(int damageAmount)
     {
         //Modificar la cantidad de vida al jugador
         totalAgentLifePoints -= damageAmount;
-        Mathf.Clamp(totalAgentLifePoints, 0, 3);
+        if(totalAgentLifePoints <= 0)
+        {
+            agentsManager.KillAgent(this);
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        player = other.GetComponent<B_CharacterController>();
-        if (isItBird == true)
-        {
-            player.TakeDamage(1);
-        }
-        if (isItHumanoid == true)
-        {
-            if (player.totalCoinsCollected > 0)
-            {
-                player.EarnMoney(-1);
-            }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    player = other.GetComponent<B_CharacterController>();
+    //    if (isItBird == true)
+    //    {
+    //        player.TakeDamage(1);
+    //    }
+    //    if (isItHumanoid == true)
+    //    {
+    //        if (player.totalCoinsCollected > 0)
+    //        {
+    //            player.EarnMoney(-1);
+    //        }
 
-        }
+    //    }
 
-    }
+    //}
 
 
     //void OnCollisionEnter(Collision collision)

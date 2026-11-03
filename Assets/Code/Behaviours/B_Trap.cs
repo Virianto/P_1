@@ -36,12 +36,12 @@ public class B_Trap : MonoBehaviour
         
         
         //Invocar una subrutina facilitando en parámetros el componente del player
-        if (other.GetComponent<B_CharacterController>())
+        if (other.GetComponent<B_CharacterController>() != null)
         {
             playerIsInsideArea = true;
             StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
         }
-        if (other.GetComponent<C_Agent>())
+        if (other.GetComponent<C_Agent>() != null)
         {
             agentIsInsideArea = true;
             StartCoroutine(HurtAgent(other.GetComponent<C_Agent>()));
@@ -54,8 +54,14 @@ public class B_Trap : MonoBehaviour
     //Detectar cuándo ha salido el jugador de su área de efecto
     void OnTriggerExit(Collider other)
     {
-        playerIsInsideArea = false;
-        agentIsInsideArea = false;
+        if (other.GetComponent<B_CharacterController>() != null)
+        {
+            playerIsInsideArea = false;
+        }
+        if (other.GetComponent<C_Agent>() != null)
+        {
+            agentIsInsideArea = false;
+        }
        
     }
 
@@ -82,7 +88,7 @@ public class B_Trap : MonoBehaviour
 
     IEnumerator HurtAgent(C_Agent agent)
     {
-        agent.TakeDamage(trapDamage);
+        agent.ModifyAgentLifePoints(trapDamage);
         trapAudioSource.PlayOneShot(trapAudioSource.clip);
         trapPatricles.Play();
 
