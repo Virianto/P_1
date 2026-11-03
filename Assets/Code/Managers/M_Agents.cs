@@ -3,10 +3,8 @@ using System.Collections;
 
 /// <summary>
 /// * Crea instancias del prefab de un agente y las ubica
-/// * Los agentes deben tener vida y poder perderla si pisan una trampa
-/// * Al morir, cada agente debe notificarlo para que se emitan partículas y sonido/// 
-/// * Cuando muere un agente, se crea inmedietamente otro 
-/// * En el INIT de cada agente se debe indicar su destino
+/// * Al morir, cada agente debe notificarlo para que se emitan partículas y sonido
+/// * Cuando muere un agente, se crea inmedietamente otro
 /// </summary>
 public class M_Agents : MonoBehaviour
 {
@@ -17,6 +15,9 @@ public class M_Agents : MonoBehaviour
 
     [SerializeField]
     Transform agentsSpawnPoint;
+
+    [SerializeField]
+    Transform humanoidAgentsDestination;
 
     [SerializeField]
     [Range(0.1f, 4)]
@@ -36,8 +37,17 @@ public class M_Agents : MonoBehaviour
     IEnumerator GenerateNewAgentPrefab()
     {
         // Genero el prefab
+        C_Agent newAgent = Instantiate(agentPrefab).GetComponent<C_Agent>();
+
+        //Vinculo prefab y manager. E inicializo el nuevo objeto
+        newAgent.InitializeNewAgent(
+            this, 
+            agentsSpawnPoint.position, 
+            humanoidAgentsDestination.position
+            );
         
         yield return new WaitForSeconds(timeBetweenAgents);
+
         // Llamo de nuevo a la rutina para que se repita infinitas veces
         StartCoroutine(GenerateNewAgentPrefab());        
     }

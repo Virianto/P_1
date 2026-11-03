@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 5981232278094458479}
   - component: {fileID: 303063865440368362}
   - component: {fileID: 347524368901990833}
-  - component: {fileID: 6787812836176853445}
+  - component: {fileID: 1642667568275647903}
   m_Layer: 0
   m_Name: HumanoidAgent
   m_TagString: Untagged
@@ -229,7 +229,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6787812836176853445
+--- !u!114 &1642667568275647903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,8 +238,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9132159312975817585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9746c02fe0773f042b912684a1919e17, type: 3}
+  m_Script: {fileID: 11500000, guid: 93b0a9facd4da9d4b99b5383f5590e08, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::B_Agent
-  agentType: 0
-  player: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::C_Agent
