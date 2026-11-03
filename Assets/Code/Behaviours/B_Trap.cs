@@ -18,7 +18,6 @@ public class B_Trap : MonoBehaviour
 
     #endregion
     #region METHODS
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<B_CharacterController>() !=null)
@@ -26,9 +25,10 @@ public class B_Trap : MonoBehaviour
             playerIsInsideArea = true;
             StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
         }
-        if (other.GetComponent<B_CharacterController>() != null)
+        if (other.GetComponent<B_Agent>() != null)
         {
-
+            // Herir al agente
+            StartCoroutine(HurtAgent(other.GetComponent<B_Agent>()));
         }
     }
 
@@ -48,9 +48,13 @@ public class B_Trap : MonoBehaviour
             StartCoroutine(HurtPlayer(player));
         }
     }
-    //IEnumerator HurtAgent(B_CharacterController player)
-    //{
-    //    agent.ModifyAgentLifePoints()
-    //}
+    IEnumerator HurtAgent(B_Agent agent)
+    {
+        agent.ModifyAgentLifePoints(-trapDamage);
+
+        yield return new WaitForSeconds(trapFrequencyDamage);
+
+        StartCoroutine(HurtAgent(agent));
+    }
     #endregion
 }

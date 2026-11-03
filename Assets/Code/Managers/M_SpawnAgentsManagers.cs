@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static B_Agent;
 
 /// <summary>
 /// Aqui va el enunciado del proposito de esta clase
@@ -10,6 +11,9 @@ public class M_SpawnAgentsManagers : MonoBehaviour
     #region ATTRIBUTES
     [SerializeField]
     B_CharacterController player;
+
+    [SerializeField]
+    ParticleSystem agentBlood_PS;
 
     [SerializeField]
     GameObject humanoidAgentPrefab;
@@ -68,6 +72,36 @@ public class M_SpawnAgentsManagers : MonoBehaviour
 
         //Vector3 spawnPositionDiggerAgent = GenerateRandomPosition();
         //GenerateDiggerAgentPrefab(spawnPositionDiggerAgent);
+    }
+
+    public void FinishAgentLifeCycle(B_Agent agentToKill)
+    {
+        // Coger la posición del agente
+        Vector3 agentPosition = agentToKill.transform.position;
+
+        // Lanzar partículas en dicha posición
+        agentBlood_PS.transform.position = agentPosition;
+        agentBlood_PS.Emit(30);
+
+        // Reproducir un sonido de muerte
+
+        // Destruyo al agente
+        allInstantiatedAgentsLists.Remove(agentToKill);
+        Destroy(agentToKill.gameObject);
+
+        // Generar un nuevo agente para reemplazar esta périda        
+        if (agentToKill.GetComponent<AgentType>() == AgentType.Humanoid)
+        {
+            GenerateHumanoidAgentPrefab(GenerateRandomPosition());
+        }
+        if (agentToKill.GetComponent<AgentType>() == AgentType.Bird)
+        {
+            GenerateFlyingAgentPrefab(GenerateRandomPosition());
+        }
+        if (agentToKill.GetComponent<AgentType>() == AgentType.Digger)
+        {
+            GenerateDiggerAgentPrefab(GenerateRandomPosition());
+        }
     }
 
     #endregion

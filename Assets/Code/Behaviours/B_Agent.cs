@@ -56,22 +56,13 @@ public class B_Agent : MonoBehaviour
         myManager = manager;
         transform.position = newPosition;
         playerPosition = player.transform.position;
-        
     }
 
     private void Update()
     {
         if (agentType == AgentType.Humanoid || agentType == AgentType.Bird)
         {
-            if (myAgent.isOnNavMesh)
-            {
                 myAgent.SetDestination(playerPosition);
-                Debug.Log("estoy dentro del area");
-            }
-            else
-            {
-                Debug.Log("No estoy dentro del area");
-            }
         }
     }
 
@@ -104,8 +95,6 @@ public class B_Agent : MonoBehaviour
         }
     }
 
-    
-
     IEnumerator HurtPlayer(B_CharacterController player)
     {
         player.TakeDamage(trapDamage);
@@ -133,7 +122,14 @@ public class B_Agent : MonoBehaviour
 
     public void ModifyAgentLifePoints(int amount)
     {
-        
+        lifeAgents -= amount;
+
+        Debug.Log(lifeAgents);
+
+        if (lifeAgents <= 0)
+        {
+            myManager.FinishAgentLifeCycle(this);
+        }
     }
 
 }
