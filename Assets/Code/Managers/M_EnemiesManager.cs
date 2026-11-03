@@ -27,10 +27,11 @@ public class M_EnemiesManager : MonoBehaviour
 
     public B_CharacterController player;
 
-    Slider enemyLifeSlider;
-
     [SerializeField]
     ParticleSystem enemyDead_PS;
+
+    [SerializeField]
+    AudioSource enemyDead_Audio;
 
     #endregion
 
@@ -85,6 +86,9 @@ public class M_EnemiesManager : MonoBehaviour
     {
         // Detectar la posición del enemigo
         Vector3 enemyPosition = enemy.transform.position;
+
+        // Emitir un sonido de muerte del enemigo
+        enemyDead_Audio.PlayOneShot(enemyDead_Audio.clip);
 
         // Lanzar partículas en dicha posición
         enemyDead_PS.transform.position = enemyPosition;

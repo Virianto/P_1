@@ -13,7 +13,6 @@ public class C_SpawnEnemy : MonoBehaviour
 
     public int lifePointsLeft = 1;
 
-    UI_EnemyCanvas enemyCanvas;
     NavMeshAgent myEnemy;
 
     #endregion
@@ -64,21 +63,12 @@ public class C_SpawnEnemy : MonoBehaviour
         // Modificar la cantidad de vida del enemigo
         lifePointsLeft = Mathf.Clamp(lifePointsLeft - damageAmount, 0, 1);
 
-        // Informar del cambio al gameManager
-        EnemyReceivedDamage();
-
         if (lifePointsLeft <= 0)
         {
             myManager.FinishEnemyLifeCycle(this);
         }
     }
 
-    public void EnemyReceivedDamage()
-    {
-        // Informar al canvas de que debe actualizar su Slider
-        // enemyCanvas.UpdateEnemyLifeSlider(lifePointsLeft);
-    }
-   
     #endregion
 
 }

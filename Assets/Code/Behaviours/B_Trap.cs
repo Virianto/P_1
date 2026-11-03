@@ -39,7 +39,7 @@ public class B_Trap : MonoBehaviour
             StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
         }
 
-        if (other.GetComponent<B_CharacterController>() != null)
+        if (other.GetComponent<C_SpawnEnemy>() != null)
         {
             // Detectar cuándo ha entrado un enemigo en su área de efecto
             enemyIsInsideArea = true;
@@ -51,9 +51,17 @@ public class B_Trap : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        if (other.GetComponent<B_CharacterController>() != null)
+        { 
         // Detectar cuándo ha salido el jugador de su área de efecto
         playerIsInsideArea = false;
-        enemyIsInsideArea = false;
+        }
+
+        if (other.GetComponent<B_CharacterController>() != null)
+        {
+            // Detectar cuándo ha salido el enemigo de su área de efecto
+            enemyIsInsideArea = false;
+        }
     }
 
     // Declarar un método con gestión de tiempo para dañar al jugador
@@ -76,8 +84,11 @@ public class B_Trap : MonoBehaviour
 
     IEnumerator HurtEnemy(C_SpawnEnemy enemy)
     {
+        if (enemy != null)
+        {
         // Dañar al enemigo
         enemy.TakeDamage(trapDamage);
+        }
 
         yield return new WaitForSeconds(trapFrequencyDamage);
 
