@@ -45,7 +45,7 @@ public class M_PlayerInput : MonoBehaviour
             destinationPoint = hit.point;
 
             //Reubico el sistema de particulas para ver el clic de manera visual
-            destination_PS.transform.position = destinationPoint;
+            //destination_PS.transform.position = destinationPoint;
 
             //Asignar el destino a TODOS los agentes que tengo en mi lista
             for (int i = 0; i < agentsList.Count; i++) 

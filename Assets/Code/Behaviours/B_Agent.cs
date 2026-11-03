@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Timers;
 using UnityEngine;
@@ -7,13 +8,15 @@ public class B_Agent : MonoBehaviour
 {
     #region ATTRIBUTES
 
-    public M_GameManager gameManager;
+    public M_3GameManager gameManager;
+    //public M_3GameManager gameManager3;
     [SerializeField]
     [Range(0, 10)]
     int agentDamage = 1;
     [SerializeField]
     [Range(0.5f, 3)]
     float agentFreqDamage = 1;
+    public int lifePointsLeft = 10;
     NavMeshAgent myAgent;
     bool playerIsTouched = false;
 
@@ -36,11 +39,11 @@ public class B_Agent : MonoBehaviour
         //aTimer.Dispose();
     }
 
-    private void Update()
-    {
-        if (myAgent.name.ToLower().Contains("steal"))
-            myAgent.SetDestination(gameManager.player.transform.position);
-    }
+    //private void Update() comentado para ejercicio AgentGen
+    //{
+    //    if (myAgent.name.ToLower().Contains("steal"))
+    //        myAgent.SetDestination(gameManager.player.transform.position);
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -83,6 +86,48 @@ public class B_Agent : MonoBehaviour
             //Volver a llamar a esta subrutina
             StartCoroutine(HurtPlayer(player));
         }
-    #endregion
     }
+
+    public IEnumerator HurtAgent(B_Agent agent)
+    {
+        //Dañar al agent
+        TakeDamage(agentDamage);
+
+        yield return new WaitForSeconds(agentFreqDamage);
+
+        //Comprobar si el agent sigue estando dentro
+        if (playerIsTouched)
+        {
+            //Volver a llamar a esta subrutina
+            StartCoroutine(HurtAgent(agent));
+        }
+    }
+
+    public void InitializeHuman(M_3GameManager m_3GameManager, Vector3 newRandomPosition)
+    {
+        gameManager = m_3GameManager;
+        transform.position = newRandomPosition;
+
+        //transform.localScale = new Vector3(3, transform.localScale.y * 3, 3);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (lifePointsLeft > 0)
+        {
+            lifePointsLeft -= damage;
+            Mathf.Clamp(lifePointsLeft, 0, 10); //Para que no nos sume más del valor max de vida
+                                                //ni quite menos del min
+                                                //lifePointsLeft = Mathf.Clamp(lifePointsLeft - damage, 0, 20); //otra forma. Limita valores variable
+                                                //gameManager.PlayerIULife();
+            Debug.Log(lifePointsLeft);
+
+            if (lifePointsLeft == 0)
+                GetComponent<B_Agent>().gameObject.SetActive(false);
+                //gameManager.gameOverCanvas.gameObject.SetActive(true);
+        }
+        //else
+        //    gameManager.gameOverCanvas.gameObject.SetActive(true);
+    }
+    #endregion
 }

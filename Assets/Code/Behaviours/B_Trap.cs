@@ -21,14 +21,21 @@ public class B_Trap : MonoBehaviour
 
     #region METHODS
 
-    void OnTriggerEnter(Collider other)
-    {
-        // Detectar cuándo ha entrado el jugador en su área de efecto
-        playerIsInsideArea = true;
-        Debug.Log("El jugador ha entrado");
+    //void OnTriggerEnter(Collider other) Comentado onTrigger de player
+    //{
+    //    // Detectar cuándo ha entrado el jugador en su área de efecto
+    //    playerIsInsideArea = true;
+    //    Debug.Log("El jugador ha entrado");
 
-        //Invocar una subrutina, facilitando en parámetros el componente del player
-        StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+    //    //Invocar una subrutina, facilitando en parámetros el componente del player
+    //    StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        B_Agent agent = other.GetComponent<B_Agent>();
+
+        playerIsInsideArea = true;
+        StartCoroutine(agent.HurtAgent(agent));
     }
 
     void OnTriggerExit(Collider other)

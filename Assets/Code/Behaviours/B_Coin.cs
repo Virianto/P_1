@@ -57,6 +57,7 @@ public class B_Coin : MonoBehaviour
             GetComponent<Collider>().enabled = false;
             // Desactivar el hijo para que el jugador deje de ver la moneda
             GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
+            //gameManager.DisableCoin(GetComponent<B_Coin>().gameObject);
         }
 
         // CASO 2: MONEDAS AZULES
