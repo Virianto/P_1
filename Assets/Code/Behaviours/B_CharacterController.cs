@@ -9,7 +9,7 @@ public class B_CharacterController : MonoBehaviour
     public M_GameManager gameManager;
 
     [SerializeField]
-    [Range(0, 10)]
+    [Range(0, 60)]
     float playerSpeed = 1;
 
     [SerializeField]

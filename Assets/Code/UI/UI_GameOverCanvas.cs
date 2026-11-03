@@ -29,9 +29,7 @@ public class UI_GameOverCanvas : MonoBehaviour
 
     void Awake()
     {
-        // Inicializar el texto que se muestra por pantalla cada vez que inicio el nivel
-        coinsCounterText.text = "00";
-        chronoText.text = "00:00:00";
+        
     }
 
     void Update()

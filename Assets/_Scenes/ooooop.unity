@@ -1346,6 +1346,7 @@ Transform:
   - {fileID: 374898369}
   - {fileID: 1061640845}
   - {fileID: 681927595}
+  - {fileID: 1852577524}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229847008
@@ -19798,7 +19799,6 @@ Transform:
   m_LocalScale: {x: 60, y: 1, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1852577524}
   - {fileID: 466675246}
   - {fileID: 1251238074}
   - {fileID: 814482086}
@@ -42033,11 +42033,11 @@ Transform:
   m_GameObject: {fileID: 1852577523}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.014583334, y: 47, z: 5.2375007}
-  m_LocalScale: {x: 9.995879, y: 90.50482, z: 0.53340006}
+  m_LocalPosition: {x: 7.875, y: 38, z: 317.50003}
+  m_LocalScale: {x: 599.75275, y: 90.50482, z: 32.004005}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 949099258}
+  m_Father: {fileID: 214256096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1852577525
 BoxCollider:
@@ -52640,6 +52640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_GameOverCanvas
   gameManager: {fileID: 671991606}
   coinsCounterText: {fileID: 924423405}
+  chronoText: {fileID: 0}
   playerLifeSlider: {fileID: 923468944}
   trapControlButton: {fileID: 42081547}
 --- !u!224 &2145870370
