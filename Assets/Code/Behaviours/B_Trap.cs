@@ -16,6 +16,7 @@ public class B_Trap : MonoBehaviour
     float trapFrequencyDamage = 1;
     
     bool playerIsInsideArea = false;
+    bool agentIsInsideArea = false;
 
     [SerializeField]
     AudioSource trapAudioSource;
@@ -23,8 +24,7 @@ public class B_Trap : MonoBehaviour
     [SerializeField]
     ParticleSystem trapPatricles;
 
-    [SerializeField]
-    Collider playerCollider;
+   
 
     #endregion
 
@@ -33,14 +33,20 @@ public class B_Trap : MonoBehaviour
     //Detectar cuándo ha entrado el jugador en su área de efecto
     private void OnTriggerEnter(Collider other)
     {
-        playerIsInsideArea = true;
+        
         
         //Invocar una subrutina facilitando en parámetros el componente del player
-        if (playerCollider == other)
+        if (other.GetComponent<B_CharacterController>())
         {
+            playerIsInsideArea = true;
             StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
         }
-        
+        if (other.GetComponent<C_Agent>())
+        {
+            agentIsInsideArea = true;
+            StartCoroutine(HurtAgent(other.GetComponent<C_Agent>()));
+        }
+
     }
     //Va a dañar al jugador mientras esté dentro
 
@@ -49,6 +55,7 @@ public class B_Trap : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         playerIsInsideArea = false;
+        agentIsInsideArea = false;
        
     }
 
@@ -71,6 +78,20 @@ public class B_Trap : MonoBehaviour
         
 
         //Volver a llma esta subtrama
+    }
+
+    IEnumerator HurtAgent(C_Agent agent)
+    {
+        agent.TakeDamage(trapDamage);
+        trapAudioSource.PlayOneShot(trapAudioSource.clip);
+        trapPatricles.Play();
+
+        yield return new WaitForSeconds(trapFrequencyDamage);
+
+        if (agentIsInsideArea)
+        {
+            StartCoroutine(HurtAgent(agent));
+        }
     }
     #endregion
 }

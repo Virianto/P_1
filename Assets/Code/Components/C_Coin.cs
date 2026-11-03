@@ -12,7 +12,7 @@ public class C_Coin : MonoBehaviour
     M_CoinSpawner myManager;
     float lifeTime = 10;
     public bool isSuperCoin=false;
-
+ 
 
     #endregion
 
