@@ -1,88 +1,78 @@
-
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
+
+/// <summary>
+/// Tiene dos puntos en escena y se mueve entre ellos de forma cíclica
+/// </summary>
 public class B_DynamicObstacle : MonoBehaviour
 {
-    [Header("Configuración del movimiento")]
+    #region ATTRIBUTES
 
     [Tooltip("Distancia mínima para cambiar al siguiente punto de ruta")]
     [SerializeField]
-    [Range(0.1f, 2f)]
-    private float switchDistance = 0.5f;
-
-    [Tooltip("Velocidad de movimiento")]
-    [SerializeField]
-    private float speed = 2f;
-
-    [Header("Puntos de ruta")]
+    [Range(0.1f, 2)]
+    float switchDistance = 0.5f;
 
     [SerializeField]
-    private List<Transform> routePointsList = new List<Transform>();
+    [Range(1, 10)]
+    float speed = 2;
 
-    private Transform currentDestinyPoint;
-    private int currentDestinyIndex = 0;
+    [SerializeField]
+    List<Transform> routePointsList = new();
+
+    public bool shouldMove = false;
+
+    Transform currentDestinyPoint;
+
+    int currentDestinyIndex = 0;
+
+    #endregion
 
     #region METHODS
 
     void Awake()
     {
-        // Comprobar que hay puntos de ruta asignados
-        if (routePointsList == null || routePointsList.Count == 0)
-        {
-            Debug.LogWarning("No hay puntos de ruta asignados.", this);
-            enabled = false;
-            return;
-        }
-
-        // Comprobar que el primer punto no sea nulo
-        if (routePointsList[0] == null)
-        {
-            Debug.LogWarning("El primer punto de ruta no está asignado.", this);
-            enabled = false;
-            return;
-        }
-
         currentDestinyPoint = routePointsList[currentDestinyIndex];
     }
 
     void Update()
     {
-        if (currentDestinyPoint == null)
-            return;
-
-        // Calcular la distancia al destino actual
-        float currentDistance = Vector3.Distance(
-            transform.position,
-            currentDestinyPoint.position
-        );
-
-        if (currentDistance <= switchDistance)
+        if (shouldMove)
         {
-            // Pasar al siguiente punto de la lista
-            currentDestinyIndex =
-                (currentDestinyIndex + 1) % routePointsList.Count;
+            // Necesito saber si estoy lo bastante cerca o no de mi punto de destino
+            float currentDistance = Vector3.Distance
+                (transform.position, currentDestinyPoint.position);
 
-            currentDestinyPoint = routePointsList[currentDestinyIndex];
-
-            // Evitar errores si algún punto no está asignado
-            if (currentDestinyPoint == null)
+            if (currentDistance <= switchDistance)
             {
-                Debug.LogWarning("Hay un punto de ruta sin asignar.", this);
-                enabled = false;
-            }
-        }
-        else
-        {
-            // Mover suavemente el objeto hacia el destino
-            Vector3 middlePoint = Vector3.Lerp(
-                transform.position,
-                currentDestinyPoint.position,
-                Time.deltaTime * speed
-            );
+                // * Cambiar el valor del índice
 
-            transform.position = middlePoint;
-        }
+                currentDestinyIndex = (currentDestinyIndex + 1) % routePointsList.Count;
+                // Primer caso: 0 = (0 + 1) % 2 -> 1 / 2 me da de resto 1
+                // Segundo caso: 1 = (1 + 1) % 2 -> 2 / 2 me da de resto 0
+
+                // * Asignar de nuevo el destino usando el nuevo índice
+                currentDestinyPoint = routePointsList[currentDestinyIndex];
+            }
+            else
+            {
+                Vector3 middlePoint = Vector3.Lerp
+                (transform.position, currentDestinyPoint.position, Time.deltaTime * speed);
+
+                transform.position = middlePoint;
+            }
+        }                  
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Han chocado");
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Han atravesado");
     }
 
     #endregion
