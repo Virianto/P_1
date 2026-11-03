@@ -16,7 +16,7 @@ public class B_Trap : MonoBehaviour
     float trapFrequencyDamage = 1;
 
     bool playerIsInsideArea = false;
-
+    bool agentInsideTrap = false;
     #endregion
 
     #region METHODS
@@ -24,17 +24,26 @@ public class B_Trap : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Detectar cuándo ha entrado el jugador en su área de efecto
-        playerIsInsideArea = true;
-
+        if (other.CompareTag("Enemy"))
+        {
+            agentInsideTrap = true;
+        }
+        if (other.CompareTag("Player"))
+        {
+            playerIsInsideArea = true;
+        }
+        
         // Invocar una subrutina facilitando en parámetros el componente del player
         StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
-        
+        StartCoroutine(HurtAgent(other.GetComponent<NewHurtAgent>()));
+
     }
 
     void OnTriggerExit(Collider other)
     {
         // Detectar cuándo ha salido el jugador de su área de efecto
         playerIsInsideArea = false;
+        agentInsideTrap = false;
     }
     
     // Declarar un método con gestión de tiempo para dañar al jugador
@@ -52,7 +61,21 @@ public class B_Trap : MonoBehaviour
             StartCoroutine(HurtPlayer(player));
         }
     }
-    
+    IEnumerator HurtAgent(NewHurtAgent Agent)
+    {
+        // Dañar al jugador
+        Agent.TakeDamage(trapDamage);
+
+        yield return new WaitForSeconds(trapFrequencyDamage);
+
+        // Comprobar si el jugador sigue estando dentro
+        if (agentInsideTrap)
+        {
+            // Volver a llamar a esta subrutina
+            StartCoroutine(HurtAgent(Agent));
+        }
+    }
+
 
 
     #endregion

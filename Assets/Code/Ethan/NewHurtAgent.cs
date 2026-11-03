@@ -5,36 +5,52 @@ using UnityEngine.AI;
 
 public class NewHurtAgent : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject playerGO;
     NavMeshAgent myAgent;
-    Vector3 destinationPoint = Vector3.zero;
+    AgentManager agentManager;
     bool playerIsInsideArea = false;
 
     int agentDamage = 1;
-   
+    public int lifePointsLeft = 3;
+
     float trapFrequencyDamage = 1;
 
     void Awake()
     {
         myAgent = GetComponent<NavMeshAgent>();
     }
-    private void Update()
+    void Update()
     {
-        myAgent.SetDestination(player.transform.position);
+        myAgent.SetDestination(playerGO.transform.position);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void InitializeHurtAgent(AgentManager manager, Vector3 position, GameObject player)
+    {
+        agentManager = manager;
+        transform.position = position;
+        playerGO = player;
+    }
+
+    void OnTriggerEnter(Collider other)
     {
         // Detectar cuándo ha entrado el jugador en su área de efecto
-        playerIsInsideArea = true;
+        if (other.CompareTag("Player"))
+        {
+            playerIsInsideArea = true;
+            // Invocar una subrutina facilitando en parámetros el componente del player
+            StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        }
 
-        // Invocar una subrutina facilitando en parámetros el componente del player
-        StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+       
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         playerIsInsideArea = false;
+    }
+    public void TakeDamage(int damageAmount)
+    {
+        lifePointsLeft = Mathf.Clamp((lifePointsLeft - damageAmount), 0, 20);
     }
 
 

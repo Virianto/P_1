@@ -11,7 +11,7 @@ public class M_EthanCoinManager : MonoBehaviour
 
     B_Coin coinSmall;
     B_BigCoin coinBig;
-    private void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
         {

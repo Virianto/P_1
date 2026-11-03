@@ -14,16 +14,20 @@ public class B_Coin : MonoBehaviour
     GameObject coinBody;
     public bool isCoincollected;
 
-    [SerializeField] M_EthanCoinManager coinManager;
+    M_EthanCoinManager coinManager;
 
     #endregion
 
     #region METHODS
+    public void Start()
+    {
+        coinManager.GetComponent<M_EthanCoinManager>();
+    }
     void OnTriggerEnter(Collider other)
     {
         SmallCoinCollected();
     }
-    public void SmallCoinCollected()
+    void SmallCoinCollected()
     {
         
         // Reproducir sonido de recolección
