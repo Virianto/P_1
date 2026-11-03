@@ -67,7 +67,10 @@ public class M_BallsSpawn : MonoBehaviour
         // Detectar una tecla DIFERENTE para generar una oleada de esferas aleatorias
         if (Input.GetKeyDown(spawnRandomKey)) 
         {
-            Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
+            Vector3 newRandomPosition = new Vector3(
+                Random.Range(-horizontalXRange, horizontalXRange),
+                5, 
+                Random.Range(-horizontalZRange, horizontalZRange));
             GenerateNewPrefab(newRandomPosition);
         }
         // Detecta OTRA tecla para generar esferas de forma cíclica/secuencial
