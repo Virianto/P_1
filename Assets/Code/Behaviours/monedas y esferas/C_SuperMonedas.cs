@@ -11,6 +11,9 @@ public class C_SuperMonedas : MonoBehaviour
     M_ManagerMonedas myManager;
 
     float lifeTime = 1;
+
+    [SerializeField]
+    GameObject coinBody;
     #endregion
 
 
@@ -22,7 +25,7 @@ public class C_SuperMonedas : MonoBehaviour
     /// <param name="manager">Referencia al manager que creó esta instancia</param>
     /// <param name="newPosition">Nueva posición en la que ubicar el objeto</param>   
 
-    public void InitializeBall(M_ManagerMonedas manager, Vector3 newPosition, float lifeTime)
+    public void InitializeSuperMonedas(M_ManagerMonedas manager, Vector3 newPosition, float lifeTime)
     {
         myManager = manager;
         transform.position = newPosition;
@@ -40,7 +43,11 @@ public class C_SuperMonedas : MonoBehaviour
 
         myManager.FinishSuperMonedaLifeCycle(this);
     }
-
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<B_CharacterController>() != null) ;
+            
+    }
 
     #endregion
 }

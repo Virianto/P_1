@@ -7,7 +7,7 @@ using System.Collections.Generic;
 ///     X Introducir aleatoriedad en posición de origen y en cantidad de esferas
 ///     X Añadir físicas en el momento de generar cada esfera
 ///     X Condicionar la generación a input o a parámetros específicos
-///     * Gestionar el ciclo de vida de las esferas generadas
+///     X Gestionar el ciclo de vida de las esferas generadas
 /// </summary>
 public class M_BallsSpawn : MonoBehaviour
 {
@@ -67,7 +67,10 @@ public class M_BallsSpawn : MonoBehaviour
         // Detectar una tecla DIFERENTE para generar una oleada de esferas aleatorias
         if (Input.GetKeyDown(spawnRandomKey)) 
         {
-            Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
+            Vector3 newRandomPosition = new Vector3(
+                Random.Range(-horizontalXRange, horizontalXRange),
+                5, 
+                Random.Range(-horizontalZRange, horizontalZRange));
             GenerateNewPrefab(newRandomPosition);
         }
         // Detecta OTRA tecla para generar esferas de forma cíclica/secuencial
@@ -87,13 +90,24 @@ public class M_BallsSpawn : MonoBehaviour
         C_BouncingBall newBall = Instantiate(ballPrefab).GetComponent<C_BouncingBall>();
 
         allInstantiatedBallsList.Add(newBall);
-        newBall.InitializeBall(this, newPosition,Random.value * 5);
-    }
-public void FinishBallLifeCycle(C_BouncingBall Ball)
-{
-        allInstantiatedBallsList.Remove(Ball);
 
-        Destroy(Ball.gameObject);
-}
+        newBall.InitializeBall(this, newPosition,Random.value * 5);
+
+        newBall.InitializeBall(this, newPosition, Random.value * 5);
+    }
+
+    /// <summary>
+    /// Ejecuta las funciones necesarias para "finiquitar" una bola
+    /// </summary>
+    /// <param name="ball">Bola que ha solicitado su fin</param>
+    public void FinishBallLifeCycle(C_BouncingBall ball)
+    {
+        // Elimino la bola de mi lista
+        allInstantiatedBallsList.Remove(ball);
+
+        // Destruyo el objeto
+        Destroy(ball.gameObject);
+
+    }
     #endregion
 }

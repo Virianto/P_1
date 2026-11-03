@@ -6,7 +6,6 @@ using UnityEngine;
 /// </summary>
 public class M_ManagerMonedas : MonoBehaviour
 {
-    #region ATTRIBUTES
 
     [Header("VALORES EDITABLES")]
 
@@ -45,8 +44,10 @@ public class M_ManagerMonedas : MonoBehaviour
     List<Transform> allSequencePointsList = new();
 
     List<C_Monedas> allInstantiatedMonedaList = new();
-    #endregion
+
     List<C_SuperMonedas> allInstantiatedSuperMonedaList = new();
+
+
 
 
     #region METHODS 
@@ -87,7 +88,7 @@ public class M_ManagerMonedas : MonoBehaviour
         C_SuperMonedas newSuperMoneda = Instantiate(SuperMonedaPrefab).GetComponent<C_SuperMonedas>();
 
         allInstantiatedSuperMonedaList.Add(newSuperMoneda);
-        newSuperMoneda.InitializeBall(this, newPosition, Random.value * 5);
+        newSuperMoneda.InitializeSuperMonedas(this, newPosition, Random.value * 5);
     }
     public void FinishMonedaLifeCycle(C_Monedas Moneda)
     {

@@ -39,7 +39,10 @@ public class C_Monedas : MonoBehaviour
 
         myManager.FinishMonedaLifeCycle(this);
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
 
 
     #endregion

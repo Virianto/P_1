@@ -6,7 +6,7 @@ public class B_CharacterController : MonoBehaviour
 
     #region ATTRIBUTES
 
-    public M_GameManager gameManager;
+    public M_ManagerMonedas ManagerMonedas;
 
     [SerializeField]
     [Range(0, 10)]
@@ -74,6 +74,9 @@ public class B_CharacterController : MonoBehaviour
 
         Supermoneda SuperMonedaDetected = other.GetComponentInParent<Supermoneda>();
 
+        C_SuperMonedas SuperMoneyDetected = other.GetComponent<C_SuperMonedas>();
+
+
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
@@ -98,11 +101,12 @@ public class B_CharacterController : MonoBehaviour
 
     }
 
+
     public void EarnMoney(int moneyAmount)
     {
         // Modifico la cantidad de monedas respetando los límites marcados
         totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
-        gameManager.NewCoinCollected();
+       // ManagerMonedas.NewCoinCollected();
     }
 
     public void TakeDamage(int damageAmount)
@@ -113,7 +117,7 @@ public class B_CharacterController : MonoBehaviour
 
 
         // Informar del cambio al game Manager
-        gameManager.PlayerReceivedDamage();
+       // ManagerMonedas.PlayerReceivedDamage();
     }
 
     #endregion

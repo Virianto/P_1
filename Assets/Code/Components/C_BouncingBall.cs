@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
-/// * Va a conservar una referencia al manager que la creó
-/// * Va a modificar sus propios atributos al nacer
-/// * Va a comunicar a su manager cuándo debe desaparecer
+/// X Va a conservar una referencia al manager que la creó
+/// X Va a modificar sus propios atributos al nacer
+/// X Va a comunicar a su manager cuándo debe desaparecer
 /// </summary>
 public class C_BouncingBall : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class C_BouncingBall : MonoBehaviour
     M_BallsSpawn myManager;
 
     float lifeTime = 1;
+
+
+
     #endregion
 
     #region METHODS
@@ -39,6 +43,17 @@ public class C_BouncingBall : MonoBehaviour
     { 
         yield return new WaitForSeconds(lifeTime);
 
+
+        StartCoroutine(FinishLifeCycle());
+    }
+
+    IEnumerator FinishLifeCycle()
+    {
+        yield return new WaitForSeconds(lifeTime);
+
+        GetComponent<Renderer>().material.color = Color.black;
+
+        // Aviso a mi manager de que ha terminado mi tiempo
         myManager.FinishBallLifeCycle(this);
     }
 
