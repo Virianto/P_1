@@ -77,6 +77,17 @@ public class C_SpawnEnemy : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        C_Bomb bombDetected = other.GetComponent<C_Bomb>();
+
+        if (bombDetected != null)
+        {
+            // Restar 5 al contador de vida
+            lifePointsLeft -= 5;
+        }
+    }
+
     #endregion
 
 }

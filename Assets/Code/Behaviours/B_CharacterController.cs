@@ -30,7 +30,6 @@ public class B_CharacterController : MonoBehaviour
 
 
 
-
     #region METHODS
 
     void Update()

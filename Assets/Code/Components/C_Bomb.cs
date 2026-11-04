@@ -21,6 +21,7 @@ public class C_Bomb : MonoBehaviour
 
     [SerializeField]
     GameObject bombBody;
+
     public int heartLifeUp = -5;
 
     #endregion

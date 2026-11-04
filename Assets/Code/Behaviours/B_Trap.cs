@@ -53,11 +53,11 @@ public class B_Trap : MonoBehaviour
     {
         if (other.GetComponent<B_CharacterController>() != null)
         { 
-        // Detectar cuándo ha salido el jugador de su área de efecto
-        playerIsInsideArea = false;
+            // Detectar cuándo ha salido el jugador de su área de efecto
+            playerIsInsideArea = false;
         }
 
-        if (other.GetComponent<B_CharacterController>() != null)
+        if (other.GetComponent<C_SpawnEnemy>() != null)
         {
             // Detectar cuándo ha salido el enemigo de su área de efecto
             enemyIsInsideArea = false;
