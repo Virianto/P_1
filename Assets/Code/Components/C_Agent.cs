@@ -1,7 +1,6 @@
-
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 /// <summary>
 /// Esta clase se encarga de generar un tipo de agente con una vida determinada
@@ -11,17 +10,22 @@ public class C_Agent : MonoBehaviour
 
     #region ATTRIBUTES
 
+    [SerializeField]
+    Image lifeBarImage;
+
     public bool isItHumanoid = false;
 
     public bool isItBird = false;
 
     public bool isItMole = false;
 
-    //public B_CharacterController player;
-    public M_AgentsManager agentsManager;
-    public B_CharacterController player;
-    public int totalAgentLifePoints = 3;
+    M_AgentsManager agentsManager;
+    B_CharacterController player;
     NavMeshAgent myAgent;
+
+    int currentLifePoints = 3;
+    int maxLifePoints = 3;
+    
 
 
 
@@ -57,8 +61,12 @@ public class C_Agent : MonoBehaviour
     public void ModifyAgentLifePoints(int damageAmount)
     {
         //Modificar la cantidad de vida al jugador
-        totalAgentLifePoints -= damageAmount;
-        if(totalAgentLifePoints <= 0)
+        currentLifePoints -= damageAmount;
+
+        float newFillAmount = (float)currentLifePoints / maxLifePoints;
+        lifeBarImage.fillAmount = newFillAmount;
+        
+        if(currentLifePoints <= 0)
         {
             agentsManager.KillAgent(this);
         }
@@ -83,22 +91,21 @@ public class C_Agent : MonoBehaviour
     //}
 
 
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    player = collision.GetContact();
-    //    if (isItBird == true)
-    //    {
-    //        player.TakeDamage(1);
-    //    }
-    //    if (isItHumanoid == true)
-    //    {
-    //        if (player.totalCoinsCollected > 0)
-    //        {
-    //            player.EarnMoney(-1);
-    //        }
+    void OnCollisionEnter(Collision other)
+    {
+        if (isItBird == true)
+        {
+            player.TakeDamage(1);
+        }
+        if (isItHumanoid == true)
+        {
+            if (player.totalCoinsCollected > 0)
+            {
+                player.EarnMoney(-1);
+            }
 
-    //    }
-    //}
+        }
+    }
 
 
     #endregion

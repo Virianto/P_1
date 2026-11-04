@@ -109,6 +109,7 @@ public class M_AgentsManager : MonoBehaviour
 
     public void KillAgent(C_Agent agent)
     {
+
         if (agent.isItHumanoid == true)
         {
             allInstantiatedHumanoidAgents.Remove(agent);
