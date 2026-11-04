@@ -10,11 +10,15 @@ public class C_Agent : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    [SerializeField]
+    Image lifeBarImage;
+
     // NECESITO UNA REFERENCIA AL MANAGER
     M_Agents myManager;
-    [SerializeField] Image lifeBarImage;
+
     NavMeshAgent myNavMeshAgent;
-    int maxlifePoints = 10;
+
+    int maxLifePoints = 10;
     int currentLifePoints = 10;
 
     #endregion
@@ -41,9 +45,9 @@ public class C_Agent : MonoBehaviour
         // Modifico los puntos de vida según la cantidad que indica el parámetro
         currentLifePoints += amount;
 
-        float newFillAmount = (float)currentLifePoints / maxlifePoints;
-        lifeBarImage.fillAmount = newFillAmount;
+        float newFillAmount = (float)(currentLifePoints / maxLifePoints);
 
+        lifeBarImage.fillAmount = newFillAmount;
 
         if (currentLifePoints <= 0) 
         {
