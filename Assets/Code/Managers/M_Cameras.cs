@@ -24,7 +24,22 @@ public class M_Cameras : MonoBehaviour
     KeyCode thirdCameraKey = KeyCode.Alpha2;
 
 
-    int currentActiveCameraIndex = 0;
+    int _currentActiveCameraIndex = 0;
+
+    public int CurrentActiveCameraIndex
+    {
+        // Cómo se comporta la lectura
+        get { return _currentActiveCameraIndex; }
+
+        //Cómo se comporta la escritura (cambios de la variable)
+        set { 
+            // Modifico el valor demi variable privada
+            _currentActiveCameraIndex = value; 
+        
+            // Utilizo el nuevo valor de forma automática
+            SwitchToCinemachineCamera();
+        }
+    }
 
     #endregion
 
@@ -36,28 +51,28 @@ public class M_Cameras : MonoBehaviour
     {
         if (Input.GetKeyDown(firstCameraKey))
         {
-            SwitchToCinemachineCamera(0);
+            CurrentActiveCameraIndex = 0;
         }
 
         if (Input.GetKeyDown(secondCameraKey))
         {
-            SwitchToCinemachineCamera(1);
+            CurrentActiveCameraIndex = 1;
         }
 
         if (Input.GetKeyDown(thirdCameraKey))
         {
-            SwitchToCinemachineCamera(2);
+            CurrentActiveCameraIndex = 2;
         }
     }
 
-    void SwitchToCinemachineCamera(int newIndex)
+    void SwitchToCinemachineCamera()
     {
         //Recorrer la lista entera de cinemachine cameras
 
         for (int a = 0; a < allVirtualCamerasList.Count; a++) 
         {
             
-            if(a == newIndex)
+            if(a == CurrentActiveCameraIndex)
             {
                 //Para cada cámara, si es la del índice que quiero le cambio la prioiridad a 1
                 allVirtualCamerasList[a].Priority = 1;
