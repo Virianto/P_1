@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 /// <summary>
 /// Aqui va el enunciado del proposito de esta clase
@@ -11,7 +12,11 @@ public class C_Agent : MonoBehaviour
 
     NavMeshAgent myNavMeshAgent;
 
-    public int lifePoints = 10;
+    [SerializeField]
+    Image lifeBarImage;
+
+    int maxLifePoints = 10;
+    int currentLifePoints = 10;
     #endregion
 
     /// <summary>
@@ -33,10 +38,14 @@ public class C_Agent : MonoBehaviour
     public void MofifyAgentLifePoints(int damageAmount)
     {
         //Modifico los puntos de vida del agente según la cantidad indicada
-        lifePoints = Mathf.Clamp(lifePoints -= damageAmount, 0, 10);
+        currentLifePoints = Mathf.Clamp(currentLifePoints -= damageAmount, 0, 10);
+
+        float newFillAmount = (float) currentLifePoints / maxLifePoints;
+
+        lifeBarImage.fillAmount = newFillAmount;
 
         //Compruebo si sigo vivo y si no, se lo digo al manager
-        if (lifePoints <= 0)
+        if (currentLifePoints <= 0)
         {
             //Le comunico al manager mi defunción
             myManager.FinishAgentLifeCycle(this);
