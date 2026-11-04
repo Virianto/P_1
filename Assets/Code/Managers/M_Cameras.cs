@@ -22,7 +22,12 @@ public class M_Cameras : MonoBehaviour
 
     [SerializeField]
     KeyCode thirdCameraKey = KeyCode.Alpha2;
+    
+    [SerializeField]
+    KeyCode fourthCameraKey = KeyCode.Alpha3;
 
+    [SerializeField]
+    KeyCode fifthCameraKey = KeyCode.Alpha4;
 
     int _currentActiveCameraIndex = 0;
 
@@ -62,6 +67,14 @@ public class M_Cameras : MonoBehaviour
         if (Input.GetKeyDown(thirdCameraKey))
         {
             CurrentActiveCameraIndex = 2;
+        }
+        if (Input.GetKeyDown(fourthCameraKey))
+        {
+            CurrentActiveCameraIndex = 3;
+        }
+        if (Input.GetKeyDown(fifthCameraKey))
+        {
+            CurrentActiveCameraIndex = 4;
         }
     }
 
