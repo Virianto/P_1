@@ -3,6 +3,7 @@ using System.Collections;
 using System.Timers;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class B_Agent : MonoBehaviour
 {
@@ -11,12 +12,15 @@ public class B_Agent : MonoBehaviour
     public M_3GameManager gameManager;
     //public M_3GameManager gameManager3;
     [SerializeField]
+    Image lifeBarImage;
+    [SerializeField]
     [Range(0, 10)]
     int agentDamage = 1;
     [SerializeField]
     [Range(0.5f, 3)]
     float agentFreqDamage = 1;
-    public int lifePointsLeft = 10;
+    public int currentHP = 10;
+    int maxLifePoints = 10;
     NavMeshAgent myAgent;
     bool playerIsTouched = false;
 
@@ -33,7 +37,8 @@ public class B_Agent : MonoBehaviour
         //Timer aTimer = new Timer(5000);
         //aTimer.Start();
         if (!myAgent.name.ToLower().Contains("steal"))
-            myAgent.SetDestination(new Vector3(8.5f, 5, 18));
+            myAgent.SetDestination(new
+                Vector3(1.38037574f, 2.89589525e-06f, -10.2678566f));//Vector3(8.5f, 5, 18));
 
         //aTimer.Stop();
         //aTimer.Dispose();
@@ -113,16 +118,22 @@ public class B_Agent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (lifePointsLeft > 0)
+        if (currentHP > 0)
         {
-            lifePointsLeft -= damage;
-            Mathf.Clamp(lifePointsLeft, 0, 10); //Para que no nos sume más del valor max de vida
-                                                //ni quite menos del min
-                                                //lifePointsLeft = Mathf.Clamp(lifePointsLeft - damage, 0, 20); //otra forma. Limita valores variable
-                                                //gameManager.PlayerIULife();
-            Debug.Log(lifePointsLeft);
+            float newFillAmount;
 
-            if (lifePointsLeft == 0)
+            currentHP -= damage;
+            Mathf.Clamp(currentHP, 0, 10); //Para que no nos sume más del valor max de vida
+                                           //ni quite menos del min
+                                           //lifePointsLeft = Mathf.Clamp(lifePointsLeft - damage, 0, 20); //otra forma. Limita valores variable
+                                           //gameManager.PlayerIULife();
+
+            newFillAmount = currentHP / maxLifePoints;
+            lifeBarImage.fillAmount = newFillAmount;
+
+            Debug.Log(currentHP);
+
+            if (currentHP == 0)
                 GetComponent<B_Agent>().gameObject.SetActive(false);
                 //gameManager.gameOverCanvas.gameObject.SetActive(true);
         }

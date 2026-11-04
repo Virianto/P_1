@@ -580,6 +580,17 @@ MonoBehaviour:
   spawnKey: 103
   horizontalXRange: 2
   horizontalZRange: 2
+--- !u!114 &1271211307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6171792643829801262, guid: 4882a91e2aa823d41b17fb1d79c68b4e, type: 3}
+  m_PrefabInstance: {fileID: 1637132806}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1637132806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -632,9 +643,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5405150957446952574, guid: 4882a91e2aa823d41b17fb1d79c68b4e, type: 3}
+      propertyPath: lifeBarImage
+      value: 
+      objectReference: {fileID: 1271211307}
     - target: {fileID: 6961639780405289327, guid: 4882a91e2aa823d41b17fb1d79c68b4e, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068586874020222577, guid: 4882a91e2aa823d41b17fb1d79c68b4e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000000029802322
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
