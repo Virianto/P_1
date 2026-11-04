@@ -1184,6 +1184,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db8bd9e5d0b26349adf1ee9bd36a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_Cameras
+  allVirtualCamerasList:
+  - {fileID: 1029086579}
+  - {fileID: 315803061}
+  - {fileID: 1592218986}
+  - {fileID: 74953412}
+  - {fileID: 781288209}
+  firstCameraKey: 48
+  secondCameraKey: 49
+  thirdCameraKey: 50
 --- !u!1 &650061056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,8 +1847,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9841492, z: -0.1773424, w: 0}
-  m_LocalPosition: {x: 0, y: 10.2, z: 33.3}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: 0, y: 18, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
