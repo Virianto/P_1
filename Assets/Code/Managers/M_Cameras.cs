@@ -1,15 +1,69 @@
+using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 /// <summary>
-/// Aquí la descripcion de qué hace la clase
+/// * Tener referencias a todas las cámaras virtuales (cinemachine) de la escena
+/// * Detectar input de usuario para saltar de una cámara a otra
 /// </summary>
 public class M_Cameras : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    [SerializeField]
+    List<CinemachineCamera> allVirtualCamerasList = new();
+    [SerializeField]
+    KeyCode firstCameraKey = KeyCode.Alpha0;
+    [SerializeField]
+    KeyCode secondCameraKey = KeyCode.Alpha1;
+    [SerializeField]
+    KeyCode thirdCameraKey = KeyCode.Alpha2;
+
+    int _currentActiveCameraIndex = 0;
+    public int CurrentActiveCameraIndex
+    {
+        get { return _currentActiveCameraIndex; }
+
+        set 
+        {
+            //Modifico el valor de forma automática
+            _currentActiveCameraIndex = value;
+            //Utilizo el nuevo valor de forma automática
+            switchToCinemachineCamera();
+        }
+    }
+
     #endregion
 
     #region METHODS
+
+    private void Update()
+    {
+        //Detectar input para cambiar cámara principal
+        if (Input.GetKeyDown(firstCameraKey))
+            CurrentActiveCameraIndex = 0;
+        //switchToCinemachineCamera(0);
+        if (Input.GetKeyDown(secondCameraKey))
+            CurrentActiveCameraIndex = 1;
+        //switchToCinemachineCamera(1);
+        if (Input.GetKeyDown(thirdCameraKey))
+            CurrentActiveCameraIndex = 2;
+            //switchToCinemachineCamera(2);
+    }
+
+    void switchToCinemachineCamera()
+    {
+        //Recorrer la lista de cinemachinecamera
+        //Para cada cámara, si es el índice que quiero, le cambio la prioridad a 1
+        //Para cada cámara, si no, le cambio prioridad a 5
+        for (int i = 0; i < allVirtualCamerasList.Count; i++)
+        {
+            if (i == CurrentActiveCameraIndex)
+                allVirtualCamerasList[i].Priority = 1;
+            else
+                allVirtualCamerasList[i].Priority = 0;
+        }
+    }
 
     #endregion
 }
