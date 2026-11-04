@@ -16,8 +16,7 @@ public class B_Trap : MonoBehaviour
     float trapFrequencyDamage = 1;
     
     bool playerIsInsideArea = false;
-    bool agentIsInsideArea = false;
-
+    
     [SerializeField]
     AudioSource trapAudioSource;
 
@@ -43,7 +42,7 @@ public class B_Trap : MonoBehaviour
         }
         if (other.GetComponent<C_Agent>() != null)
         {
-            agentIsInsideArea = true;
+            
             StartCoroutine(HurtAgent(other.GetComponent<C_Agent>()));
         }
 
@@ -58,11 +57,7 @@ public class B_Trap : MonoBehaviour
         {
             playerIsInsideArea = false;
         }
-        if (other.GetComponent<C_Agent>() != null)
-        {
-            agentIsInsideArea = false;
-        }
-       
+      
     }
 
     IEnumerator HurtPlayer(B_CharacterController player)
@@ -89,15 +84,13 @@ public class B_Trap : MonoBehaviour
     IEnumerator HurtAgent(C_Agent agent)
     {
         agent.ModifyAgentLifePoints(trapDamage);
-        trapAudioSource.PlayOneShot(trapAudioSource.clip);
-        trapPatricles.Play();
+        //trapAudioSource.PlayOneShot(trapAudioSource.clip);
+        //trapPatricles.Play();
 
         yield return new WaitForSeconds(trapFrequencyDamage);
 
-        if (agentIsInsideArea)
-        {
             StartCoroutine(HurtAgent(agent));
-        }
+        
     }
     #endregion
 }

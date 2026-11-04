@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.4484853, b: 0.3066038, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 1.43
 --- !u!1 &4276406076640315864
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,8 +281,8 @@ GameObject:
   - component: {fileID: 3635777255856956695}
   - component: {fileID: 1112363066138313293}
   - component: {fileID: 4580427959239625933}
-  - component: {fileID: 388320303365349257}
   - component: {fileID: 6309484226139702103}
+  - component: {fileID: 4746406150092776946}
   m_Layer: 0
   m_Name: HumanoidAgent_M
   m_TagString: Untagged
@@ -409,24 +409,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &388320303365349257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6437859827492522725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f1d0b19de07d348ab3411905e4fa41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::C_Agent
-  isItHumanoid: 1
-  isItBird: 0
-  isItMole: 0
-  agentsManager: {fileID: 0}
-  player: {fileID: 0}
-  totalAgentLifePoints: 3
 --- !u!54 &6309484226139702103
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -450,7 +432,20 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4746406150092776946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6437859827492522725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f1d0b19de07d348ab3411905e4fa41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::C_Agent
+  lifeBarImage: {fileID: 5066823143725179050}

@@ -1,129 +1,95 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
-/// Esta clase va a generar agentes que al morir emitan partículas y crear otro nuevo si muere.
-/// Dependiendo del agente tendrá un propósito u otro.
+/// * Crea instancias del prefab de un agente y las ubica
+/// * Al morir, cada agente debe notificarlo para que se emitan partículas y sonido
+/// * Cuando muere un agente, se crea inmedietamente otro
 /// </summary>
-public class M_AgentsManager : MonoBehaviour
+public class M_Agents : MonoBehaviour
 {
-
     #region ATTRIBUTES
 
-
-    [Header("VALORES EDITABLES")]
+    [SerializeField]
+    GameObject agentPrefab;
 
     [SerializeField]
-    [Range(1, 30)]
-    float horizontalXRange = 2;
+    ParticleSystem agentBlood_PS;
 
     [SerializeField]
-    [Range(1, 30)]
-    float horizontalZRange = 2;
-
-    Vector3 targetPoint = Vector3.zero;
-
-    [Header("REFERENCIAS EXTERNAS")]
+    Transform agentsSpawnPoint;
 
     [SerializeField]
-    GameObject humanoidAgent;
-    [SerializeField]
-    GameObject birdAgent;
-    [SerializeField]
-    GameObject moleAgent;
+    Transform humanoidAgentsDestination;
 
-    public B_CharacterController player;
-    
+    [SerializeField]
+    B_CharacterController player;
 
-    List<C_Agent> allInstantiatedHumanoidAgents = new();
-    List<C_Agent> allInstantiatedBirdAgents = new();
+    C_Agent agent;
+
+    [SerializeField]
+    [Range(0.1f, 4)]
+    float timeBetweenAgents = 1;
 
     #endregion
 
-
     #region METHODS
 
-    private void Start()
+    // Vamos a generar los agentes mediante rutinas, así que necesitamos 2 cosas:
+
+    void Start()
     {
-        StartCoroutine(HumanoidAgentSpawn());
-        StartCoroutine(BirdAgentSpawn());
+        StartCoroutine(GenerateNewAgentPrefab());
     }
 
-    private void Update()
+    void Update()
     {
-        MoveAgentToPlayer();
+     
     }
 
-    void GenerateNewHumanoidAgentPrefab(Vector3 newPosition)
+    IEnumerator GenerateNewAgentPrefab()
     {
+        // Genero el prefab
+        C_Agent newAgent = Instantiate(agentPrefab).GetComponent<C_Agent>();
 
-        C_Agent newAgent = Instantiate(humanoidAgent).GetComponent<C_Agent>();
-        allInstantiatedHumanoidAgents.Add(newAgent);
-        newAgent.InitializeAgent(this, newPosition);
-        
-    }
-    void GenerateNewBirdAgentPrefab(Vector3 newPosition)
-    {
-        C_Agent newAgent = Instantiate(birdAgent).GetComponent<C_Agent>();
-        allInstantiatedBirdAgents.Add(newAgent);
-        newAgent.InitializeAgent(this, newPosition);
+        //Vinculo prefab y manager. E inicializo el nuevo objeto
+        newAgent.InitializeNewAgent(
+            this,
+            agentsSpawnPoint.position,
+            humanoidAgentsDestination.position
+            );
 
-    }
+        yield return new WaitForSeconds(timeBetweenAgents);
 
-
-    IEnumerator HumanoidAgentSpawn()
-    {
-        
-        Vector3 newPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
-        GenerateNewHumanoidAgentPrefab(newPosition);
-        yield return new WaitForSeconds(50000);
-        StartCoroutine(HumanoidAgentSpawn());
-
+        // Llamo de nuevo a la rutina para que se repita infinitas veces
+        StartCoroutine(GenerateNewAgentPrefab());
     }
 
-
-    IEnumerator BirdAgentSpawn()
+    public void FinishAgentLifeCycle(C_Agent agentToKill)
     {
+        // Coger la posición del agente
+        Vector3 agentPosition = agentToKill.transform.position;
 
-        Vector3 newPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
-        GenerateNewBirdAgentPrefab(newPosition);
-        yield return new WaitForSeconds(500000);
-        StartCoroutine(BirdAgentSpawn());
+        // Lanzar partículas en dicha posición
+        agentBlood_PS.transform.position = agentPosition;
+        agentBlood_PS.Emit(30);
 
+        // Reproducir un sonido de muerte
+
+        // Destruyo al agente
+        Destroy(agentToKill.gameObject);
+
+        // Generar un nuevo agente para reemplazar esta périda        
+        C_Agent newAgent = Instantiate(agentPrefab).GetComponent<C_Agent>();
+
+        newAgent.InitializeNewAgent(
+            this,
+            agentsSpawnPoint.position,
+            humanoidAgentsDestination.position
+            );
     }
 
-    void MoveAgentToPlayer()
-    {
-        for (int a = 0; a < allInstantiatedHumanoidAgents.Count; ++a)
-        {
-            targetPoint = player.transform.position;
-            allInstantiatedHumanoidAgents[a].MoveToPlayerDestination(targetPoint);
-        }
-        for (int a = 0; a < allInstantiatedBirdAgents.Count; ++a)
-        {
-            targetPoint = player.transform.position;
-            allInstantiatedBirdAgents[a].MoveToPlayerDestination(targetPoint);
-        }
-    }
+    
 
-    public void KillAgent(C_Agent agent)
-    {
-
-        if (agent.isItHumanoid == true)
-        {
-            allInstantiatedHumanoidAgents.Remove(agent);
-            Destroy(agent.gameObject);
-            Vector3 newPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
-            GenerateNewHumanoidAgentPrefab(newPosition);
-        }
-        if (agent.isItBird == true)
-        {
-            allInstantiatedBirdAgents.Remove(agent);
-
-            Destroy(agent.gameObject);
-        }
-
-    }
     #endregion
 }

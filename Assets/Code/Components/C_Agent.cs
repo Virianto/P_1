@@ -3,110 +3,64 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 /// <summary>
-/// Esta clase se encarga de generar un tipo de agente con una vida determinada
+/// * Los agentes deben tener vida y poder perderla si pisan una trampa
+/// * En el INIT de cada agente se debe indicar su destino
 /// </summary>
 public class C_Agent : MonoBehaviour
 {
-
     #region ATTRIBUTES
 
     [SerializeField]
     Image lifeBarImage;
 
-    public bool isItHumanoid = false;
+    // NECESITO UNA REFERENCIA AL MANAGER
+    M_Agents myManager;
 
-    public bool isItBird = false;
+    NavMeshAgent myNavMeshAgent;
 
-    public bool isItMole = false;
-
-    M_AgentsManager agentsManager;
-    B_CharacterController player;
-    NavMeshAgent myAgent;
-
-    int currentLifePoints = 3;
-    int maxLifePoints = 3;
     
 
-
+    int maxLifePoints = 10;
+    int currentLifePoints = 10;
 
     #endregion
 
-
     #region METHODS
 
-    private void Awake()
+    /// <summary>
+    /// Método que se invoca desde el manager para inicializar CADA agente
+    /// </summary>
+    /// <param name="manager">Referencia que viene desde el gestor</param>
+    /// <param name="destinyPos">Ubicación para el SetDestiny()</param>
+    public void InitializeNewAgent(M_Agents manager, Vector3 origin, Vector3 destinyPos)
     {
-        
+        myNavMeshAgent = GetComponent<NavMeshAgent>();
+        transform.position = origin;
+
+        myManager = manager;
+
+        myNavMeshAgent.SetDestination(destinyPos);
     }
 
-
-    private void Update()
+    public void ModifyAgentLifePoints(int amount)
     {
-     
+        // Modifico los puntos de vida según la cantidad que indica el parámetro
+        currentLifePoints -= amount;
+
+        float newFillAmount = (float)currentLifePoints / maxLifePoints;
+
+        lifeBarImage.fillAmount = newFillAmount;
+
+        if (currentLifePoints <= 0)
+        {
+            myManager.FinishAgentLifeCycle(this);
+        }
     }
-    public void InitializeAgent(M_AgentsManager manager, Vector3 newPosition)
-    {
-
-       myAgent = GetComponent<NavMeshAgent>();
-       agentsManager = manager;
-       myAgent.SetDestination(newPosition); 
-
-    }
-
 
     public void MoveToPlayerDestination(Vector3 newDestination)
     {
-        myAgent.SetDestination(newDestination);
+        myNavMeshAgent.SetDestination(newDestination);
     }
-    public void ModifyAgentLifePoints(int damageAmount)
-    {
-        //Modificar la cantidad de vida al jugador
-        currentLifePoints -= damageAmount;
-
-        float newFillAmount = (float)currentLifePoints / maxLifePoints;
-        lifeBarImage.fillAmount = newFillAmount;
-        
-        if(currentLifePoints <= 0)
-        {
-            agentsManager.KillAgent(this);
-        }
-    }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    player = other.GetComponent<B_CharacterController>();
-    //    if (isItBird == true)
-    //    {
-    //        player.TakeDamage(1);
-    //    }
-    //    if (isItHumanoid == true)
-    //    {
-    //        if (player.totalCoinsCollected > 0)
-    //        {
-    //            player.EarnMoney(-1);
-    //        }
-
-    //    }
-
-    //}
-
-
-    void OnCollisionEnter(Collision other)
-    {
-        if (isItBird == true)
-        {
-            player.TakeDamage(1);
-        }
-        if (isItHumanoid == true)
-        {
-            if (player.totalCoinsCollected > 0)
-            {
-                player.EarnMoney(-1);
-            }
-
-        }
-    }
-
 
     #endregion
 }
