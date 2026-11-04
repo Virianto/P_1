@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 /// <summary>
 /// * Los agentes deben tener vida y poder perderla si pisan una trampa
@@ -9,12 +10,16 @@ public class C_Agent : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    [SerializeField]
+    Image lifeBarImage;
+
     // NECESITO UNA REFERENCIA AL MANAGER
     M_Agents myManager;
 
     NavMeshAgent myNavMeshAgent;
 
-    int lifePoints = 10;
+    int maxLifePoints = 10;
+    int currentLifePoints = 10;
 
     #endregion
 
@@ -38,9 +43,13 @@ public class C_Agent : MonoBehaviour
     public void ModifyAgentLifePoints(int amount)
     {
         // Modifico los puntos de vida según la cantidad que indica el parámetro
-        lifePoints += amount;
+        currentLifePoints += amount;
 
-        if (lifePoints <= 0) 
+        float newFillAmount = (float)(currentLifePoints / maxLifePoints);
+
+        lifeBarImage.fillAmount = newFillAmount;
+
+        if (currentLifePoints <= 0) 
         {
             myManager.FinishAgentLifeCycle(this);
         }

@@ -1,5 +1,10 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+
+using System.Collections;
+
+using UnityEngine.Rendering;
+
 
 /// <summary>
 /// X Va a conservar una referencia al manager que la creó
@@ -10,9 +15,11 @@ public class C_BouncingBall : MonoBehaviour
 {
     #region ATTRIBUTES
 
-    M_BallsSpawn myManager;
+    M_ballspawn myManager;
 
     float lifeTime = 1;
+
+
 
     #endregion
 
@@ -24,28 +31,41 @@ public class C_BouncingBall : MonoBehaviour
     /// <param name="manager">Referencia al manager que creó esta instancia</param>
     /// <param name="newPosition">Nueva posición en la que ubicar el objeto</param>   
     public void InitializeBall(M_BallsSpawn manager, Vector3 newPosition, float lifeTime)
-    {        
-        myManager = manager;
+    {
+        //myManager = manager;
         transform.position = newPosition;
+
 
         GetComponent<Renderer>().material.color = Random.ColorHSV();
         gameObject.name = "Bola " + Random.value.ToString();
+
+        //GetComponent<Renderer>().material.color = Random.ColorHSV;
+        gameObject.name = "Bola" + Random.value.ToString();
+
         GetComponent<Rigidbody>().AddExplosionForce(600, Vector3.zero, 150);
 
         this.lifeTime = lifeTime;
+    }}
+    //    StartCoroutine(FinishLifeCycle());
+    //}
 
-        StartCoroutine(FinishLifeCycle());
-    }
+    //IEnumerator FinishLifeCycle()
+    //{
+    //    yield return new WaitForSeconds(lifeTime);
 
-    IEnumerator FinishLifeCycle()
-    {
-        yield return new WaitForSeconds(lifeTime);
+    //    GetComponent<Renderer>().material.color = Color.black;
 
-        GetComponent<Renderer>().material.color = Color.black;
+    //    // Aviso a mi manager de que ha terminado mi tiempo
+    //    myManager.FinishBallLifeCycle(this);
 
-        // Aviso a mi manager de que ha terminado mi tiempo
-        myManager.FinishBallLifeCycle(this);
-    }
+    //}
+
+    //IEnumerator FinishLifeCycle()
+    //{
+    //    yield return new WaitForSeconds(lifeTime);
+    //}
+
+
 
     #endregion
-}
+//}
