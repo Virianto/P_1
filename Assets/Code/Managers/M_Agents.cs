@@ -14,6 +14,9 @@ public class M_Agents : MonoBehaviour
     GameObject agentPrefab;
 
     [SerializeField]
+    ParticleSystem agentBlood_PS;
+
+    [SerializeField]
     Transform agentsSpawnPoint;
 
     [SerializeField]
@@ -50,6 +53,30 @@ public class M_Agents : MonoBehaviour
 
         // Llamo de nuevo a la rutina para que se repita infinitas veces
         StartCoroutine(GenerateNewAgentPrefab());        
+    }
+
+    public void FinishAgentLifeCycle(C_Agent agentToKill)
+    {
+        // Coger la posición del agente
+        Vector3 agentPosition = agentToKill.transform.position;
+
+        // Lanzar partículas en dicha posición
+        agentBlood_PS.transform.position = agentPosition;
+        agentBlood_PS.Emit(30);
+
+        // Reproducir un sonido de muerte
+
+        // Destruyo al agente
+        Destroy(agentToKill.gameObject);
+
+        // Generar un nuevo agente para reemplazar esta périda        
+        C_Agent newAgent = Instantiate(agentPrefab).GetComponent<C_Agent>();
+                
+        newAgent.InitializeNewAgent(
+            this,
+            agentsSpawnPoint.position,
+            humanoidAgentsDestination.position
+            );
     }
 
     #endregion

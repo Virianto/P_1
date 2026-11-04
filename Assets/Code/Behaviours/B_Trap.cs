@@ -23,11 +23,21 @@ public class B_Trap : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Detectar cuándo ha entrado el jugador en su área de efecto
-        playerIsInsideArea = true;
+        // Discernir entre jugador y agentes
+        if(other.GetComponent<B_CharacterController>() != null)
+        {
+            // Herir al jugador
+            // Detectar cuándo ha entrado el jugador en su área de efecto
+            playerIsInsideArea = true;
 
-        // Invocar una subrutina facilitando en parámetros el componente del player
-        StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+            // Invocar una subrutina facilitando en parámetros el componente del player
+            StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        }
+        if (other.GetComponent<C_Agent>() != null)
+        {
+            // Herir al agente
+            StartCoroutine(HurtAgent(other.GetComponent<C_Agent>()));
+        }        
     }
 
     void OnTriggerExit(Collider other)
@@ -51,8 +61,15 @@ public class B_Trap : MonoBehaviour
             StartCoroutine(HurtPlayer(player));
         }
     }
-    
 
+    IEnumerator HurtAgent(C_Agent agent)
+    {
+        agent.ModifyAgentLifePoints(-trapDamage);
+
+        yield return new WaitForSeconds(trapFrequencyDamage);
+
+        StartCoroutine(HurtAgent(agent));
+    }
 
     #endregion
 }

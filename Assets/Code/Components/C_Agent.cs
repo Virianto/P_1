@@ -35,5 +35,16 @@ public class C_Agent : MonoBehaviour
         myNavMeshAgent.SetDestination(destinyPos);
     }
 
+    public void ModifyAgentLifePoints(int amount)
+    {
+        // Modifico los puntos de vida según la cantidad que indica el parámetro
+        lifePoints += amount;
+
+        if (lifePoints <= 0) 
+        {
+            myManager.FinishAgentLifeCycle(this);
+        }
+    }
+
     #endregion
 }
