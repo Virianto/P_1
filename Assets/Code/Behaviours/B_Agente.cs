@@ -14,17 +14,25 @@ public class B_Agente : MonoBehaviour
 
     void Update()
     {
-        // Si no tiene objetivo, busca al jugador por su etiqueta
+        // Busca al jugador si todavía no lo tiene
         if (objetivo == null)
         {
-            var player = GameObject.FindWithTag("Player");
-            if (player != null)
-                objetivo = player.transform;
-            else
+            GameObject player = GameObject.FindWithTag("Player");
+
+            if (player == null)
+            {
+                Debug.LogWarning("No encuentro ningún objeto con el Tag 'Player'.", gameObject);
                 return;
+            }
+
+            objetivo = player.transform;
         }
 
-        if (!nav.isActiveAndEnabled || !nav.isOnNavMesh) return;
+        if (!nav.isOnNavMesh)
+        {
+            Debug.LogWarning("El agente no está sobre el NavMesh.", gameObject);
+            return;
+        }
 
         nav.SetDestination(objetivo.position);
     }

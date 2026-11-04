@@ -1,89 +1,67 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Pool;
 
 public class GeneradorAgentes : MonoBehaviour
 {
-    [Header("Configuración")]
-    public B_Agente prefab;
-    public Transform objetivo;
-    public Transform[] puntosSpawn;
-    public float intervalo = 2f;
-    public int maxActivos = 20;
+    public GameObject prefab;            // El agente que se va a crear
+    public Transform[] puntosSpawn;      // Sitios donde aparecen
+    public float intervalo = 2f;         // Segundos entre cada agente
+    public int maxAgentes = 10;          // Máximo de agentes a la vez
 
-    ObjectPool<B_Agente> pool;
+    float temporizador;
+    int siguientePunto;
 
-    void Awake()
+    void Update()
     {
-        pool = new ObjectPool<B_Agente>(
-            createFunc: () =>
-            {
-                var a = Instantiate(prefab);
-                var vida = a.GetComponent<B_Vida1>();
-                if (vida != null) vida.generador = this;
-                return a;
-            },
-            actionOnGet: a => a.gameObject.SetActive(true),
-            actionOnRelease: a => a.gameObject.SetActive(false),
-            actionOnDestroy: a => Destroy(a.gameObject),
-            defaultCapacity: maxActivos,
-            maxSize: maxActivos);
-    }
+        // Cuenta el tiempo
+        temporizador += Time.deltaTime;
 
-    void Start()
-    {
-        StartCoroutine(Generar());
-    }
-
-    IEnumerator Generar()
-    {
-        var espera = new WaitForSeconds(intervalo);
-        while (true)
+        if (temporizador >= intervalo)
         {
-            if (pool.CountActive < maxActivos)
-                Spawnear();
-            yield return espera;
+            temporizador = 0f;
+            CrearAgente();
         }
     }
 
-    Vector3 ElegirPosicion()
+    void CrearAgente()
     {
-        if (puntosSpawn != null && puntosSpawn.Length > 0)
-        {
-            var punto = puntosSpawn[Random.Range(0, puntosSpawn.Length)];
-            if (punto != null)
-                return punto.position;
-        }
-
-        // Si no hay puntos de spawn válidos, usa la posición del Generador
-        return transform.position;
-    }
-
-    void Spawnear()
-    {
+        // 1. Comprobaciones
         if (prefab == null)
         {
-            Debug.LogWarning("Falta asignar el Prefab en el Generador.", gameObject);
+            Debug.LogWarning("Falta arrastrar el Prefab en el Generador.", gameObject);
             return;
         }
 
-        Vector3 pos = ElegirPosicion();
-
-        if (!NavMesh.SamplePosition(pos, out var hit, 5f, NavMesh.AllAreas))
+        if (puntosSpawn.Length == 0)
         {
-            Debug.LogWarning("La posición de spawn no está cerca del NavMesh (suelo azul).", gameObject);
+            Debug.LogWarning("No hay Puntos Spawn en el Generador.", gameObject);
             return;
         }
 
-        var agente = pool.Get();
-        agente.GetComponent<NavMeshAgent>().Warp(hit.position);
-        agente.objetivo = objetivo;
-    }
+        // Los agentes son hijos del Generador, así que contamos sus hijos
+        if (transform.childCount >= maxAgentes) return;
 
-    public void Devolver(B_Agente a)
-    {
-        pool.Release(a);
-    }
+        // 2. Busca el siguiente punto que no esté vacío
+        Transform punto = null;
 
+        for (int i = 0; i < puntosSpawn.Length; i++)
+        {
+            Transform candidato = puntosSpawn[siguientePunto];
+            siguientePunto = (siguientePunto + 1) % puntosSpawn.Length;
+
+            if (candidato != null)
+            {
+                punto = candidato;
+                break;
+            }
+        }
+
+        if (punto == null)
+        {
+            Debug.LogWarning("Todos los huecos de Puntos Spawn están vacíos (None).", gameObject);
+            return;
+        }
+
+        // 3. Crea el agente justo en ese punto
+        Instantiate(prefab, punto.position, punto.rotation, transform);
+    }
 }
