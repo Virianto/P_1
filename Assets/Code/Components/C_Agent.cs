@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -36,9 +35,15 @@ public class C_Agent : MonoBehaviour
         myNavMeshAgent.SetDestination(destinyPos);
     }
 
-    internal void InitializeNewAgent(A_AgentsManager a_AgentsManager, Vector3 position1, Vector3 position2)
+    public void ModifyAgentLifePoints(int amount)
     {
-        throw new NotImplementedException();
+        // Modifico los puntos de vida según la cantidad que indica el parámetro
+        lifePoints += amount;
+
+        if (lifePoints <= 0) 
+        {
+            myManager.FinishAgentLifeCycle(this);
+        }
     }
 
     #endregion

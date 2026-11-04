@@ -16,36 +16,36 @@ public class B_Trap : MonoBehaviour
     float trapFrequencyDamage = 1;
 
     bool playerIsInsideArea = false;
-    bool agentInsideTrap = false;
+
     #endregion
 
     #region METHODS
 
     void OnTriggerEnter(Collider other)
     {
-        // Detectar cuándo ha entrado el jugador en su área de efecto
-        if (other.CompareTag("Enemy"))
+        // Discernir entre jugador y agentes
+        if(other.GetComponent<B_CharacterController>() != null)
         {
-            agentInsideTrap = true;
-        }
-        if (other.CompareTag("Player"))
-        {
+            // Herir al jugador
+            // Detectar cuándo ha entrado el jugador en su área de efecto
             playerIsInsideArea = true;
-        }
-        
-        // Invocar una subrutina facilitando en parámetros el componente del player
-        StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
-        StartCoroutine(HurtAgent(other.GetComponent<A_Agent>()));
 
+            // Invocar una subrutina facilitando en parámetros el componente del player
+            StartCoroutine(HurtPlayer(other.GetComponent<B_CharacterController>()));
+        }
+        if (other.GetComponent<C_Agent>() != null)
+        {
+            // Herir al agente
+            StartCoroutine(HurtAgent(other.GetComponent<C_Agent>()));
+        }        
     }
 
     void OnTriggerExit(Collider other)
     {
         // Detectar cuándo ha salido el jugador de su área de efecto
         playerIsInsideArea = false;
-        agentInsideTrap = false;
     }
-    
+
     // Declarar un método con gestión de tiempo para dañar al jugador
     IEnumerator HurtPlayer(B_CharacterController player)
     {
@@ -61,22 +61,15 @@ public class B_Trap : MonoBehaviour
             StartCoroutine(HurtPlayer(player));
         }
     }
-    IEnumerator HurtAgent(A_Agent Agent)
+
+    IEnumerator HurtAgent(C_Agent agent)
     {
-        // Dañar al jugador
-        Agent.ModifyAgentLifePoints(trapDamage);
+        agent.ModifyAgentLifePoints(-trapDamage);
 
         yield return new WaitForSeconds(trapFrequencyDamage);
 
-        // Comprobar si el jugador sigue estando dentro
-        if (agentInsideTrap)
-        {
-            // Volver a llamar a esta subrutina
-            StartCoroutine(HurtAgent(Agent));
-        }
+        StartCoroutine(HurtAgent(agent));
     }
-
-
 
     #endregion
 }
