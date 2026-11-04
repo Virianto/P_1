@@ -21,7 +21,6 @@ public class C_ChangePlatform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("El player está dentro");
             for (int i = 0; i < enemiesManager.allInstantiatedEnemiesList.Count; i++)
             {
                 C_SpawnEnemy enemy = enemiesManager.allInstantiatedEnemiesList[i];

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class C_SpawnEnemy : MonoBehaviour
 {
@@ -11,9 +12,13 @@ public class C_SpawnEnemy : MonoBehaviour
     public float minLifeTime = 20;
     public float maxLifeTime = 30;
 
-    public int lifePointsLeft = 1;
+    int lifePointsLeft = 10;
+    int maxLifePoints = 10;
 
     NavMeshAgent myEnemy;
+
+    [SerializeField]
+    Image lifeImage;
 
     #endregion
 
@@ -61,7 +66,10 @@ public class C_SpawnEnemy : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         // Modificar la cantidad de vida del enemigo
-        lifePointsLeft = Mathf.Clamp(lifePointsLeft - damageAmount, 0, 1);
+        lifePointsLeft = Mathf.Clamp(lifePointsLeft - damageAmount, 0, 10);
+
+        float newFillAmount = (float)lifePointsLeft / maxLifePoints;
+        lifeImage.fillAmount = newFillAmount;
 
         if (lifePointsLeft <= 0)
         {
