@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class B_Agent : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class B_Agent : MonoBehaviour
 
     #region ATTRIBUTE
 
-    //[SerializeField]
-    //GameObject player;
+    [SerializeField]
+    Image lifeBarImage;
     NavMeshAgent myAgent;
 
     M_SpawnAgentsManagers myManager;
@@ -28,7 +29,9 @@ public class B_Agent : MonoBehaviour
 
     float trapFrequency = 1;
 
-    int lifeAgents = 20;
+    int maxLifePoints = 20;
+
+    int currentLifePoints = 20;
 
     Vector3 playerPosition;
 
@@ -54,15 +57,30 @@ public class B_Agent : MonoBehaviour
     public void InitializeAgent(M_SpawnAgentsManagers manager, Vector3 newPosition, B_CharacterController player)
     {
         myManager = manager;
-        transform.position = newPosition;
+
+        // Comprobar que existe una NavMesh cerca del punto de aparición
+        if (NavMesh.SamplePosition(newPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+        {
+            // Colocar correctamente al agente sobre la NavMesh
+            myAgent.Warp(hit.position);
+        }
+        else
+        {
+            Debug.LogError("No se ha encontrado una NavMesh cerca del punto de spawn: " + newPosition);
+            return;
+        }
+
         playerPosition = player.transform.position;
     }
 
     private void Update()
     {
+        if (myAgent == null || !myAgent.enabled || !myAgent.isOnNavMesh)
+            return;
+
         if (agentType == AgentType.Humanoid || agentType == AgentType.Bird)
         {
-                myAgent.SetDestination(playerPosition);
+            myAgent.SetDestination(playerPosition);
         }
     }
 
@@ -122,11 +140,15 @@ public class B_Agent : MonoBehaviour
 
     public void ModifyAgentLifePoints(int amount)
     {
-        lifeAgents -= amount;
+        maxLifePoints += amount;
 
-        Debug.Log(lifeAgents);
+        float newFillAmount = (float)currentLifePoints / (float)maxLifePoints;
 
-        if (lifeAgents <= 0)
+        lifeBarImage.fillAmount = newFillAmount;
+
+        Debug.Log(maxLifePoints);
+
+        if (maxLifePoints <= 0)
         {
             myManager.FinishAgentLifeCycle(this);
         }

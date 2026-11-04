@@ -67,8 +67,8 @@ public class M_SpawnAgentsManagers : MonoBehaviour
         Vector3 spawnPositionHumanoidAgent = GenerateRandomPosition();
         GenerateHumanoidAgentPrefab(spawnPositionHumanoidAgent);
 
-        Vector3 spawnPositionFlyingAgent = GenerateRandomPosition();
-        GenerateFlyingAgentPrefab(spawnPositionFlyingAgent);
+        //Vector3 spawnPositionFlyingAgent = GenerateRandomPosition();
+        //GenerateFlyingAgentPrefab(spawnPositionFlyingAgent);
 
         //Vector3 spawnPositionDiggerAgent = GenerateRandomPosition();
         //GenerateDiggerAgentPrefab(spawnPositionDiggerAgent);
