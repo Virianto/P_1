@@ -16,9 +16,6 @@ public class C_PingPongDollyCam : MonoBehaviour
 
     CinemachineSplineDolly c_splineDolly;
 
-    float currentDollyPos = 0;
-    bool goingForward = true;
-
     #endregion
 
     #region METHODS
@@ -29,30 +26,10 @@ public class C_PingPongDollyCam : MonoBehaviour
     }
 
     void Update()
-    {
-        if (currentDollyPos == 1)
-        {
-            goingForward = false;
-        }
-        if (currentDollyPos == 0)
-        {
-            goingForward = true;
-        }
-        if (goingForward)
-        {
-            currentDollyPos = Mathf.Clamp01(currentDollyPos + Time.deltaTime);
-        }
-        else
-        {
-            currentDollyPos = Mathf.Clamp01(currentDollyPos - Time.deltaTime);
-        }   
-        c_splineDolly.SplineSettings.Position = currentDollyPos;
-
-        //currentDollyPos = Mathf.PingPong(0, 1);
-        //Debug.LogFormat("El valor actual es {0}", currentDollyPos);
+    {        
         // Modificar la variable currentDollyPos para que vaya entre 0 y 1               
         // Asignar la variable currentDollyPos a la Position del componente
-        //c_splineDolly.SplineSettings.Position = Mathf.PingPong(0, 1);
+        c_splineDolly.SplineSettings.Position = Mathf.PingPong(Time.time * camSpeed, 1);
     }
 
     #endregion
