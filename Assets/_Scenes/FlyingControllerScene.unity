@@ -552,11 +552,12 @@ Transform:
   m_GameObject: {fileID: 607409919}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -12.888736, y: 7.36, z: -23.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1448753249}
+  - {fileID: 961739753}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &607409921
@@ -571,6 +572,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735c27345e8ceca49a8f7cf48b023064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::X_B_PlayerPlane
+  speed: 3
+  angularSpeed: 90
+  vNegativeTiltKey: 119
+  vPositiveTiltKey: 115
+  hNegativeTiltKey: 97
+  hPositiveTiltKey: 100
 --- !u!1001 &695825767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -911,12 +918,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.7099996, z: -8.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 607409920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1031069520
 PrefabInstance:
@@ -1149,15 +1156,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6340702070519816762, guid: 811c1f8fef0317a45ba07b6e2722ba05, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.888736
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6340702070519816762, guid: 811c1f8fef0317a45ba07b6e2722ba05, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.36
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6340702070519816762, guid: 811c1f8fef0317a45ba07b6e2722ba05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6340702070519816762, guid: 811c1f8fef0317a45ba07b6e2722ba05, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2088,7 +2095,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 961739753}
   - {fileID: 203844589}
   - {fileID: 504046264}
   - {fileID: 1467722653}
