@@ -24,6 +24,7 @@ public class M_EthanCameras : MonoBehaviour
     [SerializeField] KeyCode _2ndCamKey = KeyCode.Alpha2;
     [SerializeField] KeyCode _3rdCamKey = KeyCode.Alpha3;
     [SerializeField] KeyCode _4thCamKey = KeyCode.Alpha4;
+    [SerializeField] KeyCode _5thCamKey = KeyCode.Alpha5;
     
     void Update()
     {
@@ -46,6 +47,10 @@ public class M_EthanCameras : MonoBehaviour
         if (Input.GetKeyDown(_4thCamKey))
         {
             _CurrentActiveCameraIndex = 4;
+        }
+        if (Input.GetKeyDown(_5thCamKey))
+        {
+            _CurrentActiveCameraIndex = 5;
         }
     }
 
