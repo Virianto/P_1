@@ -40,8 +40,10 @@ public class M_Camerascs : MonoBehaviour
     KeyCode fourthCameraKey = KeyCode.Alpha3;
 
     [SerializeField]
-    KeyCode fiveCameraKey = KeyCode.Alpha4;
+        KeyCode fiveCameraKey = KeyCode.Alpha4;
 
+    [SerializeField]
+    KeyCode antoniolobatoCameraKey = KeyCode.Alpha5;
 
     #endregion
 
@@ -72,6 +74,10 @@ public class M_Camerascs : MonoBehaviour
         if (Input.GetKeyDown(fiveCameraKey))
         {
             CurrentActiveCameraIndex = 4;
+        }
+        if (Input.GetKeyDown(antoniolobatoCameraKey))
+        {
+            CurrentActiveCameraIndex = 5;
         }
     }
     void SwitchToCinemachineCamera(int newIndex)
