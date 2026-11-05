@@ -22,6 +22,8 @@ public class M_Cameras : MonoBehaviour
     KeyCode fourthCameraKey = KeyCode.Alpha3;
     [SerializeField]
     KeyCode fifthCameraKey = KeyCode.Alpha4;
+    [SerializeField]
+    KeyCode sixthCameraKey = KeyCode.Alpha5;
 
     int _currentActiveCameraIndex = 0;
     public int CurrentActiveCameraIndex
@@ -47,16 +49,18 @@ public class M_Cameras : MonoBehaviour
         if (Input.GetKeyDown(firstCameraKey))
             CurrentActiveCameraIndex = 0;
         //switchToCinemachineCamera(0);
-        if (Input.GetKeyDown(secondCameraKey))
+        else if (Input.GetKeyDown(secondCameraKey))
             CurrentActiveCameraIndex = 1;
         //switchToCinemachineCamera(1);
-        if (Input.GetKeyDown(thirdCameraKey))
+        else if (Input.GetKeyDown(thirdCameraKey))
             CurrentActiveCameraIndex = 2;
         //switchToCinemachineCamera(2);
-        if (Input.GetKeyDown(fourthCameraKey))
+        else if (Input.GetKeyDown(fourthCameraKey))
             CurrentActiveCameraIndex = 3;
-        if (Input.GetKeyDown(fifthCameraKey))
+        else if (Input.GetKeyDown(fifthCameraKey))
             CurrentActiveCameraIndex = 4;
+        else if (Input.GetKeyDown(sixthCameraKey))
+            CurrentActiveCameraIndex = 5;
     }
 
     void switchToCinemachineCamera()
