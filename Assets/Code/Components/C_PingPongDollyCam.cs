@@ -26,9 +26,7 @@ public class C_PingPongDollyCam : MonoBehaviour
     }
 
     void Update()
-    {        
-        // Modificar la variable currentDollyPos para que vaya entre 0 y 1               
-        // Asignar la variable currentDollyPos a la Position del componente
+    {               
         c_splineDolly.SplineSettings.Position = Mathf.PingPong(Time.time * camSpeed, 1);
     }
 
