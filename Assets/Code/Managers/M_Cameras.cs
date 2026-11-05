@@ -1,93 +1,102 @@
-using UnityEngine;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using UnityEngine;
 
 /// <summary>
-/// Propósito de esta clase
+/// * Detectar Input de usuario para saltar de una cámara a otra
 /// </summary>
 public class M_Cameras : MonoBehaviour
 {
     #region ATTRIBUTES
-    [SerializeField] 
+
+    [SerializeField]
     List<CinemachineCamera> allVirtualCamerasList = new();
 
-    [SerializeField] 
+    [SerializeField]
     KeyCode firstCameraKey = KeyCode.Alpha0;
 
     [SerializeField]
     KeyCode secondCameraKey = KeyCode.Alpha1;
 
     [SerializeField]
-    KeyCode thirdCameraKey = KeyCode.Alpha2;
+    KeyCode tertiaryCameraKey = KeyCode.Alpha2;
 
     [SerializeField]
     KeyCode fourthCameraKey = KeyCode.Alpha3;
 
-    int currentActiveCameraIndex = 0;
+    [SerializeField]
+    KeyCode fifthCameraKey = KeyCode.Alpha4;
+
+    [SerializeField]
+    KeyCode sixthCameraKey = KeyCode.Alpha5;
+
     int _currentActiveCameraIndex = 0;
 
     public int CurrentActiveCameraIndex
     {
-        //como se comporta la lectura
-        get { 
-            return currentActiveCameraIndex; 
-            
-        }
-        
-        //como se comporta la escritura
-        set { 
-            //modifico el valor de mi variable privada
+        // Cómo se comporta la lectura
+        get { return _currentActiveCameraIndex; }
+
+        // Cómo se comporta la escritura (cambios de la variable)
+        set
+        {
+            // Modifico el valor de mi variable privada
             _currentActiveCameraIndex = value;
 
-            //utilizo el nuevo valor de forma automática
+            // Utilizo el nuevo valor de forma automática
             SwitchToCinemachineCamera();
-
         }
     }
+
     #endregion
 
     #region METHODS
+
     void Update()
     {
-        //detectar input del usuario para cambiar la camara principal
-        if(Input.GetKeyDown(firstCameraKey))
+        if (Input.GetKeyDown(firstCameraKey))
         {
-            //saltamos camara 1
             CurrentActiveCameraIndex = 0;
         }
-        else if(Input.GetKeyDown(secondCameraKey))
+        if (Input.GetKeyDown(secondCameraKey))
         {
-            //saltamos camara 2
             CurrentActiveCameraIndex = 1;
         }
-        else if(Input.GetKeyDown(thirdCameraKey))
+        if (Input.GetKeyDown(tertiaryCameraKey))
         {
-            //saltamos camara 3
             CurrentActiveCameraIndex = 2;
         }
-        else if(Input.GetKeyDown(fourthCameraKey))
+        if (Input.GetKeyDown(fourthCameraKey))
         {
-            //saltamos camara 4
             CurrentActiveCameraIndex = 3;
+        }
+        if (Input.GetKeyDown(fifthCameraKey))
+        {
+            CurrentActiveCameraIndex = 4;
+        }
+        if (Input.GetKeyDown(sixthCameraKey))
+        {
+            CurrentActiveCameraIndex = 5;
         }
     }
 
     void SwitchToCinemachineCamera()
     {
-        //recorrer la lista entera del cinemachine cameras
-        for (int i =0; i< allVirtualCamerasList.Count; i++)
+        // Recorrer la lista entera de cinemachine cameras
+        for (int i = 0; i < allVirtualCamerasList.Count; ++i)
         {
             if (i == CurrentActiveCameraIndex)
             {
-                //para cada cámara, si es la del indice que quiero que le cambie la prioridad a 1
+                // Para cada cámara, si es la del índice que quiero, le cambio la priroridad a 1
                 allVirtualCamerasList[i].Priority = 1;
             }
             else
             {
-                // si no es la que quiero, le cambio la prioridad a 0
+                // Para cada cámara, si NO es la que quiero, le cambio la prioridad a 0
                 allVirtualCamerasList[i].Priority = 0;
             }
         }
     }
+
     #endregion
 }
