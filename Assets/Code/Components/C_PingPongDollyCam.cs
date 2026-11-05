@@ -32,5 +32,10 @@ public class C_PingPongDollyCam : MonoBehaviour
         c_splineDolly.SplineSettings.Position = Mathf.PingPong(Time.time * camSpeed, 1);
     }
 
+    public void SetCamSpeed(float newSpeed)
+    {
+        camSpeed = newSpeed;
+    }
+
     #endregion
 }
