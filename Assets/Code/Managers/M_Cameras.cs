@@ -41,6 +41,9 @@ public class M_Cameras : MonoBehaviour
 
     [SerializeField]
     KeyCode fifthCameraKey = KeyCode.Alpha4;
+
+    [SerializeField]
+    KeyCode sixthCameraKey = KeyCode.Alpha5;
     #endregion
 
 
@@ -72,6 +75,11 @@ public class M_Cameras : MonoBehaviour
         {
             // Saltamos a cámara 2
             CurrentActiveCameraIndex = 4;
+        }
+        if (Input.GetKeyDown(sixthCameraKey))
+        {
+            // Saltamos a cámara 2
+            CurrentActiveCameraIndex = 5;
         }
     }
 
