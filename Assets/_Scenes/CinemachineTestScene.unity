@@ -281,11 +281,13 @@ MonoBehaviour:
   - {fileID: 1499109695}
   - {fileID: 2031777909}
   - {fileID: 405194917}
+  - {fileID: 702039021}
   firstCameraKey: 48
   secondCameraKey: 49
   tertiaryCameraKey: 50
   fourthCameraKey: 51
   fifthCameraKey: 52
+  sixthCameraKey: 53
 --- !u!1 &77852408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,6 +2075,7 @@ GameObject:
   - component: {fileID: 702039021}
   - component: {fileID: 702039022}
   - component: {fileID: 702039020}
+  - component: {fileID: 702039023}
   m_Layer: 0
   m_Name: CCam_5
   m_TagString: Untagged
@@ -2088,8 +2091,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702039018}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.1152418, y: -0.32852915, z: -0.040424637, w: 0.9365649}
-  m_LocalPosition: {x: 12, y: 2, z: -25}
+  m_LocalRotation: {x: -0.052846804, y: -0.28934202, z: -0.016000723, w: 0.955632}
+  m_LocalPosition: {x: 12, y: 6, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2164,17 +2167,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineSplineDolly
   m_SplineSettings:
-    Spline: {fileID: 0}
+    Spline: {fileID: 268312103}
     Position: 0
     Units: 1
   SplineOffset: {x: 0, y: 0, z: 0}
   CameraRotation: 0
   Damping:
     Enabled: 0
-    Position: {x: 0, y: 0, z: 0}
+    Position: {x: 5.95, y: 0, z: 0}
     Angular: 0
   AutomaticDolly:
-    Enabled: 0
+    Enabled: 1
     Method:
       rid: -2
   m_LegacyPosition: -1
@@ -2185,6 +2188,19 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &702039023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702039018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222b9bc8ebeaac34a9e3f6b657fb7176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::C_PingPongDollyCam
+  camSpeed: 0.2
 --- !u!1 &748404738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2816,8 +2832,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 40
+  far clip plane: 30
+  field of view: 36.01071
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -2843,8 +2859,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.1152418, y: -0.32852915, z: -0.040424637, w: 0.9365649}
-  m_LocalPosition: {x: 12, y: 2, z: -25}
+  m_LocalRotation: {x: 0, y: 0.9396927, z: -0.3420201, w: 0}
+  m_LocalPosition: {x: 0, y: 12, z: 35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
