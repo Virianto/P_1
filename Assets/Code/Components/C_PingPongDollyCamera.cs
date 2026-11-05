@@ -14,9 +14,6 @@ public class C_PingPongDollyCamera : MonoBehaviour
     float cameraSpeed = 0.2f;
 
     CinemachineSplineDolly c_splineDolly;
-
-    float currentDollyPos = 0;
-    bool goingForward = true;
     #endregion
 
 
@@ -28,32 +25,15 @@ public class C_PingPongDollyCamera : MonoBehaviour
 
     void Update()
     {
-        if (currentDollyPos == 1)
-        {
-            goingForward = false;
-        }
-        if (currentDollyPos == 0)
-        {
-            goingForward = true;
-        }
-        
-        if (goingForward)
-        {
-            // Incremento la variable local una fracción de frame
-            currentDollyPos = Mathf.Clamp01(currentDollyPos + Time.deltaTime * cameraSpeed);
-        }
-        else
-        {
-            // Incremento la variable local una fracción de frame
-            currentDollyPos = Mathf.Clamp01(currentDollyPos - Time.deltaTime * cameraSpeed);
-        }
-
-        c_splineDolly.SplineSettings.Position = currentDollyPos;
-
         // Modificar la variable curentDollyPos para q vaya entre 0 y 1
         // Asignar la variable curentDollyPos a la Position del componente
-        //c_splineDolly.SplineSettings.Position = Mathf.PingPong(currentDollyPos, 1);
+        c_splineDolly.SplineSettings.Position = Mathf.PingPong(Time.time * cameraSpeed, 1);
     }
 
+
+    public void SetNewCamSpeed(float newSpeed)
+    {
+        cameraSpeed = newSpeed;
+    }
     #endregion
 }

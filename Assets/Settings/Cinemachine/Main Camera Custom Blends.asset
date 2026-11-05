@@ -13,17 +13,6 @@ MonoBehaviour:
   m_Name: Main Camera Custom Blends
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBlenderSettings
   CustomBlends:
-  - From: CCam_0
-    To: '**ANY CAMERA**'
-    Blend:
-      Style: 0
-      Time: 0
-      CustomCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
   - From: CCam_1 Pink
     To: CCam_0
     Blend:
@@ -63,7 +52,7 @@ MonoBehaviour:
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 0
+        m_RotationOrder: 4
   - From: CCam_3 Blue
     To: CCam_0
     Blend:
@@ -74,7 +63,7 @@ MonoBehaviour:
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 0
+        m_RotationOrder: 4
   - From: CCam_4 Purple
     To: CCam_0
     Blend:
@@ -85,4 +74,48 @@ MonoBehaviour:
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 0
+        m_RotationOrder: 4
+  - From: CCam_0
+    To: CCam_1 Pink
+    Blend:
+      Style: 0
+      Time: 2
+      CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 4
+  - From: CCam_0
+    To: CCam_2 Red
+    Blend:
+      Style: 0
+      Time: 0
+      CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 4
+  - From: CCam_0
+    To: CCam_3 Blue
+    Blend:
+      Style: 0
+      Time: 0
+      CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 4
+  - From: CCam_0
+    To: CCam_4 Purple
+    Blend:
+      Style: 0
+      Time: 0
+      CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 4
