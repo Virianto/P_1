@@ -23,7 +23,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     void LaunchGameOver()
     {
         //a rellenar cuando tengamos el flujo completo de escena
-            }
+    }
 
     #endregion
 }
