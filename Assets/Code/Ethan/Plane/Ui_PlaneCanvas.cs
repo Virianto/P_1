@@ -2,16 +2,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Ui_PlaneCanvas : MonoBehaviour
+public class Ui_PlaneCanvas : MonoBehaviour 
 {
-    [SerializeField] M_FlightSim PlaneManager;
+    [SerializeField] M_FlightSim planeManager;
     [SerializeField] TMP_Text playerPointsText;
-    [SerializeField] TMP_Text PlayerSpeedText;
+    [SerializeField] TMP_Text playerSpeedText;
     [SerializeField] TMP_Text timer;
     [SerializeField] Image playerLifeImage;
-    void UpdatePlayerPoints(int currentPlayerPoints)
+
+    void Start()
     {
-        
+        planeManager = GetComponent<M_FlightSim>();
+        M_FlightSim.Instance.OnTimeLeftChange += UpdateTimeLeftText;
+        M_FlightSim.Instance.OnPointsChange += UpdatePlayerPoints; 
+    }
+
+    public void UpdatePlayerPoints(int currentPlayerPoints)
+    {
+        playerPointsText.text = currentPlayerPoints.ToString();
     }
     void UpdatePlayerSpeedText(float currentPlayerSpeed)
     {
@@ -19,15 +27,12 @@ public class Ui_PlaneCanvas : MonoBehaviour
     }
     void UpdateTimeLeftText(float currentTimeLeft)
     {
-
+        timer.text = TimeFormatter.FormatTime(currentTimeLeft);
     }
     void UpdateLifeLeftImage(float currentAmountLeft)
     {
 
     }
 
-    void Start()
-    {
-        PlaneManager = GetComponent<M_FlightSim>();
-    }
+
 }
