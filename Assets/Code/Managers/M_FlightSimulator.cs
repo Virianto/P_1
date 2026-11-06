@@ -12,6 +12,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     #region ATTRIBUTES
 
     public event Action<float> OnTimeLeftChanged;
+    public event Action<float> OnPlayerLifeLeftChanged;
 
     [SerializeField]
     UI_FlightSimulatorCanvas flightSimulatorCanvas;
@@ -26,6 +27,11 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     #endregion
 
     #region METHODS
+
+    public void PlayerLifeChanged(float playerLifeLeft)
+    {
+        OnPlayerLifeLeftChanged?.Invoke(playerLifeLeft);
+    }
 
     void Update()
     {
