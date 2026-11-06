@@ -14,7 +14,8 @@ public class Ui_PlaneCanvas : MonoBehaviour
     {
         planeManager = GetComponent<M_FlightSim>();
         M_FlightSim.Instance.OnTimeLeftChange += UpdateTimeLeftText;
-        M_FlightSim.Instance.OnPointsChange += UpdatePlayerPoints; 
+        M_FlightSim.Instance.OnPointsChange += UpdatePlayerPoints;
+        M_FlightSim.Instance.OnPlayerLifeLeftChanged += UpdateLifeLeftImage;
     }
 
     public void UpdatePlayerPoints(int currentPlayerPoints)
@@ -31,8 +32,6 @@ public class Ui_PlaneCanvas : MonoBehaviour
     }
     void UpdateLifeLeftImage(float currentAmountLeft)
     {
-
+        playerLifeImage.fillAmount = currentAmountLeft;
     }
-
-
 }
