@@ -34,10 +34,7 @@ public class C_PingPongDollyCam : MonoBehaviour
         camSpeed = newSpeed;
     }
 
-    public void SetNewCameraSpeed(float newSpeed)
-    {
-        camSpeed = newSpeed;
-    }
+    
 
     #endregion
 }
