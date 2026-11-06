@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,10 +28,14 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     private void Start()
     {
+        //Suscripciones a eventos siempre en Start (90%)
+
         //Enlazar el evento del manager con un método del canvas (updateTime)
         //En la izquierda escribo referencia al manager
         //En la derecha me suscribo a uno de sus eventos
         M_FlightSimulator.Instance.OnTimeLeftChanged += UpdateTimeLeftText;
+
+        M_FlightSimulator.Instance.OnPlayerLifeLeftChanged += UpdateLifeLeftImage;
     }
 
     void UpdatePlayerPointsText(int playerPointsText)
@@ -48,9 +53,14 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
         timeLeftText.text = TimeFormatter.FormatTime(currentTimeLeftText);
     }
 
-    void UpdateLifeLeftImage()
+    void UpdateLifeLeftImage(float currentLifeAmount)
     {
+        playerLifeImage.fillAmount = currentLifeAmount;
+    }
 
+    internal void UpdateCounter(int totalYellowCoinsCollected)
+    {
+        playerPointsText.text = totalYellowCoinsCollected.ToString();
     }
 
     #endregion

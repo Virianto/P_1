@@ -1,5 +1,7 @@
 using Code.Utils;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -22,6 +24,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     float gameTimeLeft = 10;
 
     public event Action<float> OnTimeLeftChanged;
+    public event Action<float> OnPlayerLifeLeftChanged;
 
     #endregion
 
@@ -30,7 +33,43 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     private void Update()
     {
         gameTimeLeft -= Time.deltaTime;
-        OnTimeLeftChanged?.Invoke(gameTimeLeft);
+        OnTimeLeftChanged?.Invoke(gameTimeLeft); //Invokar a los métodos suscritos
+    }
+
+    ///// <summary>
+    ///// método con gestión de tiempo para dañar al jugador
+    ///// </summary>
+    ///// <param name="player">jugador al que afecta</param>
+    ///// <returns></returns>
+    //IEnumerator HurtPlayer(B_CharacterController player)
+    //{
+    //    //Dañar al jugador
+    //    player.TakeDamage(trapDamage);
+
+    //    Debug.Log("Dañar al jugador antes de la espera");
+    //    Debug.Log($"Se llama {player.name}");
+
+    //    yield return new WaitForSeconds(trapFrequencyDamage);
+
+    //    //Comprobar si el jugador sigue estando dentro
+    //    if (playerIsInsideArea)
+    //    {
+    //        //Volver a llamar a esta subrutina
+    //        StartCoroutine(HurtPlayer(player));
+    //    }
+
+    //    Debug.Log("Ya ha pasado la esperas, hacer otra cosa");
+    //    Debug.Log($"Sigue llamandose {player.name}");
+    //}
+
+    public void PlayerLifeChanged(float playerLifeLeft)
+    {
+        OnPlayerLifeLeftChanged?.Invoke(playerLifeLeft);
+    }
+
+    public void NewCoinCollected()
+    {
+        flightSimulatorCanvas.UpdateCounter(player.totalYellowCoinsCollected);
     }
 
     void LaunchGameOver()

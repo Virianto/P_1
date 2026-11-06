@@ -23,9 +23,20 @@ public class B_PlayerPlane : MonoBehaviour
     [SerializeField]
     KeyCode hPositiveTiltKey = KeyCode.D;
 
+    public M_FlightSimulator gameManager;
+    public float maxLifePoints = 20;
+    public float lifePointsLeft = 20;
+    public int totalYellowCoinsCollected = 0;
+
     #endregion
 
     #region METHODS
+
+    void Awake()
+    {
+        // Me aseguro de que el jugador empieza el nivel con toda la vida siempre
+        lifePointsLeft = maxLifePoints;
+    }
 
     private void Update()
     {
@@ -48,6 +59,19 @@ public class B_PlayerPlane : MonoBehaviour
         if (Input.GetKey(hPositiveTiltKey))
 
             transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
+    }
+
+    public void ModifyPlayerLife(float amount)
+    {
+        lifePointsLeft += amount;
+        M_FlightSimulator.Instance.PlayerLifeChanged(lifePointsLeft/maxLifePoints);
+    }
+
+    public void EarnMoney(int moneyAmount)
+    {
+        //totalYellowCoinsCollected += moneyAmount;
+        totalYellowCoinsCollected = Mathf.Clamp(totalYellowCoinsCollected + moneyAmount, 0, 100);
+        gameManager.NewCoinCollected();
     }
 
     #endregion
