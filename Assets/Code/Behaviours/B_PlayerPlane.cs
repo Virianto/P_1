@@ -11,6 +11,9 @@ public class B_PlayerPlane : MonoBehaviour
     [Range(0,100)]
     public float speed = 3;
 
+    public float maxLifePoints = 10;
+    public float currentLifePoints;
+
     [Range(0, 100)]
     public float angularSpeed = 90;
 
@@ -29,6 +32,11 @@ public class B_PlayerPlane : MonoBehaviour
 
 
     #region METHODS
+    public void Awake()
+    {
+        currentLifePoints = maxLifePoints;
+    }
+
     private void Update()
     {
         // Mover de manera constante hacia delante
@@ -53,5 +61,16 @@ public class B_PlayerPlane : MonoBehaviour
         }
     }
 
+    public void ModifySpeed(float speed)
+    {
+        this.speed = this.speed + speed;
+        M_FlightSimulator.Instance.ModifySpeed(this.speed);
+    }
+
+    public void ModifyLife(float life)
+    {
+        currentLifePoints += life;
+        M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints/maxLifePoints);
+    }
     #endregion
 }
