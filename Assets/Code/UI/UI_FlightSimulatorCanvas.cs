@@ -28,6 +28,14 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     #region METHODS
 
+    void Start()
+    {
+        // Enlazar el evento del manager con un método del canvas (updateTime)
+        // En la parte izquierda escribo la referencia global al manager
+        // En la parte derecha me suscribo a uno de sus eventos
+        M_FlightSimulator.Instance.OnTimeLeftChanged += UpdateTimeLeftText;
+    }
+
     void UpdatePlayerPointsText(int currentPlayerPoints)
     {
 
@@ -40,7 +48,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     void UpdateTimeLeftText(float currentTimeLeft) 
     {
-
+        timeLeftText.text = TimeFormatter.FormatTime(currentTimeLeft);
     }
 
     void UpdateLifeLeftImage(float currentAmountLeft)
