@@ -1,53 +1,59 @@
 using UnityEngine;
 
+/// <summary>
+/// * Mover de manera constante el objeto asociado hacia delante
+/// * Detectar input de usuario para girar/rotar el objeto asociado
+/// * Añadir tecla de teletransporte
+/// </summary>
 public class B_PlayerPlane : MonoBehaviour
 {
+    #region ATTRIBUTES
 
-    [Range(0,300)] public float planeSpeed = 2;
-    [Range(0,180)] public float angolarSpeed = 90;
+    [Range(0, 300)]
+    public float speed = 3;
 
-    [SerializeField] KeyCode vNegativeTiltKey = KeyCode.W;
-    [SerializeField] KeyCode vPositiveTiltKey = KeyCode.S;
-    [SerializeField] KeyCode hNegativeTiltKey = KeyCode.A;
-    [SerializeField] KeyCode hPositiveTiltKey = KeyCode.D;
-    [SerializeField] KeyCode RightTiltKey = KeyCode.E;
-    [SerializeField] KeyCode LeftTiltKey = KeyCode.Q;
+    [Range(0, 180)]
+    public float angularSpeed = 90;
 
+    [SerializeField]
+    KeyCode vNegativeTiltKey = KeyCode.W;
+
+    [SerializeField]
+    KeyCode vPositiveTiltKey = KeyCode.S;
+
+    [SerializeField]
+    KeyCode hNegativeTiltKey = KeyCode.A;
+
+    [SerializeField]
+    KeyCode hPositiveTiltKey = KeyCode.D;
+
+    #endregion
+
+    #region METHODS
 
     void Update()
-    {
-        transform.position += transform.forward * Time.deltaTime * planeSpeed;   
+    {        
+        transform.position += transform.forward * Time.deltaTime * speed;
 
-        //Down (W)
+        // Detectar input de usuario para rotar el objeto y así maniobrar
         if (Input.GetKey(vNegativeTiltKey))
         {
-            transform.Rotate(Vector3.right * Time.deltaTime * angolarSpeed);
+            transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
         }
-        //Up (S)
         if (Input.GetKey(vPositiveTiltKey))
         {
-            transform.Rotate(Vector3.left * Time.deltaTime * angolarSpeed);
+            transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
         }
 
-        //Left (A)
         if (Input.GetKey(hNegativeTiltKey))
         {
-            transform.Rotate(Vector3.down * Time.deltaTime * angolarSpeed);
+            transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
         }
-        //Right (D)
         if (Input.GetKey(hPositiveTiltKey))
         {
-            transform.Rotate(Vector3.up * Time.deltaTime * angolarSpeed);
-        }
-        //Right Tilt (E)
-        if (Input.GetKey(RightTiltKey))
-        {
-            transform.Rotate(Vector3.back * Time.deltaTime * angolarSpeed);
-        }
-        //Left Tilt (Q)
-        if (Input.GetKey(LeftTiltKey))
-        {
-            transform.Rotate(Vector3.forward * Time.deltaTime * angolarSpeed);
+            transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
         }
     }
+
+    #endregion
 }
