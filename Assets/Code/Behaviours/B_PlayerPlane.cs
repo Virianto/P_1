@@ -13,10 +13,17 @@ public class B_PlayerPlane : MonoBehaviour
     #endregion
 
     [Range(0, 100)]
-    public float speed = 3;
+    public float speed = 5;
 
     [Range(0, 180)]
     public float angularSpeed = 90;
+
+    public float points = 0;
+
+    [SerializeField]
+    float maxLifePoints = 100;
+
+    public float currentLifePoints;
 
     [SerializeField]
     KeyCode vNegativeTilKey = KeyCode.W;
@@ -31,6 +38,11 @@ public class B_PlayerPlane : MonoBehaviour
     KeyCode hPositiveTilKey = KeyCode.D;
 
     #region METHODS
+
+    private void Awake()
+    {
+        currentLifePoints = maxLifePoints;
+    }
 
     private void Update()
     {
@@ -57,6 +69,24 @@ public class B_PlayerPlane : MonoBehaviour
         {
             transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
         }
+    }
+
+    public void ModifySpeed(float speed)
+    {
+        this.speed = this.speed + speed;
+        M_FlightSimulator.Instance.PlayerSpeedChanged(this.speed);
+    }
+
+    public void ModifyPoints(float points)
+    {
+        this.points = this.points + points;
+        M_FlightSimulator.Instance.PlayerPointsChanged(this.points);
+    }
+
+    public void ModifyLife(float amount)
+    {
+        currentLifePoints += amount;
+        M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints / maxLifePoints);
     }
 
     #endregion
