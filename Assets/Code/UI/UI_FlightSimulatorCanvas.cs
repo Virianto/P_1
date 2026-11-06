@@ -29,11 +29,10 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
     #region METHODS
 
     void Start()
-    {
-        // Enlazar el evento del manager con un método del canvas (updateTime)
-        // En la parte izquierda escribo la referencia global al manager
-        // En la parte derecha me suscribo a uno de sus eventos
+    {        
         M_FlightSimulator.Instance.OnTimeLeftChanged += UpdateTimeLeftText;
+
+        M_FlightSimulator.Instance.OnPlayerLifeLeftChanged += UpdateLifeLeftImage;
     }
 
     void UpdatePlayerPointsText(int currentPlayerPoints)
@@ -53,7 +52,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     void UpdateLifeLeftImage(float currentAmountLeft)
     {
-
+        playerLifeImage.fillAmount = currentAmountLeft;
     }
 
     #endregion
