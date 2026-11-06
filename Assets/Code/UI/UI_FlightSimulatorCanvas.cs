@@ -28,6 +28,13 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     #region METHODS
 
+    void Start()
+    {        
+        M_FlightSimulator.Instance.OnTimeLeftChanged += UpdateTimeLeftText;
+
+        M_FlightSimulator.Instance.OnPlayerLifeLeftChanged += UpdateLifeLeftImage;
+    }
+
     void UpdatePlayerPointsText(int currentPlayerPoints)
     {
 
@@ -40,12 +47,12 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     void UpdateTimeLeftText(float currentTimeLeft) 
     {
-
+        timeLeftText.text = TimeFormatter.FormatTime(currentTimeLeft);
     }
 
     void UpdateLifeLeftImage(float currentAmountLeft)
     {
-
+        playerLifeImage.fillAmount = currentAmountLeft;
     }
 
     #endregion

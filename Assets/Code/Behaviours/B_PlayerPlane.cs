@@ -27,9 +27,20 @@ public class B_PlayerPlane : MonoBehaviour
     [SerializeField]
     KeyCode hPositiveTiltKey = KeyCode.D;
 
+    [SerializeField]
+    [Range(1, 100)]
+    float maxLifePoints = 20;
+    float currentLifePoints;
+
     #endregion
 
     #region METHODS
+
+    void Awake()
+    {
+        // Me aseguro de que el jugador empieza el nivel con toda la vida siempre
+        currentLifePoints = maxLifePoints;
+    }
 
     void Update()
     {        
@@ -53,6 +64,12 @@ public class B_PlayerPlane : MonoBehaviour
         {
             transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
         }
+    }
+
+    public void ModifyPlayerLife(float amount)
+    {
+        currentLifePoints += amount;
+        M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints/maxLifePoints);
     }
 
     #endregion
