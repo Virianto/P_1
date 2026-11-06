@@ -12,6 +12,7 @@ public class B_PlayerPlane : MonoBehaviour
 
     [Range(0, 300)]
     public float speed = 3;
+    float maxSpeed = 12;
 
     [Range(0, 300)]
     public float angularSpeed = 90;
@@ -28,6 +29,9 @@ public class B_PlayerPlane : MonoBehaviour
     [SerializeField]
     KeyCode hPositiveTiltKey = KeyCode.D;
 
+    public float maxLifePoints = 16;
+    public float currentLifePoints = 16;
+  
     #endregion
 
 
@@ -57,6 +61,28 @@ public class B_PlayerPlane : MonoBehaviour
             transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
         }
 
+    }
+
+    public void SetNewSpeed(float newSpeed)
+    {
+
+        // Aumentar velocidad del jugador x unidades
+        currentLifePoints += newSpeed;
+        M_FlightSimulator.Instance.PlayerSpeedChanged(speed / maxSpeed);
+
+    }
+    public void SetNewTime (float newTime)
+    {
+
+        // Aumentar tiempo x unidades
+
+    }
+    public void ModifyPlayerLife(float amount)
+    {
+
+        // Restar vida del jugador x unidades
+        currentLifePoints += amount;
+        M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints / maxLifePoints);
     }
 
 
