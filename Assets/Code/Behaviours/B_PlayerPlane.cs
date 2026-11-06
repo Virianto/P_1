@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 /// <summary>
@@ -15,6 +16,11 @@ public class B_PlayerPlane : MonoBehaviour
 
     [Range(0, 180)]
     public float angularSpeed = 90;
+
+
+    public float maxPlayerLife = 10;
+    [Range(0f, 10f)]
+    public float currentPlayerLife = 10;
 
     [SerializeField]
     KeyCode vNegativeTiltKey = KeyCode.W;
@@ -36,7 +42,11 @@ public class B_PlayerPlane : MonoBehaviour
 
     #region METHODS
 
-     void Update()
+    void Start()
+    {
+     M_FlightSimulator.Instance.PlayerSpeedChanged(speed);   
+    }
+    void Update()
     {
         //Mover el objeto de forma constante hacia delante
         transform.position += transform.forward * Time.deltaTime * speed;
@@ -59,7 +69,21 @@ public class B_PlayerPlane : MonoBehaviour
             transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
         }
 
+      
+    }
+    public void Accelerate(float newSpeed)
+    {
+        speed += newSpeed;
+        M_FlightSimulator.Instance.PlayerSpeedChanged(speed);
     }
 
+   
+    public void ModifyLifePoints(float newLifePoints)
+    {
+        currentPlayerLife += newLifePoints;
+        M_FlightSimulator.Instance.PlayerLifeChanged(currentPlayerLife / maxPlayerLife);
+    }
+
+    
     #endregion
 }
