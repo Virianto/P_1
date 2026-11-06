@@ -7,40 +7,32 @@ using UnityEngine;
 public class B_PlayerPlane : MonoBehaviour
 {
     #region ATTRIBUTES
-
-    [Range(0, 300)]
-    public float speed = 3;
+    public float rotationSpeed = 5f;
+    public float rollSpeed = 45f;
+    public float Speed = 20f;
+    public float minSpeed = 20f;
+    public float maxSpeed = 100f;
+    public float accelerationSensitivity = 50f; // Qué tan rápido cambia la velocidad con el scroll
 
     [Range(0, 180)]
     public float angularSpeed = 90;
 
     [SerializeField]
-    KeyCode vNegativeTiltKey = KeyCode.W;
+    KeyCode hNegativeTiltKey = KeyCode.E;
 
     [SerializeField]
-    KeyCode vPositiveTiltKey = KeyCode.S;
-
-    [SerializeField]
-    KeyCode hNegativeTiltKey = KeyCode.A;
-
-    [SerializeField]
-    KeyCode hPositiveTiltKey = KeyCode.D;
+    KeyCode hPositiveTiltKey = KeyCode.Q;
 
     #endregion
     #region METHODS
 
+    public void Start()
+    {
+        M_ManagerCanvasAvion.Instance.CurrentSpeed(Speed);
+    }
+
     private void Update()
     {
-        transform.position += transform.forward * Time.deltaTime * speed;
-
-        if (Input.GetKey(vNegativeTiltKey))
-        {
-            transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(vPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
-        }
         if (Input.GetKey(hNegativeTiltKey))
         {
             transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
@@ -49,8 +41,50 @@ public class B_PlayerPlane : MonoBehaviour
         {
             transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
         }
+
+        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        if (scrollInput != 0f)
+        {
+            // Sumar el scroll y limitar la velocidad entre el mínimo y el máximo
+            Speed += scrollInput * accelerationSensitivity;
+            Speed = Mathf.Clamp(Speed, minSpeed, maxSpeed);
+        }
+
+        // 2. Avanzar siempre hacia adelante con la velocidad actual
+        transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+
+        // 2. Obtener posición del ratón normalizada (-1 a 1 desde el centro de la pantalla)
+        Vector3 mousePos = Input.mousePosition;
+        float halfWidth = Screen.width / 2f;
+        float halfHeight = Screen.height / 2f;
+
+        float x = (mousePos.x - halfWidth) / halfWidth; // -1 (izq) a 1 (der)
+        float y = (mousePos.y - halfHeight) / halfHeight; // -1 (abajo) a 1 (arriba)
+
+        // Limitar valores por seguridad
+        x = Mathf.Clamp(x, -1f, 1f);
+        y = Mathf.Clamp(y, -1f, 1f);
+
+        // 3. Calcular rotación de pitch (cabeceo) y yaw (guiñada)
+        float pitch = -y * rotationSpeed;
+        float yaw = x * rotationSpeed;
+        float roll = -x * rollSpeed; // Inclinación lateral realista
+
+        // Aplicar rotación al avión
+        Quaternion targetRotation = Quaternion.Euler(pitch * 10f, transform.localEulerAngles.y + yaw, roll);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
 
+    public void CurrentSpeed(float currentSpeed)
+    {
+        Speed = Mathf.Clamp(currentSpeed, minSpeed, maxSpeed);
+        M_ManagerCanvasAvion.Instance.CurrentSpeed(Speed);
+    }
+
+    public void CurrentStatusFloor(string status)
+    {
+       M_ManagerCanvasAvion.Instance.PlaneStatusChange(status);
+    }
     #endregion
 }
 
