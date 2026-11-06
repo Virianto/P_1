@@ -14,8 +14,8 @@ public class B_PlayerPlane : MonoBehaviour
 
     [SerializeField] KeyCode vPositiveTiltKey = KeyCode.W;
     [SerializeField] KeyCode vNegativeTiltKey = KeyCode.S;
-    [SerializeField] KeyCode hPositiveTiltKey = KeyCode.D;
-    [SerializeField] KeyCode hNegativeTiltKey = KeyCode.A;
+    [SerializeField] KeyCode hPositiveTiltKey = KeyCode.A;
+    [SerializeField] KeyCode hNegativeTiltKey = KeyCode.D;
 
 
     #endregion
