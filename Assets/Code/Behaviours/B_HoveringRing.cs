@@ -57,7 +57,7 @@ public class B_HoveringRing : MonoBehaviour
             if (player != null) 
             {
                 player.ModifyPlayerLife(-5);
-                // Busco al manager de cámaras y le hago un cambio temporal a la cámara de sacudida
+                //M_Cameras.Instance.ChangeCamera(índice de la cámara);
             }
         }
 
