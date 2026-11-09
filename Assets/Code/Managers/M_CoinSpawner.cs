@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 /// <summary>
 /// Esta clase se encarga de generar monedas de forma aleatoria en el mapa.
@@ -73,7 +74,7 @@ public class M_CoinSpawner : MonoBehaviour
 
     IEnumerator CoinSpawnTimeCycle()
     {
-        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 1, Random.Range(-horizontalZRange, horizontalZRange));
+        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 0, Random.Range(-horizontalZRange, horizontalZRange));
         GenerateNewPrefab(newRandomPosition);
         yield return new WaitForSeconds(timeBetweenSpawns);
         StartCoroutine(CoinSpawnTimeCycle());
