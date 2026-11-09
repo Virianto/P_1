@@ -60,14 +60,24 @@ public class M_RingManager : Singleton<M_RingManager>
     {   
         B_HoveringRing newRing = Instantiate(ringPrefab).GetComponent<B_HoveringRing>();
         RingModificationType newRingType = (RingModificationType)Random.Range (0, 4);
-        //if(newRingType ==0)
-        //{
-        //    newRingColor = new Color(0.7647059f, 0.2862746f, 0.302114f, 1f); //rojo
-        //}
-        //if (newRingType == 1)
-        //{
-        //    newRingColor = new //Color(0.2669989f, 0.3872348f, 0.754717f, 1f); //azul
-        //}
+        if (newRingType == RingModificationType.Life)
+        {
+            newRingColor = new Color(0.7647059f, 0.2862746f, 0.302114f, 1f); //rojo
+        }
+        if (newRingType == RingModificationType.Speed)
+        {
+            newRingColor = new Color(0.2669989f, 0.3872348f, 0.754717f, 1f); //azul
+        }
+        if (newRingType == RingModificationType.Score)
+        {
+            newRingColor = new Color(0.8679245f, 0.7363456f, 0.1760413f, 1f); //amarillo
+        }
+        if (newRingType == RingModificationType.Time)
+        {
+            newRingColor = new Color(0.2897293f, 0.8666667f, 0.1764706f, 1f); //verde
+        }
+
+
         newRing.InitializeRing(this,newPosition,Random.Range(3,10), Random.Range(0.5f,2),newRingType, newRingColor);
     }
 
