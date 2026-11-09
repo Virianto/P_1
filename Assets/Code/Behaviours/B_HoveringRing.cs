@@ -1,61 +1,83 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// X Hacer q los anillos sean prefabs
-/// Tiene q gestionar todos los anillos y:
-/// - Crear una instancia cada x anillos (editable)
-/// - que tipo de anillo sera
-/// - al invocar el método "InitializeRing()" se indicará
-///     - Tipo (enum)
-///     - Rotación aleatoria (en un rango)
-///     - Color, escala
-///     - Tiempo de vida (3-10 seg)
-///     - Referencia al propio manager
-/// - Cada anillo al detectar al jugador en su OnTriggerEnter, lanzará un método y otro según el tipo de anillo q sea (si es de vida lanza el método de vida, etc)
+/// Anillo
 /// </summary>
 public class B_HoveringRing : MonoBehaviour
 {
     #region ATTRIBUTES
-    #region ATTRIBUTES
-    [Header("VALORES EDITABLES")]
-    [SerializeField]
-    [Range(1, 300)]
-    int totalRingsToCreate = 1;
-
-    // Variable q me permita definir un rango horizontal (X)
-    [SerializeField]
-    [Range(1, 60)]
-    float horizontalXRange = 10;
-
-    // Variable q me permita definir un rango de profundidad (Y)
-    [SerializeField]
-    [Range(1, 60)]
-    float verticalYRange = 10;
-
-    // Variable q me permita definir un rango de profundidad (Z)
-    [SerializeField]
-    [Range(1, 60)]
-    float horizontalZRange = 10;
-
-    [SerializeField]
-    [Range(1, 30)]
-    float ringLifeTime = 10;
-
-    [SerializeField]
-    [Range(1, 60)]
-    float timeBetweenRings = 5;
-
-    [Space(10)]
-
-    [Header("REFERENCIAS EXTERNAS")]
     [SerializeField]
     GameObject ringPrefab;
 
+    M_Rings ringsManager;
+
+    public enum RingType
+    {
+        life,
+        time,
+        speed,
+        points
+    }
+
+    public RingType ringType;
+
+    [SerializeField]
+    List<Color> ringTypeColorsList = new();
+
     #endregion
 
-
     #region METHODS
+    public void InitializeRing(M_Rings manager, Vector3 spawnPosition)
+    {
+        ringsManager = manager;
+        transform.position = spawnPosition;
 
+        int randomTypeIndex = Random.Range(0, 4);
+        //RingType randomTypeIndex = (RingType)(Random.Range, 0, 4);
+
+        ringType = (RingType)randomTypeIndex;
+
+        Renderer[] allRingsRenderers = GetComponentsInChildren<Renderer>();
+        for (int r = 0; r < allRingsRenderers.Length; ++r)
+        {
+            allRingsRenderers[r].material.color = ringTypeColorsList[(int)ringType];
+        }
+        StartCoroutine(FinishLifeCycle());
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (ringType == RingType.life)
+        {
+            B_PlayerPlane vida = other.GetComponentInParent<B_PlayerPlane>();
+            vida.ModifyLife(-2);
+
+            M_CamerasFlight.Instance.ChangeCamera(1);
+        }
+        else if (ringType == RingType.time)
+        {
+            M_FlightSimulator.Instance.ModifyTime(5);
+        }
+        else if (ringType == RingType.speed)
+        {
+            B_PlayerPlane velocidad = other.GetComponentInParent<B_PlayerPlane>();
+            velocidad.ModifySpeed(5);
+
+            M_CamerasFlight.Instance.ChangeCamera(2);
+        }
+        else if (ringType == RingType.points)
+        {
+            M_FlightSimulator.Instance.ModifyPoints(1);
+        }
+    }
+
+    IEnumerator FinishLifeCycle()
+    {
+        yield return new WaitForSeconds(ringsManager.ringLifeTime);
+        ringsManager.FinishRingLifeCycle(this);
+    }
 
     #endregion
 }

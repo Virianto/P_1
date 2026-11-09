@@ -1,3 +1,4 @@
+using Code.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
@@ -9,7 +10,7 @@ using UnityEngine;
 /// - Una en tercera persona que se mueve mucho
 /// - Una muy lejos, mucho FOV y ruido leve
 /// </summary>
-public class M_CamerasFlight : MonoBehaviour
+public class M_CamerasFlight : Singleton<M_CamerasFlight>
 {
     #region ATTRIBUTES
     [SerializeField]

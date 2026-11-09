@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3634974759852645616}
   - component: {fileID: 8220687202603134068}
+  - component: {fileID: -2116735885269142445}
   m_Layer: 0
   m_Name: Ring
   m_TagString: Untagged
@@ -57,6 +58,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7, y: 7, z: 1}
   m_Center: {x: -2.2, y: 7.85, z: -22.02}
+--- !u!114 &-2116735885269142445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378016321998766226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad0df6a26a5ab040ad9ef186b2c701d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_HoveringRing
+  ringPrefab: {fileID: 378016321998766226}
+  ringType: 0
+  ringTypeColorsList:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0.75793135, b: 1, a: 0}
+  - {r: 0, g: 1, b: 0, a: 0}
+  - {r: 1, g: 0.07843138, b: 0.5764706, a: 1}
 --- !u!1 &526706024619338230
 GameObject:
   m_ObjectHideFlags: 0
