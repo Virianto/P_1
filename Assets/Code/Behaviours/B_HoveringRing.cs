@@ -22,7 +22,7 @@ public class B_HoveringRing : MonoBehaviour
     RingModificationType ringType;
 
     [SerializeField]
-    List<Material> ringTypeMatsList = new();
+    List<Color> ringTypeColorsList = new();
 
     #endregion
 
@@ -31,36 +31,50 @@ public class B_HoveringRing : MonoBehaviour
     /// <summary>
     /// Añadir todos los parámetros del enunciado en esta declaración
     /// </summary>
-    public void InitializeRing()
-    {
-        // Modificar las variables y referencias del anillo según los parámetros que reciba el método
-        // myManager = ¿¿Parámetro??
-        // ringType = ¿¿Parámetro??
-        // ETC...
+    public void InitializeRing(M_Rings manager, RingModificationType newRingType)
+    {        
+        myManager = manager;
+        ringType = newRingType;        
+
+        Renderer[] allRingRenderers = GetComponentsInChildren<Renderer>();
+
+        for(int r = 0; r < allRingRenderers.Length; ++r)
+        {
+            allRingRenderers[r].material.color = ringTypeColorsList[(int)ringType];
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (ringType == RingModificationType.Points)
         {
-            // Busco la instancia del manager y le aumento X puntos
+          
         }
 
         if(ringType == RingModificationType.Life)
         {
-            // Busco al jugador (a través de "other.GetComponent" por ejemplo) y le modifico la vida
-            // Busco al manager de cámaras y le hago un cambio temporal a la cámara de sacudida
+            B_PlayerPlane player = other.GetComponent<B_PlayerPlane>();
+            if (player != null) 
+            {
+                player.ModifyPlayerLife(-5);
+                // Busco al manager de cámaras y le hago un cambio temporal a la cámara de sacudida
+            }
         }
 
         if( ringType == RingModificationType.Speed)
         {
-            // Busco al jugador (a través de "other.GetComponent" por ejemplo) y le modifico la velocidad
-            // Busco al manager de cámaras y le hago un cambio temporal a la cámara de velocidad
+            B_PlayerPlane player = other.GetComponent<B_PlayerPlane>();
+            if (player != null)
+            {
+                // Modifico la velocidad del jugador
+                // Busco al manager de cámaras y le hago un cambio temporal a la cámara de velocidad
+            }            
         }
 
         if (ringType == RingModificationType.Time) 
         {
             // Busco la instancia del manager y le aumento X segundos de tiempo
+            M_FlightSimulator.Instance.ModifyGameTimeLeft(5);            
         }
 
     }
