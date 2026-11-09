@@ -27,6 +27,8 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     [SerializeField]
     B_PlayerPlane player;
 
+    B_HoveringRing ring;
+
     [SerializeField]
     [Range(1, 60)]
     float gameTimeLeft = 60;

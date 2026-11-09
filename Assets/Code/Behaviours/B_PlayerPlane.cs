@@ -12,8 +12,8 @@ public class B_PlayerPlane : MonoBehaviour
 
     #endregion
 
-    [Range(0, 100)]
-    public float speed = 5;
+    [Range(10, 200)]
+    public float speed = 10;
 
     [Range(0, 180)]
     public float angularSpeed = 90;

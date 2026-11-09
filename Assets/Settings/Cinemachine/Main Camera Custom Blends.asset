@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Main Camera Custom Blends
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBlenderSettings
   CustomBlends:
-  - From: CCam_0
-    To: '**ANY CAMERA**'
+  - From: CinemachineCamera_0
+    To: CinemachineCamera_1
     Blend:
       Style: 0
       Time: 0
@@ -24,19 +24,19 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - From: CCam_1
-    To: CCam_0
+  - From: CinemachineCamera_0
+    To: CinemachineCamera_2
     Blend:
-      Style: 4
-      Time: 1
+      Style: 1
+      Time: 3
       CustomCurve:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - From: CCam_2
-    To: CCam_0
+  - From: CinemachineCamera_1
+    To: CinemachineCamera_0
     Blend:
       Style: 4
       Time: 2
@@ -46,22 +46,33 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - From: CCam_3
-    To: CCam_0
+  - From: CinemachineCamera_1
+    To: CinemachineCamera_2
     Blend:
-      Style: 5
-      Time: 1
+      Style: 6
+      Time: 3
       CustomCurve:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - From: CCam_4
-    To: CCam_0
+  - From: CinemachineCamera_2
+    To: CinemachineCamera_0
     Blend:
-      Style: 5
+      Style: 2
       Time: 2
+      CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - From: CinemachineCamera_2
+    To: CinemachineCamera_1
+    Blend:
+      Style: 3
+      Time: 3
       CustomCurve:
         serializedVersion: 2
         m_Curve: []
