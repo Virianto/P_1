@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -81,17 +82,24 @@ public class M_Cameras : MonoBehaviour
     }
 
     // Lo llamamos desde el C_SimpleTrigger en Escena
-    public void ChangeCamera()
+    public void ChangeCamera(int newCamIndex)
     {
-        // Lanza una subrutina
+        StartCoroutine(MiRutina(newCamIndex));
     }
 
-    //IEnumerator MiRutina()
-    //{
-        // Saltar de Cámara X a cámara Y
+    IEnumerator MiRutina(int newCamIndex)
+    {
+        // Antes de hacer nada, me guardo en qué cámara estaba yo antes:
+        int temporaryIndex = CurrentActiveCameraIndex;
+
+        // Saltar de Cámara 0 a cámara newCamIndex
+        CurrentActiveCameraIndex = newCamIndex;
         // Esperar Z tiempo (yield return)
-        // Volver de cámara Y a cámara X
-    //}
+        yield return new WaitForSeconds(1);
+        // Volver de cámara newCamIndex a cámara 0
+        // OP 1 - CurrentActiveCameraIndex = temporaryIndex;
+        // OP 2 - CurrentActiveCameraIndex = 0;
+    }
 
     void SwitchToCinemachineCamera()
     {
