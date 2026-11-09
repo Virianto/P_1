@@ -14,6 +14,12 @@ public class B_PlayerPlane : MonoBehaviour
     public float maxSpeed = 100f;
     public float accelerationSensitivity = 50f; // Qué tan rápido cambia la velocidad con el scroll
 
+    [SerializeField]
+    [Range(1, 100)]
+    float maxLifePoints = 20;
+    float currentLifePoints;
+
+
     [Range(0, 180)]
     public float angularSpeed = 90;
 
@@ -26,11 +32,12 @@ public class B_PlayerPlane : MonoBehaviour
     #endregion
     #region METHODS
 
-    public void Start()
+    void Awake()
     {
         M_ManagerCanvasAvion.Instance.CurrentSpeed(Speed);
+        // Me aseguro de que el jugador empieza el nivel con toda la vida siempre
+        currentLifePoints = maxLifePoints;
     }
-
     private void Update()
     {
         if (Input.GetKey(hNegativeTiltKey))
@@ -84,6 +91,17 @@ public class B_PlayerPlane : MonoBehaviour
     public void CurrentStatusFloor(string status)
     {
        M_ManagerCanvasAvion.Instance.PlaneStatusChange(status);
+    }
+
+    public void ModifyPlayerLife(float amount)
+    {
+        currentLifePoints += amount;
+        Debug.Log("mi vida es " + currentLifePoints);
+        M_ManagerCanvasAvion.Instance.PlayerLifeChanged(currentLifePoints / maxLifePoints);
+    }
+    public void ModifyTimeLeft(float amount)
+    {
+        M_ManagerCanvasAvion.Instance.PlayerTimeChanged(amount);
     }
     #endregion
 }

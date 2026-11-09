@@ -1,92 +1,42 @@
+using Code.Utils;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
 /// Aqui va el enunciado del proposito de esta clase
 /// </summary>
 
-public class M_Cameras : MonoBehaviour
+public class M_Cameras : Code.Utils.Singleton<M_Cameras>
 {
     #region ATTRIBUTES
 
     [SerializeField]
     List<CinemachineCamera> allVirtualCamerasList = new();
 
-    [SerializeField]
-    KeyCode firstCameraKey = KeyCode.Alpha0;
-
-    [SerializeField]
-    KeyCode secondCameraKey = KeyCode.Alpha1;
-
-    [SerializeField]
-    KeyCode tertiaryCameraKey = KeyCode.Alpha2;
-
-    [SerializeField]
-    KeyCode fourthCameraKey = KeyCode.Alpha3;
-
-    [SerializeField]
-    KeyCode fifthCameraKey = KeyCode.Alpha4;
-
-    [SerializeField]
-    KeyCode sixthCameraKey = KeyCode.Alpha5;
-
-    int _currentActiveCameraIndex = 0;
-    private int CurrentActiveCameraIndex
-    {
-        get { return _currentActiveCameraIndex; }
-
-        set 
-        { 
-            _currentActiveCameraIndex = value;
-            SwicthToCinemachineCamera();
-        }
-    }
-
     #endregion
     #region METHODS
 
-    private void Update()
+    public void EnterRingDamage(int index)
     {
-        if (Input.GetKeyDown(firstCameraKey))
-        {
-            CurrentActiveCameraIndex = 0;
-        }
-        if (Input.GetKeyDown(secondCameraKey))
-        {
-            CurrentActiveCameraIndex = 1;
-        }
-        if (Input.GetKeyDown(tertiaryCameraKey))
-        {
-            CurrentActiveCameraIndex = 2;
-        }
-        if (Input.GetKeyDown(fourthCameraKey))
-        {
-            CurrentActiveCameraIndex = 3;
-        }
-        if (Input.GetKeyDown(fifthCameraKey))
-        {
-            CurrentActiveCameraIndex = 4;
-        }
-        if (Input.GetKeyDown(sixthCameraKey))
-        {
-            CurrentActiveCameraIndex = 5;
-        }
+        StartCoroutine(EnterRingCount(index));
     }
 
-    void SwicthToCinemachineCamera()
+    public void EnterRingSpeed(int index)
     {
-        for (int i = 0; i < allVirtualCamerasList.Count; i++)
-        {
-            if (i == CurrentActiveCameraIndex)
-            {
-                allVirtualCamerasList[i].Priority = 1;
-            }
-            else
-            {
-                allVirtualCamerasList[i].Priority = 0;
-            }
-        }
+        StartCoroutine(EnterRingCount(index));
+    }
+
+    IEnumerator EnterRingCount(int index)
+    {
+        allVirtualCamerasList[0].Priority = 0;
+        allVirtualCamerasList[index].Priority = 1;
+        yield return new WaitForSeconds(1);
+        allVirtualCamerasList[index].Priority = 0;
+        allVirtualCamerasList[0].Priority = 1;
     }
 
     #endregion

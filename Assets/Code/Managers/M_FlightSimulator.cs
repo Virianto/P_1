@@ -14,6 +14,7 @@ public class M_ManagerCanvasAvion : Singleton<M_ManagerCanvasAvion>
     public event Action<int> PointsChanged;
     public event Action<float> SpeedChanged;
     public event Action<string> PlaneStatus;
+    public event Action<float> OnPlayerLifeLeftChanged;
 
     [SerializeField]
     UI_FlightCanvas flightCanvas;
@@ -55,7 +56,15 @@ public class M_ManagerCanvasAvion : Singleton<M_ManagerCanvasAvion>
     {
         PlaneStatus.Invoke(status);
     }
-
+    public void PlayerLifeChanged(float playerLifeLeft)
+    {
+        OnPlayerLifeLeftChanged?.Invoke(playerLifeLeft);
+    }
+    public void PlayerTimeChanged(float playerTimeLeft)
+    {
+        gameTimeLeft = playerTimeLeft + gameTimeLeft;
+        OnTimeLeftChanged?.Invoke(gameTimeLeft);
+    }
     #endregion
 }
 

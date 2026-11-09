@@ -22,6 +22,9 @@ public class UI_FlightCanvas : MonoBehaviour
     [SerializeField]
     Image planeDamage;
 
+    [SerializeField]
+    Image playerLifeImage;
+
     #endregion
     #region METHODS
 
@@ -31,6 +34,7 @@ public class UI_FlightCanvas : MonoBehaviour
         M_ManagerCanvasAvion.Instance.PointsChanged += UpdatePlayerPointsText;
         M_ManagerCanvasAvion.Instance.SpeedChanged += UpdatePlayerSpeedText;
         M_ManagerCanvasAvion.Instance.PlaneStatus += UpdateLifeLeftImage;
+        M_ManagerCanvasAvion.Instance.OnPlayerLifeLeftChanged += UpdateLifeLeftImage;
     }
 
     void UpdatePlayerPointsText(int currentPlayerPoints)
@@ -51,6 +55,10 @@ public class UI_FlightCanvas : MonoBehaviour
         {
             planeDamage.color = Color.red;
         }
+    }
+    void UpdateLifeLeftImage(float currentAmountLeft)
+    {
+        playerLifeImage.fillAmount = currentAmountLeft;
     }
     #endregion
 }
