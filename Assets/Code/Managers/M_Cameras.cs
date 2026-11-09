@@ -1,3 +1,4 @@
+using Code.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
@@ -6,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// * Detectar Input de usuario para saltar de una cámara a otra
 /// </summary>
-public class M_Cameras : MonoBehaviour
+public class M_Cameras : Singleton<M_Cameras>
 {
     #region ATTRIBUTES
 
