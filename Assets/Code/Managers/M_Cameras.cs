@@ -38,6 +38,7 @@ public class M_Cameras : MonoBehaviour
             _currentActiveCameraIndex = value;
             //Utilizo el nuevo valor de forma automática
             switchToCinemachineCamera();
+            Debug.Log($"camara {value}");
         }
     }
 

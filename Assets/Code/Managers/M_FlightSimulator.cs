@@ -16,12 +16,12 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     [SerializeField]
     UI_FlightSimulatorCanvas flightSimulatorCanvas;
 
-    [SerializeField]
-    B_PlayerPlane player;
+    //[SerializeField]
+    public B_PlayerPlane player;
 
-    [SerializeField]
+    //[SerializeField]
     [Range(5, 60)]
-    float gameTimeLeft = 50;
+    public float gameTimeLeft = 50;
 
     public event Action<float> OnTimeLeftChanged;
     public event Action<float> OnPlayerLifeLeftChanged;
