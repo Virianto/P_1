@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -12,8 +13,8 @@ public class B_PlayerPlane : MonoBehaviour
 
     #endregion
 
-    [Range(10, 200)]
-    public float speed = 10;
+    [Range(10, 100)]
+    public float speed = 20;
 
     [Range(0, 180)]
     public float angularSpeed = 90;
@@ -24,6 +25,12 @@ public class B_PlayerPlane : MonoBehaviour
     float maxLifePoints = 100;
 
     public float currentLifePoints;
+
+    [SerializeField]
+    ParticleSystem speedParticlesLeft;
+
+    [SerializeField]
+    ParticleSystem speedParticlesRight;
 
     [SerializeField]
     KeyCode vNegativeTilKey = KeyCode.W;
@@ -75,6 +82,25 @@ public class B_PlayerPlane : MonoBehaviour
     {
         this.speed = this.speed + speed;
         M_FlightSimulator.Instance.PlayerSpeedChanged(this.speed);
+        StartCoroutine(SpeedParticles(4));
+    }
+
+    IEnumerator SpeedParticles(float duration)
+    {
+        // Activamos el sistema de partículas
+        speedParticlesLeft.Play();
+        speedParticlesRight.Play();
+
+        // Obtenemos los módulos de emisión de las partículas
+        var emissionLeft = speedParticlesLeft.emission;
+        var emissionRight = speedParticlesRight.emission;
+
+        // Detenemos la emisión tras el tiempo deseado
+        yield return new WaitForSeconds(duration);
+
+        // Desactivamos el sistema de partículas
+        speedParticlesLeft.Stop();
+        speedParticlesRight.Stop();
     }
 
     public void ModifyPoints(float points)

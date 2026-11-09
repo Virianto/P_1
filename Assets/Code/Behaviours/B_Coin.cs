@@ -15,6 +15,10 @@ public class B_Coin : MonoBehaviour
     
     #endregion
 
+
+
+
+
     #region METHODS
 
     void OnTriggerEnter(Collider other)

@@ -117,7 +117,7 @@ public class M_FlightCameras : Singleton<M_FlightCameras>
         CurrentActiveCameraIndex = newCamIndex;
 
         // Esperar Z tiempo
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         // Volver de Cámara Y a Cámara X
         CurrentActiveCameraIndex = 0;

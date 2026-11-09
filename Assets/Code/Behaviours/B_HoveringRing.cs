@@ -16,19 +16,14 @@ public class B_HoveringRing : MonoBehaviour
 {
     #region ATTRIBUTES
 
-
-    public RingType ringType;
-
     M_RingsManager ringsManager;
-
-    M_FlightSimulator flightManager;
-
-    M_FlightCameras cameras;
 
     B_PlayerPlane player;
 
-    public float minLifeTime = 10;
-    public float maxLifeTime = 20;
+    public RingType ringType;
+
+    public float minLifeTime = 20;
+    public float maxLifeTime = 30;
 
     #endregion
 
@@ -93,7 +88,7 @@ public class B_HoveringRing : MonoBehaviour
 
             else if (ringType == RingType.time)
             {
-                flightManager.ModifyTime(10);
+                M_FlightSimulator.Instance.ModifyTime(10);
             }
         }
     }

@@ -20,16 +20,16 @@ public class M_RingsManager : MonoBehaviour
     public float maxCreationFrequency = 10;
 
     [SerializeField]
-    [Range(1, 50)]
-    float horizontalXRange = 50;
+    [Range(20, 200)]
+    float horizontalXRange = 100;
 
     [SerializeField]
-    [Range(1, 50)]
-    float verticalYRange = 50;
+    [Range(20, 200)]
+    float verticalYRange = 100;
 
     [SerializeField]
-    [Range(1, 50)]
-    float horizontalZRange = 50;
+    [Range(20, 200)]
+    float horizontalZRange = 100;
 
     #endregion
 
