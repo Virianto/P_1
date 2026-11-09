@@ -32,10 +32,15 @@ public class M_RingManager : Singleton<M_RingManager>
     [Range(1, 300)]
     float timeBetweenSpawns = 5;
 
+ 
+
     [Header("REFERENCIAS EXTERNAS")]
 
     [SerializeField]
     GameObject ringPrefab;
+
+    [SerializeField]
+    ParticleSystem fireworksPS;
 
     Color newRingColor;
 
@@ -95,6 +100,8 @@ public class M_RingManager : Singleton<M_RingManager>
     public void FinishRingLifeCycle(B_HoveringRing ring)
     {
         Destroy(ring.gameObject);
+        fireworksPS.Play();
+
     }
     #endregion
 }
