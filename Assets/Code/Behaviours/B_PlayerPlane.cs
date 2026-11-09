@@ -67,8 +67,8 @@ public class B_PlayerPlane : MonoBehaviour
     {
 
         // Aumentar velocidad del jugador x unidades
-        currentLifePoints += newSpeed;
-        M_FlightSimulator.Instance.PlayerSpeedChanged(speed / maxSpeed);
+        speed += newSpeed;
+        M_FlightSimulator.Instance.PlayerSpeedChanged(speed);
 
     }
     public void SetNewTime (float newTime)

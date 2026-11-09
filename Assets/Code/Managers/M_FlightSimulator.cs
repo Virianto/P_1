@@ -15,6 +15,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     public event Action<float> OnTimeLeftChanged;
     public event Action<float> OnPlayerLifeChanged;
     public event Action<float> OnPlayerSpeedChanged;
+    public event Action<float> OnPointsIncreased;
 
     [SerializeField]
     UI_FlightSimulatorCanvas flightSimulatorCanvas;
@@ -27,9 +28,9 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     float gameTimeLeft = 10;
 
     [SerializeField]
-    int playerPoints;
-    int playerLifeLeft = 2;
-    int newPlayerSpeed = 3;
+    float playerPoints;
+    
+
 
     #endregion
 
@@ -57,6 +58,9 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     {
 
         // Aumentar puntos del jugador x unidades
+        playerPoints += newPoints;
+
+        OnPointsIncreased?.Invoke(playerPoints);
 
     }
 
@@ -70,6 +74,12 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     {
 
         OnPlayerSpeedChanged?.Invoke(newPlayerSpeed);
+
+    }
+    public void ModifyGameTimeLeft(float newTime)
+    {
+
+        OnTimeLeftChanged?.Invoke(newTime);
 
     }
 
