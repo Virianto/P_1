@@ -36,6 +36,13 @@ public class B_PlayerPlane : MonoBehaviour
     {
         // Me aseguro de que el jugador empieza el nivel con toda la vida siempre
         lifePointsLeft = maxLifePoints;
+
+        //ModifyPlayerSpeed(0);
+    }
+
+    private void Start()
+    {
+        ModifyPlayerSpeed(0);
     }
 
     private void Update()
@@ -59,6 +66,12 @@ public class B_PlayerPlane : MonoBehaviour
         if (Input.GetKey(hPositiveTiltKey))
 
             transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
+    }
+
+    public void ModifyPlayerSpeed(float amount)
+    {
+        speed += amount;
+        M_FlightSimulator.Instance.PlayerSpeedChanged(speed);
     }
 
     public void ModifyPlayerLife(float amount)

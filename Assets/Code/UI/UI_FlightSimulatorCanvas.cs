@@ -36,6 +36,10 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
         M_FlightSimulator.Instance.OnTimeLeftChanged += UpdateTimeLeftText;
 
         M_FlightSimulator.Instance.OnPlayerLifeLeftChanged += UpdateLifeLeftImage;
+
+        M_FlightSimulator.Instance.OnPlayerSpeedChanged += UpdatePlayerSpeedText;
+
+        //M_FlightSimulator.Instance.OnPlayerTimeChanged += UpdateTimeLeftText;
     }
 
     void UpdatePlayerPointsText(int playerPointsText)
@@ -43,9 +47,9 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     }
 
-    void UpdatePlayerSpeedText(int playerSpeedText)
+    void UpdatePlayerSpeedText(float playerSpeedText)
     {
-
+        this.playerSpeedText.text = $"Velocidad: {playerSpeedText.ToString()}0";
     }
 
     void UpdateTimeLeftText(float currentTimeLeftText)

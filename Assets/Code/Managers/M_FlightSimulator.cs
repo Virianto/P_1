@@ -21,10 +21,12 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
 
     [SerializeField]
     [Range(5, 60)]
-    float gameTimeLeft = 10;
+    float gameTimeLeft = 50;
 
     public event Action<float> OnTimeLeftChanged;
     public event Action<float> OnPlayerLifeLeftChanged;
+    public event Action<float> OnPlayerSpeedChanged;
+    //public event Action<float> OnPlayerTimeChanged;
 
     #endregion
 
@@ -62,6 +64,11 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     //    Debug.Log($"Sigue llamandose {player.name}");
     //}
 
+    public void PlayerSpeedChanged(float speedAmount)
+    {
+        OnPlayerSpeedChanged?.Invoke(speedAmount);
+    }
+
     public void PlayerLifeChanged(float playerLifeLeft)
     {
         OnPlayerLifeLeftChanged?.Invoke(playerLifeLeft);
@@ -70,6 +77,12 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     public void NewCoinCollected()
     {
         flightSimulatorCanvas.UpdateCounter(player.totalYellowCoinsCollected);
+    }
+
+    public void PlayerTimeChanged(float time)
+    {
+        gameTimeLeft += time;
+        OnTimeLeftChanged?.Invoke(time);
     }
 
     void LaunchGameOver()
