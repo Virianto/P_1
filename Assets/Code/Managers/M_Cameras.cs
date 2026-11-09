@@ -80,6 +80,19 @@ public class M_Cameras : MonoBehaviour
         }
     }
 
+    // Lo llamamos desde el C_SimpleTrigger en Escena
+    public void ChangeCamera()
+    {
+        // Lanza una subrutina
+    }
+
+    //IEnumerator MiRutina()
+    //{
+        // Saltar de Cámara X a cámara Y
+        // Esperar Z tiempo (yield return)
+        // Volver de cámara Y a cámara X
+    //}
+
     void SwitchToCinemachineCamera()
     {
         // Recorrer la lista entera de cinemachine cameras
