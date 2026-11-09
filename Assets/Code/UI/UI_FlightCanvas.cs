@@ -27,6 +27,8 @@ public class UI_FlightCanvas : MonoBehaviour
     [SerializeField]
     Image playerLifeImage;
 
+    float timeLeft;
+
     
     #endregion
 
@@ -45,6 +47,17 @@ public class UI_FlightCanvas : MonoBehaviour
         M_FlightSimulator.Instance.OnPlayerCurrentLifeChanged += UpdateLifeLeftImage;
     }
 
+    void Update()
+    {
+        if(timeLeft <= 5)
+        {
+            timeLeftText.color = Color.darkRed;
+        }
+        else
+        {
+            timeLeftText.color = new Color (0.611647f, 0.4313726f, 0.1254902f, 1f);
+        }
+    }
     
 
     void UpdatePlayerScoreText(int currentPlayerScore)
@@ -60,6 +73,7 @@ public class UI_FlightCanvas : MonoBehaviour
     void UpdateTimeLeftText(float currentTimeLeft) 
     {
         timeLeftText.text =TimeFormatter.FormatTime(currentTimeLeft);
+        timeLeft = currentTimeLeft;
         
     }
 
@@ -68,12 +82,12 @@ public class UI_FlightCanvas : MonoBehaviour
         playerLifeImage.fillAmount = currentAmountLeft;
     }
 
-    IEnumerator ChangeColorOnLowTime()
-    {
-        timeLeftText.color = Color.darkRed;
-        yield return new WaitForSeconds(1);
-        timeLeftText.color = Color.white;
-        StartCoroutine(ChangeColorOnLowTime());
-    }
+    //IEnumerator ChangeColorOnLowTime()
+    //{
+    //    timeLeftText.color = Color.darkRed;
+    //    yield return new WaitForSeconds(1);
+    //    timeLeftText.color = Color.beige;
+    //    StartCoroutine(ChangeColorOnLowTime());
+    //}
     #endregion
 }

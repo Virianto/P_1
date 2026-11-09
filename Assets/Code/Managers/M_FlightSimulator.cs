@@ -42,8 +42,9 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
 
     void Update()
     {
+        
         gameplayTime -= Time.deltaTime;
-        OnTimeLeftChanged?.Invoke(gameplayTime);
+        OnTimeLeftChanged?.Invoke(Mathf.Clamp(gameplayTime, 0, 3000));
     }
 
 
