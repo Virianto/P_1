@@ -82,6 +82,7 @@ public class B_PlayerPlane : MonoBehaviour
     {
         currentPlayerLife += newLifePoints;
         M_FlightSimulator.Instance.PlayerLifeChanged(currentPlayerLife / maxPlayerLife);
+     
     }
 
     
