@@ -51,6 +51,10 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     {
         gameTimeLeft += time;
         OnTimeLeftChanged?.Invoke(gameTimeLeft);
+        if (gameTimeLeft <= 0)
+        {
+            LaunchGameOver();
+        }
     }
 
     public void ModifySpeed(float newSpeed)
@@ -59,7 +63,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
         OnSpeedChanged?.Invoke(newSpeed);
     }
 
-    void LaunchGameOver()
+    public void LaunchGameOver()
     {
         // Rellenar cuando haya flujo de juego
         SceneManager.LoadScene(0);

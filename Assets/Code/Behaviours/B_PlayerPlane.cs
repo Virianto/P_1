@@ -71,6 +71,10 @@ public class B_PlayerPlane : MonoBehaviour
     {
         currentLifePoints += life;
         M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints/maxLifePoints);
+        if (currentLifePoints <= 0)
+        {
+            GetComponent<M_FlightSimulator>().LaunchGameOver();
+        }
     }
     #endregion
 }
