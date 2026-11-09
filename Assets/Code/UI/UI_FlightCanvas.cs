@@ -1,6 +1,8 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 /// <summary>
 /// * Referencia al valor de puntos del jugador
@@ -24,6 +26,8 @@ public class UI_FlightCanvas : MonoBehaviour
 
     [SerializeField]
     Image playerLifeImage;
+
+    
     #endregion
 
 
@@ -41,6 +45,8 @@ public class UI_FlightCanvas : MonoBehaviour
         M_FlightSimulator.Instance.OnPlayerCurrentLifeChanged += UpdateLifeLeftImage;
     }
 
+    
+
     void UpdatePlayerScoreText(int currentPlayerScore)
     {
         playerScoreText.text = currentPlayerScore.ToString();
@@ -54,6 +60,7 @@ public class UI_FlightCanvas : MonoBehaviour
     void UpdateTimeLeftText(float currentTimeLeft) 
     {
         timeLeftText.text =TimeFormatter.FormatTime(currentTimeLeft);
+        
     }
 
     void UpdateLifeLeftImage(float currentAmountLeft)
@@ -61,5 +68,12 @@ public class UI_FlightCanvas : MonoBehaviour
         playerLifeImage.fillAmount = currentAmountLeft;
     }
 
+    IEnumerator ChangeColorOnLowTime()
+    {
+        timeLeftText.color = Color.darkRed;
+        yield return new WaitForSeconds(1);
+        timeLeftText.color = Color.white;
+        StartCoroutine(ChangeColorOnLowTime());
+    }
     #endregion
 }

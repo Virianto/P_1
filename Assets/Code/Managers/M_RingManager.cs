@@ -52,7 +52,8 @@ public class M_RingManager : Singleton<M_RingManager>
     {   
         B_HoveringRing newRing = Instantiate(ringPrefab).GetComponent<B_HoveringRing>();
         RingModificationType newRingType = (RingModificationType)Random.Range (0, 4);
-        newRing.InitializeRing(this,newPosition,Random.Range(3,10), Random.Range(0.5f,2),newRingType);
+        
+       newRing.InitializeRing(this,newPosition,Random.Range(3,10), Random.Range(0.5f,2),newRingType);
     }
 
     IEnumerator RingSpawnTimeCycle()

@@ -48,13 +48,15 @@ public class B_HoveringRing : MonoBehaviour
         {
             if (ringType == RingModificationType.Life)
             {
-              M_FlightSimulator.Instance.PlayerLifeChanged(-1);
+                player.currentPlayerLife += -1;
+              M_FlightSimulator.Instance.PlayerLifeChanged(player.currentPlayerLife / player.maxPlayerLife);
               M_FlightScoolCameraManager.Instance.ChangeToHitCamera(1);
             }
 
             if (ringType == RingModificationType.Speed)
             {
-               M_FlightSimulator.Instance.PlayerSpeedChanged(5);
+                player.speed += 5;
+               M_FlightSimulator.Instance.PlayerSpeedChanged(player.speed);
                M_FlightScoolCameraManager.Instance.ChangeToHitCamera(3);
 
             }
@@ -65,6 +67,7 @@ public class B_HoveringRing : MonoBehaviour
             }
             if (ringType == RingModificationType.Time)
             {
+                
                 M_FlightSimulator.Instance.ModifyGameplayTime(5);
             }
 
