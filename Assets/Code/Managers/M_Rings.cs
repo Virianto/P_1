@@ -15,6 +15,9 @@ public class M_Rings : MonoBehaviour
 
     void GenerateNewRandomRing()
     {
+        // Decisión "al azar" de qué tipo asignar a mi futuro nuevo anillo:
+        RingModificationType newRingType = (RingModificationType)Random.Range(0, 4);        
+
         // Aquí hay que hacer muuuuuchas cosas. Buena suerte
     }
 

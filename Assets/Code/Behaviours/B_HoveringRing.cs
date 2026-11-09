@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum RingModificationType
@@ -18,6 +20,9 @@ public class B_HoveringRing : MonoBehaviour
     M_Rings myManager;
 
     RingModificationType ringType;
+
+    [SerializeField]
+    List<Material> ringTypeMatsList = new();
 
     #endregion
 
