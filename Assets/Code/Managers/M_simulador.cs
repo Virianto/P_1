@@ -12,6 +12,7 @@ public class M_simulador : Singleton<M_simulador>
 {
     public event Action<float> OnTimeLeftChanged;
     public event Action<float> OnPlayerLifeLeftChanged;
+    public event Action<float> OnPlayerSpeedVelocityChanged;
 
     #region ATTRIBUTES
     [SerializeField]
@@ -25,10 +26,6 @@ public class M_simulador : Singleton<M_simulador>
     [Range(5, 60)]
     float gameTimeLeft = 10;
 
-
-
-
-
     #endregion
 
 
@@ -38,11 +35,17 @@ public class M_simulador : Singleton<M_simulador>
     {
         OnPlayerLifeLeftChanged?.Invoke(playerLifeLeft);
     }
+
+    public void PlayerSpeedChange(float playerSpeedVelocity)
+    {
+        OnPlayerSpeedVelocityChanged?.Invoke(playerSpeedVelocity);
+    }
     void Update()
     {
         gameTimeLeft -= Time.deltaTime;
         OnTimeLeftChanged?.Invoke(gameTimeLeft);
     }
+
 
     void LaunchGameOver()
     { }

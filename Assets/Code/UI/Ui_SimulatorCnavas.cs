@@ -21,6 +21,9 @@ public class Ui_SimulatorCnavas : MonoBehaviour
     Image playerLifeImage;
     #endregion
 
+    [SerializeField]
+    TMP_Text playerSpeedText;
+
 
     #region METHODS 
     void Start()
@@ -40,7 +43,7 @@ public class Ui_SimulatorCnavas : MonoBehaviour
     }
     void UpdatePlayerSpeedText(float currentPlayerSpeed)
     {
-   
+        playerSpeedText.text = string.Format("Speed: {0:00}", currentPlayerSpeed);
     }
     void UpdateLifeLeftImage(float currentAmountLeft)
     {

@@ -33,6 +33,11 @@ public class B_PlayerPlane : MonoBehaviour
     float MaxLifePoints = 20;
     float currentLifePoint = 20;
 
+    [SerializeField]
+    [Range(1, 100)]
+
+    float currentSpeedVelocity = 20;
+
     #region METHODS 
 
     private void Update()
@@ -64,6 +69,13 @@ public class B_PlayerPlane : MonoBehaviour
     {
         currentLifePoint += amount;
         M_simulador.Instance.PlayerLifeChanged(currentLifePoint / MaxLifePoints);
+
+    }
+
+    public void ModifyPlayerSpeed(float amount)
+    {
+        currentSpeedVelocity += amount;
+        M_simulador.Instance.PlayerSpeedChange(currentSpeedVelocity);
 
     }
     #endregion
