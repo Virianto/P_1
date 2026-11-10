@@ -1,13 +1,33 @@
 using UnityEngine;
 
 /// <summary>
-/// Esta clase debe hacer todo lo que se ha indicado en el enunciado del ejercicio
-/// (Ese precioso, maravilloso y glorioso PAINT)
+/// * Instanciar un prefab de anillo en algún punto aleatorio de la escena
+/// * Indicar a ese anillo de qué tipo es para que se inicialice
+/// * Gestionar el ciclo de vida del anillo
+/// * ¿¿??
 /// </summary>
 public class M_Rings : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    [Header("EXTERNAL REFERENCES")]
+
+    [SerializeField]
+    GameObject ringPrefab;
+
+    [Header("EDITABLE VALUES")]
+
+    [SerializeField]
+    [Range(1, 30)]
+    float horizontalRandomLimit = 5;
+
+    [SerializeField]
+    [Range(1, 30)]
+    float depthRandomLimit = 5;
+
+    [SerializeField]
+    [Range(1, 30)]
+    float verticalRandomLimit = 10;
 
     #endregion
 
