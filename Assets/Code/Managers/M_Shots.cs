@@ -23,6 +23,7 @@ public class M_Shots : MonoBehaviour
         //PASO 3
         //proyectar el rayo
         //recoger info y decidir q hacer si ha impactado en algo
+       
 
     }
 #endregion
