@@ -10,6 +10,7 @@ public class M_Balloons : MonoBehaviour
     #region ATTRIBUTES
 
     // Referencia al prefab
+    // Límite de enemigos simultáneos en escena
     // Límites de espacio para ubicar cada nuevo prefab
 
     #endregion
