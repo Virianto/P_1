@@ -50,14 +50,14 @@ public class B_HoveringRing : MonoBehaviour
 
         if (ringType == RingModificationType.Points)
         {
-            // Busco al manager del juego y le sumo los puntos          
+            //M_FlightSimulator.Instance.SumarPuntos();
         }
         else if(ringType == RingModificationType.Life)
         {            
             if (player != null) 
             {
                 player.ModifyPlayerLife(-5);
-                //M_Cameras.Instance.ChangeCamera(índice de la cámara);
+                M_Cameras.Instance.CurrentActiveCameraIndex = 2;
             }
         }
         else if( ringType == RingModificationType.Speed)
@@ -65,7 +65,7 @@ public class B_HoveringRing : MonoBehaviour
             if (player != null)
             {
                 player.speed += 3;
-                // Busco al manager de cámaras y le hago un cambio temporal a la cámara de velocidad
+                M_Cameras.Instance.CurrentActiveCameraIndex = 3;
             }            
         }
         else if (ringType == RingModificationType.Time) 
