@@ -33,9 +33,6 @@ public class B_PlayerPlane : MonoBehaviour
     float MaxLifePoints = 20;
     float currentLifePoint = 20;
 
-    [SerializeField]
-    [Range(1, 100)]
-
     float currentSpeedVelocity = 20;
 
     #region METHODS 

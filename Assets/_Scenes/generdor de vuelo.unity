@@ -1543,7 +1543,7 @@ Transform:
   m_GameObject: {fileID: 243443667}
   serializedVersion: 2
   m_LocalRotation: {x: 0.062137436, y: 0, z: 0, w: 0.9980676}
-  m_LocalPosition: {x: 0, y: 1.5, z: -40.7}
+  m_LocalPosition: {x: 0, y: 1.5, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1901,7 +1901,7 @@ Transform:
   m_GameObject: {fileID: 268743174}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13746627, y: 0, z: 0, w: 0.9905065}
-  m_LocalPosition: {x: 0, y: 0.9, z: -31.880001}
+  m_LocalPosition: {x: 0, y: 0.9, z: -31.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2726,15 +2726,15 @@ MonoBehaviour:
   triggerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2012720887}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 2012720891}
+        m_TargetAssemblyTypeName: B_PlayerPlane, Assembly-CSharp
+        m_MethodName: ModifyPlayerSpeed
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 40
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -4575,7 +4575,7 @@ Transform:
   m_GameObject: {fileID: 737630697}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13746627, y: 0, z: 0, w: 0.9905065}
-  m_LocalPosition: {x: 0, y: 0.9, z: -31.880001}
+  m_LocalPosition: {x: 0, y: 0.9, z: -31.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4690,7 +4690,7 @@ Transform:
   m_GameObject: {fileID: 750115033}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.099999994, z: -26.7}
+  m_LocalPosition: {x: 0, y: 0.099999994, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5617,7 +5617,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -7044,15 +7044,15 @@ MonoBehaviour:
   triggerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2012720887}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 2012720891}
+        m_TargetAssemblyTypeName: B_PlayerPlane, Assembly-CSharp
+        m_MethodName: ModifyPlayerLife
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: -5
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -7687,8 +7687,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331629287}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.062137436, y: 0, z: 0, w: 0.9980676}
-  m_LocalPosition: {x: 0, y: 1.5, z: -12}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.099999994, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10701,7 +10701,6 @@ MonoBehaviour:
   TimeLeftText: {fileID: 1588917344}
   PlayerSpeedText: {fileID: 1921844115}
   playerLifeImage: {fileID: 506946709}
-  playerSpeedText: {fileID: 0}
 --- !u!1 &1885065964
 GameObject:
   m_ObjectHideFlags: 0
@@ -11842,7 +11841,7 @@ Transform:
   m_GameObject: {fileID: 2012720887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -28.7}
+  m_LocalPosition: {x: 0, y: 0, z: -28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11892,13 +11891,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8daa5b28e441e7d4fb3288b67aeac6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_PlayerPlane
-  speed: 3
+  speed: 10
   angularspeed: 90
   vNegativeTilKey: 119
   vPositiveTilKey: 115
   hNegativeTilKey: 97
   hPositiveTilKey: 100
   MaxLifePoints: 20
+  currentSpeedVelocity: 20
 --- !u!1 &2029440193
 GameObject:
   m_ObjectHideFlags: 0
