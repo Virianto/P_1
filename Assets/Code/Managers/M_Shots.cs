@@ -13,6 +13,7 @@ public class M_Shots : MonoBehaviour
     KeyCode shotKey = KeyCode.F;
 
     LineRenderer laserLine;
+
     #endregion
 
 
