@@ -3,7 +3,8 @@ using UnityEngine;
 
 
 /// <summary>
-/// Aquí va el enunciado del propósito de esta clase
+/// Generar enemigos en tiempo y lugar aleatorios
+/// Gestionar el ciclo de vida de los enemigos
 /// </summary>
 public class M_FlyingEnemies : MonoBehaviour
 {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// Aquí va el enunciado del propósito de esta clase
+/// Enemigos que se mueven por el cielo y que quitan vida al jugador si choca contra ellos
 /// </summary>
 public class B_FlyingEnemy : MonoBehaviour
 {
@@ -118,15 +118,15 @@ public class B_FlyingEnemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Gestionar el ciclo de vida de las monedas
+    /// Gestionar el ciclo de vida de los enemigos
     /// </summary>
     IEnumerator FinishLifeCycle()
     {
-        // Si escribimos código aquí SÍ es relevante el orden en Initialize (donde hemos metido la corutina)
+        // Si escribimos código aquí SÍ es relevante el orden en Initialize (donde hemos metido la corrutina)
 
         yield return new WaitForSeconds(Random.Range(minLifeTime, maxLifeTime));
 
-        // Si escribimos código aquí NO es relevante el orden en Initialize (donde hemos metido la corutina)
+        // Si escribimos código aquí NO es relevante el orden en Initialize (donde hemos metido la corrutina)
 
         myManager.FinishFlyingEnemyLifeCycle(this);
     }
