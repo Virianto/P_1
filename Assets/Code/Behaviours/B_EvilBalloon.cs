@@ -12,7 +12,6 @@ public class B_EvilBalloon : MonoBehaviour
     // Variable de puntos de vida
     // Lista de puntos para hacer su ruta/vigilancia cíclica
 
-
     #endregion
 
     #region METHODS
