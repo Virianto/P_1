@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,17 +30,18 @@ public class B_HoveringRing : MonoBehaviour
     /// <summary>
     /// Añadir todos los parámetros del enunciado en esta declaración
     /// </summary>
-    public void InitializeRing(M_Rings manager, RingModificationType newRingType)
+    public void InitializeRing(M_Rings manager, RingModificationType newRingType, Vector3 newRingPos)
     {        
         myManager = manager;
-        ringType = newRingType;        
+        ringType = newRingType; 
+        transform.position = newRingPos;
 
-        Renderer[] allRingRenderers = GetComponentsInChildren<Renderer>();
+        //Renderer[] allRingRenderers = GetComponentsInChildren<Renderer>();
 
-        for(int r = 0; r < allRingRenderers.Length; ++r)
-        {
-            allRingRenderers[r].material.color = ringTypeColorsList[(int)ringType];
-        }
+        //for(int r = 0; r < allRingRenderers.Length; ++r)
+        //{
+        //    allRingRenderers[r].material.color = ringTypeColorsList[(int)ringType];
+        //}
     }
 
     void OnTriggerEnter(Collider other)
