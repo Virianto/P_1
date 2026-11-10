@@ -4,7 +4,7 @@ using UnityEngine;
 /// AQUI VA EL ENNUNCIADO DEL PROPOSITO DE ESTA CLASE
 /// </summary>
 
-public class B_PlayerPlane : MonoBehaviour
+public class PLAYERPLANE : MonoBehaviour
 {
     #region ATTRIBUTES
     [Range(0, 400)]

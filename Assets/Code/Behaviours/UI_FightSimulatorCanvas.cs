@@ -1,4 +1,4 @@
-using System;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,10 +9,10 @@ using UnityEngine.UI;
 /// * Referencia al texto que indica el tiempo
 /// * Referencia a la imagen que representa la vida restante del jugador
 /// </summary>
-public class UI_FlightSimulatorCanvas : MonoBehaviour
+public class UI_FightSimulatorCanvas : MonoBehaviour
 {
     #region ATTRIBUTES
-    public event Action<float> OnTimeLeftChange;
+    
     [SerializeField]
     TMP_Text playerPointsText;
 
@@ -45,7 +45,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     void UpdateTimeLeftText(float currentTimeLeft)
     {
-        timeLeftText.text = TimeFormatter.FormatTime(currentTimeLeft);
+       timeLeftText.text = TimeFormatter.FormatTime(currentTimeLeft);
     }
 
     void UpdateLifeLeftImage(float currentAmountLeft)
