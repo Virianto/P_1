@@ -412,7 +412,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -430,3 +430,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3bb790fab9d49448898f1c2365d501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_HoveringRing
+  ringTypeColorsList:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
