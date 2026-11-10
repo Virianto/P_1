@@ -39,14 +39,9 @@ public class B_HoveringRing : MonoBehaviour
         ringType = newRingType; 
         transform.position = newRingPos;
 
-        StartCoroutine(FinishThisRingLifeCycle(lifeTime));
+        ChangeRingColor();
 
-        //Renderer[] allRingRenderers = GetComponentsInChildren<Renderer>();
-
-        //for(int r = 0; r < allRingRenderers.Length; ++r)
-        //{
-        //    allRingRenderers[r].material.color = ringTypeColorsList[(int)ringType];
-        //}
+        StartCoroutine(FinishThisRingLifeCycle(lifeTime));        
     }
 
     void OnTriggerEnter(Collider other)
@@ -98,6 +93,24 @@ public class B_HoveringRing : MonoBehaviour
         if (ringIsActive)
         {
             myManager.FinishRingLifeCycle(this);
+        }
+    }
+
+    void ChangeRingColor()
+    {
+        // PASO 1 - BUSCAR Y ALMACENAR TODOS LOS RENDERER DE ESTE OBJETO
+        // - Crear una variable donde guardar las referencias
+        // - Buscar todas esas referencias en la jerarquía
+        Renderer[] allRingRenderers = GetComponentsInChildren<Renderer>();
+
+        // PASO 2 - RECORRER LA VARIABLE CON LAS REFERENCIAS
+        for(int i = 0;  i < allRingRenderers.Length; ++i)
+        {
+            //  PASO 3 - CAMBIAR COLOR DE CADA ELEMENTO SEGÚN EL TIPO
+            // - Acceder al elemento de la posición 'i'
+            // - Buscar el material y su color
+            // - Convertir el color según el tipo de anillo (con un parseo)
+            allRingRenderers[i].material.color = ringTypeColorsList[(int)ringType];
         }
     }
 

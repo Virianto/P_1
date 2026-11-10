@@ -5,7 +5,6 @@ using UnityEngine;
 /// X Instanciar un prefab de anillo en algún punto aleatorio de la escena
 /// X Indicar a ese anillo de qué tipo es para que se inicialice
 /// X Gestionar el ciclo de vida del anillo
-/// * ¿¿??
 /// </summary>
 public class M_Rings : MonoBehaviour
 {
