@@ -22,8 +22,9 @@ public class B_HoveringRing : MonoBehaviour
     #region ATTRIBUTES
 
     public Vector3 spawnPoint = Vector3.zero;
-    
-    public float lifeTime = 7;
+
+    public bool ringIsActive = true;
+   
 
     RingModificationType ringType;
 
@@ -39,17 +40,17 @@ public class B_HoveringRing : MonoBehaviour
     #region METHODS
 
 
-    public void InitializeRing(M_RingManager manager, Vector3 newPosition, float newLifeTime, float newScale, RingModificationType newType, Color newColor)
+    public void InitializeRing(M_RingManager manager, Vector3 newPosition, float newLifeTime, float newScale, RingModificationType newType)
     {
         ringType = newType;
         myManager = manager;
         transform.position = newPosition;
-        this.lifeTime = newLifeTime;
-        ColorRing(newColor);
-        transform.localScale = new Vector3 (newScale, newScale, newScale);
+        transform.localScale = new Vector3(newScale, newScale, newScale);
+        ChangeRingColor();
+        
 
         
-        //StartCoroutine(FinishLifeCycle());
+        StartCoroutine(FinishLifeCycle(newLifeTime));
 
     }
     void OnTriggerEnter(Collider other)
@@ -59,23 +60,24 @@ public class B_HoveringRing : MonoBehaviour
         {
             if (ringType == RingModificationType.Life)
             {
-                player.currentPlayerLife += -1;
-              M_FlightSimulator.Instance.PlayerLifeChanged(player.currentPlayerLife / player.maxPlayerLife);
+                player.ModifyLifePoints(-1);
               M_FlightScoolCameraManager.Instance.ChangeToHitCamera(1);
+                ringIsActive = false;
                 myManager.FinishRingLifeCycle(this);
             }
 
             if (ringType == RingModificationType.Speed)
             {
-                player.speed += 5;
-               M_FlightSimulator.Instance.PlayerSpeedChanged(player.speed);
+                player.Accelerate(5);
                M_FlightScoolCameraManager.Instance.ChangeToHitCamera(3);
+                ringIsActive = false;
                 myManager.FinishRingLifeCycle(this);
 
             }
             if (ringType == RingModificationType.Score)
             {
                 M_FlightSimulator.Instance.EarnPoints(1);
+                ringIsActive = false;
                 myManager.FinishRingLifeCycle(this);
 
             }
@@ -83,6 +85,7 @@ public class B_HoveringRing : MonoBehaviour
             {
                 
                 M_FlightSimulator.Instance.ModifyGameplayTime(5);
+                ringIsActive = false;
                 myManager.FinishRingLifeCycle(this);
             }
 
@@ -92,23 +95,35 @@ public class B_HoveringRing : MonoBehaviour
     }
 
 
-    void ColorRing(Color newColor)
-    {
-        foreach (Renderer r in GetComponentsInChildren<Renderer>())
-        {
-            r.material.color = newColor;
-        }
-    }
-
-
-
-    //}
-
-    //IEnumerator FinishLifeCycle()
+    //void ColorRing(Color newColor)
     //{
-    //    yield return new WaitForSeconds(lifeTime);
-    //    myManager.FinishRingLifeCycle(this);
+    //    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+    //    {
+    //        r.material.color = newColor;
+    //    }
     //}
+
+
+    void ChangeRingColor()
+    {
+        
+        Renderer[] allRingRenderers = GetComponentsInChildren<Renderer>();
+
+        for (int i = 0; i < allRingRenderers.Length; i++) 
+        {
+            allRingRenderers[i].material.color = RingColorList[(int)ringType];
+        }
+    
+    }
+    IEnumerator FinishLifeCycle(float newLifeTime)
+    {
+        yield return new WaitForSeconds(newLifeTime);
+        if (ringIsActive)
+        {
+            myManager.FinishRingLifeCycle(this);
+        }
+        
+    }
 
 
     #endregion

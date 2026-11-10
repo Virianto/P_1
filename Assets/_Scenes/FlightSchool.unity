@@ -17905,6 +17905,7 @@ MonoBehaviour:
   timeBetweenSpawns: 5
   ringPrefab: {fileID: 9051624371137850023, guid: a306eb8fb1bd47845b1781dc0207d1d6, type: 3}
   fireworksPS: {fileID: 1133652397}
+  newFireworkPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1502797534
 GameObject:
   m_ObjectHideFlags: 0
@@ -18217,6 +18218,51 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9, y: 8, z: 1}
   m_Center: {x: 5, y: 0, z: 0}
+--- !u!1 &1538316076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1538316077}
+  - component: {fileID: 1538316078}
+  m_Layer: 0
+  m_Name: EnemiesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1538316077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538316076}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2086051937}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1538316078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538316076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7044a6e37f8758846a31d0b57f788034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M_EnemiesManager
+  enemyPrefab: {fileID: 6436324818736863580, guid: a5b73ad8299bfa945af06263b3e53078, type: 3}
 --- !u!1 &1554209931
 GameObject:
   m_ObjectHideFlags: 0
@@ -21574,6 +21620,7 @@ Transform:
   - {fileID: 440427974}
   - {fileID: 707564733}
   - {fileID: 1397673006}
+  - {fileID: 1538316077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2125047435
