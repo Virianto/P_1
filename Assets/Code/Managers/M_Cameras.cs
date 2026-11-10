@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-
-using System.Collections.Generic;
-using Unity.Cinemachine;
-using Unity.IO.LowLevel.Unsafe;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.Rendering.LookDev;
-using UnityEngine;
-
-/// <summary>
-///tener referemncias a todas las camara virtuales de la escena
-///detectar imput de usuario para saltar de una camara a otra 
-/// </summary>
-public class M_Cameras : MonoBehaviour
-{
-    #region ATTRIBUTES
-    [SerializeField]
-
-=======
 using Code.Utils;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,32 +12,18 @@ public class M_Cameras : Singleton<M_Cameras>
     #region ATTRIBUTES
 
     [SerializeField]
->>>>>>> develop
     List<CinemachineCamera> allVirtualCamerasList = new();
 
     [SerializeField]
     KeyCode firstCameraKey = KeyCode.Alpha0;
 
     [SerializeField]
-<<<<<<< HEAD
-    KeyCode secondCameaKey = KeyCode.Alpha1;
-=======
     KeyCode secondCameraKey = KeyCode.Alpha1;
->>>>>>> develop
 
     [SerializeField]
     KeyCode tertiaryCameraKey = KeyCode.Alpha2;
 
     [SerializeField]
-<<<<<<< HEAD
-    KeyCode cuartiaryCameraKey = KeyCode.Alpha3;
-
-    [SerializeField]
-    KeyCode quintaCameraKey = KeyCode.Alpha4;
-
-    [SerializeField]
-    KeyCode sextaCameraKey = KeyCode.Alpha5;
-=======
     KeyCode fourthCameraKey = KeyCode.Alpha3;
 
     [SerializeField]
@@ -64,44 +31,17 @@ public class M_Cameras : Singleton<M_Cameras>
 
     [SerializeField]
     KeyCode sixthCameraKey = KeyCode.Alpha5;
->>>>>>> develop
 
     int _currentActiveCameraIndex = 0;
 
     public int CurrentActiveCameraIndex
     {
-<<<<<<< HEAD
-        get { return _currentActiveCameraIndex; }
-
-        set 
-        { 
-            _currentActiveCameraIndex = value; 
-            SwichToCinemachineCamera();
-        }
-    }
-    #endregion
-
-
-    #region METHODS 
-    private void Update()
-    {
-        if(Input.GetKeyDown(firstCameraKey))
-        {
-            CurrentActiveCameraIndex = 0;
-        }
-    
-        if(Input.GetKeyDown(secondCameaKey))
-        {
-            CurrentActiveCameraIndex = 1;
-        }
-    
-=======
         // Cómo se comporta la lectura
         get { return _currentActiveCameraIndex; }
 
         // Cómo se comporta la escritura (cambios de la variable)
-        set 
-        { 
+        set
+        {
             // Modifico el valor de mi variable privada
             _currentActiveCameraIndex = value;
 
@@ -115,8 +55,8 @@ public class M_Cameras : Singleton<M_Cameras>
     #region METHODS
 
     void Update()
-    {        
-        if (Input.GetKeyDown(firstCameraKey)) 
+    {
+        if (Input.GetKeyDown(firstCameraKey))
         {
             CurrentActiveCameraIndex = 0;
         }
@@ -124,23 +64,10 @@ public class M_Cameras : Singleton<M_Cameras>
         {
             CurrentActiveCameraIndex = 1;
         }
->>>>>>> develop
         if (Input.GetKeyDown(tertiaryCameraKey))
         {
             CurrentActiveCameraIndex = 2;
         }
-<<<<<<< HEAD
-        if (Input.GetKeyDown(cuartiaryCameraKey))
-        {
-            CurrentActiveCameraIndex = 3;
-        }
-        if (Input.GetKeyDown(quintaCameraKey))
-        {
-            CurrentActiveCameraIndex = 4;
-        }
-
-        if (Input.GetKeyDown(sextaCameraKey))
-=======
         if (Input.GetKeyDown(fourthCameraKey))
         {
             CurrentActiveCameraIndex = 3;
@@ -150,21 +77,11 @@ public class M_Cameras : Singleton<M_Cameras>
             CurrentActiveCameraIndex = 4;
         }
         if (Input.GetKeyDown(sixthCameraKey))
->>>>>>> develop
         {
             CurrentActiveCameraIndex = 5;
         }
     }
 
-<<<<<<< HEAD
-    void SwichToCinemachineCamera ()
-    {
-        for (int i = 0; i < allVirtualCamerasList.Count; ++i)
-        {
-            if (i  == CurrentActiveCameraIndex)
-            
-            {
-=======
     // Lo llamamos desde el C_SimpleTrigger en Escena
     public void ChangeCamera(int newCamIndex)
     {
@@ -188,31 +105,20 @@ public class M_Cameras : Singleton<M_Cameras>
     void SwitchToCinemachineCamera()
     {
         // Recorrer la lista entera de cinemachine cameras
-        for(int i = 0; i < allVirtualCamerasList.Count; ++i)
+        for (int i = 0; i < allVirtualCamerasList.Count; ++i)
         {
-            if(i == CurrentActiveCameraIndex)
+            if (i == CurrentActiveCameraIndex)
             {
                 // Para cada cámara, si es la del índice que quiero, le cambio la priroridad a 1
->>>>>>> develop
                 allVirtualCamerasList[i].Priority = 1;
             }
             else
             {
-<<<<<<< HEAD
-                allVirtualCamerasList[i].Priority = 0;
-            }
-        }
-     
-        
-
-    }
-=======
                 // Para cada cámara, si NO es la que quiero, le cambio la prioridad a 0
                 allVirtualCamerasList[i].Priority = 0;
             }
         }
     }
 
->>>>>>> develop
     #endregion
 }

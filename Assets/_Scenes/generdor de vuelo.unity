@@ -707,9 +707,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c718805579b4a94b90bb416d4b3da15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_simulador
-  SimulatorCnavas: {fileID: 1877099340}
-  Player: {fileID: 0}
-  gameTimeLeft: 10
 --- !u!4 &166787854
 Transform:
   m_ObjectHideFlags: 0
@@ -10697,10 +10694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717ddf261a6d764ebc7f051b59698c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ui_SimulatorCnavas
-  playerPointText: {fileID: 199360697}
-  TimeLeftText: {fileID: 1588917344}
-  PlayerSpeedText: {fileID: 1921844115}
-  playerLifeImage: {fileID: 506946709}
 --- !u!1 &1885065964
 GameObject:
   m_ObjectHideFlags: 0
@@ -11892,13 +11885,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_PlayerPlane
   speed: 10
-  angularspeed: 90
-  vNegativeTilKey: 119
-  vPositiveTilKey: 115
-  hNegativeTilKey: 97
-  hPositiveTilKey: 100
-  MaxLifePoints: 20
-  currentSpeedVelocity: 20
+  angularSpeed: 90
+  vNegativeTiltKey: 119
+  vPositiveTiltKey: 115
+  hNegativeTiltKey: 97
+  hPositiveTiltKey: 100
+  maxLifePoints: 20
 --- !u!1 &2029440193
 GameObject:
   m_ObjectHideFlags: 0

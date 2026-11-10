@@ -56,7 +56,7 @@ public class M_BallsSpawn : MonoBehaviour
     #endregion
 
     #region METHODS
-    
+
     void Update()
     {
         // Detectar una tecla para generar una esfera en el spawnOrigin
@@ -65,11 +65,11 @@ public class M_BallsSpawn : MonoBehaviour
             GenerateNewPrefab(spawnOrigin.position);
         }
         // Detectar una tecla DIFERENTE para generar una oleada de esferas aleatorias
-        if (Input.GetKeyDown(spawnRandomKey)) 
+        if (Input.GetKeyDown(spawnRandomKey))
         {
             Vector3 newRandomPosition = new Vector3(
                 Random.Range(-horizontalXRange, horizontalXRange),
-                5, 
+                5,
                 Random.Range(-horizontalZRange, horizontalZRange));
             GenerateNewPrefab(newRandomPosition);
         }
@@ -90,9 +90,6 @@ public class M_BallsSpawn : MonoBehaviour
         C_BouncingBall newBall = Instantiate(ballPrefab).GetComponent<C_BouncingBall>();
 
         allInstantiatedBallsList.Add(newBall);
-
-        newBall.InitializeBall(this, newPosition,Random.value * 5);
-
         newBall.InitializeBall(this, newPosition, Random.value * 5);
     }
 
@@ -108,41 +105,36 @@ public class M_BallsSpawn : MonoBehaviour
 
         // Destruyo el objeto
         Destroy(ball.gameObject);
-<<<<<<< HEAD
-
-    }
-=======
 
         //GameObject newBall = GenerateNewPrefab
-           // (allSequencePointsList[currentSequenceIndex].position);
-      
-        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;                
+        // (allSequencePointsList[currentSequenceIndex].position);
+
+        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;
     }
     void GeneratePrefabAtRandomOrigin()
-    {        
+    {
         Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
-       // GameObject newBall = GenerateNewPrefab(newRandomPosition);      
+        // GameObject newBall = GenerateNewPrefab(newRandomPosition);      
     }
     void GeneratePrefabAtCustomOrigin()
     {
-       // GameObject newBall = GenerateNewPrefab(spawnOrigin.position);            
+        // GameObject newBall = GenerateNewPrefab(spawnOrigin.position);            
     }
 
     //GameObject GenerateNewPrefab(Vector3 newPosition)
     //{
-        //C_BouncingBall
-        //GameObject newBall = Instantiate(ballPrefab);
+    //C_BouncingBall
+    //GameObject newBall = Instantiate(ballPrefab);
 
-        //allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
+    //allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
 
-        //newBall.GetComponent<C_BouncingBall>().InitializeBall(this, newPosition);
+    //newBall.GetComponent<C_BouncingBall>().InitializeBall(this, newPosition);
 
-        //return newBall;
+    //return newBall;
 
-    }
+}
 
 
 
->>>>>>> develop
     #endregion
 //}

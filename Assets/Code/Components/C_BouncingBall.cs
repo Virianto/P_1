@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-using System.Collections;
-using UnityEngine;
-=======
->>>>>>> develop
 using System.Collections;
 using UnityEngine;
 
@@ -50,35 +45,26 @@ public class C_BouncingBall : MonoBehaviour
         GetComponent<Rigidbody>().AddExplosionForce(600, Vector3.zero, 150);
 
         this.lifeTime = lifeTime;
-<<<<<<< HEAD
-        StartCoroutine(FinishLifeycle());
     }
+}
+//    StartCoroutine(FinishLifeCycle());
+//}
 
-    IEnumerator FinishLifeycle()
-    { 
-        yield return new WaitForSeconds(lifeTime);
+//IEnumerator FinishLifeCycle()
+//{
+//    yield return new WaitForSeconds(lifeTime);
 
-=======
-    }}
-    //    StartCoroutine(FinishLifeCycle());
-    //}
->>>>>>> develop
+//    GetComponent<Renderer>().material.color = Color.black;
 
-    //IEnumerator FinishLifeCycle()
-    //{
-    //    yield return new WaitForSeconds(lifeTime);
+//    // Aviso a mi manager de que ha terminado mi tiempo
+//    myManager.FinishBallLifeCycle(this);
 
-    //    GetComponent<Renderer>().material.color = Color.black;
+//}
 
-    //    // Aviso a mi manager de que ha terminado mi tiempo
-    //    myManager.FinishBallLifeCycle(this);
-
-    //}
-
-    //IEnumerator FinishLifeCycle()
-    //{
-    //    yield return new WaitForSeconds(lifeTime);
-    //}
+//IEnumerator FinishLifeCycle()
+//{
+//    yield return new WaitForSeconds(lifeTime);
+//}
 
 
 

@@ -14,8 +14,10 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     public event Action<float> OnTimeLeftChanged;
     public event Action<float> OnPlayerLifeLeftChanged;
 
+    public event Action<float> OnPlayerSpeedVelocityChanged;
+
     [SerializeField]
-    UI_FlightSimulatorCanvas flightSimulatorCanvas;
+    UI_FlightSimulatorCanvas SimulatorCnavas;
 
     [SerializeField]
     B_PlayerPlane player;
@@ -36,6 +38,10 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     void Update()
     {
         ModifyGameTimeLeft(-Time.deltaTime);
+    }
+    public void PlayerSpeedChange(float playerSpeedVelocity)
+    {
+        OnPlayerSpeedVelocityChanged?.Invoke(playerSpeedVelocity);
     }
 
     public void ModifyGameTimeLeft(float amount)
