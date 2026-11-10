@@ -84,10 +84,13 @@ public class M_Balloons : MonoBehaviour
         currentEnemiesInScene += 1;
     }
 
-    public void FinishBalloon(B_EvilBalloon balloon)
+    public void FinishBallonLifeCycle(B_EvilBalloon balloon)
     {
+        // Ojo aquí, siempre destruyo el GAMEOBJECT
         Destroy(balloon.gameObject);
-        currentEnemiesInScene -= 1;     
+
+        // Reduzco el contador de enemigos actuales para poder crear más
+        currentEnemiesInScene -= 1;
     }
 
     #endregion
