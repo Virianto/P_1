@@ -1,3 +1,5 @@
+using Code.Utils;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -5,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// * Detectar Input de usuario para saltar de una cámara a otra
 /// </summary>
-public class M_Cameras : MonoBehaviour
+public class M_Cameras : Singleton<M_Cameras>
 {
     #region ATTRIBUTES
 
@@ -78,6 +80,26 @@ public class M_Cameras : MonoBehaviour
         {
             CurrentActiveCameraIndex = 5;
         }
+    }
+
+    // Lo llamamos desde el C_SimpleTrigger en Escena
+    public void ChangeCamera(int newCamIndex)
+    {
+        StartCoroutine(MiRutina(newCamIndex));
+    }
+
+    IEnumerator MiRutina(int newCamIndex)
+    {
+        // Antes de hacer nada, me guardo en qué cámara estaba yo antes:
+        int temporaryIndex = CurrentActiveCameraIndex;
+
+        // Saltar de Cámara 0 a cámara newCamIndex
+        CurrentActiveCameraIndex = newCamIndex;
+        // Esperar Z tiempo (yield return)
+        yield return new WaitForSeconds(1);
+        // Volver de cámara newCamIndex a cámara 0
+        // OP 1 - CurrentActiveCameraIndex = temporaryIndex;
+        // OP 2 - CurrentActiveCameraIndex = 0;
     }
 
     void SwitchToCinemachineCamera()

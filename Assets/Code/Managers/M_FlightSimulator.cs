@@ -12,6 +12,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     #region ATTRIBUTES
 
     public event Action<float> OnTimeLeftChanged;
+    public event Action<float> OnPlayerLifeLeftChanged;
 
     [SerializeField]
     UI_FlightSimulatorCanvas flightSimulatorCanvas;
@@ -27,12 +28,21 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
 
     #region METHODS
 
-    void Update()
+    public void PlayerLifeChanged(float playerLifeLeft)
     {
-        gameTimeLeft -= Time.deltaTime;
-        OnTimeLeftChanged?.Invoke(gameTimeLeft);
+        OnPlayerLifeLeftChanged?.Invoke(playerLifeLeft);
     }
 
+    void Update()
+    {
+        ModifyGameTimeLeft(-Time.deltaTime);
+    }
+
+    public void ModifyGameTimeLeft(float amount)
+    {
+        gameTimeLeft += amount;
+        OnTimeLeftChanged?.Invoke(gameTimeLeft);
+    }
     void LaunchGameOver()
     {
         // A rellenar cuando tengamos el flujo completo de escena
