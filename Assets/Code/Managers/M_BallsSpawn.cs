@@ -102,12 +102,47 @@ public class M_BallsSpawn : MonoBehaviour
     /// <param name="ball">Bola que ha solicitado su fin</param>
     public void FinishBallLifeCycle(C_BouncingBall ball)
     {
+
         // Elimino la bola de mi lista
         allInstantiatedBallsList.Remove(ball);
 
         // Destruyo el objeto
         Destroy(ball.gameObject);
+<<<<<<< HEAD
 
     }
+=======
+
+        //GameObject newBall = GenerateNewPrefab
+           // (allSequencePointsList[currentSequenceIndex].position);
+      
+        currentSequenceIndex = (currentSequenceIndex + 1) % allSequencePointsList.Count;                
+    }
+    void GeneratePrefabAtRandomOrigin()
+    {        
+        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), 5, Random.Range(-horizontalZRange, horizontalZRange));
+       // GameObject newBall = GenerateNewPrefab(newRandomPosition);      
+    }
+    void GeneratePrefabAtCustomOrigin()
+    {
+       // GameObject newBall = GenerateNewPrefab(spawnOrigin.position);            
+    }
+
+    //GameObject GenerateNewPrefab(Vector3 newPosition)
+    //{
+        //C_BouncingBall
+        //GameObject newBall = Instantiate(ballPrefab);
+
+        //allInstantiatedBallsList.Add(newBall.GetComponent<C_BouncingBall>());
+
+        //newBall.GetComponent<C_BouncingBall>().InitializeBall(this, newPosition);
+
+        //return newBall;
+
+    }
+
+
+
+>>>>>>> develop
     #endregion
-}
+//}
