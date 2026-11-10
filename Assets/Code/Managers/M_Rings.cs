@@ -1,8 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// * Instanciar un prefab de anillo en algún punto aleatorio de la escena
-/// * Indicar a ese anillo de qué tipo es para que se inicialice
+/// X Instanciar un prefab de anillo en algún punto aleatorio de la escena
+/// X Indicar a ese anillo de qué tipo es para que se inicialice
 /// * Gestionar el ciclo de vida del anillo
 /// * ¿¿??
 /// </summary>
@@ -29,16 +30,41 @@ public class M_Rings : MonoBehaviour
     [Range(1, 30)]
     float verticalRandomLimit = 10;
 
+    [SerializeField]
+    [Range(1, 7)]
+    float timeBetweenRingGen = 4;
+
     #endregion
 
     #region METHODS
 
+    void Start()
+    {
+        StartCoroutine(GenerateRingRoutine());
+    }
+
+    IEnumerator GenerateRingRoutine()
+    {
+        GenerateNewRandomRing();
+        yield return new WaitForSeconds(timeBetweenRingGen);        
+        StartCoroutine(GenerateRingRoutine());
+    }
+
     void GenerateNewRandomRing()
     {
+        // Invento un punto aleatorio de la escena para el nuevo anillo
+        Vector3 newRingPos = new Vector3(
+            Random.Range(-horizontalRandomLimit, horizontalRandomLimit),
+            Random.Range(-verticalRandomLimit, verticalRandomLimit),
+            Random.Range(-depthRandomLimit, depthRandomLimit));
+
         // Decisión "al azar" de qué tipo asignar a mi futuro nuevo anillo:
         RingModificationType newRingType = (RingModificationType)Random.Range(0, 4);        
 
-        // Aquí hay que hacer muuuuuchas cosas. Buena suerte
+        // Creamos un anillo nuevo en escena usando el prefab y nos quedamos su SCRIPT
+        B_HoveringRing newRing = Instantiate(ringPrefab).GetComponent<B_HoveringRing>();
+
+        newRing.InitializeRing(this, newRingType, newRingPos);
     }
 
     #endregion
