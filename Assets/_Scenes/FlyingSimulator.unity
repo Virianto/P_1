@@ -2086,10 +2086,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 478754952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 555fb5115d90bbe459f201fa25663cf7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8daa5b28e441e7d4fb3288b67aeac6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_PlayerPlane
-  speed: 8
+  speed: 3
   angularSpeed: 90
   vNegativeTiltKey: 119
   vPositiveTiltKey: 115
@@ -2404,7 +2404,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.7
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2879,7 +2879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e882b361862aed4ba2b5049c08b7175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_FlightSimulator
-  flightSimulatorCanvas: {fileID: 2123635253}
+  SimulatorCnavas: {fileID: 2123635253}
   player: {fileID: 478754954}
   gameTimeLeft: 10
 --- !u!1 &704329381
@@ -5120,7 +5120,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.55
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5259,13 +5259,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 951117071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ae65eeefc27f27469351549a1852e60, type: 3}
+  m_Script: {fileID: 11500000, guid: 3471380204fb1814d87b0325e28e458b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_Rings
   ringPrefab: {fileID: 9055263262916590176, guid: 54839cac51f9a0345b095fbe7bdbecbd, type: 3}
-  horizontalRandomLimit: 20
-  depthRandomLimit: 20
-  verticalRandomLimit: 15
+  horizontalRandomLimit: 5
+  depthRandomLimit: 5
+  verticalRandomLimit: 10
   timeBetweenRingGen: 4
 --- !u!1 &953000832
 GameObject:
