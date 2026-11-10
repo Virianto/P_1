@@ -53,6 +53,13 @@ public class M_Shots : MonoBehaviour
             laserLine.positionCount = 2;
             laserLine.SetPosition(0, shotOrigin.position);
             laserLine.SetPosition(1, hitInfo.point);
+
+            B_EvilBalloon enemy = hitInfo.collider.GetComponent<B_EvilBalloon>();
+
+            if (enemy != null)
+            {
+                enemy.ModifyBalloonLifePoints(-10);
+            }
         }
     }
 
