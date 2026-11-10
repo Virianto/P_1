@@ -23,6 +23,9 @@ public class B_HoveringRing : MonoBehaviour
 
     public RingType ringType;
 
+    bool ringIsActive;
+
+    // Lista de distintos colores, a introducir desde Unity
     [SerializeField]
     List<Color> ringTypeColorsList = new();
 
@@ -38,32 +41,31 @@ public class B_HoveringRing : MonoBehaviour
         //RingType randomTypeIndex = (RingType)(Random.Range, 0, 4);
 
         ringType = (RingType)randomTypeIndex;
+        
+        ringIsActive = true;
 
-        Renderer[] allRingsRenderers = GetComponentsInChildren<Renderer>();
-        for (int r = 0; r < allRingsRenderers.Length; ++r)
-        {
-            allRingsRenderers[r].material.color = ringTypeColorsList[(int)ringType];
-        }
+        ChangeRingColor();
+
         StartCoroutine(FinishLifeCycle());
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        B_PlayerPlane player = other.GetComponentInParent<B_PlayerPlane>();
+
         if (ringType == RingType.life)
         {
-            B_PlayerPlane vida = other.GetComponentInParent<B_PlayerPlane>();
-            vida.ModifyLife(-2);
+            player.ModifyLife(-2);
 
             M_CamerasFlight.Instance.ChangeCamera(1);
         }
         else if (ringType == RingType.time)
         {
-            M_FlightSimulator.Instance.ModifyTime(5);
+            M_FlightSimulator.Instance.ModifyTime(10);
         }
         else if (ringType == RingType.speed)
         {
-            B_PlayerPlane velocidad = other.GetComponentInParent<B_PlayerPlane>();
-            velocidad.ModifySpeed(5);
+            player.ModifySpeed(5);
 
             M_CamerasFlight.Instance.ChangeCamera(2);
         }
@@ -71,12 +73,38 @@ public class B_HoveringRing : MonoBehaviour
         {
             M_FlightSimulator.Instance.ModifyPoints(1);
         }
+
+        if(player != null)
+        {
+            ringsManager.FinishRingLifeCycle(this);
+        }
+    }
+
+    void ChangeRingColor()
+    {
+        // 1. Busco y almaceno todos los renders del objeto
+        //  - Creo una variable donde guardo las referencias
+        //  - Busco esas referencias en la jerarquía
+        Renderer[] allRingsRenderers = GetComponentsInChildren<Renderer>();
+        // 2. Recorro la variable con la referencia
+        for (int r = 0; r < allRingsRenderers.Length; ++r)
+        {
+            // 3. Cambio color de cada elemento según el tipo
+            // - Accedo a la posición 'r'
+            // - Busco el material y el color
+            // - Convierto el color según el tipo de anillo (con un parseo)
+            allRingsRenderers[r].material.color = ringTypeColorsList[(int)ringType];
+        }
     }
 
     IEnumerator FinishLifeCycle()
     {
         yield return new WaitForSeconds(ringsManager.ringLifeTime);
-        ringsManager.FinishRingLifeCycle(this);
+        // Solamente elimino el anillo si aún no ha sido activado por el jugador
+        if (ringIsActive)
+        {
+            ringsManager.FinishRingLifeCycle(this);
+        }
     }
 
     #endregion
