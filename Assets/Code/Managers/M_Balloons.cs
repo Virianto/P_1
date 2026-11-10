@@ -8,9 +8,11 @@ using UnityEngine;
 public class M_Balloons : MonoBehaviour
 {
     #region ATTRIBUTES
-
+    
     // Referencia al prefab
+    [SerializeField] GameObject balloon;
     // Límite de enemigos simultáneos en escena
+    [SerializeField] int maxBalloons = 5;
     // Límites de espacio para ubicar cada nuevo prefab
 
     #endregion
