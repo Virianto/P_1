@@ -35,7 +35,6 @@ public class B_EvilBalloon : MonoBehaviour
 
     #region METHODS
 
-    // Método de inicialización
     public void InitializeBalloon(M_Balloons manager, Vector3 newPos)
     {
         myManager = manager;
@@ -59,7 +58,6 @@ public class B_EvilBalloon : MonoBehaviour
         }
     }
 
-    // Método de recorrer ruta
     void Update()
     {
         // Necesito saber si estoy lo bastante cerca o no de mi punto de destino
@@ -82,7 +80,15 @@ public class B_EvilBalloon : MonoBehaviour
         }
     }
 
-    // Método de finalizar ciclo de vida
+    public void ModifyBalloonLifePoints(int amount)
+    {
+        lifePoints += amount;
+
+        if(lifePoints <= 0)
+        {
+            myManager.FinishBallonLifeCycle(this);            
+        }
+    }    
 
     #endregion
 }
