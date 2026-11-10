@@ -1,9 +1,6 @@
-using Code.Utils;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -19,6 +16,11 @@ public class M_Cameras : Code.Utils.Singleton<M_Cameras>
 
     #endregion
     #region METHODS
+
+    private void Awake()
+    {
+        allVirtualCamerasList[0].Priority = 1;
+    }
 
     public void EnterRingDamage(int index)
     {

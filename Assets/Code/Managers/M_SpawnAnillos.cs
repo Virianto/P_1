@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public enum RingType
 {
     Points,
@@ -25,7 +24,6 @@ public class M_SpawnAnillos : MonoBehaviour
     GameObject ringPrefab;
 
     RingType ringTypeEfects;
-    RingType ringTypeColor;
     int currentSequenceIndex = 0;
 
     [SerializeField]
@@ -59,7 +57,9 @@ public class M_SpawnAnillos : MonoBehaviour
     }
     private Vector3 GenerateRandomPosition()
     {
-        currentSequenceIndex = UnityEngine.Random.Range(0, allSpawnsPointsList.Count);
+        currentSequenceIndex = Random.Range(0, allSpawnsPointsList.Count);
+        Debug.Log(allSpawnsPointsList.Count);
+        Debug.Log(currentSequenceIndex);
         Vector3 spawnPosition = allSpawnsPointsList[currentSequenceIndex].position;
         return spawnPosition;
     }
@@ -68,31 +68,30 @@ public class M_SpawnAnillos : MonoBehaviour
         ringTypeEfects = (RingType)Random.Range(0, 4);
         return ringTypeEfects;
     }
+
     private Color GenerateRandomColor()
     {
-        ringTypeColor = (RingType)Random.Range(0, 4);
 
-        Color color = Color.white;
-
-        if (ringTypeColor == 0)
+        if (ringTypeEfects == RingType.Points)
         {
-            color = Color.blue;
+            return Color.yellow;
         }
-        if ((int)ringTypeColor == 1)
+        if (ringTypeEfects == RingType.Life)
         {
-            color = Color.red;
+            return Color.red;
         }
-        if ((int)ringTypeColor == 2)
+        if (ringTypeEfects == RingType.Time)
         {
-            color = Color.yellow;
+            return Color.green;
         }
-        if ((int)ringTypeColor == 3)
+        if (ringTypeEfects == RingType.Speed)
         {
-            color = Color.green;
+            return Color.blue;
         }
-
-        return color;
+        else
+        {
+            return Color.white;
+        }
+    }
     }
     #endregion
-}
-

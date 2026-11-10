@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 /// <summary>
 /// Aqui va el enunciado del proposito de esta clase
 /// </summary>
-
 public class B_Ring : MonoBehaviour
 {
     #region ATTRIBUTES
@@ -13,9 +11,6 @@ public class B_Ring : MonoBehaviour
     M_SpawnAnillos myManager;
 
     RingType type;
-
-    [SerializeField]
-    List<Color> ringTypeColorsList = new();
 
     #endregion
     #region METHODS
@@ -28,29 +23,32 @@ public class B_Ring : MonoBehaviour
         {
             allRingRenderers[i].material.color = color;
         }
+        transform.position = newPosition;
         type = tipo;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (type == 0)
+        Debug.Log("E entrado en un portal");
+        if (type == RingType.Points)
         {
             M_ManagerCanvasAvion.Instance.CurrentsPoints(1);
         }
 
-        if ((int)type == 1)
+        if (type == RingType.Life)
         {
             B_PlayerPlane player = other.GetComponent<B_PlayerPlane>();
             M_Cameras camera = other.GetComponent<M_Cameras>();
             if (player != null)
             {
+                Debug.Log("Me e echo daño");
                 player.ModifyPlayerLife(-1);
                 // Busco al manager de cámaras y le hago un cambio temporal a la cámara de sacudida
                 camera.EnterRingDamage(1);
             }
         }
 
-        if ((int)type == 2)
+        if (type == RingType.Speed)
         {
             B_PlayerPlane player = other.GetComponent<B_PlayerPlane>();
             M_Cameras camera = other.GetComponent<M_Cameras>();
@@ -62,7 +60,7 @@ public class B_Ring : MonoBehaviour
             }
         }
 
-        if ((int)type == 3)
+        if (type == RingType.Time)
         {
             // Busco la instancia del manager y le aumento X segundos de tiempo
             M_ManagerCanvasAvion.Instance.PlayerTimeChanged(Random.Range(1,10));
@@ -72,4 +70,3 @@ public class B_Ring : MonoBehaviour
 
     #endregion
 }
-
