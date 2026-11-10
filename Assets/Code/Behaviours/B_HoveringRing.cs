@@ -47,9 +47,6 @@ public class B_HoveringRing : MonoBehaviour
         transform.position = newPosition;
         transform.localScale = new Vector3(newScale, newScale, newScale);
         ChangeRingColor();
-        
-
-        
         StartCoroutine(FinishLifeCycle(newLifeTime));
 
     }
@@ -61,7 +58,7 @@ public class B_HoveringRing : MonoBehaviour
             if (ringType == RingModificationType.Life)
             {
                 player.ModifyLifePoints(-1);
-              M_FlightScoolCameraManager.Instance.ChangeToHitCamera(1);
+                M_FlightScoolCameraManager.Instance.ChangeToHitCamera(1);
                 ringIsActive = false;
                 myManager.FinishRingLifeCycle(this);
             }
@@ -69,7 +66,7 @@ public class B_HoveringRing : MonoBehaviour
             if (ringType == RingModificationType.Speed)
             {
                 player.Accelerate(5);
-               M_FlightScoolCameraManager.Instance.ChangeToHitCamera(3);
+                M_FlightScoolCameraManager.Instance.ChangeToHitCamera(3);
                 ringIsActive = false;
                 myManager.FinishRingLifeCycle(this);
 

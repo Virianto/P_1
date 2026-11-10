@@ -13,6 +13,18 @@ public class M_EnemiesManager : MonoBehaviour
 
     [Header("EDITABLE VALUES")]
 
+    [Space(10)]
+    [SerializeField]
+    [Range(1, 100)]
+    int maxNumberOfEnemies = 10;
+    [SerializeField]
+    [Range(1, 10)]
+    float timeBetweenSpawns = 5;
+  
+
+    
+    [Space(5)]
+
     [SerializeField]
     [Range(1, 300)]
     float horizontalXRange = 10;
@@ -25,12 +37,12 @@ public class M_EnemiesManager : MonoBehaviour
     [Range(1, 300)]
     float verticalRange = 10;
 
-    [SerializeField]
-    [Range(1, 10)]
-    float timeBetweenSpawns = 5;
+
+    int numberOfEnemies = 0;
 
 
     [Header("EXTERNAL REFERENCES")]
+    [Space(10)]
 
     [SerializeField]
     GameObject enemyPrefab;
@@ -55,8 +67,18 @@ public class M_EnemiesManager : MonoBehaviour
     IEnumerator EnemySpawnTimeCycle()
     {
         GenerateNewPrefab();
+        numberOfEnemies++;
         yield return new WaitForSeconds(timeBetweenSpawns);
-        StartCoroutine(EnemySpawnTimeCycle());
+        if (numberOfEnemies < maxNumberOfEnemies) 
+        {
+            StartCoroutine(EnemySpawnTimeCycle());
+        }
+    }
+
+    public void FinishEnemyLifeCycle(B_Enemy enemy)
+    {
+        Destroy(enemy.gameObject);
+        numberOfEnemies--;
     }
     #endregion
 }
