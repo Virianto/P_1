@@ -84,5 +84,11 @@ public class M_Balloons : MonoBehaviour
         currentEnemiesInScene += 1;
     }
 
+    public void FinishBalloon(B_EvilBalloon balloon)
+    {
+        Destroy(balloon.gameObject);
+        currentEnemiesInScene -= 1;     
+    }
+
     #endregion
 }
