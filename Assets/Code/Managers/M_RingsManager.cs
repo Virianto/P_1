@@ -41,7 +41,7 @@ public class M_RingsManager : MonoBehaviour
     #region METHODS
 
     /// <summary>
-    /// Comenzar la corutina al empezar el juego
+    /// Comenzar la corrutina al empezar el juego
     /// </summary>
     private void Start()
     {
@@ -76,6 +76,7 @@ public class M_RingsManager : MonoBehaviour
 
         // Añadir el anillo a la lista de objetos generados
         allInstantiatedRingsList.Add(newRing);
+
         newRing.InitializeRing(this, newPosition);
     }
 
