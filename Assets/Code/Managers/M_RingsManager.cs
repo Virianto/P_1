@@ -6,6 +6,7 @@ using UnityEngine;
 /// <summary>
 /// * Crear una instancia nueva del prefab del anillo cada cierto tiempo
 /// * Decidir qué tipo de anillo será
+/// * Gestionar el ciclo de vida del anillo
 /// </summary>
 public class M_RingsManager : MonoBehaviour
 {
@@ -48,6 +49,20 @@ public class M_RingsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Generar anillos de manera continuada en el tiempo
+    /// </summary>
+    IEnumerator CreateRing()
+    {
+        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), Random.Range(-verticalYRange, verticalYRange), Random.Range(-horizontalZRange, horizontalZRange));
+
+        GenerateNewRingPrefab(newRandomPosition);
+
+        yield return new WaitForSeconds(Random.Range(minCreationFrequency, maxCreationFrequency));
+
+        StartCoroutine(CreateRing());
+    }
+
+    /// <summary>
     /// Crea un anillo nuevo, lo registra en la lista y lo inicializa
     /// </summary>
     /// <param name="newPosition"> Ubicación de origen para el nuevo anillo </param>
@@ -67,26 +82,14 @@ public class M_RingsManager : MonoBehaviour
     /// <summary>
     /// Ejecuta las funciones necesarias para "finiquitar" un anillo
     /// </summary>
-    /// <param name="ring"> Anillo que ha solicitado su fin </param>
-    public void FinishRingLifeCycle(B_HoveringRing ring)
+    /// <param name="endRing"> Anillo que ha solicitado su fin </param>
+    public void FinishRingLifeCycle(B_HoveringRing endRing)
     {
         // Eliminamos el anillo de la lista
-        allInstantiatedRingsList.Remove(ring);
+        allInstantiatedRingsList.Remove(endRing);
 
         // Destruimos el objeto
-        Destroy(ring.gameObject);
-    }
-
-    /// <summary>
-    /// Generar anillos de manera continuada en el tiempo
-    /// </summary>
-    IEnumerator CreateRing()
-    {
-        Vector3 newRandomPosition = new Vector3(Random.Range(-horizontalXRange, horizontalXRange), Random.Range(-verticalYRange, verticalYRange), Random.Range(-horizontalZRange, horizontalZRange));
-        GenerateNewRingPrefab(newRandomPosition);
-
-        yield return new WaitForSeconds(Random.Range(minCreationFrequency, maxCreationFrequency));
-        StartCoroutine(CreateRing());
+        Destroy(endRing.gameObject);
     }
 
     #endregion

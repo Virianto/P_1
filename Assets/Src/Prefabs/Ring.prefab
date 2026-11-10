@@ -430,8 +430,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b833f9098ff9da4448fa8f5b92086f08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_HoveringRing
-  speedParticlesLeft: {fileID: 0}
-  speedParticlesRight: {fileID: 0}
   ringType: 3
   minLifeTime: 10
   maxLifeTime: 20
+  ringTypeColorList:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0.5566038, b: 0.19863118, a: 0}
+  - {r: 0, g: 0.03999734, b: 1, a: 0}
+  - {r: 1, g: 0.97301143, b: 0.0047169924, a: 0}

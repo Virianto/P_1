@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum RingType
@@ -25,6 +26,9 @@ public class B_HoveringRing : MonoBehaviour
     public float minLifeTime = 20;
     public float maxLifeTime = 30;
 
+    [SerializeField]
+    List<Color> ringTypeColorList = new();
+
     #endregion
 
 
@@ -40,11 +44,18 @@ public class B_HoveringRing : MonoBehaviour
     /// <param name="newPosition"> Nueva posición en la que ubicar el objeto </param>
     public void InitializeRing(M_RingsManager manager, Vector3 newPosition)
     {
+        // Referencia al Manager
         ringsManager = manager;
+
+        // Referencia a la posición de creación
         transform.position = newPosition;
 
+        // Tipo de anillo creado
         int randomTypeIndex = Random.Range(0, 4);
         ringType = (RingType)randomTypeIndex;
+
+        // Color del anillo
+        ChangeRingColor();
 
         StartCoroutine(FinishLifeCycle());
     }
@@ -90,6 +101,29 @@ public class B_HoveringRing : MonoBehaviour
             {
                 M_FlightSimulator.Instance.ModifyTime(10);
             }
+
+            ringsManager.FinishRingLifeCycle(this);
+        }
+    }
+
+    /// <summary>
+    /// Cambiar el color del prefab del anillo según el tipo que sea
+    /// </summary>
+    void ChangeRingColor()
+    {
+        // Buscar y almacenar todos los Renderer del objeto
+        // * Crear una variable donde guardar las referencias
+        // * Buscar todas las referencias en la jerarquía
+        Renderer[] allRingRenderers = GetComponentsInChildren<Renderer>();
+
+        // Recorrer la variable con las referencias
+        for (int i = 0; i < allRingRenderers.Length; ++i)
+        {
+            // Cambiar el color de cada elemento según el tipo
+            // * Acceder al elemento de la posición "i"
+            // * Buscar el material y el color
+            // * Convertir el color según el tipo de anillo (con un parseo)
+            allRingRenderers[i].material.color = ringTypeColorList[(int)ringType];
         }
     }
 
