@@ -27,6 +27,14 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
     [SerializeField]
     Image playerLifeImage;
 
+    [SerializeField]
+    float displayedSpeed = 100;
+
+    float speedModifier;
+
+    [SerializeField]
+    B_PlayerPlane player;
+
     #endregion
 
 
@@ -37,6 +45,8 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     private void Start()
     {
+        speedModifier = (displayedSpeed / player.speed);
+
         // Enlazar el evento del Manager con un método del Canvas
         // * En la parte izquierda escribimos la referencia global al Manager
         // * En la parte derecha nos suscribimos a una de sus eventos
@@ -77,7 +87,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
     {
         StartCoroutine(SpeedEffect());
 
-        playerSpeedText.text = string.Format("Speed: {0} km/h", currentPlayerSpeed);
+        playerSpeedText.text = string.Format("Speed: {0} km/h", currentPlayerSpeed * speedModifier);
     }
 
     IEnumerator SpeedEffect()
