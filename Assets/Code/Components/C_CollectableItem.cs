@@ -22,14 +22,12 @@ public class C_CollectableItem : MonoBehaviour
 
         if(player != null)
         {
-            // Busco al M_KeyCollection y le añado thisItem a su inventario
+            // Pongo el bit del objeto correspondiente a 1 (SIEMPRE)
             M_KeyCollection.Instance.playerInventory |= thisItem;
 
-            // Llave azul -> 0000 0010
-            // 0000 0000
-            // ???? ??1?
+            UI_InventoryCanvas.Instance.AddNewInventoryItem(thisItem);
 
-            // Desaparezco
+            // Hago desaparecer el objeto
             gameObject.SetActive(false);
         }
     }
