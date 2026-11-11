@@ -26,9 +26,49 @@ public class M_Shots : MonoBehaviour
 
     void Update()
     {
+        // Comprobar si tengo algo sólido delante
+        CheckFrontView();
+
+        // Disparar si se pulsa una tecla
         if (Input.GetKeyDown(shotKey))
         {
             ShootLaser();
+        }
+    }
+
+    void CheckFrontView()
+    {
+        // Crear un Ray para indicar cómo buscar: Desde cabina hacia delante
+        Ray searchRay = new Ray(shotOrigin.position, shotOrigin.forward);
+
+        // Crear un RaycastHit para guardar información de la búsqueda
+        RaycastHit hitInfo;
+
+        // Reaccionar al resultado pintando o despintando el LineRenderer
+        if(Physics.Raycast(searchRay, out hitInfo))
+        {
+            B_EvilBalloon enemyHit = hitInfo.collider.GetComponent<B_EvilBalloon>();
+
+            // Ya sé que he detectado algo: DIBUJO UNA LÍNEA
+            laserLine.positionCount = 2;
+            laserLine.SetPosition(0, shotOrigin.position);
+            laserLine.SetPosition(1, hitInfo.point);
+
+            if (enemyHit != null)
+            {
+                // Si es un enemigo, pinto el láser de X color
+                laserLine.startColor = Color.red;
+            }
+            else
+            {
+                // Si NO es un enemigo, pinto el láser de Y color
+                laserLine.startColor = Color.green;
+            }
+        }
+        else
+        {
+            // Como NO he detectado nada: BORRO LA LÍNEA
+            laserLine.positionCount = 0;
         }
     }
 
