@@ -10,7 +10,8 @@ public class AROS_TRIGGERS : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Busca el script en este objeto o en cualquiera de sus padres
-        F_B_PlayerPlane plane = other.GetComponentInParent<F_B_PlayerPlane>();
+        F_B_PlayerPlane plane = other.GetComponent<F_B_PlayerPlane>();
+        Debug.Log("anillo tocado");
 
         // Si no lo encuentra, devuelve null (vacío)
         if (plane != null)
