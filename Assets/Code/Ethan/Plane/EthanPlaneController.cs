@@ -25,7 +25,7 @@ public class EthanPlaneController : MonoBehaviour
         }
         else
         {
-            planeSpeed = 100;
+            planeSpeed = 50;
             M_FlightSim.Instance.ChangeCam(0);
         }
 
