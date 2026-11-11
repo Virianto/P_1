@@ -108,9 +108,8 @@ public class B_CharacterController : MonoBehaviour
         // Con esto limito los posibles valores de "lifePointsLeft" entre 0 y 20 siempre
         lifePointsLeft = Mathf.Clamp((lifePointsLeft - damageAmount), 0, 20);
 
-
         // Informar del cambio al game Manager
-        gameManager.PlayerReceivedDamage();
+        //gameManager.PlayerReceivedDamage();
     }
     public void AddLife(int lifeAmount)
     {

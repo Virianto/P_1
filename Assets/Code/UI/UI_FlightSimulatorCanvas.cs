@@ -29,7 +29,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
     #region METHODS
 
     void Start()
-    {        
+    {       
         M_FlightSimulator.Instance.OnTimeLeftChanged += UpdateTimeLeftText;
 
         M_FlightSimulator.Instance.OnPlayerLifeLeftChanged += UpdateLifeLeftImage;
@@ -42,7 +42,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     void UpdatePlayerSpeedText(float currentPlayerSpeed)
     {
-
+        playerSpeedText.text = string.Format("Speed: {0:00}", currentPlayerSpeed);
     }
 
     void UpdateTimeLeftText(float currentTimeLeft) 

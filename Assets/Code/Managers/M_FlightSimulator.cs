@@ -35,10 +35,14 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
 
     void Update()
     {
-        gameTimeLeft -= Time.deltaTime;
-        OnTimeLeftChanged?.Invoke(gameTimeLeft);
+        ModifyGameTimeLeft(-Time.deltaTime);
     }
 
+    public void ModifyGameTimeLeft(float amount)
+    {
+        gameTimeLeft += amount;
+        OnTimeLeftChanged?.Invoke(gameTimeLeft);
+    }
     void LaunchGameOver()
     {
         // A rellenar cuando tengamos el flujo completo de escena
