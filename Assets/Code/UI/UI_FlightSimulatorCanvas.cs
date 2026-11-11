@@ -29,7 +29,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
     #region METHODS
 
     void Start()
-    {        
+    {       
         M_FlightSimulator.Instance.OnTimeLeftChanged += UpdateTimeLeftText;
 
         M_FlightSimulator.Instance.OnPlayerLifeLeftChanged += UpdateLifeLeftImage;
