@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -15,6 +16,8 @@ public class M_Shots : MonoBehaviour
 
     LineRenderer laserLine;
 
+    bool isShooting = false;
+
     #endregion
 
     #region METHODS
@@ -27,7 +30,10 @@ public class M_Shots : MonoBehaviour
     void Update()
     {
         // Comprobar si tengo algo sólido delante
-        CheckFrontView();
+        if (!isShooting)
+        {
+            CheckFrontView();
+        }        
 
         // Disparar si se pulsa una tecla
         if (Input.GetKeyDown(shotKey))
@@ -74,6 +80,14 @@ public class M_Shots : MonoBehaviour
 
     void ShootLaser()
     {
+        isShooting = true;
+        StartCoroutine(ShootLaserRoutine());        
+    }
+
+    IEnumerator ShootLaserRoutine()
+    {
+        // Dibujar el láser (posiciones y color)
+
         // PASO 1
         // Recoger el punto de origen
         // Definir una dirección de disparo
@@ -87,7 +101,7 @@ public class M_Shots : MonoBehaviour
         // PASO 3
         // - Proyectar el rayo
         // - Recoger información y decidir qué hacer si ha impactado en algo
-        if(Physics.Raycast(laser, out hitInfo))
+        if (Physics.Raycast(laser, out hitInfo))
         {
             // Dibujar una línea entre el punto de origen y el de impacto
             laserLine.positionCount = 2;
@@ -97,10 +111,33 @@ public class M_Shots : MonoBehaviour
             B_EvilBalloon enemy = hitInfo.collider.GetComponent<B_EvilBalloon>();
 
             if (enemy != null)
-            {
+            {                
+                laserLine.startColor = Color.yellow;
                 enemy.ModifyBalloonLifePoints(-10);
             }
         }
+
+        // Esperar 1 frame
+        yield return new WaitForEndOfFrame();
+
+        // Estrechar el  láser
+        laserLine.widthMultiplier *= 0.5f;
+        
+        yield return new WaitForEndOfFrame();
+        
+        laserLine.widthMultiplier *= 0.5f;
+       
+        yield return new WaitForEndOfFrame();
+       
+        laserLine.widthMultiplier *= 0.5f;
+        
+        yield return new WaitForEndOfFrame();
+
+        // Dejar el láser como estaba
+        laserLine.widthMultiplier = 1;
+
+        // Volver a poner el booleano a FALSE
+        isShooting = false;
     }
 
     #endregion
