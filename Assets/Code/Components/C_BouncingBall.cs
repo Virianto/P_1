@@ -45,7 +45,7 @@ public class C_BouncingBall : MonoBehaviour
         GetComponent<Rigidbody>().AddExplosionForce(600, Vector3.zero, 150);
 
         this.lifeTime = lifeTime;
-    }}
+    }
     //    StartCoroutine(FinishLifeCycle());
     //}
 
@@ -68,4 +68,4 @@ public class C_BouncingBall : MonoBehaviour
 
 
     #endregion
-//}
+}

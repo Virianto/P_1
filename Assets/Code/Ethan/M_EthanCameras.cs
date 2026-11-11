@@ -54,7 +54,7 @@ public class M_EthanCameras : MonoBehaviour
         }
     }
 
-    void SwitchToCinemachineCam(int newIndex)
+    public void SwitchToCinemachineCam(int newIndex)
     {
         Debug.Log(newIndex+" cam");
         for(int i = 0; i < allVirtualCamerasList.Count; ++i)

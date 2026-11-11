@@ -9,6 +9,7 @@ public class Ui_PlaneCanvas : MonoBehaviour
     [SerializeField] TMP_Text playerSpeedText;
     [SerializeField] TMP_Text timer;
     [SerializeField] Image playerLifeImage;
+    [SerializeField] GameObject redSceen;
 
     void Start()
     {
@@ -33,5 +34,9 @@ public class Ui_PlaneCanvas : MonoBehaviour
     void UpdateLifeLeftImage(float currentAmountLeft)
     {
         playerLifeImage.fillAmount = currentAmountLeft;
+    }
+    public void ShowRedScreen(bool showRedScreen)
+    {
+        redSceen.SetActive(showRedScreen);
     }
 }
