@@ -126,10 +126,10 @@ public class B_CoinCharacter : MonoBehaviour
             playerSpeed = 3;
         }
 
-        if (timeSpent.gameplayTime <= 0f)
-        {
-            SceneManager.LoadScene(3);
-        }
+        //if (timeSpent.gameplayTime <= 0f)
+        //{
+        //    SceneManager.LoadScene(3);
+        //}
     }
 
 
