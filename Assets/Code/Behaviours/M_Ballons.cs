@@ -6,11 +6,14 @@ using UnityEngine;
 
 public class M_Ballons : MonoBehaviour
 {
-        #region ATTRIBUTES
-    
+    #region ATTRIBUTES
+    [SerializeField]
+    GameObject ballonPrefab;
+    [SerializeField]
+
     #endregion
 
     #region METHODS
-     
+
     #endregion
 }
