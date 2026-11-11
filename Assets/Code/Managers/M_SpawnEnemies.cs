@@ -20,7 +20,11 @@ public class M_SpawnEnemies : MonoBehaviour
 
     int currentSequenceIndex = 0;
 
-    int vida = 1;
+    int currentEnemiesInScene = 0;
+
+    [SerializeField]
+    [Range(1, 10)]
+    int maxBalloonsInScene = 3;
 
     #endregion
     #region METHODS
@@ -36,19 +40,32 @@ public class M_SpawnEnemies : MonoBehaviour
     {
         B_Enemies newRing = Instantiate(ringPrefab).GetComponent<B_Enemies>();
         allInstantiatedRingsLists.Add(newRing);
-        newRing.InitializeRing(this, newPosition, vida);
+        newRing.InitializeRing(this, newPosition);
+        currentEnemiesInScene += 1;
     }
 
     private void Start()
     {
-        StartCoroutine(InvocarAnillo());
+        StartCoroutine(InvocarEnemigo());
     }
-    IEnumerator InvocarAnillo()
+    IEnumerator InvocarEnemigo()
     {
-        Vector3 posicion = GenerateRandomPosition();
-        GeneratePrefab(posicion);
+        if (currentEnemiesInScene < maxBalloonsInScene)
+        {
+            Vector3 posicion = GenerateRandomPosition();
+            GeneratePrefab(posicion);
+        }
         yield return new WaitForSeconds(Random.Range(3, 10));
-        StartCoroutine(InvocarAnillo());
+        StartCoroutine(InvocarEnemigo());
+    }
+
+    public void FinishBallonLifeCycle(B_Enemies balloon)
+    {
+        // Ojo aquí, siempre destruyo el GAMEOBJECT
+        Destroy(balloon.gameObject);
+
+        // Reduzco el contador de enemigos actuales para poder crear más
+        currentEnemiesInScene -= 1;
     }
 
     #endregion

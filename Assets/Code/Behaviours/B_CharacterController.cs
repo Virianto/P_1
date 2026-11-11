@@ -101,7 +101,7 @@ public class B_CharacterController : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         lifePointsLeft -= damageAmount;
-        gameManager.PlayerUpdateLive();
+        //gameManager.PlayerUpdateLive();
         Debug.Log(lifePointsLeft);
     }
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2676284396211784185}
   - component: {fileID: 2988926811237541892}
   - component: {fileID: -9009592276558916473}
+  - component: {fileID: -2792061582508172210}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -125,3 +126,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4814268f7143cf943b8653c817a84000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::C_BouncingBall
+--- !u!114 &-2792061582508172210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2849379275136109666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2620e08a7cbe1bd4785b4c04d235a034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B_Enemies
