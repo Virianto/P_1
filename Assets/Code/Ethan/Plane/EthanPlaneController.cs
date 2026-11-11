@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EthanPlaneController : MonoBehaviour
@@ -5,6 +6,7 @@ public class EthanPlaneController : MonoBehaviour
     [Range(5, 200)] public float planeSpeed; //Normalmete 5
     [Range(0, 180)] public float angularSpeed = 100;
     [Range(0, 200)] public float boostSpeed;
+    public event Action<float> OnPlayerSpeedChanged;
 
     [Header("KEY BINDS")]
     [SerializeField] KeyCode down = KeyCode.W;
@@ -21,12 +23,14 @@ public class EthanPlaneController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             planeSpeed = boostSpeed;
-            M_FlightSim.Instance.ChangeCam(2);   
+            M_FlightSim.Instance.ChangeCam(2);  
+            OnPlayerSpeedChanged?.Invoke(planeSpeed);
         }
         else
         {
             planeSpeed = 50;
             M_FlightSim.Instance.ChangeCam(0);
+            OnPlayerSpeedChanged?.Invoke(planeSpeed);
         }
 
         //Down (W)
