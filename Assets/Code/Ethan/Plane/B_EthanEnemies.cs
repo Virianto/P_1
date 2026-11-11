@@ -20,4 +20,14 @@ public class B_EthanEnemies : MonoBehaviour
         if (enemyLife <= 0) { Destroy(gameObject); }
 
     }
+
+    public void EnemyLifePoints(int life)
+    {
+        enemyLife += life;
+
+        if (enemyLife <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

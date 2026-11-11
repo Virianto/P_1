@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class EthanPlaneController : MonoBehaviour
 {
-    [Range(5, 100)] public float planeSpeed; //Normalmete 5
+    [Range(5, 200)] public float planeSpeed; //Normalmete 5
     [Range(0, 180)] public float angularSpeed = 100;
+    [Range(0, 200)] public float boostSpeed;
 
     [Header("KEY BINDS")]
     [SerializeField] KeyCode down = KeyCode.W;
@@ -16,16 +17,17 @@ public class EthanPlaneController : MonoBehaviour
     void Update()
     {
         transform.position += transform.forward * Time.deltaTime * planeSpeed;
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    planeSpeed = 50;
-        //    M_FlightSim.Instance.ChangeCam(2);
-        //}
-        //else
-        //{
-        //    planeSpeed = 5;
-        //    M_FlightSim.Instance.ChangeCam(0);
-        //}
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            planeSpeed = boostSpeed;
+            M_FlightSim.Instance.ChangeCam(2);   
+        }
+        else
+        {
+            planeSpeed = 100;
+            M_FlightSim.Instance.ChangeCam(0);
+        }
 
         //Down (W)
         if (Input.GetKey(down))
@@ -43,7 +45,7 @@ public class EthanPlaneController : MonoBehaviour
         {
             transform.Rotate(Vector3.down * Time.deltaTime * angularSpeed);
         }
-        //Right (D)
+        //Right (D)r
         if (Input.GetKey(right))
         {
             transform.Rotate(Vector3.up * Time.deltaTime * angularSpeed);
@@ -51,12 +53,12 @@ public class EthanPlaneController : MonoBehaviour
         //Right Tilt (E)
         if (Input.GetKey(RightTiltKey))
         {
-            transform.Rotate(Vector3.back * Time.deltaTime * angularSpeed);
+            transform.Rotate(Vector3.back * Time.deltaTime * angularSpeed * 2);
         }
         //Left Tilt (Q)
         if (Input.GetKey(LeftTiltKey))
         {
-            transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
+            transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed * 2);
         }
 
         

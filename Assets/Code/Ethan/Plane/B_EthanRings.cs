@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class B_EthanRings : MonoBehaviour
 {
     M_RingGoalManager ringManager;
     [SerializeField] ringType newRingType;
+    [SerializeField] List<Color> ringTypeColorsList = new();
 
     public void InitializeRing(M_RingGoalManager manager, Vector3 newPosition, ringType n)
     {
@@ -11,20 +13,7 @@ public class B_EthanRings : MonoBehaviour
         transform.position = newPosition;
         newRingType = n;
 
-        if (newRingType == ringType.Life)
-        {
-            GetComponentInChildren<Renderer>().material.color = Color.red;
-        }
-
-        if (newRingType == ringType.Points)
-        {
-            GetComponentInChildren<Renderer>().material.color = Color.yellow;
-        }
-
-        if (newRingType == ringType.Speed)
-        {
-            GetComponentInChildren<Renderer>().material.color = Color.blue;
-        }
+        ChangeRingColor();
     }
 
 
@@ -45,7 +34,18 @@ public class B_EthanRings : MonoBehaviour
         if(newRingType == ringType.Speed)
         {
             M_FlightSim.Instance.ChangeSpeed(20);
-            //M_FlightSim.Instance.ChangeCam(2);
+        }
+    }
+
+
+    void ChangeRingColor()
+    {
+        
+        Renderer[] allRingRenderers = GetComponentsInChildren<Renderer>();
+
+        for (int i = 0; i < allRingRenderers.Length; ++i)
+        {
+            allRingRenderers[i].material.color = ringTypeColorsList[(int)newRingType];
         }
     }
 }

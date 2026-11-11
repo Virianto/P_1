@@ -49,7 +49,6 @@ public class M_FlightSim : Singleton<M_FlightSim>
     }
     void SwitchToCinemachineCam(int newIndex)
     {
-        Debug.Log(newIndex + " cam");
         for (int i = 0; i < allVirtualCamerasList.Count; ++i)
         {
             if (i == newIndex)
