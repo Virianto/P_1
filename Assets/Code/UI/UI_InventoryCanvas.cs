@@ -45,7 +45,7 @@ public class UI_InventoryCanvas : Singleton<UI_InventoryCanvas>
         }
         else if(itemCollected == InventoryItems.PinkKey)
         {
-            newImage.color = Color.pink;
+            newImage.color = Color.magenta;
         }
     }
 
