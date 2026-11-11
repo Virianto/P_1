@@ -23,7 +23,7 @@ public class B_Enemy : MonoBehaviour
 
     [SerializeField]
     [Range(1, 100)]
-    float speed = 3;
+    float speed = 1;
 
     [Space]
 

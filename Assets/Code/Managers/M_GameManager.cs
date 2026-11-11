@@ -23,17 +23,19 @@ public class M_GameManager : MonoBehaviour
 
     public void PlayerReceiveDamage()
     {
-        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
-        
+        //ACTIVAR PARA EL MAZE, DESACTIVAR PARA KEYCOLLECTION
+        /*gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+
         if (player.lifePointsLeft <= 0)
         {
             gameplayCanvas.ResetGame();
-        }
+        }*/
     }
 
     public void NewLifeCollected()
     {
-        gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
+        //ACTIVAR PARA EL MAZE, DESACTIVAR PARA KEYCOLLECTION
+        //gameplayCanvas.UpdateLifeSlider(player.lifePointsLeft);
     }
     public void EnableTrapButton(GameObject controlPlatform, GameObject trapObject)
     {
