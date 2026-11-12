@@ -13,6 +13,9 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
     #region ATTRIBUTES
 
     [SerializeField]
+    B_PlayerPlane player;
+
+    [SerializeField]
     TMP_Text playerPointsText;
 
     [SerializeField]
@@ -33,6 +36,8 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
         M_FlightSimulator.Instance.OnTimeLeftChanged += UpdateTimeLeftText;
 
         M_FlightSimulator.Instance.OnPlayerLifeLeftChanged += UpdateLifeLeftImage;
+
+        player.OnPlayerSpeedChanged += UpdatePlayerSpeedText;
     }
 
     void UpdatePlayerPointsText(int currentPlayerPoints)
@@ -42,7 +47,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 
     void UpdatePlayerSpeedText(float currentPlayerSpeed)
     {
-        playerSpeedText.text = string.Format("Speed: {0:00}", currentPlayerSpeed);
+        playerSpeedText.text = string.Format("Speed: {0:000} Km/h", currentPlayerSpeed);
     }
 
     void UpdateTimeLeftText(float currentTimeLeft) 

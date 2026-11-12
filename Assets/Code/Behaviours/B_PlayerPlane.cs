@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -8,6 +9,8 @@ using UnityEngine;
 public class B_PlayerPlane : MonoBehaviour
 {
     #region ATTRIBUTES
+
+    public event Action<float> OnPlayerSpeedChanged;
 
     [Range(0, 300)]
     public float speed = 3;
@@ -70,6 +73,12 @@ public class B_PlayerPlane : MonoBehaviour
     {
         currentLifePoints += amount;
         M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints/maxLifePoints);
+    }
+
+    public void ModifyPlayerSpeed(float amount) 
+    {
+        speed += amount;
+        OnPlayerSpeedChanged?.Invoke(speed);
     }
 
     #endregion
