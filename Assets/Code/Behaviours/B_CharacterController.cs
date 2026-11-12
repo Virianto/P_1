@@ -1,28 +1,26 @@
 using UnityEngine;
 
 public class B_CharacterController : MonoBehaviour
-{
+{        
+    // Detectar cuándo he tocado una trampa y restar X a la vida
+
     #region ATTRIBUTES
 
     public M_GameManager gameManager;
 
     [SerializeField]
-    [Range(0, 60)]
+    [Range(0, 10)]
     float playerSpeed = 1;
 
     [SerializeField]
     [Range(15, 90)]
     float rotationSpeed = 30;
-
-    [SerializeField]
-    int maxLifePoints = 20;
-
+       
     Vector2 movingDirection;
+    float movingRotation;
 
     public int totalCoinsCollected = 0;
     public int lifePointsLeft = 20;
-
-    public bool IsDead => lifePointsLeft <= 0;
 
     #endregion
 
@@ -30,68 +28,70 @@ public class B_CharacterController : MonoBehaviour
 
     void Update()
     {
-        // Si el jugador ha muerto, no se mueve
-        if (IsDead) return;
+        // Me creo un Vector2 nuevo y lo inicializo a 0 (por si el jugador no pulsa nada)
+        movingDirection = Vector2.zero; // (0, 0)
+        float movingRotation = 0;  
 
-        // Dirección con información del teclado
+        // Relleno el Vector2 con información recibida del teclado para cada eje
         movingDirection.x = Input.GetAxisRaw("Horizontal");
         movingDirection.y = Input.GetAxisRaw("Vertical");
 
-        // Evita que en diagonal vaya más rápido que en recto
-        movingDirection = Vector2.ClampMagnitude(movingDirection, 1f);
+        // Compruebo si, en este frame, el jugador está pulsando esa tecla
+        if (Input.GetKey(KeyCode.Q))
+        {
+            // ¿Qué hago si la comprobación de este if me devuelve un "true"?
+            movingRotation = -1;
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            // ¿Qué hago si la comprobación de este if me devuelve un "true"?
+            movingRotation = 1;
+        }
 
-        // Rotación con Q y E
-        float movingRotation = 0;
-        if (Input.GetKey(KeyCode.Q)) movingRotation = -1;
-        if (Input.GetKey(KeyCode.E)) movingRotation = 1;
-
-        // Movimiento
+        // Me declaro un nuevo Vector3 (temporal) y, de entrada, le meto datos del Vector2
         Vector3 finalMovement = new Vector3(movingDirection.x, 0, movingDirection.y);
-        finalMovement *= Time.deltaTime * playerSpeed;
+        finalMovement *= Time.deltaTime;
+        finalMovement *= playerSpeed;
+
+        // Muevo el gameObject utilizando el nuevo Vector3 antes de que se muera
         transform.Translate(finalMovement);
 
-        // Rotación
         Vector3 finalRotation = new Vector3(0, movingRotation, 0);
-        finalRotation *= Time.deltaTime * rotationSpeed;
+        finalRotation *= Time.deltaTime;
+        finalRotation *= rotationSpeed;
+
+        // Roto el gameObject utilizando el float temporal antes de que muera
         transform.Rotate(finalRotation);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Moneda: sumar 1 al contador
+        // Detectar cuándo he tocado una moneda y sumar 1 al contador
         B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
+
+        // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
             EarnMoney(1);
-        }
-
-        // Trampa: restar vida
-        B_Trampa trapDetected = other.GetComponentInParent<B_Trampa>();
-        if (trapDetected != null)
-        {
-            TakeDamage(trapDetected.
-                danoJugador);
         }
     }
 
     public void EarnMoney(int moneyAmount)
     {
+        // Modifico la cantidad de monedas respetando los límites marcados
         totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
-
-        if (gameManager != null)
-            gameManager.NewCoinCollected();
+        gameManager.NewCoinCollected();
     }
 
     public void TakeDamage(int damageAmount)
     {
-        if (IsDead) return;
+        // Modificar la cantidad de vida del jugador        
+        // Con esto limito los posibles valores de "lifePointsLeft" entre 0 y 20 siempre
+        lifePointsLeft = Mathf.Clamp((lifePointsLeft - damageAmount), 0, 20);
 
-        lifePointsLeft = Mathf.Clamp(lifePointsLeft - damageAmount, 0, maxLifePoints);
-
-        if (gameManager != null)
-            gameManager.PlayerReceivedDamage();
+        // Informar del cambio al game Manager
+        //gameManager.PlayerReceivedDamage();
     }
 
     #endregion
 }
-
