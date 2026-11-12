@@ -6,7 +6,7 @@ public class B_CharacterController : MonoBehaviour
 
     #region ATTRIBUTES
 
-    public M_ManagerMonedas ManagerMonedas;
+    public M_GameManager gameManager;
 
     [SerializeField]
     [Range(0, 10)]
@@ -21,8 +21,7 @@ public class B_CharacterController : MonoBehaviour
 
     public int totalCoinsCollected = 0;
     public int lifePointsLeft = 20;
-    public int totalCorazonsCollected = 0;
-    public int totalSuperCoinsCollected = 0;
+
     #endregion
 
     #region METHODS
@@ -70,43 +69,18 @@ public class B_CharacterController : MonoBehaviour
         // Detectar cuándo he tocado una moneda y sumar 1 al contador
         B_Coin coinDetected = other.GetComponentInParent<B_Coin>();
 
-        B_Corazon corazonLifeDetected = other.GetComponentInParent<B_Corazon>();
-
-        Supermoneda SuperMonedaDetected = other.GetComponentInParent<Supermoneda>();
-
-        C_SuperMonedas SuperMoneyDetected = other.GetComponent<C_SuperMonedas>();
-
-
         // SI la variable que me acabo de crear TIENE ALGO DE INFORMACIÓN DENTRO...
         if (coinDetected != null)
         {
             EarnMoney(1);
         }
-        if (corazonLifeDetected != null)
-        {
-            // Sumar 1 al contador
-            totalCorazonsCollected += 1;
-
-            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
-          //  gameManager.NewCorazonCollected();
-        }
-        if (SuperMonedaDetected != null)
-        {
-            // Sumar 1 al contador
-            totalSuperCoinsCollected += 1;
-
-            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
-           // gameManager.NewSuperCoinCollected();
-        }
-
     }
-
 
     public void EarnMoney(int moneyAmount)
     {
         // Modifico la cantidad de monedas respetando los límites marcados
         totalCoinsCollected = Mathf.Clamp(totalCoinsCollected + moneyAmount, 0, 100);
-       // ManagerMonedas.NewCoinCollected();
+        gameManager.NewCoinCollected();
     }
 
     public void TakeDamage(int damageAmount)
@@ -115,9 +89,8 @@ public class B_CharacterController : MonoBehaviour
         // Con esto limito los posibles valores de "lifePointsLeft" entre 0 y 20 siempre
         lifePointsLeft = Mathf.Clamp((lifePointsLeft - damageAmount), 0, 20);
 
-
         // Informar del cambio al game Manager
-       // ManagerMonedas.PlayerReceivedDamage();
+        //gameManager.PlayerReceivedDamage();
     }
 
     #endregion
