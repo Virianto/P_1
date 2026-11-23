@@ -53,5 +53,10 @@ public class M_RingManager : MonoBehaviour
         globalManager.NewCoinCollected();
     }
 
+    void InstantiateRing(RingType ringType)
+    {
+
+    }
+
     #endregion
 }

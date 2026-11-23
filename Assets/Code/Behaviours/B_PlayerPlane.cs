@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Mover de manera constante el objeto asociado hacia delante
@@ -9,6 +10,11 @@ public class B_PlayerPlane : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    Rigidbody rb;
+    float movementValueX = 0;
+    float movementValueY = 0;
+    float movementYaw = 0;
+    int yawCount = 0;
     [Range(0, 300)]
     public float speed = 3;
     [Range(0, 180)]
@@ -38,6 +44,8 @@ public class B_PlayerPlane : MonoBehaviour
         lifePointsLeft = maxLifePoints;
 
         //ModifyPlayerSpeed(0);
+
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -50,25 +58,46 @@ public class B_PlayerPlane : MonoBehaviour
         //Mover de forma constante el objeto hacia delante
         transform.position += transform.forward * Time.deltaTime * speed;
 
-        //Detectar el input de usuario para rotar y así maniobrar
-        if (Input.GetKey(vNegativeTiltKey))
-        
-            transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
-        
-        if (Input.GetKey(vPositiveTiltKey))
-            
-            transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
-        
-        if (Input.GetKey(hNegativeTiltKey))
-            
-            transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
-        
-        if (Input.GetKey(hPositiveTiltKey))
+        ////Detectar el input de usuario para rotar y así maniobrar
+        //if (Input.GetKey(vNegativeTiltKey))
 
-            transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
+        //    transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
+
+        //if (Input.GetKey(vPositiveTiltKey))
+
+        //    transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
+
+        //if (Input.GetKey(hNegativeTiltKey))
+
+        //    transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
+
+        //if (Input.GetKey(hPositiveTiltKey))
+
+        //    transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
+
+        if (movementValueX != 0)
+        {
+            transform.Rotate(new Vector3(0, 0, movementValueX) * Time.deltaTime * angularSpeed);
+        }
+
+        if (movementValueY != 0) {
+            transform.Rotate(new Vector3(movementValueY, 0, 0) * Time.deltaTime * angularSpeed);
+        }
+
+        if (movementYaw != 0)
+        {
+            //transform.position += (new Vector3(movementYaw, 0, 0)) * Time.deltaTime * speed;
+            //yawCount++;
+
+            transform.Translate(new Vector3(movementYaw, 0, 0) * Time.deltaTime * angularSpeed);
+        }
+        else if (yawCount == 10)
+        {
+            yawCount = 0;
+        }
     }
 
-    public void ModifyPlayerSpeed(float amount)
+public void ModifyPlayerSpeed(float amount)
     {
         speed += amount;
         M_FlightSimulator.Instance.PlayerSpeedChanged(speed);
@@ -85,6 +114,48 @@ public class B_PlayerPlane : MonoBehaviour
         //totalYellowCoinsCollected += moneyAmount;
         totalYellowCoinsCollected = Mathf.Clamp(totalYellowCoinsCollected + moneyAmount, 0, 100);
         gameManager.NewCoinCollected();
+    }
+
+    //public void OnMove(InputAction.CallbackContext context)
+    //{
+    //    ////Detectar el input de usuario para rotar y así maniobrar
+    //    //if (input.Get<float>() > 0)
+    //    float movementValue = context.ReadValue<float>();
+    //        transform.Rotate(new Vector3(0, 0, movementValue) * Time.deltaTime * angularSpeed);
+    //    //else
+    //        //transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
+    //}
+
+    void OnMove(InputValue inputValue)
+    {
+        ////Detectar el input de usuario para rotar y así maniobrar
+        //if (input.Get<float>() > 0)
+        movementValueX = inputValue.Get<float>();
+        
+        //transform.Rotate(new Vector3(0, 0, movementValue) * Time.deltaTime * angularSpeed);
+        
+        //else
+        //transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
+    }
+
+    //public void OnForward(InputAction.CallbackContext context)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
+
+    //public void OnBackward(InputAction.CallbackContext context)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
+
+    void OnForward(InputValue inputValue)
+    {
+        movementValueY = inputValue.Get<float>();
+    }
+
+    void OnYaw(InputValue inputValue)
+    {
+        movementYaw = inputValue.Get<float>();
     }
 
     #endregion
