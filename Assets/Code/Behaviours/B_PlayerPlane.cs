@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -7,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class B_PlayerPlane : MonoBehaviour
 {
+    public event Action<float> OnPlayerSpeedChanged;
+
     #region ATTRIBUTES
     [Range(0,100)]
     public float speed = 3;
@@ -17,17 +20,20 @@ public class B_PlayerPlane : MonoBehaviour
     [Range(0, 100)]
     public float angularSpeed = 90;
 
-    [SerializeField]
-    KeyCode vNegativeTiltKey = KeyCode.W;
+    //[SerializeField]
+    //KeyCode vNegativeTiltKey = KeyCode.W;
 
-    [SerializeField]
-    KeyCode vPositiveTiltKey = KeyCode.S;
+    //[SerializeField]
+    //KeyCode vPositiveTiltKey = KeyCode.S;
 
-    [SerializeField]
-    KeyCode hNegativeTiltKey = KeyCode.A;
+    //[SerializeField]
+    //KeyCode hNegativeTiltKey = KeyCode.A;
 
-    [SerializeField]
-    KeyCode hPositiveTiltKey = KeyCode.D;
+    //[SerializeField]
+    //KeyCode hPositiveTiltKey = KeyCode.D;
+
+    float tiltValue;
+    float panValue;
     #endregion
 
 
@@ -37,29 +43,52 @@ public class B_PlayerPlane : MonoBehaviour
         currentLifePoints = maxLifePoints;
     }
 
+    void Start()
+    {
+        M_Input.Instance.OnPlayerTilt += SetNewPlayerTiltValue;
+        M_Input.Instance.OnPlayerPan += SetNewPlayerPanValue;
+    }
+
+    void SetNewPlayerTiltValue(float newValue)
+    {
+        tiltValue = newValue;
+    }
+
+    void SetNewPlayerPanValue(float newValue)
+    {
+        panValue = newValue;
+    }
+
     private void Update()
     {
         // Mover de manera constante hacia delante
         transform.position += transform.forward * Time.deltaTime * speed;
 
-        // Detectar input de usuario para girar y rotar el objeto
-        if(Input.GetKey(vNegativeTiltKey))
-        {
-            transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(vPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(hNegativeTiltKey))
-        {
-            transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(hPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
-        }
+        //vertical
+        transform.Rotate(-tiltValue * Vector3.right * Time.deltaTime * angularSpeed);
+
+        //horizontal
+        transform.Rotate(-panValue * Vector3.back * Time.deltaTime * angularSpeed);
+
+        //// Detectar input de usuario para girar y rotar el objeto
+        //if (Input.GetKey(vNegativeTiltKey))
+        //{
+        //    transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
+        //}
+        //if (Input.GetKey(vPositiveTiltKey))
+        //{
+        //    transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
+        //}
+        //if (Input.GetKey(hNegativeTiltKey))
+        //{
+        //    transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
+        //}
+        //if (Input.GetKey(hPositiveTiltKey))
+        //{
+        //    transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
+        //}
     }
+
 
     public void ModifySpeed(float speed)
     {

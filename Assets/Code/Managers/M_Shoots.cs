@@ -4,14 +4,14 @@ using UnityEngine;
 /// <summary>
 /// Aqui va el enunciado del proposito de esta clase
 /// </summary>
-public class M_Shots : MonoBehaviour
+public class M_Shoots : MonoBehaviour
 {
     #region ATTRIBUTES
     [SerializeField]
-    Transform shotOrigin;
+    Transform shootOrigin;
 
     [SerializeField]
-    KeyCode shotKey = KeyCode.F;
+    KeyCode shootKey = KeyCode.F;
 
     LineRenderer laserLine;
     bool isShooting = false;
@@ -25,6 +25,15 @@ public class M_Shots : MonoBehaviour
         laserLine = GetComponent<LineRenderer>();
     }
 
+    /// <summary>
+    /// Nos suscribimos a todos los eventos del Manager de Input en el Start para asegurarnos de que ya existe en escena
+    /// </summary>
+    void Start()
+    {
+        M_Input.Instance.OnPlayerShoot += ShootLaser;
+    }
+
+
     private void Update()
     {
         // Comprobar si tiene algo delante
@@ -34,16 +43,22 @@ public class M_Shots : MonoBehaviour
         }
 
         //Disparar
-        if (Input.GetKeyDown(shotKey))
-        {
-            ShootLaser();
-        }
+        //if (Input.GetKeyDown(shotKey))
+        //{
+        //    ShootLaser();
+        //}
     }
+
+    void OnShoot()
+    {
+        ShootLaser();
+    }
+
 
     void CheckFrontView()
     {
         // Crear un ray par indicar como buscar (desde cabina hacia delante)
-        Ray searchRay = new Ray(shotOrigin.position, shotOrigin.forward);
+        Ray searchRay = new Ray(shootOrigin.position, shootOrigin.forward);
         // Crear un raycastHit para guardar info de la búsqueda
         RaycastHit hitInfo;
         // Reaccionar al resultado pintando o despintando el LineRenderer
@@ -53,7 +68,7 @@ public class M_Shots : MonoBehaviour
 
             // Ya se q ha detectado algo: dibujo una línea
             laserLine.positionCount = 2;
-            laserLine.SetPosition(0, shotOrigin.position);
+            laserLine.SetPosition(0, shootOrigin.position);
             laserLine.SetPosition(1, hitInfo.point);
 
             if (enemyHit != null)
@@ -82,7 +97,7 @@ public class M_Shots : MonoBehaviour
         // 1. Recoger el punto de origen
         // Definir una dirección de disparo
         // Almacenar todo eso en una variable temporal ripo Ray
-        Ray laser = new Ray(shotOrigin.position, shotOrigin.forward);
+        Ray laser = new Ray(shootOrigin.position, shootOrigin.forward);
 
         // 2. Definir una variable de tipo RaycastHit para almacenar la información del tiro
         RaycastHit hitInfo;
@@ -93,7 +108,7 @@ public class M_Shots : MonoBehaviour
         {
             // Dibujar una línea entre el punto de origen y de impacto
             laserLine.positionCount = 2;
-            laserLine.SetPosition(0, shotOrigin.position);
+            laserLine.SetPosition(0, shootOrigin.position);
             laserLine.SetPosition(1, hitInfo.point);
 
             B_Enemy enemy = hitInfo.collider.GetComponent<B_Enemy>();
