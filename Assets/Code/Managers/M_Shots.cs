@@ -11,9 +11,6 @@ public class M_Shots : MonoBehaviour
     [SerializeField]
     Transform shotOrigin;
 
-    [SerializeField]
-    KeyCode shotKey = KeyCode.F;
-
     LineRenderer laserLine;
 
     bool isShooting = false;
@@ -42,12 +39,6 @@ public class M_Shots : MonoBehaviour
         {
             CheckFrontView();
         }        
-
-        // Disparar si se pulsa una tecla
-        //if (Input.GetKeyDown(shotKey))
-        //{
-        //    ShootLaser();
-        //}
     }
 
     void CheckFrontView()

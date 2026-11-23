@@ -19,18 +19,6 @@ public class B_PlayerPlane : MonoBehaviour
     public float angularSpeed = 90;
 
     [SerializeField]
-    KeyCode vNegativeTiltKey = KeyCode.W;
-
-    [SerializeField]
-    KeyCode vPositiveTiltKey = KeyCode.S;
-
-    [SerializeField]
-    KeyCode hNegativeTiltKey = KeyCode.A;
-
-    [SerializeField]
-    KeyCode hPositiveTiltKey = KeyCode.D;
-
-    [SerializeField]
     [Range(1, 100)]
     float maxLifePoints = 20;
     float currentLifePoints;
