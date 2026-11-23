@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Aqui va el enunciado del proposito de esta clase
-/// </summary>
-
 public class B_PlayerPlane : MonoBehaviour
 {
     #region ATTRIBUTES

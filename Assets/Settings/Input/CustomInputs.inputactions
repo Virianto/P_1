@@ -1,0 +1,176 @@
+{
+    "version": 1,
+    "name": "CustomInputs",
+    "maps": [
+        {
+            "name": "ControlAvion",
+            "id": "d95f0f15-ee88-4d8e-b72c-354f97375968",
+            "actions": [
+                {
+                    "name": "Shoting",
+                    "type": "Button",
+                    "id": "b3418e7a-7cc4-486f-bfdb-afffa557b714",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Picth",
+                    "type": "Value",
+                    "id": "043d51e1-134b-4362-94ee-a939ecadc338",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Roll",
+                    "type": "Value",
+                    "id": "f2f7be3e-b1f1-4758-92eb-234f807609e2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Left & Right",
+                    "type": "Value",
+                    "id": "66a4ccb3-3296-4373-9e5c-02ffd1d7b566",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Up & Down",
+                    "type": "Value",
+                    "id": "4823f6d7-6403-4958-9926-fd3ba4af6aaa",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "180f6a94-5af1-4214-8c14-a030ad69cf4d",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "Shoting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29e08c61-44cb-41e0-af29-b1982ceb6d64",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "Picth",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "610a5264-f8d7-45b0-a499-2369d348758a",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "ca22ed68-2e8c-468c-ad23-04f422bf3fdd",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left & Right",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "d6e5b3fc-d614-4faf-90c3-f6d88693e7a8",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "Left & Right",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "43ba02fb-da1a-4a98-abc9-8d4b7785d386",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "Left & Right",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "e6c271b6-cbb4-4cb8-b9c5-8ce8d03f4b64",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up & Down",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "b14af68e-d94e-4998-8c01-1c142432ca7f",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "Up & Down",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "35dc117d-3945-41d1-92e0-d7dce908e620",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "Up & Down",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Teclado Y Raton",
+            "bindingGroup": "Teclado Y Raton",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
