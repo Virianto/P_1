@@ -27,7 +27,6 @@ public class M_Shots : MonoBehaviour
         laserLine = GetComponent<LineRenderer>();
     }
 
-
     /// <summary>
     /// Nos suscribimos a todos los eventos del Manager de Input en el Start para asegurarnos de que ya existe en escena
     /// </summary>
