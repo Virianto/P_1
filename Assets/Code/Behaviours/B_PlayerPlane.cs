@@ -89,12 +89,12 @@ public class B_PlayerPlane : MonoBehaviour
             //transform.position += (new Vector3(movementYaw, 0, 0)) * Time.deltaTime * speed;
             //yawCount++;
 
-            transform.Translate(new Vector3(movementYaw, 0, 0) * Time.deltaTime * angularSpeed);
+            transform.Rotate(new Vector3(0, movementYaw, 0) * Time.deltaTime * angularSpeed);
         }
-        else if (yawCount == 10)
-        {
-            yawCount = 0;
-        }
+        //else if (yawCount == 10)
+        //{
+        //    yawCount = 0;
+        //}
     }
 
 public void ModifyPlayerSpeed(float amount)
