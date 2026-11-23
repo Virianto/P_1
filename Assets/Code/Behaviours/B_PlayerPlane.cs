@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 /// <summary>
 /// * Mover de manera constante el objeto asociado hacia delante
@@ -31,7 +33,8 @@ public class B_PlayerPlane : MonoBehaviour
 
     public float maxLifePoints = 16;
     public float currentLifePoints = 16;
-  
+
+
     #endregion
 
 

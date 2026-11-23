@@ -29,7 +29,22 @@ public class M_Shots : MonoBehaviour
         laserLine = GetComponent<LineRenderer>();
     }
 
-    void Update()
+    /*void Update()
+    {
+        // Comprobar si tengo algo sólido delante
+        if (!isShooting)
+        {
+            CheckFrontView();
+        }
+
+        // Disparar si se pulsa una tecla
+        if (Input.GetKeyDown(shotKey))
+        {
+            ShootLaser();
+        }
+    }*/
+
+    void OnShoot()
     {
         // Comprobar si tengo algo sólido delante
         if (!isShooting)

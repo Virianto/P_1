@@ -20,8 +20,10 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     [SerializeField]
     UI_FlightSimulatorCanvas flightSimulatorCanvas;
 
+    //[SerializeField]
+    //B_PlayerPlane player;
     [SerializeField]
-    B_PlayerPlane player;
+    B_PlayerPlaneA player;
 
     [SerializeField]
     [Range(5, 60)]
