@@ -1,5 +1,5 @@
-using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// * Mover de manera constante el objeto asocidao hacia delante
@@ -22,21 +22,25 @@ public class B_PlayerPlane : MonoBehaviour
     [Range(0f, 10f)]
     public float currentPlayerLife = 10;
 
-    [SerializeField]
-    KeyCode vNegativeTiltKey = KeyCode.W;
+    //[SerializeField]
+    //KeyCode vNegativeTiltKey = KeyCode.W;
 
-    [SerializeField]
-    KeyCode vPositiveTiltKey = KeyCode.S;
+    //[SerializeField]
+    //KeyCode vPositiveTiltKey = KeyCode.S;
 
-    [SerializeField]
-    KeyCode hNegativeTiltKey = KeyCode.A;
+    //[SerializeField]
+    //KeyCode hNegativeTiltKey = KeyCode.A;
 
-    [SerializeField]
-    KeyCode hPositiveTiltKey = KeyCode.D;
+    //[SerializeField]
+    //KeyCode hPositiveTiltKey = KeyCode.D;
+
+    float movementValue;
+    float tiltDirection;
 
 
 
-
+    float hTiltValue;
+    float vTiltValue;
     #endregion
 
 
@@ -44,47 +48,39 @@ public class B_PlayerPlane : MonoBehaviour
 
     void Start()
     {
-     M_FlightSimulator.Instance.PlayerSpeedChanged(speed);   
+     M_FlightSimulator.Instance.PlayerSpeedChanged(speed);
+     M_InputManager.Instance.OnVerticalInputValueChanged += SetNewVerticalValue;
+     M_InputManager.Instance.OnHorizontalInputValueChanged += SetNewHorizontalValue;
     }
     void Update()
     {
         //Mover el objeto de forma constante hacia delante
         transform.position += transform.forward * Time.deltaTime * speed;
+        transform.Rotate(hTiltValue * Vector3.right * Time.deltaTime * angularSpeed);
+        transform.Rotate(vTiltValue * Vector3.back * Time.deltaTime * angularSpeed);
 
-        //Detectar input del usuario para rotar el objeto y maniobrar
-        if (Input.GetKey(vNegativeTiltKey))
-        {
-            transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(vPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(hNegativeTiltKey))
-        {
-            transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(hPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
-        }
+    }
 
-      
+    void SetNewVerticalValue(float newValue)
+    {
+        hTiltValue = newValue;
+    }
+
+    void SetNewHorizontalValue (float newValue)
+    {
+        vTiltValue = newValue;
     }
     public void Accelerate(float newSpeed)
     {
         speed += newSpeed;
         M_FlightSimulator.Instance.PlayerSpeedChanged(speed);
     }
-
-   
     public void ModifyLifePoints(float newLifePoints)
     {
         currentPlayerLife += newLifePoints;
         M_FlightSimulator.Instance.PlayerLifeChanged(currentPlayerLife / maxPlayerLife);
      
     }
-
     
     #endregion
 }

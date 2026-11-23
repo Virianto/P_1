@@ -12,8 +12,8 @@ public class M_ShootingManager : MonoBehaviour
     [SerializeField]
     Transform originOfShoot;
 
-    [SerializeField]
-    KeyCode shootingKey = KeyCode.L;
+    //[SerializeField]
+    //KeyCode shootingKey = KeyCode.L;
 
 
     LineRenderer laserLine;
@@ -28,6 +28,10 @@ public class M_ShootingManager : MonoBehaviour
     {
         laserLine = GetComponent<LineRenderer>();
     }
+    private void Start()
+    {
+        M_InputManager.Instance.OnPlayerShot += ShootLaser;
+    }
 
     void Update()
     {
@@ -36,10 +40,10 @@ public class M_ShootingManager : MonoBehaviour
             CheckFrontView();
         }
 
-        if (Input.GetKeyDown(shootingKey))
-        {
-            ShootLaser();
-        }
+        //if (Input.GetKeyDown(shootingKey))
+        //{
+        //    ShootLaser();
+        //}
 
 
     }
@@ -82,6 +86,10 @@ public class M_ShootingManager : MonoBehaviour
 
     }
 
+    void OnShooting()
+    {
+        ShootLaser();
+    }
     IEnumerator ShootLaserRoutine()
     {
         //Dibujar el láser (posición y color)

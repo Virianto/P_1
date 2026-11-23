@@ -1,6 +1,7 @@
 using Code.Utils;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// * Llevar la cuenta del tiempo
@@ -33,6 +34,8 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     public float gameplayTime = 30;
 
     public int pointsCollected = 0;
+
+
 
 
     #endregion
@@ -74,5 +77,9 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
             Debug.Log("Has muerto");
       
     }
+
+
+
+   
     #endregion
 }

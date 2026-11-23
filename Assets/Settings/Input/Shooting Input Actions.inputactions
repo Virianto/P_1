@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "name": "Shooting Input Actions",
+    "maps": [
+        {
+            "name": "Shooting",
+            "id": "23a0c1c2-af2a-455f-b4c6-02cdcc8eb06a",
+            "actions": [
+                {
+                    "name": "Shooting",
+                    "type": "Button",
+                    "id": "7ad371bd-b70b-4f37-ab28-fd5f15438a70",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dfb998ae-898a-4206-b727-4bcfd2d62db3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shooting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Shooting",
+            "bindingGroup": "Shooting",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
