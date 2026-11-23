@@ -1,4 +1,5 @@
 using Code.Utils;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,9 @@ public class M_Input : Singleton<M_Input>
 
     #region Input Related Events
 
-
+    public event Action OnPlayerShoot;
+    public event Action<float> OnPlayerTilt;
+    public event Action<float> OnPlayerPan;
 
     #endregion
 
@@ -27,7 +30,8 @@ public class M_Input : Singleton<M_Input>
     /// </summary>
     void OnShoot()
     {
-
+        // Si hay otra clase esperando que se produzca esta acción, se lo hacemos saber
+        OnPlayerShoot?.Invoke();
     }
 
     /// <summary>
@@ -37,6 +41,9 @@ public class M_Input : Singleton<M_Input>
     void OnTilt(InputValue value)
     {
         _tiltValue = value.Get<float>();
+
+        // Si hay otra clase esperando que se produzca esta acción, se lo hacemos saber y, además, le facilitamos el valor
+        OnPlayerTilt?.Invoke(_tiltValue);
     }
 
     /// <summary>
@@ -46,6 +53,9 @@ public class M_Input : Singleton<M_Input>
     void OnPan(InputValue value)
     {
         _panValue = value.Get<float>();
+
+        // Si hay otra clase esperando que se produzca esta acción, se lo hacemos saber y, además, le facilitamos el valor
+        OnPlayerPan?.Invoke(_panValue);
     }
 
     #endregion
