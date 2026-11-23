@@ -1,6 +1,5 @@
 using Code.Utils;
 using System;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>

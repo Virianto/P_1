@@ -74,25 +74,6 @@ public class B_PlayerPlane : MonoBehaviour
         transform.Rotate(_tiltValue * Vector3.right * Time.deltaTime * angularSpeed);
 
         transform.Rotate(_panValue * Vector3.back * Time.deltaTime * angularSpeed);
-
-        // Detectar input de usuario para rotar el objeto y así maniobrar
-        /*if (Input.GetKey(vNegativeTiltKey))
-        {
-            transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(vPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
-        }
-
-        if (Input.GetKey(hNegativeTiltKey))
-        {
-            transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(hPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
-        }*/
     }
 
     public void ModifyPlayerLife(float amount)
