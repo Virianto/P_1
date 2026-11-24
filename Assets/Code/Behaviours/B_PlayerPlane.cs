@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 /// <summary>
 /// * Mover de manera constante el objeto asociado hacia delante
@@ -32,6 +34,10 @@ public class B_PlayerPlane : MonoBehaviour
     float maxLifePoints = 20;
     float currentLifePoints;
 
+    float isTilt;
+    float isPan;
+    bool isTurbo = false;
+
     #endregion
 
     #region METHODS
@@ -46,30 +52,48 @@ public class B_PlayerPlane : MonoBehaviour
     {        
         transform.position += transform.forward * Time.deltaTime * speed;
 
-        // Detectar input de usuario para rotar el objeto y así maniobrar
-        if (Input.GetKey(vNegativeTiltKey))
+        if(isTilt != 0)
         {
-            transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(vPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
+            transform.Rotate(isTilt *Vector3.right * Time.deltaTime * angularSpeed);
         }
 
-        if (Input.GetKey(hNegativeTiltKey))
+        if (isPan != 0)
         {
-            transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
+            transform.Rotate(-isPan * Vector3.forward * Time.deltaTime * angularSpeed);
         }
-        if (Input.GetKey(hPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
-        }
+
+        // Detectar input de usuario para rotar el objeto y así maniobrar
+        // if (Input.GetKey(vNegativeTiltKey))
+        //{
+        //transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
+        //}
+        //if (Input.GetKey(vPositiveTiltKey))
+        //{
+        //transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
+        // }
+
+        //if (Input.GetKey(hNegativeTiltKey))
+        //{
+        // transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
+        //}
+        //if (Input.GetKey(hPositiveTiltKey))
+        //{
+        // transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
+        //}
     }
 
     public void ModifyPlayerLife(float amount)
     {
         currentLifePoints += amount;
         M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints/maxLifePoints);
+    }
+    void OnTilt(InputValue value)
+    {
+        isTilt = value.Get<float>();
+    }
+    void OnPan(InputValue value)
+    {
+        isPan = value.Get<float>();
     }
 
     #endregion

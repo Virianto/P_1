@@ -86,7 +86,7 @@ public class B_EvilBalloon : MonoBehaviour
 
         if(lifePoints <= 0)
         {
-            myManager.FinishBallonLifeCycle(this);            
+     
         }
     }    
 
