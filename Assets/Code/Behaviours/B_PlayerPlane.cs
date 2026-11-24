@@ -1,6 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI;
 
 /// <summary>
 /// * Mover de manera constante el objeto asociado hacia delante
@@ -11,6 +10,8 @@ public class B_PlayerPlane : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    public event Action<float> OnPlayerSpeedChanged;
+
     [Range(0, 300)]
     public float speed = 3;
 
@@ -18,25 +19,12 @@ public class B_PlayerPlane : MonoBehaviour
     public float angularSpeed = 90;
 
     [SerializeField]
-    KeyCode vNegativeTiltKey = KeyCode.W;
-
-    [SerializeField]
-    KeyCode vPositiveTiltKey = KeyCode.S;
-
-    [SerializeField]
-    KeyCode hNegativeTiltKey = KeyCode.A;
-
-    [SerializeField]
-    KeyCode hPositiveTiltKey = KeyCode.D;
-
-    [SerializeField]
     [Range(1, 100)]
     float maxLifePoints = 20;
     float currentLifePoints;
 
-    float isTilt;
-    float isPan;
-    bool isTurbo = false;
+    float _tiltValue;
+    float _panValue;
 
     #endregion
 
@@ -48,38 +36,32 @@ public class B_PlayerPlane : MonoBehaviour
         currentLifePoints = maxLifePoints;
     }
 
+    /// <summary>
+    /// Nos suscribimos a todos los eventos del Manager de Input en el Start para asegurarnos de que ya existe en escena
+    /// </summary>
+    void Start()
+    {
+        M_Input.Instance.OnPlayerTilt += SetNewPlayerTiltValue;
+        M_Input.Instance.OnPlayerPan += SetNewPlayerPanValue;
+    }
+
+    void SetNewPlayerTiltValue(float newValue)
+    {
+        _tiltValue = newValue;
+    }
+
+    void SetNewPlayerPanValue(float newValue) 
+    {
+        _panValue = newValue;
+    }
+
     void Update()
     {        
         transform.position += transform.forward * Time.deltaTime * speed;
 
-        if(isTilt != 0)
-        {
-            transform.Rotate(isTilt *Vector3.right * Time.deltaTime * angularSpeed);
-        }
+        transform.Rotate(_tiltValue * Vector3.right * Time.deltaTime * angularSpeed);
 
-        if (isPan != 0)
-        {
-            transform.Rotate(-isPan * Vector3.forward * Time.deltaTime * angularSpeed);
-        }
-
-        // Detectar input de usuario para rotar el objeto y así maniobrar
-        // if (Input.GetKey(vNegativeTiltKey))
-        //{
-        //transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
-        //}
-        //if (Input.GetKey(vPositiveTiltKey))
-        //{
-        //transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
-        // }
-
-        //if (Input.GetKey(hNegativeTiltKey))
-        //{
-        // transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
-        //}
-        //if (Input.GetKey(hPositiveTiltKey))
-        //{
-        // transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
-        //}
+        transform.Rotate(_panValue * Vector3.back * Time.deltaTime * angularSpeed);
     }
 
     public void ModifyPlayerLife(float amount)
@@ -87,13 +69,11 @@ public class B_PlayerPlane : MonoBehaviour
         currentLifePoints += amount;
         M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints/maxLifePoints);
     }
-    void OnTilt(InputValue value)
+
+    public void ModifyPlayerSpeed(float amount) 
     {
-        isTilt = value.Get<float>();
-    }
-    void OnPan(InputValue value)
-    {
-        isPan = value.Get<float>();
+        speed += amount;
+        OnPlayerSpeedChanged?.Invoke(speed);
     }
 
     #endregion

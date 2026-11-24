@@ -2086,10 +2086,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 478754952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8daa5b28e441e7d4fb3288b67aeac6a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 555fb5115d90bbe459f201fa25663cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_PlayerPlane
-  speed: 3
+  speed: 8
   angularSpeed: 90
   vNegativeTiltKey: 119
   vPositiveTiltKey: 115
@@ -2404,11 +2404,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-<<<<<<< HEAD
-  m_fontSize: 72
-=======
-  m_fontSize: 21.95
->>>>>>> develop
+  m_fontSize: 46.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2691,6 +2687,7 @@ Transform:
   - {fileID: 951117072}
   - {fileID: 620973427}
   - {fileID: 793280813}
+  - {fileID: 1645878322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &688222495
@@ -2884,7 +2881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e882b361862aed4ba2b5049c08b7175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_FlightSimulator
-  SimulatorCnavas: {fileID: 2123635253}
+  flightSimulatorCanvas: {fileID: 2123635253}
   player: {fileID: 478754954}
   gameTimeLeft: 10
 --- !u!1 &704329381
@@ -5280,11 +5277,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-<<<<<<< HEAD
-  m_fontSize: 72
-=======
-  m_fontSize: 32.95
->>>>>>> develop
+  m_fontSize: 69.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5424,13 +5417,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 951117071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3471380204fb1814d87b0325e28e458b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ae65eeefc27f27469351549a1852e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_Rings
   ringPrefab: {fileID: 9055263262916590176, guid: 54839cac51f9a0345b095fbe7bdbecbd, type: 3}
-  horizontalRandomLimit: 5
-  depthRandomLimit: 5
-  verticalRandomLimit: 10
+  horizontalRandomLimit: 20
+  depthRandomLimit: 20
+  verticalRandomLimit: 15
   timeBetweenRingGen: 4
 --- !u!1 &953000832
 GameObject:
@@ -8013,6 +8006,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636731167}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1645878321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1645878322}
+  - component: {fileID: 1645878323}
+  - component: {fileID: 1645878324}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1645878322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645878321}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 651984781}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1645878323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645878321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 360016af191b59a45950ac7339eb6754, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: "Teclado y Rat\xF3n"
+  m_DefaultActionMap: Flying
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 961739752}
+--- !u!114 &1645878324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645878321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9b1284a7ddb97418a66e8ed88fad3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M_Input
 --- !u!1 &1687596596
 GameObject:
   m_ObjectHideFlags: 0
@@ -9626,6 +9694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8edadb9e60087d949a4dcdb855825cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_FlightSimulatorCanvas
+  player: {fileID: 478754954}
   playerPointsText: {fileID: 920596772}
   playerSpeedText: {fileID: 1471000179}
   timeLeftText: {fileID: 588603900}
