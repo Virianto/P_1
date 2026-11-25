@@ -50,6 +50,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ChangeSong",
+                    "type": "Button",
+                    "id": "c5229424-c57a-49f1-bd87-2984366f45ad",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActivateRadio",
+                    "type": "Button",
+                    "id": "9b09f445-3880-47cb-9f6e-daf93e0c6bbd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DesactivateRadio",
+                    "type": "Button",
+                    "id": "64e63e29-5ab2-4e53-869c-e14c758f044a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -151,6 +178,39 @@
                     "action": "Up & Down",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "933c7df2-35c9-477e-92a9-afba1b1baa8c",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "ChangeSong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "532ca43a-c70c-472c-a1cd-001de3987d7b",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "ActivateRadio",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f41f1e34-f111-43a0-b68a-58a409dadcb0",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado Y Raton",
+                    "action": "DesactivateRadio",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

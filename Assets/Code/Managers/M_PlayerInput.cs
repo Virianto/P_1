@@ -1,60 +1,66 @@
+using Code.Utils;
+using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class M_PlayerInput : MonoBehaviour
+public class M_PlayerInput : Singleton<M_PlayerInput>
 {
-    #region ATTRIBUTES
-    [SerializeField]
-    GameObject destinationParticleSystem;
+    [Header("Keyboard Flight")]
+    [SerializeField] private KeyCode hNegativeTiltKey = KeyCode.E;
+    [SerializeField] private KeyCode hPositiveTiltKey = KeyCode.Q;
 
-    /// <summary>
-    /// Lista de todos los agentes que tengo en mi escena
-    /// </summary>
-    [SerializeField]
-    List<B_Agent> agentList = new();
+    private int index = 0;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private List<AudioClip> songsList = new List<AudioClip>();
 
+    // Mouse Input
+    public float MouseX { get; private set; }
+    public float MouseY { get; private set; }
 
-    Vector3 destinationPoint = Vector3.zero;
+    // Keyboard Input
+    public float KeyboardRoll { get; private set; }
 
-    #endregion
+    // Input Action: Pitch
+    public void OnPicth(InputValue value)
+    {
+        MouseY = value.Get<float>();
+    }
 
-    #region METHODS
-
-    // Input.GetMouseButton(1) <- sirve para detectar todo el rato el click presionado 
+    // Input Action: Roll
+    public void OnRoll(InputValue value)
+    {
+        MouseX = value.Get<float>();
+    }
 
     private void Update()
     {
-        
-        if (Input.GetMouseButton(1))
+        KeyboardRoll = 0f;
+
+        if (Input.GetKey(hNegativeTiltKey))
+            KeyboardRoll -= 1f;
+
+        if (Input.GetKey(hPositiveTiltKey))
+            KeyboardRoll += 1f;
+    }
+    void OnChangeSong()
+    {
+        index = index + 1;
+        if (index > songsList.Count)
         {
-            setDestinationFromMouse();
+            index = 0;
         }
+        audioSource.clip = songsList[index];
+        audioSource.Play();
+    }
+    void OnActivateRadio()
+    {
+        audioSource.clip = songsList[index];
+        audioSource.Play();
     }
 
-    void setDestinationFromMouse()
+    void OnDesactivateRadio()
     {
-        //Me creo una variable temporal para almacenar informacion del toque
-        RaycastHit hit;
-
-        //va a projectar ese click en la escena 3D de unity
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        //Si ha ocado algun plano de escena...
-        if (Physics.Raycast(ray, out hit))
-        {
-            //Me guardo el punto donde ha detectatdo ese toque
-            destinationPoint = hit.point;
-
-            // reubico el sistema de particulas para ver donde hace click
-            destinationParticleSystem.transform.position = destinationPoint;
-
-            //asignar el destino  todos los agentes que tengo en mi lista
-            for (int i = 0; i < agentList.Count; i++)
-            {
-                //agentList[i].setNewAgentDestination(destinationPoint);
-            }
-        }
-
-    #endregion
+        audioSource.Stop();
     }
 }
