@@ -37,9 +37,9 @@ public class UI_FlightCanvas : MonoBehaviour
 
     float timeLeft;
 
-    int currentMusicIndex = 0;
+    int currentMusicIndex = (int)Mathf.Clamp(0, 0, Mathf.Infinity);
 
-    
+
     #endregion
 
 
@@ -55,8 +55,8 @@ public class UI_FlightCanvas : MonoBehaviour
         M_FlightSimulator.Instance.OnPointCountChanged += UpdatePlayerScoreText;
         M_FlightSimulator.Instance.OnPlayerSpeedChanged += UpdatePlayerSpeedText;
         M_FlightSimulator.Instance.OnPlayerCurrentLifeChanged += UpdateLifeLeftImage;
-        M_InputManager.Instance.OnMusicForward += UpdateMusicText;
-        M_InputManager.Instance.OnMusicBack += UpdateMusicText;
+        M_InputManager.Instance.OnMusicForward += UpdateForwardMusicText;
+        M_InputManager.Instance.OnMusicBack += UpdateBackMusicText;
         musicText.text = musicTitlesList[currentMusicIndex].ToString();
     }
 
@@ -96,11 +96,17 @@ public class UI_FlightCanvas : MonoBehaviour
     }
 
 
-    void UpdateMusicText()
+    void UpdateForwardMusicText()
     {
         currentMusicIndex = (currentMusicIndex + 1) % musicTitlesList.Count;
         musicText.text = musicTitlesList[currentMusicIndex].ToString();
         
+    }
+
+    void UpdateBackMusicText()
+    {
+        currentMusicIndex = (currentMusicIndex - 1) % musicTitlesList.Count;
+        musicText.text = musicTitlesList[currentMusicIndex].ToString();
     }
     //IEnumerator ChangeColorOnLowTime()
     //{

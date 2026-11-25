@@ -13,7 +13,7 @@ public class M_MusicManager : MonoBehaviour
     [SerializeField]
     List<AudioSource> musicSources = new();
 
-    int currentMusicIndex = 0;
+    int currentMusicIndex = (int)Mathf.Clamp(0,0,Mathf.Infinity);
     #endregion
 
 
