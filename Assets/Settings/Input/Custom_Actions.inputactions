@@ -192,6 +192,15 @@
             "id": "b33704ae-258e-4ba9-8501-5aa93ed19650",
             "actions": [
                 {
+                    "name": "SwitchSong",
+                    "type": "Button",
+                    "id": "600d3962-846f-4160-9d47-2f022982ceaf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "1a3f93a4-4763-48c2-b8cb-6e66d137f719",
@@ -296,6 +305,17 @@
                     "action": "Pan",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0261df82-8240-460a-9e7c-befd4a6b4756",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "SwitchSong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
