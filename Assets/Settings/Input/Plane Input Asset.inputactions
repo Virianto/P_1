@@ -165,6 +165,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ChangeMusic",
+            "id": "a628999c-b2a9-4d9e-af58-9772547d71d5",
+            "actions": [
+                {
+                    "name": "Forward",
+                    "type": "Button",
+                    "id": "0209a322-21b2-4713-86ee-b7be83fff4bb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "16b66bff-c36a-4b07-a170-dc40fae353f8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ad2f8603-8b2c-4053-9805-26b0e1cab695",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Plane",
+                    "action": "Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8f501cc-1deb-45bd-a92b-7323501b73fd",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Plane",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

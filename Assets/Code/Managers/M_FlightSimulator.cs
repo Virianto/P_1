@@ -27,6 +27,9 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     UI_FlightCanvas flightCanvas;
 
     [SerializeField]
+    AudioSource hurt;
+
+    [SerializeField]
     B_PlayerPlane player;
 
     [SerializeField]
@@ -64,6 +67,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     public void PlayerLifeChanged (float playerLifeLeft)
     {
         OnPlayerCurrentLifeChanged?.Invoke(playerLifeLeft);
+        hurt.PlayOneShot(hurt.clip);
     }
     public void ModifyGameplayTime (float newGameplayTime)
     {

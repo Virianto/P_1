@@ -17,6 +17,10 @@ public class M_InputManager : Singleton<M_InputManager>
 
     public event Action OnPlayerShot;
 
+    public event Action OnMusicForward;
+
+    public event Action OnMusicBack;
+
 
     float hTiltValue;
     float vTiltValue;
@@ -45,7 +49,15 @@ public class M_InputManager : Singleton<M_InputManager>
 
     }
 
+    void OnForward()
+    {
+        OnMusicForward?.Invoke();
+    }
 
+    void OnBack()
+    {
+        OnMusicBack?.Invoke();
+    }
 
     #endregion
 }

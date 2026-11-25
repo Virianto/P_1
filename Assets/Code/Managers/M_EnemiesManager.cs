@@ -20,6 +20,9 @@ public class M_EnemiesManager : MonoBehaviour
     [SerializeField]
     [Range(1, 10)]
     float timeBetweenSpawns = 5;
+
+    [SerializeField]
+    AudioSource explosion;
   
 
     
@@ -79,6 +82,7 @@ public class M_EnemiesManager : MonoBehaviour
     {
         Destroy(enemy.gameObject);
         numberOfEnemies--;
+        explosion.PlayOneShot(explosion.clip);
     }
     #endregion
 }
