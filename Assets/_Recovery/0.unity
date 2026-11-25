@@ -205,7 +205,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B_PlayerPlane
   speed: 3
   angularSpeed: 90
-  moveAction: {fileID: 5279229547645044095, guid: e59b63ad795789a4f9db416cd633327a, type: 3}
   maxLifePoints: 20
 --- !u!1 &75197384
 GameObject:
@@ -473,7 +472,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_Shots
   shotOrigin: {fileID: 209853385}
-  shotKey: 102
 --- !u!1 &180208320
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,13 +611,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209853384}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.36768812, y: -0, z: -0, w: 0.9299492}
+  m_LocalRotation: {x: -0.3676877, y: 0.0005533546, z: 0.0013995323, w: 0.92994815}
   m_LocalPosition: {x: 0, y: 0, z: 0.762}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 62649070}
-  m_LocalEulerAnglesHint: {x: -43.146, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -43.146, y: 0, z: 0.172}
 --- !u!135 &209853386
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5043,6 +5041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8edadb9e60087d949a4dcdb855825cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_FlightSimulatorCanvas
+  player: {fileID: 0}
   playerPointsText: {fileID: 730175822}
   playerSpeedText: {fileID: 280900316}
   timeLeftText: {fileID: 1500986940}
