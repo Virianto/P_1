@@ -100,6 +100,7 @@ public class UI_FlightCanvas : MonoBehaviour
     {
         currentMusicIndex = (currentMusicIndex + 1) % musicTitlesList.Count;
         musicText.text = musicTitlesList[currentMusicIndex].ToString();
+        
     }
     //IEnumerator ChangeColorOnLowTime()
     //{

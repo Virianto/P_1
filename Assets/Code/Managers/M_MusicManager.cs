@@ -36,9 +36,9 @@ public class M_MusicManager : MonoBehaviour
 
     void PlayLastMusic()
     {
-        musicSources[currentMusicIndex].Stop();
-        currentMusicIndex = (currentMusicIndex - 1) % musicSources.Count;
-        musicSources[currentMusicIndex].Play();
+            musicSources[currentMusicIndex].Stop();
+            currentMusicIndex = (currentMusicIndex - 1) % musicSources.Count;
+            musicSources[currentMusicIndex].Play();
     }
 
     #endregion
