@@ -23,8 +23,8 @@ public class B_HoveringRing : MonoBehaviour
 
     public RingType ringType;
 
-    public float minLifeTime = 20;
-    public float maxLifeTime = 30;
+    public float minLifeTime = 50;
+    public float maxLifeTime = 100;
 
     [SerializeField]
     List<Color> ringTypeColorList = new();

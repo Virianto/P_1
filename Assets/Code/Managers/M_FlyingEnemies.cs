@@ -18,16 +18,16 @@ public class M_FlyingEnemies : MonoBehaviour
     int maxEnemiesInScene = 5;
 
     [SerializeField]
-    [Range(20, 200)]
-    float horizontalXRange = 100;
+    [Range(10, 500)]
+    float horizontalXRange = 250;
 
     [SerializeField]
     [Range(20, 200)]
     float verticalYRange = 100;
 
     [SerializeField]
-    [Range(20, 200)]
-    float horizontalZRange = 100;
+    [Range(10, 500)]
+    float horizontalZRange = 250;
 
     public float minCreationFrequency = 1;
     public float maxCreationFrequency = 10;

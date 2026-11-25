@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Windows;
 
 
 /// <summary>
@@ -12,7 +13,7 @@ public class M_Shots : MonoBehaviour
     [SerializeField]
     Transform shotOrigin;
 
-    [SerializeField]
+    //[SerializeField]
     KeyCode shotkey = KeyCode.F;
 
     LineRenderer laserLine;
@@ -32,6 +33,14 @@ public class M_Shots : MonoBehaviour
         laserLine = GetComponent<LineRenderer>();
     }
 
+    /// <summary>
+    /// Nos suscribimos a todos los eventos del Manager de Input en el Start para asegurarnos de que ya existe en escena
+    /// </summary>
+    void Start()
+    {
+        M_TotalInput.Instance.OnPlayerShoot += ShootLaser;
+    }
+
     private void Update()
     {
         // Comprobar si tenemos algo sólido delante
@@ -40,12 +49,12 @@ public class M_Shots : MonoBehaviour
             CheckFrontView();
         }
 
-            // Si pulsamos la tecla de disparo...
-            if (Input.GetKeyDown(shotkey))
-        {
-            // Disparar
-            ShootLaser();
-        }
+        //    // Si pulsamos la tecla de disparo...
+        //    if (Input.GetKeyDown(shotkey))
+        //{
+        //    // Disparar
+        //    ShootLaser();
+        //}
     }
 
     void CheckFrontView()
