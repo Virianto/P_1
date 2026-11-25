@@ -21,7 +21,6 @@ public class B_EthanRings : MonoBehaviour
     {
         if(newRingType == ringType.Life)
         {
-            M_FlightSim.Instance.RedSceen();
             M_FlightSim.Instance.PlayerLifeChanged(0.25f);
             M_FlightSim.Instance.ChangeCam(1);
         }
@@ -33,7 +32,7 @@ public class B_EthanRings : MonoBehaviour
            
         if(newRingType == ringType.Speed)
         {
-            M_FlightSim.Instance.ChangeSpeed(20);
+            //M_FlightSim.Instance.ChangeSpeed(400);
         }
     }
 

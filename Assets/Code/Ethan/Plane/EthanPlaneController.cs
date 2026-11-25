@@ -1,70 +1,91 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class EthanPlaneController : MonoBehaviour
 {
-    [Range(5, 200)] public float planeSpeed; //Normalmete 5
+    [Range(5, 400)] public float planeSpeed; //Normalmete 5
     [Range(0, 180)] public float angularSpeed = 100;
-    [Range(0, 200)] public float boostSpeed;
+    float boostSpeedToggle = 200;
     public event Action<float> OnPlayerSpeedChanged;
 
-    [Header("KEY BINDS")]
-    [SerializeField] KeyCode down = KeyCode.W;
-    [SerializeField] KeyCode up = KeyCode.S;
-    [SerializeField] KeyCode left = KeyCode.A;
-    [SerializeField] KeyCode right = KeyCode.D;
-    [SerializeField] KeyCode RightTiltKey = KeyCode.E;
-    [SerializeField] KeyCode LeftTiltKey = KeyCode.Q;
+    float upDownValue;
+    float leftRightValue;
+    float tiltValue;
+    public bool boost = false;
 
-    void Update()
+    void OnUpDown(InputValue value)
     {
-        transform.position += transform.forward * Time.deltaTime * planeSpeed;
+        upDownValue = value.Get<float>();
+    }
+    void OnLeftRight(InputValue value)
+    {
+        leftRightValue = value.Get<float>();
+    }
+    void OnTiltLeftRight(InputValue value)
+    {
+        tiltValue = value.Get<float>();
+    }
+    //void OnBoost()
+    //{
+    //    boost = !boost;
+    //    OnBoostAction(boostSpeedToggle);
+    //    //M_FlightSim.Instance.StopCoroutine(M_FlightSim.Instance.SwitchSpeedCourutine(0));
+    //    M_FlightSim.Instance.StopAllCoroutines();
+    //}
 
-        if (Input.GetKey(KeyCode.Space))
+    void OnBoost()
+    {
+        boost = !boost;
+        OnBoostAction(boostSpeedToggle);
+        M_FlightSim.Instance.StopSpeedCoroutine();
+    }
+
+    public void OnBoostAction(float boostSpeed)
+    {
+        if (boost)
         {
             planeSpeed = boostSpeed;
-            M_FlightSim.Instance.ChangeCam(2);  
-            OnPlayerSpeedChanged?.Invoke(planeSpeed);
+            M_FlightSim.Instance.ChangeCam(2);
         }
         else
         {
             planeSpeed = 50;
             M_FlightSim.Instance.ChangeCam(0);
-            OnPlayerSpeedChanged?.Invoke(planeSpeed);
         }
+    }
 
-        //Down (W)
-        if (Input.GetKey(down))
+
+    void Update()
+    {
+        OnPlayerSpeedChanged?.Invoke(planeSpeed);
+        transform.position += transform.forward * Time.deltaTime * planeSpeed;
+        
+        if (upDownValue <= 0) //(W)
         {
             transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
         }
-        //Up (S)
-        if (Input.GetKey(up))
+        if (upDownValue >= 0) //(S)
         {
             transform.Rotate(Vector3.left * Time.deltaTime * angularSpeed);
         }
-
-        //Left (A)
-        if (Input.GetKey(left))
+        if(leftRightValue <= 0) //(A)
         {
             transform.Rotate(Vector3.down * Time.deltaTime * angularSpeed);
         }
-        //Right (D)r
-        if (Input.GetKey(right))
+        if(leftRightValue >= 0) //(D)
         {
             transform.Rotate(Vector3.up * Time.deltaTime * angularSpeed);
         }
-        //Right Tilt (E)
-        if (Input.GetKey(RightTiltKey))
-        {
-            transform.Rotate(Vector3.back * Time.deltaTime * angularSpeed * 2);
-        }
-        //Left Tilt (Q)
-        if (Input.GetKey(LeftTiltKey))
+        if(tiltValue <= 0) //(Q)
         {
             transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed * 2);
         }
-
-        
+        if(tiltValue >= 0) //(E)
+        {
+            transform.Rotate(Vector3.back * Time.deltaTime * angularSpeed * 2);
+        }  
     }
 }

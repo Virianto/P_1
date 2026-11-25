@@ -10,6 +10,7 @@ public class M_FlightSim : Singleton<M_FlightSim>
     public event Action<float> OnTimeLeftChange;
     public event Action<int> OnPointsChange;
     public event Action<float> OnPlayerLifeLeftChanged;
+    public event Action<float> OnPlayerSpeedChanged;
 
     [SerializeField] Ui_PlaneCanvas UiPlaneCanvas;
     [SerializeField] EthanPlaneController planeController;
@@ -18,6 +19,7 @@ public class M_FlightSim : Singleton<M_FlightSim>
     [SerializeField] GameObject GameOverHUD;
     public int playerPoints;
     public float playerLife;
+    private Coroutine speedCoroutine;
 
     [SerializeField] List<CinemachineCamera> allVirtualCamerasList = new();
     int _currentActiveCameraIndex = 0;
@@ -60,37 +62,27 @@ public class M_FlightSim : Singleton<M_FlightSim>
                 allVirtualCamerasList[i].Priority = 0;
             }
         }
-
     }
     #endregion
     public void ChangeCam(int newIndex)
     {
-        StartCoroutine(SwitchCamCourutine(newIndex));
-    }
-
-    IEnumerator SwitchCamCourutine(int newIndex)
-    {
         _CurrentActiveCameraIndex = newIndex;
-        yield return new WaitForSeconds(3f);
-        _CurrentActiveCameraIndex = 0;
     }
 
-    //-----------------------------Player life----------------------------------
+    //--------------------Player life and Red Screen----------------------------
     public void PlayerLifeChanged(float playerLifeLeft)
     {
         OnPlayerLifeLeftChanged?.Invoke(playerLife -= playerLifeLeft);
-    }
-    //-----------------------------Red Screen-----------------------------------
-    public void RedSceen()
-    {
         StartCoroutine(RedSceenCourutine());
     }
 
     IEnumerator RedSceenCourutine()
     {
+        _CurrentActiveCameraIndex = 1;
         UiPlaneCanvas.ShowRedScreen(true);
         yield return new WaitForSeconds(3f);
         UiPlaneCanvas.ShowRedScreen(false);
+        _CurrentActiveCameraIndex = 0;
     }
 
     //----------------------------Update Points----------------------------------
@@ -100,19 +92,35 @@ public class M_FlightSim : Singleton<M_FlightSim>
     }
 
     //------------------------Change Speed and Cam-------------------------------
-    public void ChangeSpeed(int newIndex)
+    public void ChangeSpeed(float boost)
     {
-        StartCoroutine(SwitchSpeedCourutine(newIndex));
+        if (speedCoroutine != null)
+        {
+            StopCoroutine(speedCoroutine);
+        }
+
+        // Start the new one and save its reference
+        speedCoroutine = StartCoroutine(SwitchSpeedCourutine(boost));
     }
 
-    IEnumerator SwitchSpeedCourutine(int newIndex)
+    public IEnumerator SwitchSpeedCourutine(float boost)
     {
-        _CurrentActiveCameraIndex = 2;
-        planeController.planeSpeed = newIndex;
+        planeController.boost = true;
+        planeController.OnBoostAction(boost);
         yield return new WaitForSeconds(5f);
-        planeController.planeSpeed = 5;
-        _CurrentActiveCameraIndex = 0;
+        planeController.boost = false;
+        planeController.OnBoostAction(50);
+        speedCoroutine = null;
     }
- 
+
+    public void StopSpeedCoroutine()
+    {
+        if (speedCoroutine != null)
+        {
+            StopCoroutine(speedCoroutine);
+            speedCoroutine = null;
+        }
+    }
+
     #endregion
 }

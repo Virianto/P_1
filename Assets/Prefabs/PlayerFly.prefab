@@ -1702,7 +1702,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Time: 0.5
+  m_Time: 0.02
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -2611,6 +2611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ui_PlaneCanvas
   planeManager: {fileID: 159482008886340151}
+  planeController: {fileID: 0}
   playerPointsText: {fileID: 6930713464889963554}
   playerSpeedText: {fileID: 550497510486668363}
   timer: {fileID: 2724959083100070528}
@@ -3276,7 +3277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df9b42c18f2fd44f9a2b97c8dd8c90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_ShootPlane
-  shootOrigin: {fileID: 612853160352425170}
 --- !u!120 &2563599086738273497
 LineRenderer:
   serializedVersion: 3
@@ -6045,7 +6045,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Time: 0.5
+  m_Time: 0.02
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -7325,6 +7325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EthanPlaneController
   planeSpeed: 5
   angularSpeed: 100
+  boostSpeed: 0
   down: 119
   up: 115
   left: 97
@@ -9661,7 +9662,7 @@ Transform:
   m_GameObject: {fileID: 8371644627587345548}
   serializedVersion: 2
   m_LocalRotation: {x: 0.18910755, y: 0, z: 0, w: 0.9819564}
-  m_LocalPosition: {x: 0, y: 2.4, z: -4.565}
+  m_LocalPosition: {x: 0, y: 2.4, z: -5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10176,7 +10177,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Time: 0.7
+  m_Time: 0.04
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
