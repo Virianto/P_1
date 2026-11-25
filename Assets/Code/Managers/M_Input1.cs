@@ -11,6 +11,7 @@ public class M_InputA : Singleton<M_InputA>
 
     #region Input Related Events
 
+    public event Action OnPlayerSwitchSong;
     public event Action OnPlayerShoot;
     public event Action<float> OnPlayerTilt;
     public event Action<float> OnPlayerPan;
@@ -57,5 +58,11 @@ public class M_InputA : Singleton<M_InputA>
         OnPlayerPan?.Invoke(_panValue);
     }
 
+    void OnMusic()
+    {
+        // Lanzamos el evento para que el manager de audio lo detecte y realice los cambios necesarios
+        OnPlayerSwitchSong?.Invoke();
+
+    }
     #endregion
 }

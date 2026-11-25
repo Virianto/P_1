@@ -87,6 +87,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "",
+                    "id": "532e6721-815e-41e3-9620-15862df82c0a",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Tilt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "75ccb243-0308-4811-ba5a-dc58d401cfc1",
                     "path": "1DAxis",
@@ -118,6 +129,17 @@
                     "action": "Pan",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "66558a41-94e6-4932-b9e1-ad2b739424cb",
+                    "path": "<OculusTouchController>{RightHand}/thumbstick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -178,6 +200,22 @@
             "devices": [
                 {
                     "devicePath": "<DualShockGamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "VR",
+            "bindingGroup": "VR",
+            "devices": [
+                {
+                    "devicePath": "<XRController>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XRController>",
                     "isOptional": false,
                     "isOR": false
                 }
