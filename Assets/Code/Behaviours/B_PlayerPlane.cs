@@ -1,10 +1,16 @@
-
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
+/// <summary>
+/// * Mover de manera constante el objeto asociado hacia delante
+/// * Detectar input de usuario para girar/rotar el objeto asociado
+/// * Añadir tecla de teletransporte
+/// </summary>
 public class B_PlayerPlane : MonoBehaviour
 {
     #region ATTRIBUTES
+
+    public event Action<float> OnPlayerSpeedChanged;
 
     [Range(0, 300)]
     public float speed = 3;
@@ -13,13 +19,12 @@ public class B_PlayerPlane : MonoBehaviour
     public float angularSpeed = 90;
 
     [SerializeField]
-    InputActionReference moveAction;
-
-    [SerializeField]
     [Range(1, 100)]
     float maxLifePoints = 20;
-
     float currentLifePoints;
+
+    float _tiltValue;
+    float _panValue;
 
     #endregion
 
@@ -27,45 +32,48 @@ public class B_PlayerPlane : MonoBehaviour
 
     void Awake()
     {
+        // Me aseguro de que el jugador empieza el nivel con toda la vida siempre
         currentLifePoints = maxLifePoints;
     }
 
-    void OnEnable()
+    /// <summary>
+    /// Nos suscribimos a todos los eventos del Manager de Input en el Start para asegurarnos de que ya existe en escena
+    /// </summary>
+    void Start()
     {
-        moveAction.action.Enable();
+        M_Input.Instance.OnPlayerTilt += SetNewPlayerTiltValue;
+        M_Input.Instance.OnPlayerPan += SetNewPlayerPanValue;
     }
 
-    void OnDisable()
+    void SetNewPlayerTiltValue(float newValue)
     {
-        moveAction.action.Disable();
+        _tiltValue = newValue;
+    }
+
+    void SetNewPlayerPanValue(float newValue) 
+    {
+        _panValue = newValue;
     }
 
     void Update()
-    {
-        // El avion avanza constantemente
+    {        
         transform.position += transform.forward * Time.deltaTime * speed;
 
-        // Leemos el movimiento del jugador
-        Vector2 movement = moveAction.action.ReadValue<Vector2>();
+        transform.Rotate(_tiltValue * Vector3.right * Time.deltaTime * angularSpeed);
 
-        // Arriba y abajo: mover el morro del avion
-        transform.Rotate(
-            Vector3.right * movement.y * Time.deltaTime * angularSpeed
-        );
-
-        // Izquierda y derecha: inclinar el avion
-        transform.Rotate(
-            Vector3.forward * -movement.x * Time.deltaTime * angularSpeed
-        );
+        transform.Rotate(_panValue * Vector3.back * Time.deltaTime * angularSpeed);
     }
 
     public void ModifyPlayerLife(float amount)
     {
         currentLifePoints += amount;
+        M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints/maxLifePoints);
+    }
 
-        M_FlightSimulator.Instance.PlayerLifeChanged(
-            currentLifePoints / maxLifePoints
-        );
+    public void ModifyPlayerSpeed(float amount) 
+    {
+        speed += amount;
+        OnPlayerSpeedChanged?.Invoke(speed);
     }
 
     #endregion

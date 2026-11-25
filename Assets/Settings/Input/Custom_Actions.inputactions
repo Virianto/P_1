@@ -3,24 +3,93 @@
     "name": "Custom_Actions",
     "maps": [
         {
-            "name": "Plane",
-            "id": "4d0d8817-e759-495d-99dc-eb51deb3b967",
+            "name": "Gameplay",
+            "id": "39473bd8-c114-4c65-aad4-d15003c13ff4",
             "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "60a241a6-3548-4917-9d8b-e2536dec4c61",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "69b6cf20-1b21-4d96-8ded-7bee7532b069",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
                 {
                     "name": "Move",
                     "type": "Value",
-                    "id": "a7563202-77f9-40d6-aa22-1adca479093c",
-                    "expectedControlType": "Vector2",
+                    "id": "f76c8297-c225-40fb-96cc-df2f4ccd0480",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "495926bc-c435-4c9c-b0f6-69008a956f59",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Swing",
+                    "type": "Button",
+                    "id": "e17168ac-1474-4d45-933d-0889cedc64d8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
-                    "id": "e2c1a146-b69b-4385-ae2f-64c2d31913c0",
-                    "path": "2DVector",
+                    "name": "",
+                    "id": "8ceeba8f-13cd-47cd-9d6c-1b3102f030c8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f3d7092-edfa-4b8c-ba89-6c904fe4100a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Consola",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9f88944-e95e-46c4-a6c8-7b5478798966",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "9a710b78-7d38-4ac7-a6e9-aaa5755a8eaa",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -29,9 +98,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "24f2379c-624a-4525-a04e-554f9d86fffc",
-                    "path": "<Keyboard>/w",
+                    "name": "negative",
+                    "id": "20ee7e18-81af-493d-a649-813e41757323",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado y Ratón",
@@ -40,9 +109,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
-                    "id": "972fdb81-1e61-4b95-b77c-812445d0a5fa",
-                    "path": "<Keyboard>/s",
+                    "name": "positive",
+                    "id": "58c2ec96-c4e4-48ae-9658-febbb0a2a8df",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado y Ratón",
@@ -51,8 +120,19 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
-                    "id": "43620b46-f216-4621-858c-d893fff0eb25",
+                    "name": "1D Axis",
+                    "id": "f7e70d88-28af-420b-92c9-f71b41e1b96e",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "b0e7a122-17e2-408d-8e55-ebd997cb9e18",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -62,15 +142,180 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "cd74b4e1-8b94-40ac-b91e-fad18735cbb0",
+                    "name": "positive",
+                    "id": "bfc74976-9238-45e1-bc6f-2485d5195612",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Teclado y Ratón",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c4f84273-1b2e-4e0e-87eb-1bec47d7047f",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3db221d4-c242-4944-a346-f3c711f46317",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7eec3314-3d44-4180-9424-1c95af18a389",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Swing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Flying",
+            "id": "b33704ae-258e-4ba9-8501-5aa93ed19650",
+            "actions": [
+                {
+                    "name": "SwitchSong",
+                    "type": "Button",
+                    "id": "600d3962-846f-4160-9d47-2f022982ceaf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "1a3f93a4-4763-48c2-b8cb-6e66d137f719",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Tilt",
+                    "type": "Value",
+                    "id": "f2144d62-4d63-4de0-a6b9-7684ddabb7d5",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Pan",
+                    "type": "Value",
+                    "id": "eeb34026-0888-42ea-ae68-8caa442a2ba5",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "22022214-b00f-476a-8480-2b1d0a08ff7f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Keyboard 1D Axis",
+                    "id": "9bd0219b-8fbc-4de6-981d-1087cfa99d0c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tilt",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "473d1db8-0367-4c9e-8403-39e37a164599",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Tilt",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "0f44aaf9-211e-4588-84ba-a4c415429fca",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Tilt",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard 1D Axis",
+                    "id": "3473213f-ef03-4c5b-8253-78d28c047481",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pan",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "a2e15447-043a-43e3-b067-4ba6433a0242",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "4c132769-dca0-4f61-ae1b-ff0ccc6b4e7d",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0261df82-8240-460a-9e7c-befd4a6b4756",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "SwitchSong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
