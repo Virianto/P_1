@@ -11,9 +11,6 @@ public class M_Shots : MonoBehaviour
     [SerializeField]
     Transform shotOrigin;
 
-    [SerializeField]
-    KeyCode shotKey = KeyCode.F;
-
     LineRenderer laserLine;
 
     bool isShooting = false;
@@ -27,6 +24,14 @@ public class M_Shots : MonoBehaviour
         laserLine = GetComponent<LineRenderer>();
     }
 
+    /// <summary>
+    /// Nos suscribimos a todos los eventos del Manager de Input en el Start para asegurarnos de que ya existe en escena
+    /// </summary>
+    void Start()
+    {
+        M_Input.Instance.OnPlayerShoot += ShootLaser;
+    }
+
     void Update()
     {
         // Comprobar si tengo algo sólido delante
@@ -34,12 +39,6 @@ public class M_Shots : MonoBehaviour
         {
             CheckFrontView();
         }        
-
-        // Disparar si se pulsa una tecla
-        if (Input.GetKeyDown(shotKey))
-        {
-            ShootLaser();
-        }
     }
 
     void CheckFrontView()
