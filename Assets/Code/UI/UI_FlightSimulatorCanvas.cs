@@ -55,11 +55,11 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
         UpdateSong();
     }
 
-    void ChangeRadioSong()
+    public void ChangeRadioSong()
     {
-        if (songCount <= 5)
+        if (songCount < 5)
             UpdateSong();
-        else
+        else if (songCount == 5)
         {
             songCount = 0;
             UpdateSong();
