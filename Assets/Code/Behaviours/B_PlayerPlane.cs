@@ -14,6 +14,9 @@ public class B_PlayerPlane : MonoBehaviour
     float movementValueX = 0;
     float movementValueY = 0;
     float movementYaw = 0;
+    float _tiltValue;
+    float _panValue;
+    float _yawValue;
     int yawCount = 0;
     [Range(0, 300)]
     public float speed = 3;
@@ -51,6 +54,24 @@ public class B_PlayerPlane : MonoBehaviour
     private void Start()
     {
         ModifyPlayerSpeed(0);
+        M_Input.Instance.OnPlayerForward += SetNewPlayerTiltValue;
+        M_Input.Instance.OnPlayerMove += SetNewPlayerPanValue;
+        M_Input.Instance.OnPlayerYaw += SetNewPlayerYawValue;
+    }
+
+    void SetNewPlayerTiltValue(float newValue)
+    {
+        _tiltValue = newValue;
+    }
+
+    void SetNewPlayerPanValue(float newValue)
+    {
+        _panValue = newValue;
+    }
+
+    void SetNewPlayerYawValue(float newValue)
+    {
+        _yawValue = newValue;
     }
 
     private void Update()
@@ -75,21 +96,21 @@ public class B_PlayerPlane : MonoBehaviour
 
         //    transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
 
-        if (movementValueX != 0)
+        if (_panValue != 0)
         {
-            transform.Rotate(new Vector3(0, 0, movementValueX) * Time.deltaTime * angularSpeed);
+            transform.Rotate(new Vector3(0, 0, _panValue) * Time.deltaTime * angularSpeed);
         }
 
-        if (movementValueY != 0) {
-            transform.Rotate(new Vector3(movementValueY, 0, 0) * Time.deltaTime * angularSpeed);
+        if (_tiltValue != 0) {
+            transform.Rotate(new Vector3(_tiltValue, 0, 0) * Time.deltaTime * angularSpeed);
         }
 
-        if (movementYaw != 0)
+        if (_yawValue != 0)
         {
             //transform.position += (new Vector3(movementYaw, 0, 0)) * Time.deltaTime * speed;
             //yawCount++;
 
-            transform.Rotate(new Vector3(0, movementYaw, 0) * Time.deltaTime * angularSpeed);
+            transform.Rotate(new Vector3(0, _yawValue, 0) * Time.deltaTime * angularSpeed);
         }
         //else if (yawCount == 10)
         //{

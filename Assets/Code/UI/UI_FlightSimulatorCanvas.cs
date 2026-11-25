@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    Button btnRadio;
+    int songCount = 0;
     [SerializeField]
     TMP_Text playerPointsText;
     [SerializeField]
@@ -21,6 +24,12 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
     TMP_Text timeLeftText;
     [SerializeField]
     Image playerLifeImage;
+    [SerializeField]
+    AudioSource audioSource;
+    [SerializeField]
+    List<AudioClip> playlist;
+    [SerializeField]
+    TMP_Text songText;
 
     #endregion
 
@@ -40,6 +49,29 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
         M_FlightSimulator.Instance.OnPlayerSpeedChanged += UpdatePlayerSpeedText;
 
         //M_FlightSimulator.Instance.OnPlayerTimeChanged += UpdateTimeLeftText;
+
+        btnRadio = GetComponent<Button>();
+
+        UpdateSong();
+    }
+
+    void ChangeRadioSong()
+    {
+        if (songCount <= 5)
+            UpdateSong();
+        else
+        {
+            songCount = 0;
+            UpdateSong();
+        }
+    }
+
+    void UpdateSong()
+    {
+        audioSource.generator = playlist[songCount];
+        audioSource.Play();
+        songText.text = $"Canción:\n{playlist[songCount].name}";
+        songCount++;
     }
 
     void UpdatePlayerPointsText(int playerPointsText)
