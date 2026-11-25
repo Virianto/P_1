@@ -2051,6 +2051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478754953}
   - component: {fileID: 478754954}
+  - component: {fileID: 478754955}
   m_Layer: 0
   m_Name: PlayerPlane
   m_TagString: Untagged
@@ -2086,16 +2087,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 478754952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 555fb5115d90bbe459f201fa25663cf7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8daa5b28e441e7d4fb3288b67aeac6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_PlayerPlane
-  speed: 8
+  speed: 3
   angularSpeed: 90
-  vNegativeTiltKey: 119
-  vPositiveTiltKey: 115
-  hNegativeTiltKey: 97
-  hPositiveTiltKey: 100
   maxLifePoints: 20
+--- !u!114 &478754955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478754952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 360016af191b59a45950ac7339eb6754, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: "Teclado y Rat\xF3n"
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 961739752}
 --- !u!1 &547220136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,7 +2431,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.45
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2648,12 +2675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2291a3f4c09520345b31b7549bc238fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_Balloons
-  balloonPrefab: {fileID: 5753982401645960994, guid: a9272922a89a8444ca5c595cd21625c4, type: 3}
-  maxBalloonsInScene: 10
-  timeBetweenGenerations: 2
-  horizontalRandomLimit: 5
-  depthRandomLimit: 5
-  verticalRandomLimit: 10
 --- !u!1 &651984780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2663,6 +2684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 651984781}
+  - component: {fileID: 651984782}
   m_Layer: 0
   m_Name: MANAGERS
   m_TagString: Untagged
@@ -2690,6 +2712,21 @@ Transform:
   - {fileID: 1645878322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651984782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651984780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e882b361862aed4ba2b5049c08b7175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M_FlightSimulator
+  SimulatorCnavas: {fileID: 2123635253}
+  player: {fileID: 478754954}
+  gameTimeLeft: 10
 --- !u!1 &688222495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,7 +2918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e882b361862aed4ba2b5049c08b7175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_FlightSimulator
-  flightSimulatorCanvas: {fileID: 2123635253}
+  SimulatorCnavas: {fileID: 0}
   player: {fileID: 478754954}
   gameTimeLeft: 10
 --- !u!1 &704329381
@@ -4379,7 +4416,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_Shots
   shotOrigin: {fileID: 119646366}
-  shotKey: 102
 --- !u!120 &793280815
 LineRenderer:
   serializedVersion: 3
@@ -5277,7 +5313,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 69.65
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5420,11 +5456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae65eeefc27f27469351549a1852e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_Rings
-  ringPrefab: {fileID: 9055263262916590176, guid: 54839cac51f9a0345b095fbe7bdbecbd, type: 3}
-  horizontalRandomLimit: 20
-  depthRandomLimit: 20
-  verticalRandomLimit: 15
-  timeBetweenRingGen: 4
 --- !u!1 &953000832
 GameObject:
   m_ObjectHideFlags: 0
