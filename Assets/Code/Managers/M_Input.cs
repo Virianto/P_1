@@ -11,6 +11,7 @@ public class M_Input : Singleton<M_Input>
 
     #region Input Related Events
 
+    public event Action OnPlayerSwitchSong;
     public event Action OnPlayerShoot;
     public event Action<float> OnPlayerTilt;
     public event Action<float> OnPlayerPan;
@@ -23,6 +24,15 @@ public class M_Input : Singleton<M_Input>
     #endregion
 
     #region METHODS
+
+    /// <summary>
+    /// Se invoca cada vez que el jugador quiera cambiar de canción (en principio solamente avanza una hacia delante)
+    /// </summary>
+    void OnSwitchSong()
+    {
+        // Lanzamos el evento para que el manager de audio lo detecte y realice los cambios necesarios
+        OnPlayerSwitchSong?.Invoke();
+    }
 
     /// <summary>
     /// No lleva InputValue de parámetro porque es un botón y no aporta información adicional
