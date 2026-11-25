@@ -118,7 +118,7 @@ public class B_PlayerPlane : MonoBehaviour
         //}
     }
 
-public void ModifyPlayerSpeed(float amount)
+    public void ModifyPlayerSpeed(float amount)
     {
         speed += amount;
         M_FlightSimulator.Instance.PlayerSpeedChanged(speed);

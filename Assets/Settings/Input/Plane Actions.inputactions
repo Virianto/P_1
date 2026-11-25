@@ -102,6 +102,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "",
+                    "id": "e870e990-f624-46f1-aa19-205b078a34b6",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Quest3",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "c7738dbc-2020-4724-9a4a-8d959b4b7054",
                     "path": "1DAxis",
@@ -168,6 +179,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "",
+                    "id": "ed3483b4-ee63-4569-8f30-76413146dd1d",
+                    "path": "<OculusTouchController>{RightHand}/thumbstick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Quest3",
+                    "action": "Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "073e593a-633d-4aa8-8f64-6084ce65625b",
                     "path": "1DAxis",
@@ -203,5 +225,38 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "TecladoYRaton",
+            "bindingGroup": "TecladoYRaton",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Quest3",
+            "bindingGroup": "Quest3",
+            "devices": [
+                {
+                    "devicePath": "<XRController>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XRController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }
