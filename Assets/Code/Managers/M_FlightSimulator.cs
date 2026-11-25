@@ -36,7 +36,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     B_PlayerPlane player;
 
     [SerializeField]
-    [Range(5,60)]
+    [Range(5,120)]
     public float gameplayTime = 30;
 
     public int pointsCollected = 0;
