@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// * Referencia al valor de puntos del jugador
@@ -27,7 +28,16 @@ public class UI_FlightCanvas : MonoBehaviour
     [SerializeField]
     Image playerLifeImage;
 
+    [SerializeField]
+    TMP_Text musicText;
+
+    [SerializeField]
+
+    List<String> musicTitlesList = new();
+
     float timeLeft;
+
+    int currentMusicIndex = 0;
 
     
     #endregion
@@ -45,6 +55,9 @@ public class UI_FlightCanvas : MonoBehaviour
         M_FlightSimulator.Instance.OnPointCountChanged += UpdatePlayerScoreText;
         M_FlightSimulator.Instance.OnPlayerSpeedChanged += UpdatePlayerSpeedText;
         M_FlightSimulator.Instance.OnPlayerCurrentLifeChanged += UpdateLifeLeftImage;
+        M_InputManager.Instance.OnMusicForward += UpdateMusicText;
+        M_InputManager.Instance.OnMusicBack += UpdateMusicText;
+        musicText.text = musicTitlesList[currentMusicIndex].ToString();
     }
 
     void Update()
@@ -82,6 +95,12 @@ public class UI_FlightCanvas : MonoBehaviour
         playerLifeImage.fillAmount = currentAmountLeft;
     }
 
+
+    void UpdateMusicText()
+    {
+        currentMusicIndex = (currentMusicIndex + 1) % musicTitlesList.Count;
+        musicText.text = musicTitlesList[currentMusicIndex].ToString();
+    }
     //IEnumerator ChangeColorOnLowTime()
     //{
     //    timeLeftText.color = Color.darkRed;
