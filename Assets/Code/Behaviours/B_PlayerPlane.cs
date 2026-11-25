@@ -1,10 +1,7 @@
-using UnityEngine;
 
-/// <summary>
-/// * Mover de manera constante el objeto asociado hacia delante
-/// * Detectar input de usuario para girar/rotar el objeto asociado
-/// * Añadir tecla de teletransporte
-/// </summary>
+using UnityEngine;
+using UnityEngine.InputSystem;
+
 public class B_PlayerPlane : MonoBehaviour
 {
     #region ATTRIBUTES
@@ -16,20 +13,12 @@ public class B_PlayerPlane : MonoBehaviour
     public float angularSpeed = 90;
 
     [SerializeField]
-    KeyCode vNegativeTiltKey = KeyCode.W;
-
-    [SerializeField]
-    KeyCode vPositiveTiltKey = KeyCode.S;
-
-    [SerializeField]
-    KeyCode hNegativeTiltKey = KeyCode.A;
-
-    [SerializeField]
-    KeyCode hPositiveTiltKey = KeyCode.D;
+    InputActionReference moveAction;
 
     [SerializeField]
     [Range(1, 100)]
     float maxLifePoints = 20;
+
     float currentLifePoints;
 
     #endregion
@@ -38,38 +27,45 @@ public class B_PlayerPlane : MonoBehaviour
 
     void Awake()
     {
-        // Me aseguro de que el jugador empieza el nivel con toda la vida siempre
         currentLifePoints = maxLifePoints;
     }
 
+    void OnEnable()
+    {
+        moveAction.action.Enable();
+    }
+
+    void OnDisable()
+    {
+        moveAction.action.Disable();
+    }
+
     void Update()
-    {        
+    {
+        // El avion avanza constantemente
         transform.position += transform.forward * Time.deltaTime * speed;
 
-        // Detectar input de usuario para rotar el objeto y así maniobrar
-        if (Input.GetKey(vNegativeTiltKey))
-        {
-            transform.Rotate(Vector3.right * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(vPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.right * Time.deltaTime * angularSpeed);
-        }
+        // Leemos el movimiento del jugador
+        Vector2 movement = moveAction.action.ReadValue<Vector2>();
 
-        if (Input.GetKey(hNegativeTiltKey))
-        {
-            transform.Rotate(Vector3.forward * Time.deltaTime * angularSpeed);
-        }
-        if (Input.GetKey(hPositiveTiltKey))
-        {
-            transform.Rotate(-Vector3.forward * Time.deltaTime * angularSpeed);
-        }
+        // Arriba y abajo: mover el morro del avion
+        transform.Rotate(
+            Vector3.right * movement.y * Time.deltaTime * angularSpeed
+        );
+
+        // Izquierda y derecha: inclinar el avion
+        transform.Rotate(
+            Vector3.forward * -movement.x * Time.deltaTime * angularSpeed
+        );
     }
 
     public void ModifyPlayerLife(float amount)
     {
         currentLifePoints += amount;
-        M_FlightSimulator.Instance.PlayerLifeChanged(currentLifePoints/maxLifePoints);
+
+        M_FlightSimulator.Instance.PlayerLifeChanged(
+            currentLifePoints / maxLifePoints
+        );
     }
 
     #endregion
