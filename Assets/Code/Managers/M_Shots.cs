@@ -1,23 +1,23 @@
-using System.Collections;
-using UnityEngine;
 
-/// <summary>
-/// Aqui va el enunciado del proposito de esta clase
-/// </summary>
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class M_Shots : MonoBehaviour
 {
     #region ATTRIBUTES
 
-    [SerializeField]
-    Transform shotOrigin;
+    [Header("Shot Origins")]
+    [SerializeField] private List<Transform> shotOrigins = new List<Transform>();
 
-    [SerializeField]
-    KeyCode shotKey = KeyCode.F;
+    [Header("Laser")]
+    [SerializeField] private LineRenderer laserLine;
+    [SerializeField] private float laserRange = 1000f;
 
-    LineRenderer laserLine;
+    [Header("Ground Detection")]
+    [SerializeField] private LayerMask groundLayer;
 
-    bool isShooting = false;
+    private bool isShooting = false;
 
     #endregion
 
@@ -25,48 +25,49 @@ public class M_Shots : MonoBehaviour
 
     void Awake()
     {
-        laserLine = GetComponent<LineRenderer>();
+        if (laserLine == null)
+            laserLine = GetComponent<LineRenderer>();
     }
 
     void Update()
     {
-
         if (!isShooting)
         {
             CheckFrontView();
         }
-
-        if (Input.GetKeyDown(shotKey))
-        {
-            ShootLaser();
-        }
     }
-    void ShootLaser()
+
+    public void ShootLaser()
     {
+        if (isShooting || shotOrigins.Count == 0)
+            return;
+
         isShooting = true;
-        StartCoroutine(ShotLaserRoutine());
+
+        // Seleccionar un origen aleatorio
+        int randomIndex = Random.Range(0, shotOrigins.Count);
+
+        Transform selectedOrigin = shotOrigins[randomIndex];
+
+        StartCoroutine(ShotLaserRoutine(selectedOrigin));
     }
 
-    IEnumerator ShotLaserRoutine()
+    IEnumerator ShotLaserRoutine(Transform selectedOrigin)
     {
-        // PASO 1
-        // Recoger el punto de origen
-        // Definir una dirección de disparo
-        // Almacenar todo eso en una variable temporal de tipo Ray
-        Ray laser = new Ray(shotOrigin.position, shotOrigin.forward);
+        // Crear el Raycast desde el origen seleccionado
+        Ray laser = new Ray(
+            selectedOrigin.position,
+            selectedOrigin.forward
+        );
 
-        // PASO 2
-        // Definir una variable de tipo RayCastHit para almacenar la información del tiro
         RaycastHit hitInfo;
 
-        // PASO 3
-        // - Proyectar el rayo
-        // - Recoger información y decidir qué hacer si ha impactado en algo
-        if (Physics.Raycast(laser, out hitInfo))
+        // Comprobar impacto
+        if (Physics.Raycast(laser, out hitInfo, laserRange))
         {
-            // Dibujar una línea entre el punto de origen y el de impacto
             laserLine.positionCount = 2;
-            laserLine.SetPosition(0, shotOrigin.position);
+
+            laserLine.SetPosition(0, selectedOrigin.position);
             laserLine.SetPosition(1, hitInfo.point);
 
             B_Enemies enemy = hitInfo.collider.GetComponent<B_Enemies>();
@@ -77,59 +78,70 @@ public class M_Shots : MonoBehaviour
                 enemy.ModifyEnemyLifePoints(-10);
             }
         }
+        else
+        {
+            laserLine.positionCount = 2;
 
-        //Esperar 1 frame
+            laserLine.SetPosition(0, selectedOrigin.position);
+            laserLine.SetPosition(
+                1,
+                selectedOrigin.position + selectedOrigin.forward * laserRange
+            );
+        }
+
+        // Estrechar el láser progresivamente
         yield return new WaitForEndOfFrame();
-
-        // Estrechar el laser
         laserLine.widthMultiplier *= 0.5f;
 
-        //Esperar 1 frame
         yield return new WaitForEndOfFrame();
-
-        // Estrechar el laser
         laserLine.widthMultiplier *= 0.5f;
 
-        //Esperar 1 frame
         yield return new WaitForEndOfFrame();
-
-        // Estrechar el laser
         laserLine.widthMultiplier *= 0.5f;
 
-        // Dejar el laser como estaba
-        laserLine.widthMultiplier = 1;
+        // Restaurar grosor
+        laserLine.widthMultiplier = 1f;
 
-        // Volver a poner el booleano a FALSE
         isShooting = false;
-
     }
 
     void CheckFrontView()
     {
-        Ray searchRay = new Ray(shotOrigin.position, shotOrigin.forward);
+        if (shotOrigins.Count == 0)
+            return;
+
+        Transform selectedOrigin = shotOrigins[0];
+
+        Ray searchRay = new Ray(
+            selectedOrigin.position,
+            selectedOrigin.forward
+        );
+
         RaycastHit hitInfo;
-        if (Physics.Raycast(searchRay, out hitInfo))
+
+        if (Physics.Raycast(searchRay, out hitInfo, laserRange))
         {
-            B_Enemies enemyHit = hitInfo.collider.GetComponent<B_Enemies>();
+            Debug.Log("Objeto detectado: " + hitInfo.collider.name);
 
-            laserLine.positionCount = 2;
-            laserLine.SetPosition(0, shotOrigin.position);
-            laserLine.SetPosition(1, hitInfo.point);
-
-            if (enemyHit != null)
+            if (hitInfo.collider.CompareTag("Ground"))
             {
-                laserLine.startColor = Color.red;
+                laserLine.positionCount = 2;
+
+                laserLine.SetPosition(0, selectedOrigin.position);
+                laserLine.SetPosition(1, hitInfo.point);
+
+                laserLine.startColor = Color.green;
+                laserLine.endColor = Color.green;
             }
             else
             {
-                laserLine.startColor = Color.green;
+                laserLine.positionCount = 0;
             }
         }
         else
         {
             laserLine.positionCount = 0;
         }
-
     }
 
     #endregion

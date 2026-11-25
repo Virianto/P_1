@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class B_ControlPLane : MonoBehaviour
@@ -40,31 +41,25 @@ public class B_ControlPLane : MonoBehaviour
     {
         float dt = Time.deltaTime;
 
-        // 1. Obtener inputs del InputManager
         float mouseX = inputManager.MouseX;
         float mouseY = inputManager.MouseY;
         float keyboardInput = inputManager.KeyboardRoll;
 
-        // 2. Mouse Aim
-        targetPitch -= mouseY * mouseSensitivity;
+        // 1. Acumular desplazamiento del ratón
+        targetPitch += mouseY * mouseSensitivity;
         targetRoll -= mouseX * mouseSensitivity;
 
-        targetPitch = Mathf.Clamp(
-            targetPitch, -maxPitch, maxPitch
-        );
+        targetPitch = Mathf.Clamp(targetPitch, -maxPitch, maxPitch);
+        targetRoll = Mathf.Clamp(targetRoll, -maxRoll, maxRoll);
 
-        targetRoll = Mathf.Clamp(
-            targetRoll, -maxRoll, maxRoll
-        );
-
-        // 3. Controles Q/E
+        // 2. Control Q/E
         float desiredRoll = Mathf.Clamp(
             targetRoll + keyboardInput * keyboardRollAmount,
             -maxRoll,
             maxRoll
         );
 
-        // 4. Suavizar rotaciones
+        // 3. Suavizar rotaciones
         currentPitch = Mathf.Lerp(
             currentPitch,
             targetPitch,
@@ -77,14 +72,12 @@ public class B_ControlPLane : MonoBehaviour
             dt * rotationSpeed
         );
 
-        // 5. Calcular giro horizontal
-        float turnAmount = Mathf.Sin(
-            currentRoll * Mathf.Deg2Rad
-        );
+        // 4. Giro horizontal
+        float turnAmount = Mathf.Sin(currentRoll * Mathf.Deg2Rad);
 
         currentYaw -= turnAmount * turnSpeed * dt;
 
-        // 6. Crear rotaciones independientes
+        // 5. Rotaciones
         Quaternion pitchRotation = Quaternion.AngleAxis(
             currentPitch, Vector3.right
         );
@@ -97,12 +90,11 @@ public class B_ControlPLane : MonoBehaviour
             currentRoll, Vector3.forward
         );
 
-        // 7. Aplicar orientación completa
         transform.rotation =
             yawRotation * pitchRotation * rollRotation;
 
-        // 8. Avanzar siguiendo el morro
-        transform.position +=
+        // 6. Avanzar
+        transform.position -=
             transform.forward * Speed * dt;
     }
 }

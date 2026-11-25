@@ -1,5 +1,4 @@
 using Code.Utils;
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +8,8 @@ public class M_PlayerInput : Singleton<M_PlayerInput>
     [Header("Keyboard Flight")]
     [SerializeField] private KeyCode hNegativeTiltKey = KeyCode.E;
     [SerializeField] private KeyCode hPositiveTiltKey = KeyCode.Q;
+
+    [SerializeField] private M_Shots shotsManager;
 
     private int index = 0;
     [SerializeField] private AudioSource audioSource;
@@ -32,6 +33,18 @@ public class M_PlayerInput : Singleton<M_PlayerInput>
     {
         MouseX = value.Get<float>();
     }
+
+    //void OnShoting()
+    //{
+    //    if (shotsManager != null)
+    //    {
+    //        shotsManager.ShootLaser();
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("No se ha asignado M_Shots en M_PlayerInput");
+    //    }
+    //}
 
     private void Update()
     {
