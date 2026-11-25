@@ -94,7 +94,7 @@ public class B_CharacterController : MonoBehaviour
             /*// Sumar 1 al contador
             totalCoinsCollected += 1;
 
-            // ComUnicar al manager que ha habido cambios y deben mostrarse en la UI
+            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();*/
             EarnMoney(1);
 
@@ -108,7 +108,7 @@ public class B_CharacterController : MonoBehaviour
             /*// Sumar 1 al contador
             totalCoinsCollected += 5;
 
-            // ComUnicar al manager que ha habido cambios y deben mostrarse en la UI
+            // Comunicar al manager que ha habido cambios y deben mostrarse en la UI
             gameManager.NewCoinCollected();*/
             EarnMoney(5);
 

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using static B_HoveringRing;
 
@@ -16,8 +17,7 @@ public class M_Rings : MonoBehaviour
     [SerializeField]
     GameObject ringPrefab;
 
-
-    [Header("VALORES EDITABLES")]
+        [Header("VALORES EDITABLES")]
 
     [SerializeField]
     [Range(1, 30)]
