@@ -17,7 +17,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     public event Action<int> OnPointsChanged;
 
     [SerializeField] [Range (5,120)]
-    float gameTimeLeft = 10; // Cuenta en segundos
+    float gameTimeLeft = 30; // Cuenta en segundos
 
     [SerializeField]
     int points = 0;

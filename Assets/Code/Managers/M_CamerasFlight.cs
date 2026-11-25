@@ -39,29 +39,36 @@ public class M_CamerasFlight : Singleton<M_CamerasFlight>
 
     [SerializeField]
     KeyCode tertiaryCameraKey = KeyCode.Alpha2;
+
+    [SerializeField]
+    KeyCode fourCameraKey = KeyCode.Alpha3;
     #endregion
 
 
     #region METHODS
-    //void Update()
-    //{
-    //    // Y detectar Input de usuario para cambiar la cámara principal
-    //    if (Input.GetKeyDown(firstCameraKey))
-    //    {
-    //        // Saltamos a cámara 0
-    //        CurrentActiveCameraIndex = 0;
-    //    }
-    //    if (Input.GetKeyDown(secondCameraKey))
-    //    {
-    //        // Saltamos a cámara 1
-    //        CurrentActiveCameraIndex = 1;
-    //    }
-    //    if (Input.GetKeyDown(tertiaryCameraKey))
-    //    {
-    //        // Saltamos a cámara 2
-    //        CurrentActiveCameraIndex = 2;
-    //    }
-    //}
+    void Update()
+    {
+        // Y detectar Input de usuario para cambiar la cámara principal
+        if (Input.GetKeyDown(firstCameraKey))
+        {
+            // Saltamos a cámara 0
+            CurrentActiveCameraIndex = 0;
+        }
+        //if (Input.GetKeyDown(secondCameraKey))
+        //{
+        //    // Saltamos a cámara 1
+        //    CurrentActiveCameraIndex = 1;
+        //}
+        //if (Input.GetKeyDown(tertiaryCameraKey))
+        //{
+        //    // Saltamos a cámara 2
+        //    CurrentActiveCameraIndex = 2;
+        //}
+        if (Input.GetKeyDown(fourCameraKey))
+        {
+            CurrentActiveCameraIndex = 3;
+        }
+    }
 
     void SwitchToCinemachineCamera()
     {

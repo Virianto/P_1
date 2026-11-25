@@ -32,6 +32,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Music",
+                    "type": "Button",
+                    "id": "afb3ca97-d8f3-46a2-a420-94010401e3e1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -69,6 +78,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "",
+                    "id": "5047f4db-15ec-4013-bfbd-ec7cf1a4498b",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Tilt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "0bc40bd2-7ad9-4c7e-9c6b-2c694c86337c",
                     "path": "1DAxis",
@@ -103,12 +123,56 @@
                 },
                 {
                     "name": "",
+                    "id": "64e1ce46-8339-48d3-bec6-4d6cb01096f7",
+                    "path": "<OculusTouchController>{RightHand}/thumbstick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "bcba6fe0-6199-459c-976a-2425bb19639d",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado y ratón",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ea4f176-5426-4526-ba23-9504be4b5946",
+                    "path": "<XRController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82580bcc-5da9-4b28-b5d0-3817be107185",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y ratón",
+                    "action": "Music",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8627390e-cca0-4c51-a39f-e7a3ec4a750b",
+                    "path": "<XRController>/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Music",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -138,6 +202,22 @@
             "devices": [
                 {
                     "devicePath": "<XInputController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "VR",
+            "bindingGroup": "VR",
+            "devices": [
+                {
+                    "devicePath": "<XRController>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XRController>",
                     "isOptional": false,
                     "isOR": false
                 }

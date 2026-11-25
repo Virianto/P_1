@@ -14,6 +14,7 @@ public class M_Input : Singleton<M_Input>
     public event Action OnPlayerShoot;
     public event Action<float> OnPlayerTilt;
     public event Action<float> OnPlayerPan;
+    public event Action OnNextSong;
 
     #endregion
 
@@ -57,5 +58,9 @@ public class M_Input : Singleton<M_Input>
         OnPlayerPan?.Invoke(_panValue);
     }
 
+    void OnMusic(InputValue value)
+    {
+        OnNextSong?.Invoke();
+    }
     #endregion
 }

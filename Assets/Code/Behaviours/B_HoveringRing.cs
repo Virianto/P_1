@@ -65,7 +65,7 @@ public class B_HoveringRing : MonoBehaviour
         }
         else if (ringType == RingType.speed)
         {
-            player.ModifySpeed(5);
+            player.ModifySpeed(10);
 
             M_CamerasFlight.Instance.ChangeCamera(2);
         }
