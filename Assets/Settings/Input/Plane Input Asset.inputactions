@@ -82,6 +82,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "",
+                    "id": "94b1bbc9-35f3-460e-8577-2fff590c9939",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Vertical Tilt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "0084581d-b2eb-407c-b30a-36b56dee3f45",
                     "path": "1DAxis",
@@ -135,6 +146,17 @@
                     "action": "Horizontal Tilt",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8b7d9300-12dc-4905-a8fd-7acef559a88b",
+                    "path": "<OculusTouchController>{RightHand}/thumbstick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Horizontal Tilt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -160,6 +182,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Plane",
+                    "action": "Shooting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1c2bc47-8838-4662-a356-59fa58fbd1fa",
+                    "path": "<OculusTouchController>/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
                     "action": "Shooting",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -203,11 +236,33 @@
                 },
                 {
                     "name": "",
+                    "id": "882e8b05-abd3-409a-b9e6-ef5eb2e95c29",
+                    "path": "<OculusTouchController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a8f501cc-1deb-45bd-a92b-7323501b73fd",
                     "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Plane",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84358816-91f4-40a5-aab1-82d74ea03b42",
+                    "path": "<OculusTouchController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -222,6 +277,22 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "VR",
+            "bindingGroup": "VR",
+            "devices": [
+                {
+                    "devicePath": "<XRController>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XRController>",
                     "isOptional": false,
                     "isOR": false
                 }
