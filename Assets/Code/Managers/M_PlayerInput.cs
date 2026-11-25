@@ -46,17 +46,22 @@ public class M_PlayerInput : Singleton<M_PlayerInput>
     void OnChangeSong()
     {
         index = index + 1;
-        if (index > songsList.Count)
+        if (index >= songsList.Count)
         {
+            
             index = 0;
         }
-        audioSource.clip = songsList[index];
-        audioSource.Play();
+        else
+        {
+            audioSource.clip = songsList[index];
+            audioSource.Play();
+        }
     }
     void OnActivateRadio()
     {
-        audioSource.clip = songsList[index];
-        audioSource.Play();
+            audioSource.clip = songsList[index];
+            audioSource.Play();
+            Debug.Log(index);
     }
 
     void OnDesactivateRadio()
