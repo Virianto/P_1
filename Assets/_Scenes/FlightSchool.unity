@@ -9428,6 +9428,7 @@ GameObject:
   - component: {fileID: 440427974}
   - component: {fileID: 440427975}
   - component: {fileID: 440427976}
+  - component: {fileID: 440427977}
   m_Layer: 0
   m_Name: FlightSimulatorManager
   m_TagString: Untagged
@@ -9464,6 +9465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::M_FlightSimulator
   flightCanvas: {fileID: 1254872358}
   hurt: {fileID: 440427976}
+  point: {fileID: 440427977}
   player: {fileID: 1748129904}
   gameplayTime: 30
   pointsCollected: 0
@@ -9479,6 +9481,103 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -8197029811297291791, guid: 0e67541a748f62046bdad405aa0e1fb4, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: a4cf1a3d654869d4a8b5c4cd0653ae42, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &440427977
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440427973}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8197029811297291791, guid: 0e67541a748f62046bdad405aa0e1fb4, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 7862b3e5fc1d8e54f8ce9101e8aed5ad, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -24689,8 +24788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57affeac0c329842b9ea93602c4dd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::M_RingManager
-  horizontalXRange: 30
-  horizontalZRange: 30
+  horizontalXRange: 50
+  horizontalZRange: 50
   verticalRange: 30
   timeBetweenSpawns: 5
   ringPrefab: {fileID: 9051624371137850023, guid: a306eb8fb1bd47845b1781dc0207d1d6, type: 3}
@@ -25394,8 +25493,8 @@ MonoBehaviour:
   maxNumberOfEnemies: 10
   timeBetweenSpawns: 5
   explosion: {fileID: 1538316079}
-  horizontalXRange: 10
-  horizontalZRange: 10
+  horizontalXRange: 30
+  horizontalZRange: 30
   verticalRange: 10
   enemyPrefab: {fileID: 6436324818736863580, guid: a5b73ad8299bfa945af06263b3e53078, type: 3}
 --- !u!82 &1538316079

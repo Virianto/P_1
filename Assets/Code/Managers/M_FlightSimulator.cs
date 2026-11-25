@@ -30,6 +30,9 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     AudioSource hurt;
 
     [SerializeField]
+    AudioSource point;
+
+    [SerializeField]
     B_PlayerPlane player;
 
     [SerializeField]
@@ -58,6 +61,7 @@ public class M_FlightSimulator : Singleton<M_FlightSimulator>
     {
         pointsCollected += newPoint;
         OnPointCountChanged?.Invoke(pointsCollected);
+        point.PlayOneShot(point.clip);
     }
 
     public void PlayerSpeedChanged (float playerSpeed)
