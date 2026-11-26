@@ -13,7 +13,7 @@ public class SO_EthanDayTimeConfig : ScriptableObject
 }
 
 
-public enum Hour
+public enum Hourr
 {
     Midnight, Midday, Morning, Twilight
 }
