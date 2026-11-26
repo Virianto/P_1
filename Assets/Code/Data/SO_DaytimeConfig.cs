@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -11,7 +12,47 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "singleDaytimeConfig", menuName = "Scriptable Objects/SingleDaytime", order = 1)]
 public class SO_DaytimeConfig : ScriptableObject
 {
-   
 
+    public D_SingleDaytime configData;
+
+}
+
+
+//SEGUNDO BLOQUE - Enumerado público (ACCESORIO)
+
+public enum Hour
+{
+    Midnight,
+    Midday,
+    Morning,
+    Twilight
+}
+
+
+//TERCER BLOQUE - Estructura de datos
+[Serializable]
+public struct D_SingleDaytime
+{
+    //Introducimos todas las variables que quiero preconfigurar
+    [Header("Day Time")]
+    public Hour hour;
+
+    [Space(5)]
+
+    [Header("Main Directional Light Data")]
+
+    public Color mainLightColor;
+
+    public float mainLightIntensity;
+
+    [Space(5)]
+
+    [Header("Skybox Material Data")]
+
+    public float sunSize;
+
+    public Color skyColor;
+
+    public Color groundColor;
 
 }
