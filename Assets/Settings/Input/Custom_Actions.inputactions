@@ -296,6 +296,39 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "Keyboard 1D Axis",
+                    "id": "69a91abb-0a25-4ed0-9eb4-10255d00f277",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pan",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "faeb5ca8-a885-4507-b3aa-81a371bde546",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "5b82eb05-290d-42b9-8bde-5b60737ece46",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "2a203183-8303-41aa-b348-e696f8297daf",
                     "path": "<OculusTouchController>{RightHand}/thumbstick/y",
@@ -348,6 +381,11 @@
                 },
                 {
                     "devicePath": "<XRController>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XRHMD>",
                     "isOptional": false,
                     "isOR": false
                 }
