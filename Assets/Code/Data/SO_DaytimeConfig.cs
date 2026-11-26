@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+// PRIMER BLOQUE - Scriptable Object
+
 /// <summary>
 /// Me permite crear una representación serealizada deuna clase en el editor de Unity
 /// </summary>
@@ -12,7 +14,7 @@ public class SO_DaytimeConfig : ScriptableObject
 }
 
 
-// SEGUNDO BLQUE - Enumerado público
+// SEGUNDO BLOQUE - Enumerado público
 public enum Hour
 {
     Midnight,
