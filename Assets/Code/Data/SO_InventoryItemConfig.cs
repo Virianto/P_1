@@ -1,0 +1,23 @@
+using System;
+using UnityEngine;
+
+/// <summary>
+/// Aquí va el enunciado del propósito 
+/// </summary>
+
+[CreateAssetMenu(fileName = "SingleItemConfig", menuName = "Scriptable Objects/SingleItem", order = 2)]
+public class SO_InventoryItemConfig : ScriptableObject
+{
+    public D_SingleInventoryItem configData;
+}
+
+[Serializable]
+public struct D_SingleInventoryItem
+    
+{
+    public string itemName;
+
+    public Sprite itemIcon;
+
+    public float itemValue;
+}
