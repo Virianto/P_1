@@ -6,9 +6,8 @@ using UnityEngine;
 public class B_CollectableItem : MonoBehaviour
 {
     #region ATTRIBUTES
-
-    [SerializeField]
-    SO_InventoryItemConfig inventoryItemConfig;
+        
+    public SO_InventoryItemConfig inventoryItemConfig;
 
     #endregion
 
