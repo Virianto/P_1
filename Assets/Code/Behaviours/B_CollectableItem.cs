@@ -22,6 +22,7 @@ public class B_CollectableItem : MonoBehaviour
         {
             //Lanzo evento de "Objeto recolectado"
             UI_CollectionCanvas.Instance.ModifySinglePanel(inventoryItemConfig.configData);
+            M_Progress.Instance.NewItemCollected(inventoryItemConfig);
         }
     }
 

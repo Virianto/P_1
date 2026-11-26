@@ -37,9 +37,10 @@ public class M_Collectables : MonoBehaviour
     void GenerateNewCollectableItem(SO_InventoryItemConfig itemConfig)
     {
         float random = Random.Range(-horizontalGenerationLimits, horizontalGenerationLimits);
+        float random2 = Random.Range(-horizontalGenerationLimits, horizontalGenerationLimits);
 
         //Genero una posición aleatora para el nuevo objeto
-        Vector3 newPos = new Vector3(random, 1, random);
+        Vector3 newPos = new Vector3(random, 1, random2);
 
         B_CollectableItem newItem = Instantiate(itemConfig.configData.itemPrefab).GetComponent<B_CollectableItem>();
 
