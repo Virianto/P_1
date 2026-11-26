@@ -23,6 +23,7 @@ public class B_CollectableItem : MonoBehaviour
         if(player != null)
         {
             UI_CollectionCanvas.Instance.ModifySingleItemPanel(inventoryItemConfig.configData);
+            M_Progress.Instance.NewItemCollected(inventoryItemConfig);
         }
     }
     #endregion
