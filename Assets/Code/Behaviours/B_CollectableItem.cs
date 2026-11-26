@@ -29,6 +29,7 @@ public class B_CollectableItem : MonoBehaviour
             // Lanzo un evento de "ObjetoRecolectado"
             // Aquí podría ir la invocación al método que lance partículas, sonido, etc. a través del manager
             UI_CollectionCanvas.Instance.ModifySingleItemPanel(inventoryItemConfig.configData);
+            M_Progress.Instance.NewItemCollected(inventoryItemConfig);
         }
     }
 
