@@ -19,5 +19,7 @@ public struct D_SingleInventoryItem
 
     public Sprite itemIcon;
 
+    public GameObject itemPrefab;
+
     public float itemValue;
 }
