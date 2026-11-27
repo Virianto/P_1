@@ -32,6 +32,9 @@ public class B_AnimatedCube : MonoBehaviour
 
     [SerializeField]
     LoopType animationLoopType = LoopType.Yoyo;
+
+
+    Tween cubeAnimationTween;
     #endregion
 
 
@@ -40,16 +43,19 @@ public class B_AnimatedCube : MonoBehaviour
 
     void Start()
     {
+        cubeAnimationTween = 
         transform.DOMove(destinyPointTransform.position,animationTime,false).SetEase(animationEase);
+
+        cubeAnimationTween.Play();
+        cubeAnimationTween.onComplete += CubeAnimationfinished;
+        
+    }
+
+    void CubeAnimationfinished()
+    {
         transform.DOScale(newScale, animationTime).SetLoops(-1, animationLoopType);
         B_AnimatedCube cubeMaterial = GetComponent<B_AnimatedCube>();
-        cubeMaterial.GetComponent<Renderer>().material.DOColor(Color.blue, animationTime).SetLoops(-1,animationLoopType);
+        cubeMaterial.GetComponent<Renderer>().material.DOColor(Color.blue, animationTime).SetLoops(-1, animationLoopType);
     }
-    void Update()
-    {
-
-    }
-
-
     #endregion
 }
