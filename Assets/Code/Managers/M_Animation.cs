@@ -20,9 +20,11 @@ public class M_Animation : Singleton<M_Animation>
     B_AnimatedCube animatedCube;
     [SerializeField]
     GameObject animatedCubeObj;
+    [SerializeField]
     List<Color> colorList;
     Material cubeMaterial;
     int currentIndex = 0;
+    Sequence cubeAnimationSequence;
 
     #endregion
 
@@ -31,11 +33,24 @@ public class M_Animation : Singleton<M_Animation>
     private void Awake()
     {
         cubeMaterial = animatedCubeObj.GetComponent<Renderer>().material;
+
+        cubeAnimationSequence = DOTween.Sequence();
     }
 
     private void Start()
     {
-        ApplyTweenAnimations();
+        //ApplyTweenAnimations();
+        for (int i = 0; i < transformPoints.Count; ++i)
+        {
+            // Pongo una animación de movimiento en la secuencia
+            cubeAnimationSequence.Append(
+                animatedCube.transform.DOMove(transformPoints[i].position, 1));
+
+            // Pongo una animación de color en la secuencia
+            cubeAnimationSequence.Append(cubeMaterial.DOColor(colorList[i], 1));
+        }
+
+        cubeAnimationSequence.Play();
     }
 
     //public void GoToPointsRoute(Transform point)
