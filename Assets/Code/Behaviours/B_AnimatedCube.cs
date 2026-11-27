@@ -25,20 +25,27 @@ public class B_AnimatedCube : MonoBehaviour
     [SerializeField]
     LoopType animationLoopType = LoopType.Yoyo;
 
+    Tween cubeAnimationTween;
+
     #endregion
 
     #region METHODS
 
     void Start()
     {
-        transform.DOMove(destinyPointTransform.position, animationTime, false)
-            .SetEase(animationEase);
-
-        // Que el cubo escale al doble de su tamaño en 3 segundos
-        Vector3 newScale = transform.localScale * 2;
-        transform.DOScale(newScale, animationTime).SetLoops(-1, animationLoopType);
+        cubeAnimationTween = transform.DOMove(destinyPointTransform.position, animationTime, false).SetEase(animationEase);
+        cubeAnimationTween.Play();
+        cubeAnimationTween.onComplete += CubeAnimationFinished;        
     }
 
+    void CubeAnimationFinished()
+    {
+        Debug.Log("Movimiento del cubo finalizado");
+
+        // Que el cubo escale al doble de su tamaño en 3 segundos
+        Vector3 newScale = transform.localScale * 3;
+        transform.DOScale(newScale, animationTime/2).SetLoops(-1, animationLoopType);
+    }
 
     #endregion
 }
