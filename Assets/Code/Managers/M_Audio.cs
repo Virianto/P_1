@@ -36,7 +36,7 @@ public class M_Audio : MonoBehaviour
     /// </summary>
     void Start()
     {
-        M_Input.Instance.OnPlayerSwitchSong += SwitchToNextSong;
+        M_InputA.Instance.OnPlayerSwitchSong += SwitchToNextSong;
     }
 
     /// <summary>
