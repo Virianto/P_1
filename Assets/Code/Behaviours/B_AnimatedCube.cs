@@ -35,7 +35,8 @@ public class B_AnimatedCube : MonoBehaviour
     {
         cubeAnimationTween = transform.DOMove(destinyPointTransform.position, animationTime, false).SetEase(animationEase);
         cubeAnimationTween.Play();
-        cubeAnimationTween.onComplete += CubeAnimationFinished;        
+        //cubeAnimationTween.onComplete += CubeAnimationFinished;        
+        cubeAnimationTween.OnComplete(CubeAnimationFinished); 
     }
 
     void CubeAnimationFinished()
