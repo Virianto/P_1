@@ -163,7 +163,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.CMICE.P_1
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -407,7 +408,10 @@ PlayerSettings:
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetGroupLoadStoreDebugModeSettings: []
   m_BuildTargetNormalMapEncoding: []
-  m_BuildTargetDefaultTextureCompressionFormat: []
+  m_BuildTargetDefaultTextureCompressionFormat:
+  - serializedVersion: 3
+    m_BuildTarget: Android
+    m_Formats: 01000000
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -673,7 +677,25 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    EmbeddedLinux: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    GameCoreScarlett: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    GameCoreXboxOne: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    Kepler: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    LinuxHeadlessSimulation: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    Nintendo Switch: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    Nintendo Switch 2: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    PS4: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    PS5: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    QNX: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    Standalone: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    VisionOS: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    WebGL: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    Windows Store Apps: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    XboxOne: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    iPhone: DOTWEEN;DOTWEEN_NOPHYSICS2D
+    tvOS: DOTWEEN;DOTWEEN_NOPHYSICS2D
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -693,8 +715,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: P_0
-  metroPackageVersion: 
+  metroPackageName: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -702,7 +724,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: P_0
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: P_1
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
