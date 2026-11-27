@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class ANIMATEDCUBE : MonoBehaviour
 {
-        #region ATTRIBUTES
-    
+    #region ATTRIBUTES
+    [Header("EDITABLE VALUES")]
     #endregion
 
     #region METHODS
