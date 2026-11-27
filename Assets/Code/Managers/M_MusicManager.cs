@@ -25,7 +25,7 @@ public class M_Audio : MonoBehaviour
     /// <summary>
     /// Señala en la lista de clips qué canción estamos escuchando actualmente
     /// </summary>
-    int currentSongIndex = -1;
+    int currentSongIndex;
 
     #endregion
 
@@ -37,6 +37,10 @@ public class M_Audio : MonoBehaviour
     void Start()
     {
         M_TotalInput.Instance.OnPlayerSwitchSong += SwitchToNextSong;
+
+        currentSongIndex = Random.Range(0, allClipsList.Count);
+        musicAudioSource.clip = allClipsList[currentSongIndex];
+        musicAudioSource.Play();
     }
 
     /// <summary>

@@ -14,7 +14,7 @@ public class M_Shots : MonoBehaviour
     Transform shotOrigin;
 
     //[SerializeField]
-    KeyCode shotkey = KeyCode.F;
+    //KeyCode shotkey = KeyCode.F;
 
     LineRenderer laserLine;
 

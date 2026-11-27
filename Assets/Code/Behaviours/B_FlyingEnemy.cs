@@ -26,16 +26,16 @@ public class B_FlyingEnemy : MonoBehaviour
     public float speed = 5;
 
     [SerializeField]
-    [Range(10, 500)]
-    float horizontalXRange = 250;
-
-    [SerializeField]
-    [Range(20, 200)]
-    float verticalYRange = 100;
+    [Range(10, 1000)]
+    float horizontalXRange = 500;
 
     [SerializeField]
     [Range(10, 500)]
-    float horizontalZRange = 250;
+    float verticalYRange = 250;
+
+    [SerializeField]
+    [Range(10, 1000)]
+    float horizontalZRange = 500;
 
     [SerializeField]
     List<Vector3> patrolPointsList = new();

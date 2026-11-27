@@ -14,20 +14,20 @@ public class M_FlyingEnemies : MonoBehaviour
     GameObject flyingEnemyPrefab;
 
     [SerializeField]
-    [Range(1, 10)]
-    int maxEnemiesInScene = 5;
+    [Range(1, 100)]
+    int maxEnemiesInScene = 50;
+
+    [SerializeField]
+    [Range(10, 1000)]
+    float horizontalXRange = 500;
 
     [SerializeField]
     [Range(10, 500)]
-    float horizontalXRange = 250;
+    float verticalYRange = 250;
 
     [SerializeField]
-    [Range(20, 200)]
-    float verticalYRange = 100;
-
-    [SerializeField]
-    [Range(10, 500)]
-    float horizontalZRange = 250;
+    [Range(10, 1000)]
+    float horizontalZRange = 500;
 
     public float minCreationFrequency = 1;
     public float maxCreationFrequency = 10;
