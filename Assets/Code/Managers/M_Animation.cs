@@ -14,7 +14,7 @@ public class M_Animation : MonoBehaviour
 
     [Header("EXTERNAL REFERENCES")]
     [SerializeField]
-    B_AnimatedCube cube;
+    GameObject cube;
     
     [SerializeField]
     List<Transform> pointsList = new();
@@ -35,41 +35,63 @@ public class M_Animation : MonoBehaviour
     Tween cubeMovementTween;
     Tween cubeColorTween;
 
+    Sequence cubeAnimationSequence;
+
     int currentPointIndex = 0;
     int currentColorIndex = 0;
+
+    Material cubeMaterial;
 
     #endregion
 
 
     #region METHODS
 
+    private void Awake()
+    {
+        cubeAnimationSequence = DOTween.Sequence();
+        cubeMaterial = cube.GetComponent<Renderer>().material;
+    }
     void Start()
     {
-        RouteOfCube();
+        //RouteOfCube();
+        for (int i = 0; i < pointsList.Count; i++) 
+        {
+            cubeAnimationSequence.Append(cube.transform.DOMove(pointsList[i].position, animationTime).SetEase(easeType));
+            cubeAnimationSequence.Append(cubeMaterial.DOColor(colorList[i], animationTime));
+            
+        }
+        cubeAnimationSequence.Play();
+       
+
     }
 
-    //Se mueve a la dirección indicada y luego llama a cambiar de color
-    void RouteOfCube()
-    {
+    /// <summary>
+    /// Se mueve a la dirección indicada y luego llama a cambiar de color
+    /// </summary>
+    //void RouteOfCube()
+    //{
       
-        cubeMovementTween = cube.transform.DOMove(pointsList[currentPointIndex].position,animationTime).SetEase(easeType);
-        cubeMovementTween.Play();
-        currentPointIndex = (currentPointIndex + 1) % pointsList.Count;
-        cubeMovementTween.onComplete += ColorOfCube;
-        //cubeMovementTween.onComplete += CubeMovementFinished; //Llamada a este método si queremos que cambie de color mientras se mueve
+    //    cubeMovementTween = cube.transform.DOMove(pointsList[currentPointIndex].position,animationTime).SetEase(easeType);
+    //    cubeMovementTween.Play();
+    //    currentPointIndex = (currentPointIndex + 1) % pointsList.Count;
+    //    cubeMovementTween.onComplete += ColorOfCube;
+    //    //cubeMovementTween.onComplete += CubeMovementFinished; //Llamada a este método si queremos que cambie de color mientras se mueve
             
 
-    }
+    //}
 
-    //Cuando llega al punto, cambia de color y después retoma la ruta
-    void ColorOfCube()
-    {
-        cubeColorTween = cube.GetComponent<Renderer>().material.DOColor(colorList[currentColorIndex], animationTime);
-        cubeColorTween.Play();
-        currentColorIndex = (currentColorIndex + 1) % colorList.Count;
-        cubeColorTween.onComplete += RouteOfCube;
+    /// <summary>
+    /// Cuando llega al punto, cambia de color y después retoma la ruta
+    /// </summary>
+    //void ColorOfCube()
+    //{
+    //    cubeColorTween = cubeMaterial.DOColor(colorList[currentColorIndex], animationTime);
+    //    cubeColorTween.Play();
+    //    currentColorIndex = (currentColorIndex + 1) % colorList.Count;
+    //    cubeColorTween.onComplete += RouteOfCube;
        
-    }
+    //}
 
     //Si queremos que siga el camino y mientras tanto cambie de color, hay que seguir este método
     //void CubeMovementFinished()
