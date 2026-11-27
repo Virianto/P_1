@@ -62,8 +62,6 @@ public class M_Animation : MonoBehaviour
             
         }
         cubeAnimationSequence.Play();
-       
-
     }
 
     /// <summary>
