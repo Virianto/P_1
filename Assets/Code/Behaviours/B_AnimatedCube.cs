@@ -10,28 +10,28 @@ public class B_AnimatedCube : MonoBehaviour
     #region ATTRIBUTES
 
 
-    [Header("EXTERNAL REFERENCES")]
+    //[Header("EXTERNAL REFERENCES")]
     
-    [SerializeField]
-    Transform destinyPointTransform;
+    //[SerializeField]
+    //Transform destinyPointTransform;
 
-    [Space(10)]
+    //[Space(10)]
     
-    [Header("EDITABLE VALUES")]
+    //[Header("EDITABLE VALUES")]
     
-    [SerializeField]
-    Vector3 newScale = new Vector3 (2,2,2);
+    //[SerializeField]
+    //Vector3 newScale = new Vector3 (2,2,2);
 
-    [SerializeField]
-    [Range(0.1f, 10f)]
-    float animationTime = 3;
+    //[SerializeField]
+    //[Range(0.1f, 10f)]
+    //float animationTime = 3;
 
 
-    [SerializeField]
-    Ease animationEase= Ease.Linear;
+    //[SerializeField]
+    //Ease animationEase= Ease.Linear;
 
-    [SerializeField]
-    LoopType animationLoopType = LoopType.Yoyo;
+    //[SerializeField]
+    //LoopType animationLoopType = LoopType.Yoyo;
 
 
     Tween cubeAnimationTween;
@@ -41,21 +41,21 @@ public class B_AnimatedCube : MonoBehaviour
     #region METHODS
 
 
-    void Start()
-    {
-        cubeAnimationTween = 
-        transform.DOMove(destinyPointTransform.position,animationTime,false).SetEase(animationEase);
+    //void Start()
+    //{
+    //    cubeAnimationTween = 
+    //    transform.DOMove(destinyPointTransform.position,animationTime,false).SetEase(animationEase);
 
-        cubeAnimationTween.Play();
-        cubeAnimationTween.onComplete += CubeAnimationfinished;
+    //    cubeAnimationTween.Play();
+    //    cubeAnimationTween.onComplete += CubeAnimationfinished;
         
-    }
+    //}
 
-    void CubeAnimationfinished()
-    {
-        transform.DOScale(newScale, animationTime).SetLoops(-1, animationLoopType);
-        B_AnimatedCube cubeMaterial = GetComponent<B_AnimatedCube>();
-        cubeMaterial.GetComponent<Renderer>().material.DOColor(Color.blue, animationTime).SetLoops(-1, animationLoopType);
-    }
+    //void CubeAnimationfinished()
+    //{
+    //    transform.DOScale(newScale, animationTime).SetLoops(-1, animationLoopType);
+    //    B_AnimatedCube cubeMaterial = GetComponent<B_AnimatedCube>();
+    //    cubeMaterial.GetComponent<Renderer>().material.DOColor(Color.blue, animationTime).SetLoops(-1, animationLoopType);
+    //}
     #endregion
 }
