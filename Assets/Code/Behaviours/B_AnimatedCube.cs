@@ -12,6 +12,8 @@ public class B_AnimatedCube : MonoBehaviour
 
     [SerializeField]
     Transform destinyPointTransform;
+    [SerializeField]
+    M_Animation animationManager;
 
     [Header("EDITABLE VALUES")]
 
@@ -33,9 +35,11 @@ public class B_AnimatedCube : MonoBehaviour
 
     private void Start()
     {
-        cubeAnimationTween = transform.DOMove(destinyPointTransform.position, animationTime).SetEase(animationEase);
-        cubeAnimationTween.Play();
-        cubeAnimationTween.onComplete += CubeAnimationFinished;
+        //cubeAnimationTween = transform.DOMove(destinyPointTransform.position, animationTime).SetEase(animationEase);
+        //cubeAnimationTween.Play();
+        //cubeAnimationTween.onComplete += CubeAnimationFinished;
+
+        //M_Animation.Instance.GoToPointsRoute(animationManager.transformPoints[0]);
     }
 
     void CubeAnimationFinished()
@@ -44,6 +48,14 @@ public class B_AnimatedCube : MonoBehaviour
         //Que el cubo escale al doble de su tamaño
         transform.DOScale(transform.localScale * 2, animationTime).SetLoops(-1, animationLoopType);
         GetComponent<MeshRenderer>().material.DOColor(Color.aliceBlue, animationTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //if (other.gameObject.name.Contains("point"))
+        //{
+        //    M_Animation.Instance.GoToPointsRoute(animationManager.transformPoints[1]);
+        //}
     }
 
     #endregion
