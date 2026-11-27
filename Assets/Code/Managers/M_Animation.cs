@@ -62,6 +62,8 @@ public class M_Animation : MonoBehaviour
         }       
 
         cubeAnimationSequence.Play();
+
+        //cubeAnimationSequence.onComplete += cubeAnimationSequence.PlayBackwards;
     }
 
     //void Start()
