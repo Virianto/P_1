@@ -6,7 +6,8 @@ using UnityEngine;
 public class B_CollectableItem : MonoBehaviour
 {
     #region ATTRIBUTES
-
+        
+    public SO_InventoryItemConfig inventoryItemConfig;
 
     #endregion
 
@@ -20,9 +21,8 @@ public class B_CollectableItem : MonoBehaviour
         // Si, efectivamente, se trata del jugador porque tiene ese componente...
         if(player != null)
         {
-            // Lanzo un evento de "ObjetoRecolectado"
-            // Aquí podría ir la invocación al método que lance partículas, sonido, etc.
-            // a través del manager
+            UI_Collection.Instance.ModifySingleItemPanel(inventoryItemConfig.configData);
+            M_Progress.Instance.NewItemCollected(inventoryItemConfig);
         }
     }
 
