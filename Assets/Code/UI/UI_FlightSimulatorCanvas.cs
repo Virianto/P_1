@@ -69,7 +69,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
     {
         // Cambiamos el color del texto
         Color originalColor = playerPointsText.color;
-        playerPointsText.color = Color.white;
+        playerPointsText.color = Color.green;
 
         // Cambiamos el tamaño del texto
         Vector3 originalScale = playerPointsText.transform.localScale;
@@ -94,7 +94,7 @@ public class UI_FlightSimulatorCanvas : MonoBehaviour
     {
         // Cambiamos el color del texto
         Color originalColor = playerSpeedText.color;
-        playerSpeedText.color = Color.white;
+        playerSpeedText.color = Color.blue;
 
         // Cambiamos el tamaño del texto
         Vector3 originalScale = playerSpeedText.transform.localScale;
