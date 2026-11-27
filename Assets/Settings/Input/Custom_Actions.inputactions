@@ -275,56 +275,12 @@
                 },
                 {
                     "name": "",
-                    "id": "2a549604-305f-465c-8502-cb186b2178e1",
+                    "id": "af8596aa-beab-49bd-bdfa-c58e61762c66",
                     "path": "<OculusTouchController>{LeftHand}/thumbstick/x",
                     "interactions": "",
                     "processors": "",
                     "groups": ";VR",
                     "action": "Tilt",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Keyboard 1D Axis",
-                    "id": "3473213f-ef03-4c5b-8253-78d28c047481",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pan",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "a2e15447-043a-43e3-b067-4ba6433a0242",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pan",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "4c132769-dca0-4f61-ae1b-ff0ccc6b4e7d",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Teclado y Ratón",
-                    "action": "Pan",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "7b7a916b-090e-48d9-b92d-d3a54d3682bd",
-                    "path": "<OculusTouchController>{RightHand}/thumbstick/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";VR",
-                    "action": "Pan",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -336,6 +292,50 @@
                     "processors": "",
                     "groups": ";Teclado y Ratón",
                     "action": "SwitchSong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Keyboard 1D Axis",
+                    "id": "69a91abb-0a25-4ed0-9eb4-10255d00f277",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pan",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "faeb5ca8-a885-4507-b3aa-81a371bde546",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "5b82eb05-290d-42b9-8bde-5b60737ece46",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado y Ratón",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2a203183-8303-41aa-b348-e696f8297daf",
+                    "path": "<OculusTouchController>{RightHand}/thumbstick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";VR",
+                    "action": "Pan",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -381,6 +381,11 @@
                 },
                 {
                     "devicePath": "<XRController>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XRHMD>",
                     "isOptional": false,
                     "isOR": false
                 }
