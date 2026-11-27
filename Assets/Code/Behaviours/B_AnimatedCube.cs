@@ -8,17 +8,24 @@ public class B_AnimatedCube : MonoBehaviour
 {
     #region ATTRIBUTES
 
+    [Header("EXTERNAL REFERENCES")]
+
     [SerializeField]
     Transform destinyPointTransform;
 
-    [SerializeField]
-    Color smallColor = Color.blue;
+    [Header("EDITABLE VALUES")]
 
     [SerializeField]
-    float duration = 1;
+    [Range(0.1f, 5)]
+    float animationTime = 2;
 
     [SerializeField]
-    float shrinkFactor = 0.5f;
+    Ease animationEase = Ease.Linear;
+
+    [SerializeField]
+    LoopType animationLoopType = LoopType.Yoyo;
+
+    Tween cubeAnimationTween;
 
     #endregion
 
@@ -26,22 +33,18 @@ public class B_AnimatedCube : MonoBehaviour
 
     void Start()
     {
-        // Muevo el cubo al destino (una sola vez, sin loop)
-        transform.DOMove(destinyPointTransform.position, duration, false)
-                 .SetLink(gameObject);
+        cubeAnimationTween = transform.DOMove(destinyPointTransform.position, animationTime, false).SetEase(animationEase);
+        cubeAnimationTween.Play();
+        cubeAnimationTween.onComplete += CubeAnimationFinished;        
+    }
 
-        // Escala: se encoge y vuelve a su tamaño, en bucle
-        transform.DOScale(transform.localScale * shrinkFactor, duration)
-                 .SetLoops(-1, LoopType.Yoyo)
-                 .SetEase(Ease.InOutSine)
-                 .SetLink(gameObject);
+    void CubeAnimationFinished()
+    {
+        Debug.Log("Movimiento del cubo finalizado");
 
-        // Color: se va azulando al encoger y recupera el original al crecer
-        Renderer cubeRenderer = GetComponent<Renderer>();
-        cubeRenderer.material.DOColor(smallColor, duration)
-                    .SetLoops(-1, LoopType.Yoyo)
-                    .SetEase(Ease.InOutSine)
-                    .SetLink(gameObject);
+        // Que el cubo escale al doble de su tamaño en 3 segundos
+        Vector3 newScale = transform.localScale * 3;
+        transform.DOScale(newScale, animationTime/2).SetLoops(-1, animationLoopType);
     }
 
     #endregion
