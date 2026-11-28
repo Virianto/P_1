@@ -15,18 +15,19 @@ public class M_FlightCameras : Singleton<M_FlightCameras>
     [SerializeField]
     List<CinemachineCamera> allVirtualCamerasList = new();
 
-    [SerializeField]
-    KeyCode firstCameraKey = KeyCode.Alpha0;
+    //[SerializeField]
+    //KeyCode firstCameraKey = KeyCode.Alpha0;
 
-    [SerializeField]
-    KeyCode secondCameraKey = KeyCode.Alpha1;
+    //[SerializeField]
+    //KeyCode secondCameraKey = KeyCode.Alpha1;
 
-    [SerializeField]
-    KeyCode thirdCameraKey = KeyCode.Alpha2;
+    //[SerializeField]
+    //KeyCode thirdCameraKey = KeyCode.Alpha2;
 
-    [SerializeField]
-    KeyCode fourthCameraKey = KeyCode.Alpha3;
+    //[SerializeField]
+    //KeyCode fourthCameraKey = KeyCode.Alpha3;
 
+    int currentCamera;
     int _currentActiveCameraIndex = 0;
     public int CurrentActiveCameraIndex
     {
@@ -55,37 +56,42 @@ public class M_FlightCameras : Singleton<M_FlightCameras>
 
     #region METHODS
 
-    private void Update()
+    private void Start()
     {
-        // Detectar Input de usuario para saltar de una cámara a otra
-        if (Input.GetKeyDown(firstCameraKey))
-        {
-            // Cámara 0
-            // SwitchToCinemachineCamera(0);
-            CurrentActiveCameraIndex = 0;
-        }
-
-        if (Input.GetKeyDown(secondCameraKey))
-        {
-            // Cámara 1
-            // SwitchToCinemachineCamera(1);
-            CurrentActiveCameraIndex = 1;
-        }
-
-        if (Input.GetKeyDown(thirdCameraKey))
-        {
-            // Cámara 2
-            // SwitchToCinemachineCamera(2);
-            CurrentActiveCameraIndex = 2;
-        }
-
-        if (Input.GetKeyDown(fourthCameraKey))
-        {
-            // Cámara 3
-            // SwitchToCinemachineCamera(3);
-            CurrentActiveCameraIndex = 3;
-        }
+        M_TotalInput.Instance.OnPlayerSwitchCamera += SwitchCamera;
     }
+
+    //private void Update()
+    //{
+    //    // Detectar Input de usuario para saltar de una cámara a otra
+    //    if (Input.GetKeyDown(firstCameraKey))
+    //    {
+    //        // Cámara 0
+    //        // SwitchToCinemachineCamera(0);
+    //        CurrentActiveCameraIndex = 0;
+    //    }
+
+    //    if (Input.GetKeyDown(secondCameraKey))
+    //    {
+    //        // Cámara 1
+    //        // SwitchToCinemachineCamera(1);
+    //        CurrentActiveCameraIndex = 1;
+    //    }
+
+    //    if (Input.GetKeyDown(thirdCameraKey))
+    //    {
+    //        // Cámara 2
+    //        // SwitchToCinemachineCamera(2);
+    //        CurrentActiveCameraIndex = 2;
+    //    }
+
+    //    if (Input.GetKeyDown(fourthCameraKey))
+    //    {
+    //        // Cámara 3
+    //        // SwitchToCinemachineCamera(3);
+    //        CurrentActiveCameraIndex = 3;
+    //    }
+    //}
 
     void SwitchToCinemachineCamera()
     {
@@ -103,7 +109,6 @@ public class M_FlightCameras : Singleton<M_FlightCameras>
                 allVirtualCamerasList[i].Priority = 0;
             }
         }
-
     }
 
     public void ChangeCamera(int newCamIndex)
@@ -113,6 +118,9 @@ public class M_FlightCameras : Singleton<M_FlightCameras>
 
     IEnumerator ChangeCameraRoutine(int newCamIndex)
     {
+        // Guardar la cámara que estaba usándose
+        currentCamera = CurrentActiveCameraIndex;
+
         // Saltar de Cámara X a Cámara Y
         CurrentActiveCameraIndex = newCamIndex;
 
@@ -120,7 +128,20 @@ public class M_FlightCameras : Singleton<M_FlightCameras>
         yield return new WaitForSeconds(2);
 
         // Volver de Cámara Y a Cámara X
-        CurrentActiveCameraIndex = 0;
+        CurrentActiveCameraIndex = currentCamera;
+    }
+
+    void SwitchCamera()
+    {
+        if (CurrentActiveCameraIndex == 0)
+        {
+            CurrentActiveCameraIndex = 3;
+        }
+        
+        if (CurrentActiveCameraIndex == 3)
+        {
+            CurrentActiveCameraIndex = 0;
+        }
     }
 
     #endregion

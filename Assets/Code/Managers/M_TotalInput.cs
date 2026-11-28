@@ -11,6 +11,7 @@ public class M_TotalInput : Singleton<M_TotalInput>
 
     #region Input Related Events
 
+    public event Action OnPlayerSwitchCamera;
     public event Action OnPlayerSwitchSong;
     public event Action OnPlayerShoot;
     public event Action<float> OnPlayerTilt;
@@ -24,6 +25,14 @@ public class M_TotalInput : Singleton<M_TotalInput>
     #endregion
 
     #region METHODS
+
+    /// <summary>
+    /// Se invoca cada vez que el jugador quiera cambiar de cámara (de tercera a primera persona y viceversa)
+    /// </summary>
+    void OnCamera()
+    {
+        OnPlayerSwitchCamera?.Invoke();
+    }
 
     /// <summary>
     /// Se invoca cada vez que el jugador quiera cambiar de canción (en principio solamente avanza una hacia delante)
